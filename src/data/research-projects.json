@@ -1,0 +1,72 @@
+{
+  "featuredProjects": [
+    {
+      "id": "semantic-retrofitting",
+      "title": "Leveraging Semantics to Retrofit Security and Resiliency in Legacy CPS",
+      "description": "For deployed and legacy systems, how can we leverage knowledge about a cyber-physical system's semantics, e.g., the underlying physical equations, to enhance safety and security at all levels of the software stack?",
+      "status": "active",
+      "image": "/images/projects/semantic-retrofitting.jpg",
+      "funding": {
+        "agency": "NSF",
+        "amount": "500K",
+        "duration": "2022-2025"
+      },
+      "team": ["lag", "nsssayom", "yanran"],
+      "keywords": ["Cyber-Physical Systems", "Security Retrofitting", "Semantic Analysis", "Legacy Systems"],
+      "publications": 5,
+      "impact": "Developing methods to enhance security in deployed industrial control systems without requiring hardware changes.",
+      "type": "native"
+    },
+    {
+      "id": "trustworthy-autonomous-design",
+      "title": "Integrating Human Logic & Deep Learning for Trustworthy Autonomous Design",
+      "description": "What are the correct ways to interface symbolic knowledge and deep learning models in cyber-physical systems that allow humans to understand and intervene decision-making processes?",
+      "status": "active",
+      "image": "/images/projects/trustworthy-ai.jpg",
+      "funding": {
+        "agency": "DoD",
+        "amount": "750K",
+        "duration": "2021-2024"
+      },
+      "team": ["lag", "jp", "miles"],
+      "keywords": ["Trustworthy AI", "Human-AI Interaction", "Symbolic AI", "Deep Learning", "Autonomous Systems"],
+      "publications": 8,
+      "impact": "Creating interpretable AI systems for critical autonomous applications that maintain human oversight capabilities.",
+      "type": "static"
+    },
+    {
+      "id": "secure-ubiquitous-sensing",
+      "title": "Secure, Private, and Useful Ubiquitous Sensing",
+      "description": "With the explosion of IoT sensors, how can we expose useful programming abstractions to developers while ensuring secure and private cyber-physical information flow?",
+      "status": "active",
+      "image": "/images/projects/ubiquitous-sensing.jpg",
+      "funding": {
+        "agency": "NSF CAREER",
+        "amount": "600K",
+        "duration": "2023-2028"
+      },
+      "team": ["lag", "nsssayom", "tomHank"],
+      "keywords": ["IoT Security", "Privacy", "Information Flow", "Programming Abstractions"],
+      "publications": 3,
+      "impact": "Developing secure programming frameworks for IoT applications with privacy guarantees.",
+      "type": "json"
+    },
+    {
+      "id": "scada-physics-modeling",
+      "title": "Physics-Informed Security Mechanisms for SCADA Systems",
+      "description": "Leveraging underlying physical equations and process models to detect anomalies and prevent attacks in supervisory control and data acquisition systems.",
+      "status": "active",
+      "image": "/images/projects/scada-security.jpg",
+      "funding": {
+        "agency": "DOE",
+        "amount": "750K",
+        "duration": "2023-2026"
+      },
+      "team": ["lag", "yanran"],
+      "keywords": ["SCADA Security", "Physics-based Detection", "Anomaly Detection", "Critical Infrastructure"],
+      "publications": 3,
+      "impact": "Protecting power grid and water treatment facilities from sophisticated attacks.",
+      "type": "native"
+    }
+  ]
+} 

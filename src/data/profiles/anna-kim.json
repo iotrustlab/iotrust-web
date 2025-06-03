@@ -1,0 +1,62 @@
+{
+  "id": "anna-kim",
+  "type": "person",
+  "variant": "json",
+  "name": "Anna Kim",
+  "role": "PhD Student",
+  "email": "a.kim@university.edu",
+  "image": "/images/team/anna-kim.jpg",
+  "bio": "Anna is pursuing her PhD in Computer Science, specializing in privacy-preserving computation for edge computing systems. She holds an MS from Carnegie Mellon.",
+  "research_interests": ["Privacy-Preserving Computation", "Edge Computing", "Homomorphic Encryption"],
+  "education": "MS Computer Science, Carnegie Mellon 2021",
+  "linkedin": "https://linkedin.com/in/anna-kim-research",
+  "layout": {
+    "sections": [
+      {
+        "type": "header",
+        "content": {
+          "badges": ["PhD Student", "JSON-Configured Profile"],
+          "name": "Anna Kim",
+          "education": true,
+          "contact_links": ["email", "linkedin"]
+        }
+      },
+      {
+        "type": "prose",
+        "title": "Biography",
+        "content": "Anna Kim is a dedicated PhD student specializing in the intersection of privacy-preserving computation and edge computing systems. Her research addresses critical challenges in maintaining data privacy while enabling efficient computation at the network edge."
+      },
+      {
+        "type": "prose",
+        "title": "Research Focus",
+        "content": "Anna's current work focuses on developing practical homomorphic encryption schemes that can operate efficiently on edge devices. She is particularly interested in applications to smart city infrastructure, where sensitive data must be processed locally while preserving privacy guarantees."
+      },
+      {
+        "type": "prose", 
+        "title": "Academic Background",
+        "content": "Before joining the IoTrust Lab, Anna completed her Master's degree at Carnegie Mellon University, where she developed a strong foundation in systems security and cryptographic protocols. Her thesis work on secure multi-party computation laid the groundwork for her current PhD research."
+      },
+      {
+        "type": "research_interests",
+        "title": "Research Interests"
+      },
+      {
+        "type": "contact_box",
+        "title": "Contact Information"
+      }
+    ]
+  },
+  "styling": {
+    "badge_colors": {
+      "PhD Student": "bg-blue-100 text-blue-800",
+      "JSON-Configured Profile": "bg-cyan-100 text-cyan-800"
+    },
+    "image_size": "w-48 h-48",
+    "section_spacing": "mb-8"
+  },
+  "metadata": {
+    "page_title": "Anna Kim | IoTrust Lab",
+    "description": "PhD student specializing in privacy-preserving computation for edge computing systems.",
+    "last_updated": "2024-01-15"
+  }
+} 

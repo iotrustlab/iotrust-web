@@ -1,0 +1,37 @@
+{
+  "id": "jp",
+  "name": "Jainta Paul",
+  "role": "PhD Student",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "jainta.paul@utah.edu",
+  "image": "/images/people/jp.jpg",
+  "bio": "Jainta Paul is a PhD student in the Kahlert School of Computing at the University of Utah, working under the supervision of Dr. Luis Garcia. Her research focuses on trustworthy AI in cyber-physical systems and human-AI interaction in safety-critical applications.",
+  "research_interests": [
+    "Trustworthy AI",
+    "Human-AI Interaction",
+    "Explainable AI",
+    "Cyber-physical Systems",
+    "Safety-critical Systems"
+  ],
+  "education": [
+    {
+      "degree": "Ph.D. Computer Science (In Progress)",
+      "institution": "University of Utah",
+      "year": "2022-Present"
+    },
+    {
+      "degree": "M.S. Computer Engineering",
+      "institution": "Previous University",
+      "year": "2022"
+    }
+  ],
+  "current_projects": [
+    "trustworthy-autonomous-design",
+    "explainable-autonomous-systems"
+  ],
+  "publications_count": 2,
+  "linkedin": "https://linkedin.com/in/jaintapaul",
+  "github": "https://github.com/jaintapaul",
+  "type": "static"
+} 

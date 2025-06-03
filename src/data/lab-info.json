@@ -1,0 +1,31 @@
+{
+  "lead": {
+    "name": "Dr. Luis A. Garcia",
+    "title": "Assistant Professor",
+    "department": "Kahlert School of Computing",
+    "university": "University of Utah",
+    "email": "luis.garcia@utah.edu",
+    "bio": "Dr. Luis Antonio Garcia is an Assistant Professor at The University of Utah Kahlert School of Computing focusing on the security and safety of learning-enabled Cyber-physical Systems (CPS)/Internet-of-Things (IoT). He was previously a Research Assistant Professor at the USC Department of Computer Science and a Research Lead at the USC Information Sciences Institute. He held a postdoctoral appointment at the Networked & Embedded Systems Laboratory at the UCLA ECE Department, collaborating with Dr. Mani Srivastava. He has his PhD in Computer Engineering with a Cybersecurity focus from Rutgers University, where his research advisor was Dr. Saman Zonouz.",
+    "image": "/images/team/luis-garcia.jpg",
+    "credentials": "PhD in Computer Engineering, Rutgers University"
+  },
+  "mission": "We develop methods to ensure trustworthy and resilient autonomous systems that interact with humans both in and on control loops. Driven by real-world stakeholders, our goal is to enable a relationship for providing mutual assurances between deep-learning-enabled cyber-physical systems and humans in safety-critical contexts.",
+  "focus_areas": [
+    "Cyber-physical Systems Security",
+    "IoT Security",
+    "Learning-enabled Systems",
+    "Trustworthy AI",
+    "Autonomous Systems Safety",
+    "Deep Learning Security"
+  ],
+  "university": {
+    "name": "University of Utah",
+    "department": "Kahlert School of Computing",
+    "address": {
+      "street": "50 Central Campus Dr",
+      "city": "Salt Lake City",
+      "state": "Utah",
+      "zip": "84112"
+    }
+  }
+} 

@@ -1,0 +1,38 @@
+{
+  "id": "nsssayom",
+  "name": "Nazmus Shakib Sayom",
+  "role": "PhD Student",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "nsssayom@utah.edu",
+  "image": "/images/people/nsssayom.jpg",
+  "bio": "Nazmus Shakib Sayom is a PhD student in the Kahlert School of Computing at the University of Utah, working under the supervision of Dr. Luis Garcia. His research focuses on the intersection of cybersecurity and cyber-physical systems, with particular interest in IoT security and privacy-preserving technologies.",
+  "research_interests": [
+    "IoT Security",
+    "Privacy-Preserving Technologies",
+    "Cyber-physical Systems",
+    "Machine Learning Security",
+    "Network Security"
+  ],
+  "education": [
+    {
+      "degree": "Ph.D. Computer Science (In Progress)",
+      "institution": "University of Utah",
+      "year": "2021-Present"
+    },
+    {
+      "degree": "M.S. Computer Science",
+      "institution": "Previous University",
+      "year": "2021"
+    }
+  ],
+  "current_projects": [
+    "secure-ubiquitous-sensing",
+    "privacy-preserving-sensing"
+  ],
+  "publications_count": 3,
+  "linkedin": "https://linkedin.com/in/nsssayom",
+  "github": "https://github.com/nsssayom",
+  "website": "https://nsssayom.github.io",
+  "type": "native"
+} 

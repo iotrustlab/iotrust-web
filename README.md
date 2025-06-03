@@ -1,24 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IoTrust Lab Website
+
+A modern, responsive website for IoTrust Lab built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- ✨ **Modern Stack**: Built with Next.js 15, TypeScript, and Tailwind CSS
+- 🌙 **Dark/Light Mode**: Toggle between themes with local storage persistence
+- 📱 **Responsive Design**: Fully responsive across all device sizes
+- 🔍 **SEO Optimized**: Comprehensive SEO setup with next-seo
+- ♿ **Accessible**: Built with accessibility best practices
+- 🎨 **Beautiful UI**: Clean, modern design with smooth animations
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Project Structure
+
+```
+src/
+├── app/                  # Next.js App Router pages
+│   ├── bio/             # Bio page
+│   ├── research/        # Research page
+│   ├── people/          # People page
+│   ├── publications/    # Publications page
+│   ├── opportunities/   # Opportunities page
+│   ├── contact/         # Contact page
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Home page
+│   └── globals.css      # Global styles
+├── components/          # Reusable UI components
+│   ├── navigation.tsx   # Site navigation
+│   ├── footer.tsx       # Site footer
+│   ├── theme-provider.tsx
+│   └── theme-toggle.tsx
+├── layouts/            # Layout components
+│   └── site-layout.tsx
+├── config/             # Configuration files
+│   └── seo.ts          # SEO configuration
+├── data/               # Data files (for future use)
+├── lib/                # Utility functions
+└── styles/             # Additional styles (for future use)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: Custom components with shadcn/ui setup
+- **Icons**: Lucide React
+- **SEO**: next-seo
+- **Theming**: next-themes
+
+## Phase 1 Completed ✅
+
+- [x] Next.js project initialization with TypeScript
+- [x] TailwindCSS and shadcn/ui setup
+- [x] Project structure with proper folder organization
+- [x] Site-wide layout with header and footer
+- [x] Dark/light mode toggle with persistence
+- [x] Responsive navigation with all sections
+- [x] Basic SEO setup with next-seo
+- [x] Placeholder pages for all routes
+
+## Next Steps (Future Phases)
+
+- Phase 2: Content management and dynamic pages
+- Phase 3: Research showcase and publications
+- Phase 4: Team profiles and contact forms
+- Phase 5: Advanced features and optimizations
+
+## License
+
+This project is private and proprietary to IoTrust Lab.
 
 ## Learn More
 

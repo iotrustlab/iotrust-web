@@ -1,0 +1,32 @@
+{
+  "people": [
+    { "id": "lag", "type": "json" },
+    { "id": "nsssayom", "type": "native" },
+    { "id": "jp", "type": "static" },
+    { "id": "yanran", "type": "json" },
+    { "id": "miles", "type": "json" },
+    { "id": "tomHank", "type": "json" }
+  ],
+  "furryMembers": [
+    {
+      "id": "ruth",
+      "name": "Ruth",
+      "species": "dog",
+      "emoji": "🐕",
+      "role": "Lab Overseer",
+      "title": "Chief Security Officer",
+      "description": "Luis's loyal companion who ensures lab security and maintains high morale through strategic belly rub requests.",
+      "image": "/images/furry/ruth.jpg"
+    },
+    {
+      "id": "valley",
+      "name": "Valentina \"Valley\"",
+      "species": "cat",
+      "emoji": "🐱",
+      "role": "Chief Purring Officer", 
+      "title": "Stress Relief Coordinator",
+      "description": "Sayom's feline associate specializing in keyboard warming, paper organizing, and midnight debugging sessions.",
+      "image": "/images/furry/valley.jpg"
+    }
+  ]
+} 

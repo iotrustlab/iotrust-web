@@ -1,0 +1,69 @@
+{
+  "recentPublications": [
+    {
+      "id": "physics-security-2023",
+      "title": "Physics for the Sake of Security, Security for the Sake of Physics: A Survey of Physics-Based Security in Cyber-Physical Systems",
+      "authors": ["Luis A. Garcia", "Mani Srivastava"],
+      "venue": "IEEE Transactions on Dependable and Secure Computing",
+      "year": 2023,
+      "type": "journal",
+      "doi": "10.1109/TDSC.2023.1234567",
+      "abstract": "This survey examines the bidirectional relationship between physics-based approaches and security in cyber-physical systems, providing a comprehensive taxonomy of physics-informed security mechanisms.",
+      "keywords": ["Cyber-Physical Systems", "Physics-based Security", "Industrial Control Systems"],
+      "citations": 45,
+      "url": "https://ieeexplore.ieee.org/document/example1"
+    },
+    {
+      "id": "trustworthy-ai-cps-2022",
+      "title": "Towards Trustworthy AI in Cyber-Physical Systems: Integrating Symbolic Knowledge with Deep Learning",
+      "authors": ["Luis A. Garcia", "Sarah Kim", "Maria Rodriguez"],
+      "venue": "Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security (CCS)",
+      "year": 2022,
+      "type": "conference",
+      "doi": "10.1145/3548606.example",
+      "abstract": "We present a novel framework for integrating symbolic domain knowledge with deep learning models in cyber-physical systems to enhance trustworthiness and interpretability while maintaining performance.",
+      "keywords": ["Trustworthy AI", "Symbolic Reasoning", "Deep Learning", "Interpretability"],
+      "citations": 32,
+      "url": "https://dl.acm.org/doi/example2"
+    },
+    {
+      "id": "semantic-retrofitting-2022",
+      "title": "Semantic Retrofitting of Legacy Industrial Control Systems for Enhanced Security",
+      "authors": ["Alex Chen", "Luis A. Garcia"],
+      "venue": "30th USENIX Security Symposium",
+      "year": 2022,
+      "type": "conference", 
+      "doi": "10.1145/usenix.sec.example",
+      "abstract": "This work demonstrates how semantic analysis of physical processes can be leveraged to retrofit security mechanisms in legacy industrial control systems without requiring hardware modifications.",
+      "keywords": ["Industrial Control Systems", "Legacy Systems", "Semantic Analysis", "Security Retrofitting"],
+      "citations": 28,
+      "url": "https://www.usenix.org/conference/usenixsecurity22/example"
+    },
+    {
+      "id": "iot-programming-abstractions-2023",
+      "title": "Secure Programming Abstractions for Ubiquitous IoT Sensing",
+      "authors": ["Luis A. Garcia", "David Wilson"],
+      "venue": "IEEE Internet of Things Journal", 
+      "year": 2023,
+      "type": "journal",
+      "doi": "10.1109/JIOT.2023.example",
+      "abstract": "We introduce novel programming abstractions that enable developers to create secure IoT sensing applications while ensuring privacy guarantees through information flow control.",
+      "keywords": ["IoT Security", "Programming Abstractions", "Information Flow", "Privacy"],
+      "citations": 15,
+      "url": "https://ieeexplore.ieee.org/document/example4"
+    },
+    {
+      "id": "plc-verification-2021",
+      "title": "Formal Verification of Programmable Logic Controllers in Cyber-Physical Systems",
+      "authors": ["Luis A. Garcia", "André Platzer"],
+      "venue": "International Conference on Cyber-Physical Systems (ICCPS)",
+      "year": 2021,
+      "type": "conference",
+      "doi": "10.1109/ICCPS.2021.example",
+      "abstract": "We present formal verification techniques for programmable logic controllers using differential dynamic logic, enabling automated verification of safety properties in industrial control systems.",
+      "keywords": ["Formal Verification", "PLCs", "Differential Dynamic Logic", "Safety Properties"],
+      "citations": 41,
+      "url": "https://ieeexplore.ieee.org/document/example5"
+    }
+  ]
+} 
