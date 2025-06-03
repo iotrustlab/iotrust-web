@@ -147,8 +147,8 @@ export async function getPeople(): Promise<Person[]> {
             if (person) {
                 people.push(person);
             }
-        } catch (error) {
-            console.warn(`Failed to load profile for ${personRef.id}:`, error);
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
         }
     }
 
@@ -166,7 +166,7 @@ export async function getPerson(id: string): Promise<Person | null> {
         const profilePath = path.join(process.cwd(), `src/data/profiles/${id}.json`);
         const jsonData = await fs.readFile(profilePath, 'utf8');
         return JSON.parse(jsonData);
-    } catch (error) {
+    } catch {
         console.warn(`Profile not found for person ID: ${id}`);
         return null;
     }

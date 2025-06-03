@@ -14,7 +14,6 @@
       "species": "dog",
       "emoji": "🐕",
       "role": "Lab Overseer",
-      "title": "Chief Security Officer",
       "description": "Luis's loyal companion who ensures lab security and maintains high morale through strategic belly rub requests.",
       "image": "/images/furry/ruth.jpg"
     },
@@ -24,7 +23,6 @@
       "species": "cat",
       "emoji": "🐱",
       "role": "Chief Purring Officer", 
-      "title": "Stress Relief Coordinator",
       "description": "Sayom's feline associate specializing in keyboard warming, paper organizing, and midnight debugging sessions.",
       "image": "/images/furry/valley.jpg"
     }

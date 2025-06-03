@@ -1,27 +1,9 @@
 import Link from 'next/link';
 import { Mail } from 'lucide-react';
+import { getLabInfo } from '@/lib/data';
 
-// Since footer is used in layout, we'll create a client component with static data
-// or make the layout async. For now, let's use static data inline.
-const labInfo = {
-  lead: {
-    name: "Dr. Sarah Chen",
-    title: "Associate Professor",
-    email: "s.chen@university.edu"
-  },
-  university: {
-    name: "University of Technology",
-    department: "Department of Computer Science and Engineering",
-    address: {
-      street: "123 University Drive",
-      city: "Tech City",
-      state: "TC",
-      zip: "12345"
-    }
-  }
-};
-
-export function Footer() {
+export async function Footer() {
+  const labInfo = await getLabInfo();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -67,29 +49,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/research" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <a href="#research" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Research Projects
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/publications" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <a href="#publications" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Publications
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/people" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <a href="#people" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Research Team
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/opportunities" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <a href="#opportunities" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Join Our Lab
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

@@ -63,10 +63,15 @@ export default function PersonPage({ person }: PersonPageProps) {
                 </p>
               )}
               
-              {person.education && (
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-                  {person.education}
-                </p>
+              {person.education && person.education.length > 0 && (
+                <div className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  {person.education.map((edu, index) => (
+                    <div key={index}>
+                      {edu.degree} - {edu.institution} ({edu.year})
+                      {edu.focus && ` - ${edu.focus}`}
+                    </div>
+                  ))}
+                </div>
               )}
               
               {/* Contact Links */}
@@ -133,19 +138,21 @@ export default function PersonPage({ person }: PersonPageProps) {
           </div>
 
           {/* Research Interests */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Research Interests</h2>
-            <div className="flex flex-wrap gap-2">
-              {person.research_interests.map((interest, index) => (
-                <span 
-                  key={index}
-                  className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-md text-sm"
-                >
-                  {interest}
-                </span>
-              ))}
+          {person.research_interests && person.research_interests.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Research Interests</h2>
+              <div className="flex flex-wrap gap-2">
+                {person.research_interests.map((interest, index) => (
+                  <span 
+                    key={index}
+                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-md text-sm"
+                  >
+                    {interest}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Contact Information */}
           <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">

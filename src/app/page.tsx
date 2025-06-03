@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ResearchCard } from '@/components/research-card';
 import { PublicationCard } from '@/components/publication-card';
 import { TeamMemberCard } from '@/components/team-member-card';
@@ -146,32 +147,40 @@ export default async function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto">
-              {furryMembers.map((member) => (
-                <div 
-                  key={member.id} 
-                  className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
-                >
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-4xl">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full rounded-full object-cover"
-                    />
+              {furryMembers.map((member) => {
+                const hasImage = Boolean(member.image);
+                
+                return (
+                  <div 
+                    key={member.id} 
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
+                  >
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-4xl relative">
+                      {hasImage && (
+                        <Image 
+                          src={member.image!} 
+                          alt={member.name}
+                          fill
+                          className="rounded-full object-cover"
+                          sizes="96px"
+                        />
+                      )}
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                      {member.name}
+                    </h4>
+                    <p className="text-blue-600 dark:text-blue-400 text-sm font-medium">
+                      {member.title}
+                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
+                      {member.role}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-3">
+                      {member.description}
+                    </p>
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {member.name}
-                  </h4>
-                  <p className="text-blue-600 dark:text-blue-400 text-sm font-medium">
-                    {member.title}
-                  </p>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-3">
-                    {member.description}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -185,10 +194,10 @@ export default async function HomePage() {
               Join Our Team
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              We are always looking for talented and enthusiastic individuals to collaborate with us in advancing the frontiers of cybersecurity research. While we don't have any specific openings at the moment, we believe in building relationships with passionate researchers.
+              We are always looking for talented and enthusiastic individuals to collaborate with us in advancing the frontiers of cybersecurity research. While we don&apos;t have any specific openings at the moment, we believe in building relationships with passionate researchers.
             </p>
             <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Whether you're a prospective PhD student, postdoctoral researcher, or interested in collaboration opportunities, we'd love to hear from you. When new positions become available, they will be posted here.
+              Whether you&apos;re a prospective PhD student, postdoctoral researcher, or interested in collaboration opportunities, we&apos;d love to hear from you. When new positions become available, they will be posted here.
             </p>
             <div className="mt-10">
               <p className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">

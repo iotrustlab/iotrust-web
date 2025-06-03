@@ -1,51 +1,28 @@
-'use client';
-
 import { Person } from '@/lib/data';
 import { Mail, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
 
 interface TeamMemberCardProps {
   member: Person;
 }
 
-// Simple blur data URL for placeholder
-const blurDataURL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==';
-
-// Skeleton placeholder component
-function AvatarSkeleton({ name }: { name: string }) {
-  const initials = name.split(' ').map(n => n[0]).join('').slice(0, 2);
-  return (
-    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center rounded-full">
-      <span className="text-gray-500 dark:text-gray-300 font-semibold text-lg">
-        {initials}
-      </span>
-    </div>
-  );
-}
-
 export function TeamMemberCard({ member }: TeamMemberCardProps) {
-  const [imageError, setImageError] = useState(false);
-
+  const hasImage = Boolean(member.image);
+  
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow group max-w-sm mx-auto">
       <Link href={`/people/${member.id}`} className="block text-center">
         <div className="flex justify-center mb-4">
           <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0 relative">
-            {!imageError ? (
+            {hasImage && (
               <Image
-                src={member.image}
+                src={member.image!}
                 alt={member.name}
                 fill
                 className="object-cover rounded-full"
-                placeholder="blur"
-                blurDataURL={blurDataURL}
                 sizes="96px"
-                onError={() => setImageError(true)}
               />
-            ) : (
-              <AvatarSkeleton name={member.name} />
             )}
           </div>
         </div>

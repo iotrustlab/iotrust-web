@@ -5,7 +5,7 @@
       "title": "Leveraging Semantics to Retrofit Security and Resiliency in Legacy CPS",
       "description": "For deployed and legacy systems, how can we leverage knowledge about a cyber-physical system's semantics, e.g., the underlying physical equations, to enhance safety and security at all levels of the software stack?",
       "status": "active",
-      "image": "/images/projects/semantic-retrofitting.jpg",
+      "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "NSF",
         "amount": "500K",
@@ -22,7 +22,7 @@
       "title": "Integrating Human Logic & Deep Learning for Trustworthy Autonomous Design",
       "description": "What are the correct ways to interface symbolic knowledge and deep learning models in cyber-physical systems that allow humans to understand and intervene decision-making processes?",
       "status": "active",
-      "image": "/images/projects/trustworthy-ai.jpg",
+      "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "DoD",
         "amount": "750K",
@@ -39,7 +39,7 @@
       "title": "Secure, Private, and Useful Ubiquitous Sensing",
       "description": "With the explosion of IoT sensors, how can we expose useful programming abstractions to developers while ensuring secure and private cyber-physical information flow?",
       "status": "active",
-      "image": "/images/projects/ubiquitous-sensing.jpg",
+      "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "NSF CAREER",
         "amount": "600K",
@@ -56,7 +56,7 @@
       "title": "Physics-Informed Security Mechanisms for SCADA Systems",
       "description": "Leveraging underlying physical equations and process models to detect anomalies and prevent attacks in supervisory control and data acquisition systems.",
       "status": "active",
-      "image": "/images/projects/scada-security.jpg",
+      "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "DOE",
         "amount": "750K",

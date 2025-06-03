@@ -7,9 +7,9 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 
 const navigation = [
-  { name: 'Home', href: '/', isScroll: false },
+  { name: 'Home', href: '#home', isScroll: true },
   { name: 'Research', href: '#research', isScroll: true },
-  { name: 'Publications', href: '/publications', isScroll: false },
+  { name: 'Publications', href: '#publications', isScroll: true },
   { name: 'People', href: '#people', isScroll: true },
   { name: 'Opportunities', href: '#opportunities', isScroll: true },
   { name: 'Contact', href: '#contact', isScroll: true },
@@ -18,6 +18,68 @@ const navigation = [
 export function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState('');
+
+  // Set up Intersection Observer to detect which section is in view
+  React.useEffect(() => {
+    if (pathname !== '/') return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle of viewport
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = `#${entry.target.id}`;
+          setActiveSection(sectionId);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections that have corresponding navigation items
+    const sectionsToObserve = navigation
+      .filter(item => item.isScroll)
+      .map(item => item.href.substring(1)) // Remove # from href
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    sectionsToObserve.forEach(section => {
+      if (section) observer.observe(section);
+    });
+
+    // Set initial active section based on scroll position
+    const handleInitialScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      for (const item of navigation) {
+        if (item.isScroll) {
+          const element = document.querySelector(item.href);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top + window.scrollY;
+            const elementBottom = elementTop + rect.height;
+            
+            if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
+              setActiveSection(item.href);
+              break;
+            }
+          }
+        }
+      }
+    };
+
+    // Check initial position
+    handleInitialScroll();
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname]);
 
   const handleScroll = (href: string) => {
     if (pathname !== '/') {
@@ -34,12 +96,12 @@ export function Navigation() {
   };
 
   const isActiveSection = (href: string) => {
-    if (href === '/' && pathname === '/') return true;
-    if (href.startsWith('#') && pathname === '/') {
-      // Could add logic to detect which section is currently in view
+    if (pathname !== '/') {
+      // If not on homepage, no scroll sections are active
       return false;
     }
-    return pathname === href;
+    // Check if this section is currently active
+    return activeSection === href;
   };
 
   return (
