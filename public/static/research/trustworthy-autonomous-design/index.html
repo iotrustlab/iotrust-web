@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrating Human Logic & Deep Learning for Trustworthy Autonomous Design | IoTrust Lab</title>
+    <meta name="description" content="Research on interfacing symbolic knowledge and deep learning models in cyber-physical systems for trustworthy autonomous design.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-back">← Back to IoTrust Lab</a>
+            <a href="/research" class="nav-research">← Back to Research</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="project-badge">
+                    <span class="status-active">Active Research</span>
+                    <span class="funding">DoD • $750K • 2021-2024</span>
+                </div>
+                <h1 class="hero-title">Integrating Human Logic & Deep Learning for Trustworthy Autonomous Design</h1>
+                <p class="hero-subtitle">Developing interpretable AI systems that maintain human oversight in critical autonomous applications</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Publications</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Keywords</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="interactive-diagram" id="autonomousSystem">
+                    <div class="system-layer human-layer">
+                        <div class="layer-title">Human Logic Layer</div>
+                        <div class="component symbolic-reasoning">Symbolic Reasoning</div>
+                        <div class="component knowledge-base">Knowledge Base</div>
+                    </div>
+                    <div class="system-layer integration-layer">
+                        <div class="layer-title">Integration Layer</div>
+                        <div class="component interface">AI-Human Interface</div>
+                        <div class="component explainer">Explainability Module</div>
+                    </div>
+                    <div class="system-layer ai-layer">
+                        <div class="layer-title">Deep Learning Layer</div>
+                        <div class="component neural-net">Neural Networks</div>
+                        <div class="component decision-engine">Decision Engine</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Image Section -->
+    <section class="project-image">
+        <div class="container">
+            <div class="image-container">
+                <img src="/images/project-placeholder.jpg" alt="Trustworthy Autonomous Design Research" class="project-hero-image">
+                <div class="image-overlay">
+                    <div class="overlay-content">
+                        <h3>Research in Action</h3>
+                        <p>Developing next-generation autonomous systems with human oversight capabilities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Objectives -->
+    <section class="objectives">
+        <div class="container">
+            <h2 class="section-title">Research Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card" data-objective="1">
+                    <div class="objective-icon">🧠</div>
+                    <h3>Human-AI Integration</h3>
+                    <p>Develop seamless interfaces between symbolic human knowledge and deep learning models for transparent decision-making.</p>
+                </div>
+                <div class="objective-card" data-objective="2">
+                    <div class="objective-icon">🔍</div>
+                    <h3>Explainable AI</h3>
+                    <p>Create interpretable AI systems where humans can understand and intervene in autonomous decision processes.</p>
+                </div>
+                <div class="objective-card" data-objective="3">
+                    <div class="objective-icon">🛡️</div>
+                    <h3>Trustworthy Autonomy</h3>
+                    <p>Ensure autonomous systems maintain reliability and safety through human oversight capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Decision Process</h2>
+            <div class="demo-container">
+                <div class="scenario-selector">
+                    <button class="scenario-btn active" data-scenario="autonomous-vehicle">Autonomous Vehicle</button>
+                    <button class="scenario-btn" data-scenario="industrial-robot">Industrial Robot</button>
+                    <button class="scenario-btn" data-scenario="drone-navigation">Drone Navigation</button>
+                </div>
+                
+                <div class="decision-flow" id="decisionFlow">
+                    <div class="flow-stage">
+                        <h4>Sensor Input</h4>
+                        <div class="stage-content">
+                            <div class="sensor-data">Camera, LiDAR, GPS</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-stage">
+                        <h4>AI Processing</h4>
+                        <div class="stage-content">
+                            <div class="ai-analysis">Deep Learning Analysis</div>
+                            <div class="confidence-meter">
+                                <span>Confidence: </span>
+                                <div class="meter"><div class="meter-fill" style="width: 85%"></div></div>
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-stage">
+                        <h4>Human Logic Check</h4>
+                        <div class="stage-content">
+                            <div class="logic-rules">Safety Rules Applied</div>
+                            <div class="human-override">Override Available</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-stage">
+                        <h4>Decision</h4>
+                        <div class="stage-content">
+                            <div class="final-decision">Execute Action</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="demo-btn" id="runDemo">Run Decision Process</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Approach -->
+    <section class="approach">
+        <div class="container">
+            <h2 class="section-title">Our Approach</h2>
+            <div class="approach-grid">
+                <div class="approach-item">
+                    <h3>Symbolic-Neural Integration</h3>
+                    <p>We combine symbolic reasoning systems with neural networks to create hybrid AI architectures that leverage the strengths of both approaches.</p>
+                    <div class="approach-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <span>75% Complete</span>
+                    </div>
+                </div>
+                <div class="approach-item">
+                    <h3>Explainability Framework</h3>
+                    <p>Developing methods to make AI decisions transparent and understandable to human operators through visual and textual explanations.</p>
+                    <div class="approach-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span>60% Complete</span>
+                    </div>
+                </div>
+                <div class="approach-item">
+                    <h3>Human-in-the-Loop</h3>
+                    <p>Implementing systems that allow human operators to intervene, override, and guide autonomous systems when necessary.</p>
+                    <div class="approach-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                        <span>80% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications & Resources -->
+    <section class="publications">
+        <div class="container">
+            <h2 class="section-title">Publications & Resources</h2>
+            <div class="content-grid">
+                <div class="publications-list">
+                    <h3>Recent Publications</h3>
+                    <div class="publication-item">
+                        <h4>Trustworthy AI for Autonomous Systems: A Human-Centric Approach</h4>
+                        <p>L. Garcia, J. Peterson, M. Johnson - IEEE Security & Privacy 2023</p>
+                        <div class="publication-badges">
+                            <span class="badge conference">Conference</span>
+                            <span class="badge published">Published</span>
+                        </div>
+                    </div>
+                    <div class="publication-item">
+                        <h4>Explainable Autonomous Decision Making in Cyber-Physical Systems</h4>
+                        <p>J. Peterson, L. Garcia - ACM CCS 2023</p>
+                        <div class="publication-badges">
+                            <span class="badge conference">Conference</span>
+                            <span class="badge published">Published</span>
+                        </div>
+                    </div>
+                    <div class="publication-item">
+                        <h4>Human-AI Collaboration in Safety-Critical Systems</h4>
+                        <p>M. Johnson, L. Garcia, J. Peterson - USENIX Security 2024</p>
+                        <div class="publication-badges">
+                            <span class="badge conference">Conference</span>
+                            <span class="badge accepted">Accepted</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resources-list">
+                    <h3>Code & Resources</h3>
+                    <div class="resource-item">
+                        <h4>Trustworthy AI Framework</h4>
+                        <p>Open-source framework for building explainable autonomous systems</p>
+                        <a href="#" class="resource-link">View on GitHub →</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Human-AI Interface Toolkit</h4>
+                        <p>Tools for developing human-centered AI interfaces</p>
+                        <a href="#" class="resource-link">View on GitHub →</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Explainability Benchmark</h4>
+                        <p>Standardized tests for evaluating AI explainability</p>
+                        <a href="#" class="resource-link">Download Dataset →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 IoTrust Lab. Part of the trustworthy autonomous systems research initiative.</p>
+            <div class="footer-links">
+                <a href="/research">Research</a>
+                <a href="/people">Team</a>
+                <a href="/contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

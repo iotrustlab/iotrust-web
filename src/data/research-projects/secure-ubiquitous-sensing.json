@@ -1,0 +1,149 @@
+{
+  "content": {
+    "overview": {
+      "title": "Secure, Private, and Useful Ubiquitous Sensing",
+      "subtitle": "Building Privacy-Preserving IoT Programming Frameworks",
+      "abstract": "With the explosion of IoT sensors deployed across our environment, we are investigating how to expose useful programming abstractions to developers while ensuring secure and private cyber-physical information flow. This NSF CAREER project focuses on developing novel frameworks that balance utility with privacy guarantees in ubiquitous sensing scenarios.",
+      "heroImage": "/images/ubiquitous-sensing-hero.jpg"
+    },
+    "objectives": [
+      {
+        "title": "Privacy-Preserving Data Collection",
+        "description": "Develop mechanisms for collecting sensor data while preserving user privacy through differential privacy and secure computation techniques.",
+        "icon": "shield"
+      },
+      {
+        "title": "Programming Abstractions",
+        "description": "Create intuitive APIs and frameworks that allow developers to build IoT applications without compromising security.",
+        "icon": "code"
+      },
+      {
+        "title": "Information Flow Control",
+        "description": "Implement systems to track and control how sensitive information flows through distributed IoT networks.",
+        "icon": "flow"
+      }
+    ],
+    "methodology": {
+      "title": "Research Approach",
+      "sections": [
+        {
+          "title": "Theoretical Foundations",
+          "content": "We are developing formal models for privacy-preserving information flow in distributed sensing systems. Our approach combines concepts from differential privacy, information theory, and type systems to create provable guarantees about data protection."
+        },
+        {
+          "title": "System Design",
+          "content": "The project involves building a complete software stack from low-level sensor abstractions to high-level programming interfaces. We focus on creating composable primitives that maintain privacy properties across system boundaries."
+        },
+        {
+          "title": "Experimental Validation",
+          "content": "We validate our approaches through both simulation studies and real-world deployments in smart building environments, measuring both privacy guarantees and system performance."
+        }
+      ]
+    },
+    "timeline": {
+      "phases": [
+        {
+          "year": "Year 1-2",
+          "title": "Foundation & Theory",
+          "tasks": [
+            "Develop formal privacy models",
+            "Design core programming abstractions",
+            "Build prototype framework"
+          ],
+          "status": "completed"
+        },
+        {
+          "year": "Year 3-4",
+          "title": "System Implementation",
+          "tasks": [
+            "Implement full software stack",
+            "Conduct performance evaluations",
+            "Deploy in test environments"
+          ],
+          "status": "in-progress"
+        },
+        {
+          "year": "Year 5",
+          "title": "Validation & Dissemination",
+          "tasks": [
+            "Large-scale real-world deployment",
+            "Community adoption initiatives",
+            "Final evaluation and documentation"
+          ],
+          "status": "planned"
+        }
+      ]
+    },
+    "publications": [
+      {
+        "title": "Privacy-Preserving Abstractions for IoT Programming",
+        "authors": ["L. Garcia", "N. Sayom", "T. Hank"],
+        "venue": "ACM CCS 2023",
+        "type": "conference",
+        "status": "published"
+      },
+      {
+        "title": "Differential Privacy in Distributed Sensing Networks",
+        "authors": ["T. Hank", "L. Garcia"],
+        "venue": "IEEE S&P 2024",
+        "type": "conference",
+        "status": "accepted"
+      },
+      {
+        "title": "Secure Information Flow for Ubiquitous Computing",
+        "authors": ["N. Sayom", "L. Garcia"],
+        "venue": "USENIX Security 2024",
+        "type": "conference",
+        "status": "under-review"
+      }
+    ],
+    "resources": {
+      "code": [
+        {
+          "name": "IoT Privacy Framework",
+          "url": "https://github.com/iotrust/privacy-framework",
+          "description": "Core framework implementation with privacy abstractions"
+        },
+        {
+          "name": "Differential Privacy Library",
+          "url": "https://github.com/iotrust/dp-library",
+          "description": "Reusable components for differential privacy in IoT"
+        }
+      ],
+      "datasets": [
+        {
+          "name": "Smart Building Sensor Data",
+          "url": "https://data.iotrust.org/smart-building",
+          "description": "Anonymized sensor data from our test deployments"
+        }
+      ],
+      "demos": [
+        {
+          "name": "Privacy-Preserving Smart Home",
+          "url": "https://demo.iotrust.org/smart-home",
+          "description": "Interactive demonstration of our privacy techniques"
+        }
+      ]
+    },
+    "impact": {
+      "summary": "This research is establishing new standards for privacy in IoT development, with our frameworks being adopted by industry partners and contributing to emerging privacy regulations.",
+      "metrics": [
+        {
+          "label": "Framework Downloads",
+          "value": "2,500+",
+          "description": "Developers using our privacy framework"
+        },
+        {
+          "label": "Industry Partnerships",
+          "value": "5",
+          "description": "Companies collaborating on deployment"
+        },
+        {
+          "label": "Policy Influence",
+          "value": "3",
+          "description": "Regulatory bodies consulting our research"
+        }
+      ]
+    }
+  }
+} 

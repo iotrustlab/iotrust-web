@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Mail } from 'lucide-react';
 import { getLabInfo } from '@/lib/data';
 
