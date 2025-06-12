@@ -11,6 +11,54 @@ A modern, responsive website for IoTrust Lab built with Next.js, TypeScript, and
 - ♿ **Accessible**: Built with accessibility best practices
 - 🎨 **Beautiful UI**: Clean, modern design with smooth animations
 
+## Deployment
+
+This website uses Next.js's built-in `basePath` and `assetPrefix` configuration for deployment flexibility.
+
+### GitHub Pages (Current Setup)
+The site is configured for GitHub Pages deployment at `https://iotrustlab.github.io/iotrust-web/`
+
+### Other Deployments
+To deploy to a different platform:
+
+1. **Standard deployment (root domain)**: Update `next.config.ts` to remove `basePath` and `assetPrefix`
+2. **Subdirectory deployment**: Update the `basePath` and `assetPrefix` in `next.config.ts`
+
+#### Examples:
+
+**For root domain deployment (Vercel/Netlify):**
+```typescript
+// next.config.ts
+const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  // Remove basePath and assetPrefix for root deployment
+  images: { unoptimized: true },
+};
+```
+
+**For custom subdirectory:**
+```typescript
+// next.config.ts
+const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  basePath: '/my-lab',
+  assetPrefix: '/my-lab/',
+  images: { unoptimized: true },
+};
+```
+
+### Asset Path Handling
+
+Next.js automatically handles asset paths when `basePath` and `assetPrefix` are configured:
+- ✅ All `<Image>` components work automatically
+- ✅ All static assets in `/public` are prefixed correctly
+- ✅ All internal links are prefixed automatically
+- ✅ CSS and JavaScript bundles are served from the correct path
+
+No custom utilities needed - Next.js handles everything!
+
 ## Getting Started
 
 ### Prerequisites
