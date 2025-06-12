@@ -229,4 +229,45 @@ export function getProjectsByType() {
 export function getPeopleByType() {
     // This will be implemented as a client-side utility
     return [];
+}
+
+export async function parseBibFile(): Promise<Publication[]> {
+    const filePath = path.join(process.cwd(), 'src/data/publications/references.bib');
+    const bibContent = await fs.readFile(filePath, 'utf8');
+
+    const publications: Publication[] = [];
+    const entries = bibContent.split('\n\n').filter(entry => entry.trim());
+
+    for (const entry of entries) {
+        try {
+            const titleMatch = entry.match(/title=\{([^}]+)\}/);
+            const authorsMatch = entry.match(/author=\{([^}]+)\}/);
+            const yearMatch = entry.match(/year=\{(\d+)\}/);
+            const venueMatch = entry.match(/(journal|booktitle)=\{([^}]+)\}/);
+            const doiMatch = entry.match(/doi=\{([^}]+)\}/);
+            const keywordsMatch = entry.match(/keywords=\{([^}]+)\}/);
+
+            if (titleMatch && authorsMatch && yearMatch && venueMatch) {
+                const type = entry.startsWith('@article') ? 'journal' : 'conference';
+                const authors = authorsMatch[1].split(' and ').map(author => author.trim());
+                const keywords = keywordsMatch ? keywordsMatch[1].split(',').map(k => k.trim()) : [];
+
+                publications.push({
+                    id: `pub-${publications.length + 1}`,
+                    title: titleMatch[1],
+                    authors,
+                    venue: venueMatch[2],
+                    year: parseInt(yearMatch[1]),
+                    type,
+                    doi: doiMatch ? doiMatch[1] : undefined,
+                    keywords,
+                    abstract: '', // Bib entries don't typically include abstracts
+                });
+            }
+        } catch (error) {
+            console.error('Error parsing bib entry:', error);
+        }
+    }
+
+    return publications;
 } 
