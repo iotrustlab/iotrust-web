@@ -1,6 +1,5 @@
 import { Publication } from '@/lib/data';
-import { ExternalLink, Users } from 'lucide-react';
-import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 
 interface PublicationScholarItemProps {
   publication: Publication;

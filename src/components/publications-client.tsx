@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Publication } from '@/lib/data';
 import { PublicationFilters } from './publication-filters';
 import { PublicationScholarItem } from './publication-scholar-item';
@@ -32,17 +32,17 @@ export function PublicationsClient({ publications }: PublicationsClientProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleFilteredPublications = (filtered: Publication[], query: string = '') => {
+  const handleFilteredPublications = useCallback((filtered: Publication[], query: string = '') => {
     setFilteredPublications(filtered);
     setSearchQuery(query);
-  };
+  }, []);
 
   return (
     <div>
       <div className="mb-6">
         <PublicationFilters 
           publications={publications}
-          onFilteredPublications={(filtered, query) => handleFilteredPublications(filtered, query)}
+          onFilteredPublications={handleFilteredPublications}
         />
         {searchQuery && (
           <div className="mt-3 text-sm text-gray-600 dark:text-gray-300">

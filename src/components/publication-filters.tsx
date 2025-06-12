@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Publication } from '@/lib/data';
 import { Check, ChevronDown, Search, X } from 'lucide-react';
 
@@ -55,7 +55,7 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
   };
 
   // Apply filters and sorting
-  const applyFiltersAndSort = () => {
+  const applyFiltersAndSort = useCallback(() => {
     let filtered = [...publications];
     
     // Apply search filter (case insensitive)
@@ -94,17 +94,21 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
     });
     
     onFilteredPublications(filtered, searchQuery.trim());
-  };
+  }, [publications, searchQuery, typeFilter, yearFilter, sortBy, sortOrder, onFilteredPublications]);
 
   // Apply filters when any filter/sort option changes
   useEffect(() => {
     applyFiltersAndSort();
-  }, [sortBy, sortOrder, typeFilter, yearFilter, searchQuery]);
+  }, [sortBy, sortOrder, typeFilter, yearFilter, searchQuery, applyFiltersAndSort]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
-      setShowDropdown(null);
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      // Only close if clicking outside the dropdown containers
+      if (!target.closest('.dropdown-container')) {
+        setShowDropdown(null);
+      }
     };
     
     document.addEventListener('click', handleClickOutside);
@@ -142,20 +146,21 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
       <div className="flex flex-col md:flex-row gap-3 text-sm">
         <div className="flex flex-col md:flex-row gap-3 flex-1">
           {/* Type Filter */}
-          <div className="relative">
+          <div className="relative dropdown-container">
             <button
               onClick={(e) => {
                 e.stopPropagation();
+                console.log('Type dropdown clicked, current state:', showDropdown);
                 setShowDropdown(showDropdown === 'type' ? null : 'type');
               }}
-              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md"
+              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <span>Type: {typeFilter === 'all' ? 'All' : typeFilter}</span>
               <ChevronDown size={16} />
             </button>
             
             {showDropdown === 'type' && (
-              <div className="absolute z-10 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
+              <div className="absolute z-50 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
                 <div 
                   className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                   onClick={(e) => { 
@@ -190,20 +195,21 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
           </div>
           
           {/* Year Filter */}
-          <div className="relative">
+          <div className="relative dropdown-container">
             <button
               onClick={(e) => {
                 e.stopPropagation();
+                console.log('Year dropdown clicked, current state:', showDropdown);
                 setShowDropdown(showDropdown === 'year' ? null : 'year');
               }}
-              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md"
+              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               <span>Year: {yearFilter === 'all' ? 'All' : yearFilter}</span>
               <ChevronDown size={16} />
             </button>
             
             {showDropdown === 'year' && (
-              <div className="absolute z-10 mt-1 w-full max-h-60 overflow-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
+              <div className="absolute z-50 mt-1 w-full max-h-60 overflow-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
                 <div 
                   className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                   onClick={(e) => { 
