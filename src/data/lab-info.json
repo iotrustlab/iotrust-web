@@ -9,6 +9,19 @@
     "image": "/images/team/luis-garcia.jpg",
     "credentials": "PhD in Computer Engineering, Rutgers University"
   },
+  "banner": {
+    "enabled": false,
+    "image": "/images/banners/lab-banner.jpg",
+    "alt": "IoTrust Lab Banner",
+    "showOnMobile": true,
+    "position": "above-title",
+    "height": {
+      "mobile": "h-16",
+      "tablet": "h-24",
+      "desktop": "h-32"
+    },
+    "fullWidth": false
+  },
   "mission": "We develop methods to ensure trustworthy and resilient autonomous systems that interact with humans both in and on control loops. Driven by real-world stakeholders, our goal is to enable a relationship for providing mutual assurances between deep-learning-enabled cyber-physical systems and humans in safety-critical contexts.",
   "focus_areas": [
     "Cyber-physical Systems Security",
