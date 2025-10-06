@@ -27,8 +27,9 @@
     }
   ],
   "current_projects": [
-    "formal-verification-plc",
-    "scada-physics-modeling"
+    "semantic-retrofitting",
+    "sphere-cps-enclave",
+    "physics-informed-scada"
   ],
   "publications_count": 4,
   "linkedin": "https://linkedin.com/in/yanranlin",

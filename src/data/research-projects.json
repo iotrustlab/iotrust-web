@@ -8,13 +8,13 @@
       "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "NSF",
-        "amount": "500K",
         "duration": "2022-2025"
       },
       "team": ["lag", "nsssayom", "yanran"],
       "keywords": ["Cyber-Physical Systems", "Security Retrofitting", "Semantic Analysis", "Legacy Systems"],
       "publications": 5,
       "impact": "Developing methods to enhance security in deployed industrial control systems without requiring hardware changes.",
+      "awards": [],
       "type": "native"
     },
     {
@@ -25,13 +25,13 @@
       "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "DoD",
-        "amount": "750K",
         "duration": "2021-2024"
       },
-      "team": ["lag", "jp", "miles"],
+      "team": ["lag", "jp", "miles_bovero"],
       "keywords": ["Trustworthy AI", "Human-AI Interaction", "Symbolic AI", "Deep Learning", "Autonomous Systems"],
       "publications": 8,
       "impact": "Creating interpretable AI systems for critical autonomous applications that maintain human oversight capabilities.",
+      "awards": [],
       "type": "static"
     },
     {
@@ -42,30 +42,115 @@
       "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "NSF CAREER",
-        "amount": "600K",
         "duration": "2023-2028"
       },
-      "team": ["lag", "nsssayom", "tomHank"],
+      "team": ["lag", "nsssayom", "burke"],
       "keywords": ["IoT Security", "Privacy", "Information Flow", "Programming Abstractions"],
       "publications": 3,
       "impact": "Developing secure programming frameworks for IoT applications with privacy guarantees.",
+      "awards": [],
       "type": "json"
     },
     {
-      "id": "scada-physics-modeling",
+      "id": "sphere-cps-enclave",
+      "title": "SPHERE CPS Enclave: Reconfigurable Testbed for Cyber-Physical Systems",
+      "description": "NSF Mid-Scale Research Infrastructure project creating a $20M reconfigurable testbed for cyber-physical systems research, enabling large-scale experimentation with industrial control systems, IoT networks, and autonomous systems.",
+      "status": "active",
+      "image": "/images/project-placeholder.jpg",
+      "funding": {
+        "agency": "NSF Mid-Scale RI",
+        "duration": "2024-2028"
+      },
+      "team": ["lag", "nsssayom", "yanran", "jp"],
+      "keywords": ["Testbed Infrastructure", "Cyber-Physical Systems", "Industrial Control", "Reconfigurable Systems"],
+      "publications": 2,
+      "impact": "Creating the largest reconfigurable CPS testbed in the US for advancing industrial control systems security research.",
+      "awards": [],
+      "type": "native"
+    },
+    {
+      "id": "neuroscience-wild-sensing",
+      "title": "Neuroscience-in-the-Wild Sensing: Memory and Sensor Fusion",
+      "description": "NIH-funded project exploring brain-centered sensing platforms that integrate neural signals with environmental sensors for enhanced human-machine interaction and cognitive augmentation.",
+      "status": "active",
+      "image": "/images/project-placeholder.jpg",
+      "funding": {
+        "agency": "NIH",
+        "duration": "2024-2029"
+      },
+      "team": ["lag", "iris", "miles_bovero"],
+      "keywords": ["Brain-Computer Interface", "Sensor Fusion", "Memory Systems", "NeuroIoT", "Cognitive Augmentation"],
+      "publications": 1,
+      "impact": "Advancing brain-centered cyber-physical systems for enhanced human-machine collaboration.",
+      "awards": [],
+      "type": "json"
+    },
+    {
+      "id": "physics-informed-scada",
       "title": "Physics-Informed Security Mechanisms for SCADA Systems",
       "description": "Leveraging underlying physical equations and process models to detect anomalies and prevent attacks in supervisory control and data acquisition systems.",
       "status": "active",
       "image": "/images/project-placeholder.jpg",
       "funding": {
         "agency": "DOE",
-        "amount": "750K",
         "duration": "2023-2026"
       },
       "team": ["lag", "yanran"],
       "keywords": ["SCADA Security", "Physics-based Detection", "Anomaly Detection", "Critical Infrastructure"],
       "publications": 3,
       "impact": "Protecting power grid and water treatment facilities from sophisticated attacks.",
+      "awards": [],
+      "type": "native"
+    },
+    {
+      "id": "nsf-fmitf-plc-verification",
+      "title": "NSF FMitF: Formal Verification and Implementation Stack for Programmable Logic Controllers",
+      "description": "Collaborative research project developing formal verification techniques and implementation stack for programmable logic controllers in industrial control systems.",
+      "status": "active",
+      "image": "/images/project-placeholder.jpg",
+      "funding": {
+        "agency": "NSF FMitF",
+        "duration": "2022-2025"
+      },
+      "team": ["lag", "yanran"],
+      "keywords": ["Formal Verification", "PLCs", "Industrial Control Systems", "Implementation Stack"],
+      "publications": 2,
+      "impact": "Advancing formal verification methods for industrial control systems security.",
+      "awards": [],
+      "type": "native"
+    },
+    {
+      "id": "darpa-smell-cps",
+      "title": "DARPA SMELL-CPS: Symbolic Math Expressions from Low-level Logic in Cyber-physical Systems",
+      "description": "DARPA-funded project developing symbolic mathematical expression extraction from low-level logic in cyber-physical systems for enhanced security analysis.",
+      "status": "completed",
+      "image": "/images/project-placeholder.jpg",
+      "funding": {
+        "agency": "DARPA",
+        "duration": "2020-2021"
+      },
+      "team": ["lag"],
+      "keywords": ["Symbolic Math", "Low-level Logic", "Cyber-Physical Systems", "Security Analysis"],
+      "publications": 3,
+      "impact": "Developing novel approaches for symbolic analysis of cyber-physical systems.",
+      "awards": [],
+      "type": "native"
+    },
+    {
+      "id": "nsf-ncs-brain-recording",
+      "title": "NSF NCS: Enhancing Episodic Memory through Real-world Integration of Brain Recording and Stimulation",
+      "description": "NSF Neural and Cognitive Systems project integrating brain recording and stimulation with semantic alignment of human and IoT perception for enhanced episodic memory.",
+      "status": "active",
+      "image": "/images/project-placeholder.jpg",
+      "funding": {
+        "agency": "NSF NCS",
+        "duration": "2021-2024"
+      },
+      "team": ["lag", "iris"],
+      "keywords": ["Brain Recording", "Episodic Memory", "IoT Perception", "Semantic Alignment"],
+      "publications": 2,
+      "impact": "Advancing brain-computer interfaces for enhanced human memory and perception.",
+      "awards": [],
       "type": "native"
     }
   ]

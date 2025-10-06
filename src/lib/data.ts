@@ -78,7 +78,9 @@ export interface Publication {
 }
 
 interface PeopleIndex {
-    people: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    principalInvestigator: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    currentTeam: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    alumni: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     furryMembers: FurryMember[];
 }
 
@@ -117,7 +119,77 @@ export async function getPeople(): Promise<Person[]> {
     const index = await getPeopleIndex();
     const people: Person[] = [];
 
-    for (const personRef of index.people) {
+    // Add PI
+    for (const personRef of index.principalInvestigator) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    // Add current team
+    for (const personRef of index.currentTeam) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    return people;
+}
+
+// Get Principal Investigator
+export async function getPrincipalInvestigator(): Promise<Person[]> {
+    const index = await getPeopleIndex();
+    const people: Person[] = [];
+
+    for (const personRef of index.principalInvestigator) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    return people;
+}
+
+// Get current team members
+export async function getCurrentTeam(): Promise<Person[]> {
+    const index = await getPeopleIndex();
+    const people: Person[] = [];
+
+    for (const personRef of index.currentTeam) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    return people;
+}
+
+// Get alumni
+export async function getAlumni(): Promise<Person[]> {
+    const index = await getPeopleIndex();
+    const people: Person[] = [];
+
+    for (const personRef of index.alumni) {
         try {
             const person = await getPerson(personRef.id);
             if (person) {
@@ -193,7 +265,7 @@ export async function getProjectsByPersonId(personId: string): Promise<Project[]
 // Get people IDs and types for routing
 export async function getPeopleTypes(): Promise<Array<{ id: string; type: 'native' | 'static' | 'json' }>> {
     const index = await getPeopleIndex();
-    return index.people;
+    return [...index.principalInvestigator, ...index.currentTeam, ...index.alumni];
 }
 
 // Static data loaders for client-side usage
@@ -246,4 +318,25 @@ export async function parseBibFile(): Promise<Publication[]> {
     }
 
     return publications;
+}
+
+// Course interfaces and functions
+export interface Course {
+    id: string;
+    title: string;
+    code: string;
+    institution: string;
+    terms: string[];
+    description: string;
+    level: string;
+    credits: number;
+    prerequisites?: string[];
+    topics: string[];
+}
+
+export async function getCourses(): Promise<Course[]> {
+    const filePath = path.join(process.cwd(), 'src/data/courses.json');
+    const jsonData = await fs.readFile(filePath, 'utf8');
+    const data = JSON.parse(jsonData);
+    return data.courses;
 } 

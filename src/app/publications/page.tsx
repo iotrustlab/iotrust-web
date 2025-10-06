@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { parseBibFile } from "@/lib/data";
+import { getPublications } from "@/lib/data";
 import { PublicationsClient } from "@/components/publications-client";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PublicationsPage() {
-  const publications = await parseBibFile();
+  const publications = await getPublications();
   
   return (
     <div className="bg-white dark:bg-gray-900 py-24 sm:py-32">

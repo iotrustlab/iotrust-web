@@ -1,0 +1,36 @@
+{
+  "id": "iris",
+  "name": "Iris Nguyen",
+  "role": "PhD Student",
+  "title": "Graduate Research Assistant",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "iris.nguyen@utah.edu",
+  "image": "/images/team/iris-1.png",
+  "bio": "PhD student in Computer Science at the University of Utah, specializing in brain-centered cyber-physical systems and neuroIoT applications. Iris's research focuses on integrating neural signals with environmental sensors for enhanced human-machine interaction.",
+  "research_interests": [
+    "Brain-Computer Interface",
+    "NeuroIoT",
+    "Sensor Fusion",
+    "Human-Machine Interaction",
+    "Cognitive Augmentation"
+  ],
+  "education": [
+    {
+      "degree": "M.S. Computer Science",
+      "institution": "Stanford University",
+      "year": "2023"
+    },
+    {
+      "degree": "B.S. Computer Science",
+      "institution": "University of Washington",
+      "year": "2021"
+    }
+  ],
+  "current_projects": [
+    "neuroscience-wild-sensing"
+  ],
+  "publications_count": 1,
+  "type": "json"
+}
+

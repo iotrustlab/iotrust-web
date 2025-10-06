@@ -5,23 +5,25 @@ import Image from 'next/image';
 
 interface TeamMemberCardProps {
   member: Person;
+  isPI?: boolean;
 }
 
-export function TeamMemberCard({ member }: TeamMemberCardProps) {
+export function TeamMemberCard({ member, isPI = false }: TeamMemberCardProps) {
   const hasImage = Boolean(member.image);
+  const avatarSize = isPI ? "w-48 h-48 md:w-56 md:h-56" : "w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36";
   
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow group max-w-sm mx-auto">
       <Link href={`/people/${member.id}`} className="block text-center">
         <div className="flex justify-center mb-4">
-          <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0 relative">
+          <div className={`${avatarSize} rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0 relative`}>
             {hasImage && (
               <Image
                 src={member.image!}
                 alt={member.name}
                 fill
-                className="object-cover rounded-full"
-                sizes="96px"
+                className="object-cover object-[50%_30%] rounded-full"
+                sizes="9rem"
               />
             )}
           </div>

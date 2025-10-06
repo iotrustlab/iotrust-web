@@ -1,11 +1,19 @@
 {
-  "people": [
-    { "id": "lag", "type": "json" },
-    { "id": "nsssayom", "type": "native" },
-    { "id": "jp", "type": "static" },
+  "principalInvestigator": [
+    { "id": "lag", "type": "json" }
+  ],
+  "currentTeam": [
+    { "id": "jainta", "type": "json" },
     { "id": "yanran", "type": "json" },
-    { "id": "miles", "type": "json" },
-    { "id": "tomHank", "type": "json" }
+    { "id": "iris", "type": "json" },
+    { "id": "nsssayom", "type": "json" },
+    { "id": "lawrence", "type": "json" },
+    { "id": "miles_bovero", "type": "json" },
+    { "id": "burke", "type": "json" }
+  ],
+  "alumni": [
+    { "id": "alumni1", "type": "json" },
+    { "id": "alumni2", "type": "json" }
   ],
   "furryMembers": [
     {
@@ -15,7 +23,7 @@
       "emoji": "🐕",
       "role": "Lab Overseer",
       "description": "Luis's loyal companion who ensures lab security and maintains high morale through strategic belly rub requests.",
-      "image": "/images/team/pets/ruth.jpg"
+      "image": "/images/team/pets/ruth.png"
     },
     {
       "id": "valley",

@@ -4,8 +4,8 @@
     "title": "Assistant Professor",
     "department": "Kahlert School of Computing",
     "university": "University of Utah",
-    "email": "luis.garcia@utah.edu",
-    "bio": "Dr. Luis Antonio Garcia is an Assistant Professor at The University of Utah Kahlert School of Computing focusing on the security and safety of learning-enabled Cyber-physical Systems (CPS)/Internet-of-Things (IoT). He was previously a Research Assistant Professor at the USC Department of Computer Science and a Research Lead at the USC Information Sciences Institute. He held a postdoctoral appointment at the Networked & Embedded Systems Laboratory at the UCLA ECE Department, collaborating with Dr. Mani Srivastava. He has his PhD in Computer Engineering with a Cybersecurity focus from Rutgers University, where his research advisor was Dr. Saman Zonouz.",
+    "email": "la.garcia@utah.edu",
+    "bio": "Dr. Luis Antonio Garcia is an Assistant Professor at The University of Utah Kahlert School of Computing focusing on the security and safety of learning-enabled Cyber-physical Systems (CPS)/Internet-of-Things (IoT). He was previously a Research Assistant Professor at the USC Department of Computer Science (2022-2023) and a Research Computer Scientist at the USC Information Sciences Institute (2020-2023). He held a postdoctoral appointment at the Networked & Embedded Systems Laboratory at the UCLA ECE Department (2018-2020), collaborating with Dr. Mani Srivastava. He has his PhD in Computer Engineering with a Cybersecurity focus from Rutgers University, where his research advisor was Dr. Saman Zonouz.",
     "image": "/images/team/luis-garcia.jpg",
     "credentials": "PhD in Computer Engineering, Rutgers University"
   },
@@ -22,14 +22,14 @@
     },
     "fullWidth": false
   },
-  "mission": "We develop methods to ensure trustworthy and resilient autonomous systems that interact with humans both in and on control loops. Driven by real-world stakeholders, our goal is to enable a relationship for providing mutual assurances between deep-learning-enabled cyber-physical systems and humans in safety-critical contexts.",
+  "mission": "We develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.",
   "focus_areas": [
-    "Cyber-physical Systems Security",
-    "IoT Security",
-    "Learning-enabled Systems",
-    "Trustworthy AI",
-    "Autonomous Systems Safety",
-    "Deep Learning Security"
+    "Cyber-Physical Systems (CPS) Security",
+    "Industrial Control Systems (ICS) Security",
+    "IoT and Sensor Privacy",
+    "Trustworthy AI and Neurosymbolic Methods",
+    "Digital Twins & Verification",
+    "Brain-Centered CPS / NeuroIoT"
   ],
   "university": {
     "name": "University of Utah",
@@ -40,5 +40,6 @@
       "state": "Utah",
       "zip": "84112"
     }
-  }
+  },
+  "lab_culture": "We balance serious CPS security research with playful lab culture — Ruth and Valley keep us in check."
 } 

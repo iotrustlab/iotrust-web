@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | IoTrust Lab',
     default: 'IoTrust Lab',
   },
-  description: "Research lab focused on IoT security and trust. Advancing the state of the art in secure Internet of Things systems.",
+  description: "We develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.",
   keywords: ['IoT', 'security', 'research', 'trust', 'Internet of Things'],
   authors: [{ name: 'IoTrust Lab' }],
   creator: 'IoTrust Lab',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://iotrust-lab.com',
     siteName: 'IoTrust Lab',
     title: 'IoTrust Lab',
-    description: 'Research lab focused on IoT security and trust. Advancing the state of the art in secure Internet of Things systems.',
+    description: 'We develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.',
     images: [
       {
         url: '/images/og-image.jpg',

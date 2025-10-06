@@ -1,0 +1,32 @@
+{
+  "id": "jainta",
+  "name": "Jainta Paul",
+  "role": "PhD Student",
+  "title": "Graduate Research Assistant",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "jainta.paul@utah.edu",
+  "image": "/images/team/jainta-1.png",
+  "bio": "PhD student in Computer Science at the University of Utah, focusing on cyber-physical systems security and trustworthy AI. Jainta's research explores the intersection of symbolic reasoning and deep learning for enhanced security in industrial control systems.",
+  "research_interests": [
+    "Cyber-Physical Systems Security",
+    "Trustworthy AI",
+    "Symbolic Reasoning",
+    "Industrial Control Systems",
+    "Formal Verification"
+  ],
+  "education": [
+    {
+      "degree": "B.S. Computer Science",
+      "institution": "University of California, Berkeley",
+      "year": "2022"
+    }
+  ],
+  "current_projects": [
+    "semantic-retrofitting",
+    "sphere-cps-enclave"
+  ],
+  "publications_count": 2,
+  "type": "json"
+}
+

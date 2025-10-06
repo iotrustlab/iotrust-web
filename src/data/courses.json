@@ -1,0 +1,61 @@
+{
+  "courses": [
+    {
+      "id": "cs-ece-3700",
+      "title": "CS/ECE 3700: Digital Systems Design",
+      "code": "CS/ECE 3700",
+      "institution": "University of Utah",
+      "terms": ["Spring 2024", "Spring 2025"],
+      "description": "Introductory digital logic and systems design course covering finite state machines, timing analysis, CMOS circuits, and FPGA architectures. Students learn to design and implement digital systems using hardware description languages.",
+      "level": "Undergraduate",
+      "credits": 3,
+      "prerequisites": ["CS 1410 or ECE 1250"],
+      "topics": [
+        "Digital Logic Design",
+        "Finite State Machines",
+        "Timing Analysis",
+        "CMOS Circuits",
+        "FPGA Programming"
+      ]
+    },
+    {
+      "id": "cs-6963-5963-cps-security",
+      "title": "CS 6963/5963: CPS/IoT Security and Safety",
+      "code": "CS 6963/5963",
+      "institution": "University of Utah",
+      "terms": ["Fall 2023", "Fall 2024"],
+      "description": "Graduate-level project-based course exploring security and safety challenges in cyber-physical and IoT systems. Students work on real-world projects involving industrial control systems, sensor networks, and autonomous systems security.",
+      "level": "Graduate",
+      "credits": 3,
+      "prerequisites": ["CS 4400 or equivalent"],
+      "topics": [
+        "Cyber-Physical Systems Security",
+        "IoT Security",
+        "Industrial Control Systems",
+        "Trustworthy AI",
+        "Formal Verification",
+        "Anomaly Detection"
+      ]
+    },
+    {
+      "id": "csci-430-network-security",
+      "title": "CSCI 430: Introduction to Computer and Network Security",
+      "code": "CSCI 430",
+      "institution": "University of Southern California",
+      "terms": ["Spring 2023"],
+      "description": "Undergraduate introduction to computer and network security covering applied cryptography, network threats, system vulnerabilities, and security protocols. Hands-on labs with penetration testing and secure coding practices.",
+      "level": "Undergraduate",
+      "credits": 4,
+      "prerequisites": ["CSCI 201", "CSCI 270"],
+      "topics": [
+        "Applied Cryptography",
+        "Network Security",
+        "System Vulnerabilities",
+        "Security Protocols",
+        "Penetration Testing",
+        "Secure Coding"
+      ]
+    }
+  ]
+}
+

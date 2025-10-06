@@ -51,6 +51,26 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // IoTrust Lab brand colors
+        brand: {
+          50:  "#FDF2F2",
+          100: "#FDE8E8",
+          200: "#F9CACA",
+          300: "#F09A9A",
+          400: "#E35F5F",
+          500: "#D83E3E",   // main on light
+          600: "#C21616",   // main accent
+          700: "#BB2F2F",   // hover/pressed
+          800: "#8F1F1F",
+          900: "#571212"
+        },
+        // neutrals tuned for dark UI
+        ink: {
+          900: "#0B0F14",   // page bg dark
+          800: "#101319",
+          700: "#131821",
+          600: "#1B212C"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

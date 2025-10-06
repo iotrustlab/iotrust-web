@@ -4,21 +4,22 @@ import { ResearchCard } from '@/components/research-card';
 import { PublicationCard } from '@/components/publication-card';
 import { TeamMemberCard } from '@/components/team-member-card';
 import { LabBanner } from '@/components/lab-banner';
-import { getLabInfo, getFeaturedProjects, getPublications, getPeople, getFurryMembers } from '@/lib/data';
+import { getLabInfo, getFeaturedProjects, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers } from '@/lib/data';
 
 export default async function HomePage() {
-  const [labInfo, featuredProjects, recentPublications, teamMembers, furryMembers] = await Promise.all([
+  const [labInfo, featuredProjects, recentPublications, principalInvestigator, currentTeam, furryMembers] = await Promise.all([
     getLabInfo(),
     getFeaturedProjects(),
     getPublications(),
-    getPeople(),
+    getPrincipalInvestigator(),
+    getCurrentTeam(),
     getFurryMembers()
   ]);
 
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* Academic Hero Section */}
-      <section id="home" className="relative bg-gray-50 dark:bg-gray-800 py-8 sm:py-12">
+      <section id="home" className="relative bg-gray-50 dark:bg-gray-800 py-0">
         <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-7xl px-6 lg:px-8'}`}>
           <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-4xl'} text-center`}>
             {/* Lab Banner Image - Above Title */}
@@ -33,42 +34,45 @@ export default async function HomePage() {
             )}
             
             <div className={labInfo.banner?.fullWidth ? 'max-w-4xl mx-auto px-6 lg:px-8' : ''}>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl">
-              IoTrust Lab
-            </h1>
-            <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
-              Led by {labInfo.lead.name}, {labInfo.lead.title}
-            </p>
-            <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">
-              {labInfo.university.department}, {labInfo.university.name}
-            </p>
+            {/* Logo prominently featured */}
+            <div className="mx-auto -mt-16 sm:-mt-18 md:-mt-22 lg:-mt-26 -mb-4 w-[32rem] h-[32rem] sm:w-[36rem] sm:h-[36rem] md:w-[38rem] md:h-[38rem] lg:w-[40rem] lg:h-[40rem] relative">
+              <Image 
+                src="/images/iotrust-logo.png" 
+                alt="IoTrust Lab logo" 
+                fill 
+                sizes="(min-width: 1024px) 40rem, (min-width: 768px) 38rem, 36rem"
+                className="object-contain drop-shadow-lg logo-stroke scale-[1.75]"
+              />
+            </div>
+            <h1 className="sr-only">IoTrust Lab — University of Utah</h1>
+            <p className="mt-0 text-3xl sm:text-4xl font-semibold">Trustworthy Autonomy via Semantic Foundations</p>
 
-              {/* Lab Banner Image - Below Title */}
-              {labInfo.banner?.enabled && labInfo.banner.position === 'below-title' && (
-                <div className="mt-8">
-                  <LabBanner
-                    image={labInfo.banner.image}
-                    alt={labInfo.banner.alt}
-                    showOnMobile={labInfo.banner.showOnMobile}
-                    height={labInfo.banner.height}
-                    fullWidth={labInfo.banner.fullWidth}
-                  />
-                </div>
-              )}
+            {/* Lab Banner Image - Below Title */}
+            {labInfo.banner?.enabled && labInfo.banner.position === 'below-title' && (
+              <div className="mt-1">
+                <LabBanner
+                  image={labInfo.banner.image}
+                  alt={labInfo.banner.alt}
+                  showOnMobile={labInfo.banner.showOnMobile}
+                  height={labInfo.banner.height}
+                  fullWidth={labInfo.banner.fullWidth}
+                />
+              </div>
+            )}
             
-            <p className="mt-8 text-lg leading-relaxed text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="mt-2 text-base leading-snug text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               {labInfo.mission}
             </p>
 
-            <div className="mt-8">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
+            <div className="mt-3">
+              <h3 className="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-1.5">
                 Research Focus Areas
               </h3>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-1">
                 {labInfo.focus_areas.map((area) => (
                   <span 
                     key={area}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-md text-sm font-medium"
+                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2.5 py-0.5 rounded-md text-xs font-medium"
                   >
                     {area}
                   </span>
@@ -76,20 +80,17 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-4 flex items-center justify-center gap-x-5">
               <a
                 href="#research"
-                className="rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
+                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
               >
                 Explore Research
               </a>
-              <Link
-                href="/publications"
-                className="text-sm font-semibold leading-6 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              >
-                View Publications <span aria-hidden="true">→</span>
-              </Link>
-              </div>
+              <a href="#publications" className="text-sm font-semibold leading-6 text-blue-600 dark:text-blue-400 hover:underline">
+                View Publications →
+              </a>
+            </div>
             </div>
           </div>
         </div>
@@ -144,7 +145,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Team Members */}
+      {/* Principal Investigator */}
       <section id="people" className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
@@ -156,10 +157,30 @@ export default async function HomePage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {teamMembers.map((member) => (
-              <TeamMemberCard key={member.id} member={member} />
-            ))}
+          {/* Principal Investigator */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
+              Principal Investigator
+            </h3>
+            <div className="flex justify-center">
+              <div className="max-w-md">
+                {principalInvestigator.map((member) => (
+                  <TeamMemberCard key={member.id} member={member} isPI={true} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Current Team */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
+              Current Team
+            </h3>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {currentTeam.map((member) => (
+                <TeamMemberCard key={member.id} member={member} />
+              ))}
+            </div>
           </div>
 
           {/* Furry Members Section */}
@@ -188,7 +209,7 @@ export default async function HomePage() {
                           src={member.image!} 
                           alt={member.name}
                           fill
-                          className="rounded-full object-cover"
+                          className="rounded-full object-cover object-[50%_30%]"
                           sizes="96px"
                         />
                       )}

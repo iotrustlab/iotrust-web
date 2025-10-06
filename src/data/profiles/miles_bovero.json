@@ -1,0 +1,32 @@
+{
+  "id": "miles_bovero",
+  "name": "Miles Bovero",
+  "role": "Undergraduate Researcher",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "miles.bovero@utah.edu",
+  "image": "/images/profile-avatar-placeholder.png",
+  "bio": "Miles Bovero is an undergraduate researcher in the Kahlert School of Computing at the University of Utah, working with Dr. Luis Garcia's team. He is passionate about IoT security and is exploring security abstractions for IoT application development.",
+  "research_interests": [
+    "IoT Security",
+    "Secure Programming",
+    "Mobile Security",
+    "Web Security",
+    "Security Frameworks"
+  ],
+  "education": [
+    {
+      "degree": "B.S. Computer Science (In Progress)",
+      "institution": "University of Utah",
+      "year": "2021-Present"
+    }
+  ],
+  "current_projects": [
+    "trustworthy-autonomous-design",
+    "neuroscience-wild-sensing"
+  ],
+  "publications_count": 1,
+  "linkedin": "https://linkedin.com/in/milesbovero",
+  "github": "https://github.com/milesbovero",
+  "type": "json"
+} 

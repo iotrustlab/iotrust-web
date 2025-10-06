@@ -24,6 +24,12 @@
   --input: 0 0% 89.8%;
   --ring: 0 0% 3.9%;
   --radius: 0.5rem;
+  
+  /* IoTrust Lab brand theme variables */
+  --bg: #ffffff;
+  --fg: #0b0f14;
+  --muted: #4b5563;
+  --accent: #C21616; /* brand-600 */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -81,6 +87,12 @@
   --border: 0 0% 14.9%;
   --input: 0 0% 14.9%;
   --ring: 0 0% 83.1%;
+  
+  /* IoTrust Lab dark theme variables */
+  --bg: #0B0F14;     /* ink-900 */
+  --fg: #E5E7EB;
+  --muted: #9CA3AF;
+  --accent: #BB2F2F; /* brand-700 for dark */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -103,6 +115,8 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: var(--bg);
+    color: var(--fg);
   }
   
   /* Enhanced typography */
@@ -113,5 +127,22 @@
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* IoTrust Lab brand utilities */
+  a, .text-accent { 
+    color: var(--accent); 
+  }
+  .btn-brand { 
+    background: var(--accent); 
+    color: #fff; 
+  }
+  
+  /* Logo outline for better visibility across themes */
+  .logo-stroke {
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.25));
+  }
+  .dark .logo-stroke {
+    filter: drop-shadow(0 0 1px rgba(255,255,255,0.12));
   }
 }

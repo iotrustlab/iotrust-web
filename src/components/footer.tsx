@@ -1,4 +1,5 @@
 import { Mail } from 'lucide-react';
+import Image from 'next/image';
 import { getLabInfo } from '@/lib/data';
 
 export async function Footer() {
@@ -11,9 +12,18 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Lab and University Info */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-              IoTrust Lab
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <Image 
+                src="/images/iotrust-logo.png" 
+                alt="IoTrust Lab" 
+                width={24} 
+                height={24} 
+                className="opacity-90" 
+              />
+              <h3 className="text-lg font-bold text-foreground">
+                IoTrust Lab
+              </h3>
+            </div>
             <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
               <p>{labInfo.university.department}</p>
               <p>{labInfo.university.name}</p>
@@ -55,6 +65,11 @@ export async function Footer() {
               <li>
                 <a href="#publications" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Publications
+                </a>
+              </li>
+              <li>
+                <a href="/courses" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                  Courses
                 </a>
               </li>
               <li>

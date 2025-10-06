@@ -1,0 +1,30 @@
+{
+  "id": "burke",
+  "name": "Burke Dambly",
+  "role": "Undergraduate Researcher",
+  "title": "Undergraduate Research Assistant",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "burke.dambly@utah.edu",
+  "image": "/images/team/burke-1.png",
+  "bio": "Undergraduate student in Computer Science at the University of Utah, focusing on physics-informed security mechanisms for industrial control systems. Burke works on developing anomaly detection methods for SCADA systems.",
+  "research_interests": [
+    "SCADA Security",
+    "Physics-based Detection",
+    "Anomaly Detection",
+    "Industrial Control Systems"
+  ],
+  "education": [
+    {
+      "degree": "B.S. Computer Science (Expected)",
+      "institution": "University of Utah",
+      "year": "2025"
+    }
+  ],
+  "current_projects": [
+    "physics-informed-scada"
+  ],
+  "publications_count": 0,
+  "type": "json"
+}
+
