@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
+import LogoMark from '@/components/logo-mark';
 
 const navigation = [
   { name: 'Home', href: '#home', isScroll: true },
@@ -110,14 +111,7 @@ export function Navigation() {
     <header className="sticky top-0 z-50 backdrop-blur bg-[color:var(--bg)]/70 border-b border-white/5">
       <nav className="mx-auto max-w-7xl px-4 h-24 sm:h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <Image 
-            src="/images/iotrust-logo.png" 
-            alt="IoTrust Lab" 
-            width={96} 
-            height={96} 
-            priority 
-            className="object-contain shrink-0 scale-[1.6] sm:scale-[1.75]"
-          />
+          <LogoMark size={28} className="shrink-0" />
           <span className="ml-2 text-base font-semibold tracking-tight group-hover:text-accent transition-colors">
             IoTrust Lab
           </span>

@@ -4,6 +4,7 @@ import { ResearchCard } from '@/components/research-card';
 import { PublicationCard } from '@/components/publication-card';
 import { TeamMemberCard } from '@/components/team-member-card';
 import { LabBanner } from '@/components/lab-banner';
+import LogoMark from '@/components/logo-mark';
 import { getLabInfo, getFeaturedProjects, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers } from '@/lib/data';
 
 export default async function HomePage() {
@@ -19,9 +20,9 @@ export default async function HomePage() {
   return (
     <div className="bg-white dark:bg-gray-900">
       {/* Academic Hero Section */}
-      <section id="home" className="relative bg-gray-50 dark:bg-gray-800 py-0">
+      <section id="home" className="relative bg-gray-50 dark:bg-[#0f141a] pt-20 sm:pt-24 pb-8 sm:pb-10">
         <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-7xl px-6 lg:px-8'}`}>
-          <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-4xl'} text-center`}>
+          <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-4xl'} text-center flex flex-col items-center justify-start`}>
             {/* Lab Banner Image - Above Title */}
             {labInfo.banner?.enabled && labInfo.banner.position === 'above-title' && (
               <LabBanner
@@ -35,17 +36,13 @@ export default async function HomePage() {
             
             <div className={labInfo.banner?.fullWidth ? 'max-w-4xl mx-auto px-6 lg:px-8' : ''}>
             {/* Logo prominently featured */}
-            <div className="mx-auto -mt-16 sm:-mt-18 md:-mt-22 lg:-mt-26 -mb-4 w-[32rem] h-[32rem] sm:w-[36rem] sm:h-[36rem] md:w-[38rem] md:h-[38rem] lg:w-[40rem] lg:h-[40rem] relative">
-              <Image 
-                src="/images/iotrust-logo.png" 
-                alt="IoTrust Lab logo" 
-                fill 
-                sizes="(min-width: 1024px) 40rem, (min-width: 768px) 38rem, 36rem"
-                className="object-contain drop-shadow-lg logo-stroke scale-[1.75]"
-              />
+            <div className={labInfo.banner?.fullWidth ? 'max-w-4xl mx-auto px-6 lg:px-8' : ''}>
+              <div className="mx-auto mt-0 mb-4 min-h-[160px] sm:min-h-[192px] flex items-center justify-center">
+                <LogoMark size={256} className="mx-auto" />
+              </div>
             </div>
             <h1 className="sr-only">IoTrust Lab — University of Utah</h1>
-            <p className="mt-0 text-3xl sm:text-4xl font-semibold">Trustworthy Autonomy via Semantic Foundations</p>
+            <p className="mt-2 text-3xl sm:text-4xl font-semibold">Trustworthy Autonomy via Semantic Foundations</p>
 
             {/* Lab Banner Image - Below Title */}
             {labInfo.banner?.enabled && labInfo.banner.position === 'below-title' && (
