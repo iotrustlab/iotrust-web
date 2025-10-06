@@ -1,164 +1,119 @@
 # IoTrust Lab Website
 
-A modern, responsive website for IoTrust Lab built with Next.js, TypeScript, and Tailwind CSS.
+A modern, responsive website for IoTrust Lab built with Next.js, TypeScript, and Tailwind CSS. This README focuses on how to update site content and run the project.
 
-## Features
+## Quick Start
 
-- ✨ **Modern Stack**: Built with Next.js 15, TypeScript, and Tailwind CSS
-- 🌙 **Dark/Light Mode**: Toggle between themes with local storage persistence
-- 📱 **Responsive Design**: Fully responsive across all device sizes
-- 🔍 **SEO Optimized**: Comprehensive SEO setup with next-seo
-- ♿ **Accessible**: Built with accessibility best practices
-- 🎨 **Beautiful UI**: Clean, modern design with smooth animations
-
-## Deployment
-
-This website uses Next.js's built-in `basePath` and `assetPrefix` configuration for deployment flexibility.
-
-### GitHub Pages (Current Setup)
-The site is configured for GitHub Pages deployment at `https://iotrustlab.github.io/iotrust-web/`
-
-### Other Deployments
-To deploy to a different platform:
-
-1. **Standard deployment (root domain)**: Update `next.config.ts` to remove `basePath` and `assetPrefix`
-2. **Subdirectory deployment**: Update the `basePath` and `assetPrefix` in `next.config.ts`
-
-#### Examples:
-
-**For root domain deployment (Vercel/Netlify):**
-```typescript
-// next.config.ts
-const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  // Remove basePath and assetPrefix for root deployment
-  images: { unoptimized: true },
-};
+1) Install dependencies
+```bash
+npm install
+```
+2) Run locally
+```bash
+npm run dev
+```
+3) Build static export
+```bash
+npm run build
 ```
 
-**For custom subdirectory:**
-```typescript
-// next.config.ts
-const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  basePath: '/my-lab',
-  assetPrefix: '/my-lab/',
-  images: { unoptimized: true },
-};
+Node version: use Node 20 (tested with `nvm use 20`).
+
+## Content Model (JSON-first)
+
+All content lives in JSON files under `src/data/`. Update these to change the website.
+
+- `src/data/lab-info.json` — Lab name, mission, focus areas, PI contact, university info.
+- `src/data/people-index.json` — Index of people by category:
+  - `principalInvestigator`: array of IDs
+  - `postdocs`: array of IDs
+  - `phdStudents`: array of IDs
+  - `undergrads`: array of IDs
+  - `alumni`: array of IDs
+- `src/data/profiles/*.json` — One file per person (id, name, role, email, image, links, etc.).
+- `src/data/research-projects.json` — Featured projects (title, description, team IDs, keywords). Avoid money amounts; use agency + duration.
+- `src/data/publications.json` — Publications (title, authors, venue, year, type, optional awards).
+- `src/data/courses.json` — Courses/teaching entries.
+
+Images live in `/public/images/`.
+- Logos: `/public/images/iotrust-logo.png` (light) and `/public/images/iotrust-logo-dark.png` (dark)
+- Headshots: `/public/images/team/<person>.jpg`
+- Placeholder avatar: `/public/images/profile-avatar-placeholder.png`
+
+## Updating People
+
+1) Add a profile file in `src/data/profiles/<id>.json`:
+```json
+{
+  "id": "jane_doe",
+  "name": "Jane Doe",
+  "role": "PhD Student",
+  "email": "jane@utah.edu",
+  "image": "/images/profile-avatar-placeholder.png",
+  "type": "json"
+}
 ```
+2) Reference that ID in `src/data/people-index.json` under the correct category (postdocs / phdStudents / undergrads / alumni).
+3) Drop the headshot into `/public/images/team/<file>.jpg` and set `image` to that path. If missing, the placeholder is used.
+4) Ordering: lists are automatically sorted by last name.
 
-### Asset Path Handling
+## Updating Projects
 
-Next.js automatically handles asset paths when `basePath` and `assetPrefix` are configured:
-- ✅ All `<Image>` components work automatically
-- ✅ All static assets in `/public` are prefixed correctly
-- ✅ All internal links are prefixed automatically
-- ✅ CSS and JavaScript bundles are served from the correct path
+Edit `src/data/research-projects.json`:
+- Use team member IDs defined in `profiles/*.json`.
+- Provide `keywords` for tag display.
+- Funding: list only agency and duration (no dollar amounts).
 
-No custom utilities needed - Next.js handles everything!
+## Updating Publications
 
-## Getting Started
+Edit `src/data/publications.json` to add/update items. You can also maintain a BibTeX file and convert offline, but the site reads from JSON.
 
-### Prerequisites
+## Updating Courses
 
-- Node.js 18+ 
-- npm or yarn
+Edit `src/data/courses.json`. The page at `/courses` renders the list automatically.
 
-### Installation
+## Theming & Logos
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+- The `LogoMark` component auto-swaps between light and dark logos.
+- Global theme tokens are in `src/app/globals.css` and brand colors in `tailwind.config.js`.
+- To tweak hero or navbar logo sizes/spacing, see `src/app/page.tsx` and `src/components/navigation.tsx`.
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   ```
+## Where Things Render
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Home/hero/projects/publications/people summary: `src/app/page.tsx`
+- People section cards: `src/components/team-member-card.tsx`
+- Publications page: `src/app/publications/page.tsx` (client list in `src/components/publications-client.tsx`)
+- Research projects grid: `src/components/research-projects.tsx`
+- Courses page: `src/app/courses/page.tsx`
 
-## Project Structure
+## Useful Scripts
 
-```
-src/
-├── app/                  # Next.js App Router pages
-│   ├── bio/             # Bio page
-│   ├── research/        # Research page
-│   ├── people/          # People page
-│   ├── publications/    # Publications page
-│   ├── opportunities/   # Opportunities page
-│   ├── contact/         # Contact page
-│   ├── layout.tsx       # Root layout
-│   ├── page.tsx         # Home page
-│   └── globals.css      # Global styles
-├── components/          # Reusable UI components
-│   ├── navigation.tsx   # Site navigation
-│   ├── footer.tsx       # Site footer
-│   ├── theme-provider.tsx
-│   └── theme-toggle.tsx
-├── layouts/            # Layout components
-│   └── site-layout.tsx
-├── config/             # Configuration files
-│   └── seo.ts          # SEO configuration
-├── data/               # Data files (for future use)
-├── lib/                # Utility functions
-└── styles/             # Additional styles (for future use)
-```
+- `npm run dev` — Start development server
+- `npm run build` — Static export build
+- `npm run start` — Serve production (static export)
+- `npm run lint` — Run ESLint
+- `npm run export:project-report` — Generate a markdown report of projects (in `scripts/export_project_report.ts`)
+- `npm run lint:links` — Check for broken links (in `scripts/check_links.ts`)
 
-## Available Scripts
+## Deployment (GitHub Pages)
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+This repo is configured for GitHub Pages under a sub-path. `next.config.ts` sets `output: 'export'`, `trailingSlash: true`, and the correct `basePath`/`assetPrefix` for the repo.
+
+If you deploy elsewhere (root domain), remove `basePath` and `assetPrefix` in `next.config.ts`.
+
+Asset path notes when using a sub-path:
+- `<Image>` and static `/public` assets are automatically prefixed
+- Internal links are prefixed
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4
-- **UI Components**: Custom components with shadcn/ui setup
-- **Icons**: Lucide React
-- **SEO**: next-seo
-- **Theming**: next-themes
-
-## Phase 1 Completed ✅
-
-- [x] Next.js project initialization with TypeScript
-- [x] TailwindCSS and shadcn/ui setup
-- [x] Project structure with proper folder organization
-- [x] Site-wide layout with header and footer
-- [x] Dark/light mode toggle with persistence
-- [x] Responsive navigation with all sections
-- [x] Basic SEO setup with next-seo
-- [x] Placeholder pages for all routes
-
-## Next Steps (Future Phases)
-
-- Phase 2: Content management and dynamic pages
-- Phase 3: Research showcase and publications
-- Phase 4: Team profiles and contact forms
-- Phase 5: Advanced features and optimizations
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- next-themes (dark/light mode)
+- Lucide icons
 
 ## License
 
 This project is private and proprietary to IoTrust Lab.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

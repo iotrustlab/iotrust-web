@@ -1,0 +1,47 @@
+{
+  "id": "alireza",
+  "name": "Alireza Kazemi",
+  "role": "Postdoctoral Researcher",
+  "title": "Postdoctoral Scholar",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "Alireza.Kazemi@utah.edu",
+  "image": "/images/team/alireza.jpg",
+  "bio": "Postdoctoral researcher in the INMAN Laboratory at the University of Utah. I earned my B.Sc. in Electronic Engineering from Shahid Beheshti University in Iran, my M.Sc. in Bioelectronics from the University of Tehran, and my Ph.D. in Psychology from the University of California, Davis. My research is mainly focused on the foundations of human memory, particularly understanding how different memory mechanisms are supported by the hippocampus and medial temporal lobe. In my current postdoctoral position, I am involved in the development of novel technologies to record and analyze multimodal data, including intracranial EEG, eye-tracking, and several other biomedical signals from human participants.",
+  "research_interests": [
+    "Human Memory Foundations",
+    "Hippocampus and Medial Temporal Lobe",
+    "Multimodal Data Analysis",
+    "Intracranial EEG",
+    "Eye-tracking",
+    "Computational Modeling",
+    "Cognitive Neuroscience"
+  ],
+  "education": [
+    {
+      "degree": "Ph.D. Psychology",
+      "institution": "University of California, Davis",
+      "year": "Recent"
+    },
+    {
+      "degree": "M.Sc. Bioelectronics",
+      "institution": "University of Tehran",
+      "year": "Recent"
+    },
+    {
+      "degree": "B.Sc. Electronic Engineering",
+      "institution": "Shahid Beheshti University",
+      "year": "Recent"
+    }
+  ],
+  "website": "https://alirezakazemi.com/",
+  "github": "https://github.com/alirezakazemi",
+  "google_scholar": "https://scholar.google.com/citations?user=alirezakazemi",
+  "researchgate": "https://www.researchgate.net/profile/Alireza-Kazemi",
+  "orcid": "https://orcid.org/0000-0000-0000-0000",
+  "current_projects": [],
+  "publications_count": 0,
+  "type": "json"
+}
+
+

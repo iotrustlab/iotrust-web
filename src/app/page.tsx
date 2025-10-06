@@ -5,16 +5,17 @@ import { PublicationCard } from '@/components/publication-card';
 import { TeamMemberCard } from '@/components/team-member-card';
 import { LabBanner } from '@/components/lab-banner';
 import LogoMark from '@/components/logo-mark';
-import { getLabInfo, getFeaturedProjects, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers } from '@/lib/data';
+import { getLabInfo, getFeaturedProjects, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
 
 export default async function HomePage() {
-  const [labInfo, featuredProjects, recentPublications, principalInvestigator, currentTeam, furryMembers] = await Promise.all([
+  const [labInfo, featuredProjects, recentPublications, principalInvestigator, currentTeam, furryMembers, alumni] = await Promise.all([
     getLabInfo(),
     getFeaturedProjects(),
     getPublications(),
     getPrincipalInvestigator(),
     getCurrentTeam(),
-    getFurryMembers()
+    getFurryMembers(),
+    getAlumni()
   ]);
 
   return (
@@ -168,17 +169,57 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Current Team */}
+          {/* Current Team - split into Postdocs, PhD Students, Undergrads */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
               Current Team
             </h3>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {currentTeam.map((member) => (
-                <TeamMemberCard key={member.id} member={member} />
-              ))}
+            {/* Postdocs */}
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Postdoctoral Researchers</h4>
+            <div className="flex justify-center mb-10">
+              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
+                {currentTeam.filter(m => m.role.toLowerCase().includes('postdoc')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
+                  <TeamMemberCard key={member.id} member={member} />
+                ))}
+              </div>
+            </div>
+
+            {/* PhD Students */}
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">PhD Students</h4>
+            <div className="flex justify-center mb-10">
+              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
+                {currentTeam.filter(m => m.role.toLowerCase().includes('phd')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
+                  <TeamMemberCard key={member.id} member={member} />
+                ))}
+              </div>
+            </div>
+
+            {/* Undergraduate Researchers */}
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Undergraduate Researchers</h4>
+            <div className="flex justify-center">
+              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
+                {currentTeam.filter(m => (m.role.toLowerCase().includes('undergrad') || m.role.toLowerCase().includes('undergraduate'))).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
+                  <TeamMemberCard key={member.id} member={member} />
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Alumni */}
+          {alumni.length > 0 && (
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
+                Alumni
+              </h3>
+              <div className="flex justify-center">
+                <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
+                  {alumni.sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
+                    <TeamMemberCard key={member.id} member={member} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Furry Members Section */}
           <div className="mt-20">

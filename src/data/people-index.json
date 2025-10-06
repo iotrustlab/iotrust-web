@@ -2,18 +2,31 @@
   "principalInvestigator": [
     { "id": "lag", "type": "json" }
   ],
-  "currentTeam": [
+  "postdocs": [
+    { "id": "alireza", "type": "json" }
+  ],
+  "phdStudents": [
     { "id": "jainta", "type": "json" },
     { "id": "yanran", "type": "json" },
     { "id": "iris", "type": "json" },
     { "id": "nsssayom", "type": "json" },
+    { "id": "sangshin", "type": "json" }
+  ],
+  "undergrads": [
+    { "id": "andrew_dron", "type": "json" },
+    { "id": "brandon_vo", "type": "json" },
+    { "id": "burke", "type": "json" },
+    { "id": "dylan_ladds", "type": "json" },
+    { "id": "jared_pratt", "type": "json" },
     { "id": "lawrence", "type": "json" },
-    { "id": "miles_bovero", "type": "json" },
-    { "id": "burke", "type": "json" }
+    { "id": "miles_bovero", "type": "json" }
   ],
   "alumni": [
-    { "id": "alumni1", "type": "json" },
-    { "id": "alumni2", "type": "json" }
+    { "id": "jordan_cahoon", "type": "json" },
+    { "id": "matthew_morales", "type": "json" },
+    { "id": "anmei_dasbach_prisk", "type": "json" },
+    { "id": "cory_dewitt", "type": "json" },
+    { "id": "steven_ngo", "type": "json" }
   ],
   "furryMembers": [
     {

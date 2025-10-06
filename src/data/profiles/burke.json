@@ -6,7 +6,7 @@
   "department": "Kahlert School of Computing",
   "university": "University of Utah",
   "email": "burke.dambly@utah.edu",
-  "image": "/images/team/burke-1.png",
+  "image": "/images/profile-avatar-placeholder.png",
   "bio": "Undergraduate student in Computer Science at the University of Utah, focusing on physics-informed security mechanisms for industrial control systems. Burke works on developing anomaly detection methods for SCADA systems.",
   "research_interests": [
     "SCADA Security",
