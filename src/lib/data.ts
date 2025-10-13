@@ -79,7 +79,9 @@ export interface Publication {
 
 interface PeopleIndex {
     principalInvestigator: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
-    currentTeam: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    postdocs: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    phdStudents: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    undergrads: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     alumni: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     furryMembers: FurryMember[];
 }
@@ -131,8 +133,32 @@ export async function getPeople(): Promise<Person[]> {
         }
     }
 
-    // Add current team
-    for (const personRef of index.currentTeam) {
+    // Add postdocs
+    for (const personRef of index.postdocs) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    // Add PhD students
+    for (const personRef of index.phdStudents) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    // Add undergrads
+    for (const personRef of index.undergrads) {
         try {
             const person = await getPerson(personRef.id);
             if (person) {
@@ -170,7 +196,14 @@ export async function getCurrentTeam(): Promise<Person[]> {
     const index = await getPeopleIndex();
     const people: Person[] = [];
 
-    for (const personRef of index.currentTeam) {
+    // Combine all non-PI, non-alumni active members
+    const activeGroups = [
+        ...index.postdocs,
+        ...index.phdStudents,
+        ...index.undergrads,
+    ];
+
+    for (const personRef of activeGroups) {
         try {
             const person = await getPerson(personRef.id);
             if (person) {
@@ -265,7 +298,13 @@ export async function getProjectsByPersonId(personId: string): Promise<Project[]
 // Get people IDs and types for routing
 export async function getPeopleTypes(): Promise<Array<{ id: string; type: 'native' | 'static' | 'json' }>> {
     const index = await getPeopleIndex();
-    return [...index.principalInvestigator, ...index.currentTeam, ...index.alumni];
+    return [
+        ...index.principalInvestigator,
+        ...index.postdocs,
+        ...index.phdStudents,
+        ...index.undergrads,
+        ...index.alumni,
+    ];
 }
 
 // Static data loaders for client-side usage

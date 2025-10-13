@@ -27,3 +27,4 @@ for (const p of projects.featuredProjects) {
 }
 fs.writeFileSync(outPath, md);
 console.log("Wrote", outPath);
+

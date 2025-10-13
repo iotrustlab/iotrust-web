@@ -20,3 +20,4 @@ projData.featuredProjects.forEach((p:any) => {
 });
 
 console.log("Link check completed");
+
