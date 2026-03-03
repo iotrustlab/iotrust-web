@@ -94,11 +94,19 @@ export async function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-3">
+              <Image
+                src={withBasePath("/images/block-u.png")}
+                alt="University of Utah"
+                width={28}
+                height={28}
+              />
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                © {currentYear} IoTrust Lab, {labInfo.university.name}. All rights reserved.
+              </p>
+            </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              © {currentYear} IoTrust Lab, {labInfo.university.name}. All rights reserved.
-            </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">
               Advancing IoT Security Research
             </p>
           </div>

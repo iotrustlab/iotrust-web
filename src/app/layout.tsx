@@ -10,12 +10,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://iotrust-lab.com' : 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NODE_ENV === 'production' ? 'https://iotrustlab.com' : 'http://localhost:3000'),
   title: {
     template: '%s | IoTrust Lab',
     default: 'IoTrust Lab',
   },
-  description: "We develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.",
+  description: "At the University of Utah, we develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.",
+  icons: {
+    icon: '/favicon.png',
+  },
   keywords: ['IoT', 'security', 'research', 'trust', 'Internet of Things'],
   authors: [{ name: 'IoTrust Lab' }],
   creator: 'IoTrust Lab',
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
     url: 'https://iotrust-lab.com',
     siteName: 'IoTrust Lab',
     title: 'IoTrust Lab',
-    description: 'We develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.',
+    description: 'At the University of Utah, we develop methods to ensure trustworthy and resilient autonomous systems interacting with humans-in-the-loop, blending semantic foundations with practical experimentation across industrial control systems, robotic perception, and brain-centered sensing platforms.',
     images: [
       {
         url: '/images/og-image.jpg',
