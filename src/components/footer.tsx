@@ -1,6 +1,8 @@
 import { Mail } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getLabInfo } from '@/lib/data';
+import { withBasePath } from '@/lib/with-base-path';
 
 export async function Footer() {
   const labInfo = await getLabInfo();
@@ -14,7 +16,7 @@ export async function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <Image 
-                src="/images/iotrust-logo.png" 
+                src={withBasePath("/images/iotrust-logo.png")} 
                 alt="IoTrust Lab" 
                 width={24} 
                 height={24} 
@@ -68,9 +70,9 @@ export async function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/courses" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                <Link href="/courses" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                   Courses
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#people" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">

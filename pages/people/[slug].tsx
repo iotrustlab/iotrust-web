@@ -2,14 +2,17 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPeople, getPerson, Person } from '../../src/lib/data';
+import { getPeople, getPerson, getLabInfo, Person } from '../../src/lib/data';
+import { LabInfo } from '../../src/types/data';
+import { withBasePath } from '../../src/lib/with-base-path';
 import { Mail, ExternalLink, Linkedin, Github } from 'lucide-react';
 
 interface PersonPageProps {
   person: Person;
+  labInfo: LabInfo;
 }
 
-export default function PersonPage({ person }: PersonPageProps) {
+export default function PersonPage({ person, labInfo }: PersonPageProps) {
   if (!person) {
     return <div>Person not found</div>;
   }
@@ -35,7 +38,7 @@ export default function PersonPage({ person }: PersonPageProps) {
             <div className="flex-shrink-0">
               <div className="relative w-48 h-48">
                 <Image
-                  src={person.image}
+                  src={withBasePath(person.image)}
                   alt={person.name}
                   fill
                   className="rounded-lg object-cover"
@@ -47,9 +50,6 @@ export default function PersonPage({ person }: PersonPageProps) {
               <div className="flex items-center gap-4 mb-4">
                 <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-md text-sm font-medium">
                   {person.role}
-                </span>
-                <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-xs font-medium">
-                  Native Next.js Page
                 </span>
               </div>
               
@@ -164,11 +164,11 @@ export default function PersonPage({ person }: PersonPageProps) {
               </div>
               <div>
                 <span className="font-medium text-gray-900 dark:text-white">Office:</span>
-                <span className="ml-2 text-gray-600 dark:text-gray-300">Department of Computer Science and Engineering</span>
+                <span className="ml-2 text-gray-600 dark:text-gray-300">{labInfo.university.department}</span>
               </div>
               <div>
                 <span className="font-medium text-gray-900 dark:text-white">Institution:</span>
-                <span className="ml-2 text-gray-600 dark:text-gray-300">University of Technology</span>
+                <span className="ml-2 text-gray-600 dark:text-gray-300">{labInfo.university.name}</span>
               </div>
             </div>
           </div>
@@ -180,9 +180,8 @@ export default function PersonPage({ person }: PersonPageProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const people = await getPeople();
-  const nativePeople = people.filter(person => person.type === 'native');
-  
-  const paths = nativePeople.map((person) => ({
+
+  const paths = people.map((person) => ({
     params: { slug: person.id },
   }));
 
@@ -194,9 +193,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string;
-  const person = await getPerson(slug);
+  const [person, labInfo] = await Promise.all([getPerson(slug), getLabInfo()]);
 
-  if (!person || person.type !== 'native') {
+  if (!person) {
     return {
       notFound: true,
     };
@@ -205,6 +204,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       person,
+      labInfo,
     },
   };
-}; 
+};

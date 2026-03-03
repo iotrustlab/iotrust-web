@@ -9,7 +9,8 @@
     "lint": "next lint",
     "deploy": "next build && touch out/.nojekyll",
     "export:project-report": "tsx scripts/export_project_report.ts",
-    "lint:links": "tsx scripts/check_links.ts"
+    "lint:links": "tsx scripts/check_links.ts",
+    "images:import": "tsx scripts/import_image_assets.ts"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",

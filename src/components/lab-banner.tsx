@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { withBasePath } from '@/lib/with-base-path';
 
 interface LabBannerProps {
   image: string;
@@ -34,7 +35,7 @@ export function LabBanner({ image, alt, showOnMobile, height, fullWidth = false 
     <div className={containerClasses}>
       {!imageError && (
         <Image
-          src={image}
+          src={withBasePath(image)}
           alt={alt}
           fill
           priority

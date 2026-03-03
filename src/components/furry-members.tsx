@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getFurryMembers } from '@/lib/data';
+import { withBasePath } from '@/lib/with-base-path';
 
 export async function FurryMembers() {
   const furryMembers = await getFurryMembers();
@@ -24,7 +25,7 @@ export async function FurryMembers() {
                   <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-600 flex-shrink-0 relative">
                     {hasImage && (
                       <Image
-                        src={member.image!}
+                        src={withBasePath(member.image!)}
                         alt={member.name}
                         fill
                         className="object-cover rounded-full"

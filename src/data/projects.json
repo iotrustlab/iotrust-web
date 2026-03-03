@@ -1,0 +1,333 @@
+[
+  {
+    "id": "nsf-sphere",
+    "title": "SPHERE CPS Enclave: Reconfigurable Testbed for CPS",
+    "agency": "NSF Mid-Scale RI",
+    "years": "2024–2028",
+    "status": "active",
+    "themes": ["cps-security-semantics", "digital-twins-verification"],
+    "abstract": "SPHERE CPS Enclave is a reconfigurable, remotely accessible industrial-control experimentation environment for repeatable and shareable cybersecurity studies spanning PLC logic, SCADA/HMI interaction, process telemetry, and configurable network behavior.",
+    "overview": [
+      "The SPHERE CPS Enclave provides a modular ICS environment for reproducible cyber-physical security research. It combines PLC-based control, modular I/O, SCADA/HMI interaction, and an isolated configurable network segment, with optional simulated components to emulate larger process contexts.",
+      "Our current public-facing workflow demonstrates a water-treatment scenario from setup through execution: provisioning control and monitoring stacks, running baseline behavior, introducing representative faults or adversarial manipulations, and collecting synchronized controller, network, and process telemetry for replay and offline analysis.",
+      "As part of the broader NSF SPHERE infrastructure, the CPS enclave is designed to support cross-team collaboration through standardized experiment packaging and reproducibility-first workflows."
+    ],
+    "capabilities": [
+      "Provision PLC logic, I/O mappings, monitoring tools, and network topology through a unified SPHERE workflow",
+      "Run baseline and adversarial scenarios with safe, controlled fault/attack injection",
+      "Capture synchronized process variables, controller state, and network traces for replay and post-hoc analysis",
+      "Support both hardware-in-the-loop setups and simulation-backed experiments",
+      "Enable remote experimentation with security policies aligned to safe research operations"
+    ],
+    "useCases": [
+      "Physics-aware detection and resilience evaluation using digital-twin-informed monitoring",
+      "SCADA/ICS cyber-physical exercises and adversarial scenario testing",
+      "PLC control-logic manipulation studies under realistic process constraints",
+      "Formal verification and conformance checks grounded in testbed telemetry"
+    ],
+    "publicStatus": "Public poster/demo materials are available. Additional cross-domain scenarios and advanced operator-assist capabilities are under active development and will be published as they become operational.",
+    "links": [
+      {
+        "label": "SPHERE Project Website",
+        "url": "https://sphere-project.net"
+      }
+    ],
+    "team": ["L. Garcia"],
+    "publications": [],
+    "heroImage": "/images/projects/sphere/hero.jpg"
+  },
+  {
+    "id": "nsf-fmitf",
+    "title": "FMitF: Formal Verification & Implementation Stack for PLCs",
+    "agency": "NSF FMitF",
+    "years": "2022–2025",
+    "status": "active",
+    "themes": ["cps-security-semantics", "digital-twins-verification"],
+    "abstract": "FMitF develops a provably correct stack that links formal hybrid-system models to PLC implementations, combining verified runtime monitoring with bidirectional model-code translation for industrial control systems.",
+    "overview": [
+      "This project advances a full formal-methods workflow from high-level differential dynamic logic models to executable PLC controller logic, with explicit links that preserve safety guarantees across design and runtime.",
+      "The public materials center on modular verification, monitor synthesis, and translation methods that connect model-level proofs with implementation artifacts used in realistic ICS settings.",
+      "The work builds on and extends prior HyPLC efforts, and informs follow-on work such as HyTwin for digital-twin-based security interventions."
+    ],
+    "capabilities": [
+      "Bidirectional translation between verified hybrid-program models and PLC control-logic structure",
+      "Runtime monitor synthesis that checks model-to-runtime compliance",
+      "Modular verification workflows for scalable ICS controller development",
+      "Reproducible experiment and evaluation artifacts rooted in water-treatment-style ICS case studies"
+    ],
+    "useCases": [
+      "Design-time verification of PLC control logic against hybrid-system safety requirements",
+      "Runtime validation of assumptions to detect deviations that invalidate offline proofs",
+      "Evaluation of resilient control behavior under representative cyber-physical perturbations"
+    ],
+    "publicStatus": "Public proposal and publication artifacts are available. Additional implementation and expanded testbed integration work is active and will be released as those components are stabilized.",
+    "links": [
+      {
+        "label": "FMitF Proposal Artifacts (GitHub)",
+        "url": "https://github.com/LS-Lab/fmitf21"
+      },
+      {
+        "label": "HyPLC Source Repository",
+        "url": "https://github.com/LS-Lab/plc-synthesis"
+      },
+      {
+        "label": "HyPLC Paper (ICCPS 2019)",
+        "url": "https://doi.org/10.1145/3302509.3311036"
+      },
+      {
+        "label": "HyTwin Paper (NFM 2025)",
+        "url": "https://doi.org/10.1007/978-3-031-93706-4_17"
+      },
+      {
+        "label": "HyTwin Source Repository",
+        "url": "https://github.com/iotrustlab/HyTwin"
+      }
+    ],
+    "figures": [
+      {
+        "image": "/images/projects/fmitf/fmitf-proposal-overview.png",
+        "caption": "FMitF proposal overview showing modular verification, monitoring, and translation goals."
+      },
+      {
+        "image": "/images/projects/fmitf/hyplc-overview.png",
+        "caption": "HyPLC overview linking PLC control logic, physical plant behavior, and formally verified hybrid-program models."
+      },
+      {
+        "image": "/images/projects/fmitf/hytwin-framework.png",
+        "caption": "HyTwin framework for attack-signature identification and verified mitigation planning over ICS digital twins."
+      }
+    ],
+    "team": ["L. Garcia"],
+    "publications": ["garcia2019-hyplc", "paul2025-hytwin"],
+    "heroImage": "/images/projects/fmitf/hero.jpg"
+  },
+  {
+    "id": "darpa-smellcps",
+    "title": "SMELL-CPS: Symbolic Math Expressions from Low-level Logic in Cyber-Physical Systems",
+    "agency": "DARPA",
+    "awardNumber": "ReMATH AIE",
+    "years": "2020–2021 (18 months)",
+    "status": "completed",
+    "themes": ["cps-security-semantics"],
+    "abstract": "SMELL-CPS developed methods to extract interpretable mathematical expressions and semantic structure from low-level CPS control binaries, enabling reverse engineering, assurance analysis, and downstream automated testing workflows.",
+    "overview": [
+      "Under DARPA ReMATH (AIE), SMELL-CPS established a programmatic workflow for recovering symbolic mathematical structure from firmware-level control logic in cyber-physical systems.",
+      "The project combined symbolic execution, static analysis, and modular expression refinement to bridge the gap between binary-level implementations and human-meaningful control semantics.",
+      "This research line seeded follow-on work including PERFUME, SensorLoader, and AutoCPS, and informs newer property-guided surrogation workflows for CPS safety analysis."
+    ],
+    "capabilities": [
+      "Recover symbolic expressions from low-level controller binaries and map them into modular semantic components",
+      "Link peripheral-level communication behavior to higher-level control semantics across embedded CPS platforms",
+      "Generate semantically structured datasets for training and evaluating reverse-engineering pipelines",
+      "Support property-oriented analysis workflows that connect semantic recovery with CPS testing and falsification"
+    ],
+    "useCases": [
+      "Firmware-level reverse engineering of embedded CPS controllers when source code is incomplete or unavailable",
+      "Extraction of interpretable control math for analyst review and assurance workflows",
+      "Automated dataset generation for semantic reverse-engineering models and evaluation benchmarks",
+      "Property-guided reduction and surrogation to accelerate safety-focused CPS analysis"
+    ],
+    "publicStatus": "Public proposal and publication artifacts are available. Additional internal tooling and unreleased integration work remain private until operationally ready for external release.",
+    "links": [
+      {
+        "label": "SMELL-CPS Final Proposal (PDF)",
+        "url": "/docs/projects/smellcps/smellcps-final-proposal.pdf"
+      },
+      {
+        "label": "PERFUME (CheckMATE 2021)",
+        "url": "https://doi.org/10.1145/3465413.3488575"
+      },
+      {
+        "label": "SensorLoader (Sensors S&P 2023)",
+        "url": "https://doi.org/10.1145/3628356.3630117"
+      },
+      {
+        "label": "AutoCPS (IEEE SPW 2022)",
+        "url": "https://doi.org/10.1109/SPW54247.2022.9833887"
+      }
+    ],
+    "figures": [
+      {
+        "image": "/images/projects/smellcps/fig-smellcps-overview.png",
+        "caption": "SMELL-CPS overview for extracting modular mathematical expressions from low-level control logic."
+      },
+      {
+        "image": "/images/projects/smellcps/fig-sensorloader-overview.png",
+        "caption": "SensorLoader peripheral-aware reverse-engineering workflow for bridging firmware and sensor semantics."
+      },
+      {
+        "image": "/images/projects/smellcps/fig-sensorloader-pipeline.png",
+        "caption": "SensorLoader pipeline from open-source sensor/MCU artifacts to inferred peripheral semantics."
+      },
+      {
+        "image": "/images/projects/smellcps/fig-autocps-overview.png",
+        "caption": "AutoCPS process for modularizing control software and generating datasets for semantic reverse engineering."
+      },
+      {
+        "image": "/images/projects/smellcps/fig-property-surrogation.png",
+        "caption": "Property-guided cyber-physical reduction and surrogation framework for safety analysis in robotic CPS."
+      }
+    ],
+    "team": [
+      "Luis Garcia (Lead PI)",
+      "Christophe Hauser (Co-PI)",
+      "Aram Galstyan (Co-PI)",
+      "David Barnhart (Co-PI)"
+    ],
+    "publications": [
+      "weideman2021-perfume",
+      "wang2022-autocps",
+      "dasbach-prisk2023-sensorloader",
+      "sayom2025-property-guided"
+    ],
+    "heroImage": "/images/projects/smellcps/hero.jpg"
+  },
+  {
+    "id": "nih-neuroscience-wild",
+    "title": "Neuroscience-in-the-Wild: Memory & Sensor Fusion",
+    "agency": "NIH",
+    "awardNumber": "NIH 10792324",
+    "years": "2024–2029",
+    "status": "active",
+    "themes": ["brain-centered-cps"],
+    "abstract": "This project integrates smartphone-based experiential sensing, wearables, and intracranial neural recordings to study autobiographical memory formation during real-world behavior and to inform future memory-enhancing neuromodulation.",
+    "overview": [
+      "The NIH project combines continuous multimodal sensing (audio/video, GPS, IMU, eye-tracking, physiology, and self-reports) with precisely synchronized intracranial recordings from participants with chronically implanted therapeutic devices.",
+      "A core objective is to capture and analyze autobiographical memory encoding in natural settings rather than only controlled laboratory tasks. The effort includes development of the CAPTURE mobile recording app and analysis pipelines for large multimodal streams.",
+      "By linking real-world behavioral context to neural activity, the project establishes translational foundations for future closed-loop interventions aimed at improving memory outcomes in neurological disorders.",
+      "An active Trustworthy Mixed Reality thread evaluates robustness of visual tracking and context alignment pipelines that support reliable in-the-wild cognitive experimentation."
+    ],
+    "capabilities": [
+      "Synchronized collection of neural, wearable, and environmental data streams during unconstrained real-world behavior",
+      "Multimodal alignment methods for time-locked analysis across intracranial signals and sensed context",
+      "Sensor-fusion and model-building workflows for context-shift and event-boundary detection",
+      "End-to-end mobile tooling for in-the-wild experimental capture at scale",
+      "Translational analysis pipeline connecting neural markers to memory-relevant behavior",
+      "Robustness analysis for XR tracking pipelines used in real-world cognitive sensing workflows"
+    ],
+    "useCases": [
+      "Studying autobiographical memory encoding and retrieval in daily-life environments",
+      "Detecting context shifts from multimodal sensory and neural observations",
+      "Characterizing neural signatures that can support future adaptive stimulation policies",
+      "Evaluating robustness of real-world brain-and-sensor data fusion workflows",
+      "Assessing trustworthy mixed reality sensing reliability for longitudinal cognitive experiments"
+    ],
+    "publicStatus": "Public NIH abstract, poster materials, and related Trustworthy XR publications are available. Additional datasets, models, and intervention workflows are under active development and will be released as they mature.",
+    "links": [
+      {
+        "label": "NIH Reporter Project Page",
+        "url": "https://reporter.nih.gov/search/d5uHWn4kKEmuyUDa6pyaNg/project-details/10792324"
+      },
+      {
+        "label": "SenSys 2025 Poster Abstract (DOI)",
+        "url": "https://doi.org/10.1145/3715014.3724037"
+      },
+      {
+        "label": "IROS 2024: Neurosymbolic SLAM (DOI)",
+        "url": "https://doi.org/10.1109/IROS58592.2024.10802379"
+      },
+      {
+        "label": "ACM TOSN: Lost in Tracking Translation (DOI)",
+        "url": "https://doi.org/10.1145/3785140"
+      }
+    ],
+    "figures": [
+      {
+        "image": "/images/projects/neuro-wild/fig-field-study.jpg",
+        "caption": "Real-world field deployment for synchronized neural and multimodal sensing."
+      },
+      {
+        "image": "/images/projects/neuro-wild/fig-sensors-1.jpg",
+        "caption": "Participant setup illustrating mobile sensing and neural recording integration."
+      },
+      {
+        "image": "/images/projects/neuro-wild/fig-multimodal.jpg",
+        "caption": "Example multimodal context representation used for context-shift analysis."
+      },
+      {
+        "image": "/images/projects/neuro-wild/fig-controller-loop.jpg",
+        "caption": "Conceptual loop from sensed context and neural state to adaptive intervention design."
+      },
+      {
+        "image": "/images/projects/neuro-wild/fig-xr-neurosymbolic-overview.png",
+        "caption": "Neurosymbolic feature extraction pipeline used for adaptive visual tracking in mixed reality workloads."
+      },
+      {
+        "image": "/images/projects/neuro-wild/fig-xr-tracking-overview.png",
+        "caption": "Overview of traditional and learning-based SLAM tracking components analyzed for trustworthy XR experimentation."
+      }
+    ],
+    "team": ["L. Garcia"],
+    "publications": ["nguyen2025-detecting", "chandio2024-a", "chandio2024-lost"],
+    "heroImage": "/images/projects/neuro-wild/hero.jpg"
+  },
+  {
+    "id": "nsf-ncs",
+    "title": "NCS: Memory via Real-world Integration of Brain & IoT Perception",
+    "agency": "NSF NCS (NeurIoT)",
+    "awardNumber": "NSF 2435642",
+    "years": "2021–2024",
+    "status": "completed",
+    "themes": ["brain-centered-cps"],
+    "abstract": "NSF NCS established the NeurIoT foundation for synchronizing brain recordings with real-world multimodal sensing to study memory-relevant behavior and support context-aware neurotechnology research.",
+    "overview": [
+      "The NCS project explored how IoT sensing and neural measurements can be integrated to model human cognitive state in realistic environments, with emphasis on episodic memory and event boundaries.",
+      "It introduced a multi-task research framework spanning sensing/synchronization, semantic alignment of neural and environmental signals, and early concepts for memory-related stimulation workflows.",
+      "This project served as a predecessor platform for subsequent NIH efforts focused on scalable real-world data capture and translational memory applications.",
+      "The project also seeded Trustworthy Mixed Reality research on SLAM reliability and interpretable feature adaptation for human-centered sensing."
+    ],
+    "capabilities": [
+      "Portable sensor and neural-data synchronization workflows in real-world settings",
+      "Semantic alignment strategies connecting perceived context with neural dynamics",
+      "Prototype-ready design concepts for context-aware memory experimentation",
+      "Open and reproducible project artifacts for follow-on research programs",
+      "Foundational XR tracking reliability analysis methods for real-world cognitive studies"
+    ],
+    "useCases": [
+      "Building real-world cognitive-state datasets that combine brain and IoT signals",
+      "Analyzing memory-related neural responses under rich environmental context",
+      "Seeding follow-on work on adaptive memory support and neurotechnology safety",
+      "Developing trustworthy mixed-reality data pipelines that bridge IoT context and behavior"
+    ],
+    "publicStatus": "Public proposal and context figures are available. Some older proposal-era diagrams are retained for historical context while newer NIH-linked materials are now the primary public reference.",
+    "links": [
+      {
+        "label": "NSF Award Page (2435642)",
+        "url": "https://www.nsf.gov/awardsearch/show-award?AWD_ID=2435642"
+      },
+      {
+        "label": "Successor NIH Project Page",
+        "url": "https://reporter.nih.gov/search/d5uHWn4kKEmuyUDa6pyaNg/project-details/10792324"
+      },
+      {
+        "label": "IROS 2024: Neurosymbolic SLAM (DOI)",
+        "url": "https://doi.org/10.1109/IROS58592.2024.10802379"
+      },
+      {
+        "label": "ACM TOSN: Lost in Tracking Translation (DOI)",
+        "url": "https://doi.org/10.1145/3785140"
+      }
+    ],
+    "figures": [
+      {
+        "image": "/images/projects/ncs/fig-neuriot-system.jpg",
+        "caption": "NeurIoT system architecture for synchronized sensing and neural recording."
+      },
+      {
+        "image": "/images/projects/ncs/fig-participant-setup.jpg",
+        "caption": "In-the-wild participant instrumentation used during early NeurIoT deployments."
+      },
+      {
+        "image": "/images/projects/ncs/fig-xr-neurosymbolic-pipeline.png",
+        "caption": "High-level neurosymbolic visual odometry pipeline studied for reliable mixed reality operation."
+      },
+      {
+        "image": "/images/projects/ncs/fig-xr-taxonomy.png",
+        "caption": "Taxonomy of algorithmic, environmental, and locomotion challenges in human-centered XR tracking."
+      }
+    ],
+    "team": ["L. Garcia"],
+    "publications": ["garcia2024-collaborative", "nguyen2025-detecting", "chandio2024-a", "chandio2024-lost"],
+    "heroImage": "/images/projects/ncs/hero.jpg"
+  }
+]

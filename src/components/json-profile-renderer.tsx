@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, Linkedin } from 'lucide-react';
+import { withBasePath } from '@/lib/with-base-path';
 
 interface SectionContent {
   badges?: string[];
@@ -250,7 +251,7 @@ export function JsonProfileRenderer({ profile }: JsonProfileProps) {
             <div className="flex-shrink-0">
               <div className={`relative ${profile.styling?.image_size || 'w-48 h-48'}`}>
                 <Image
-                  src={profile.image}
+                  src={withBasePath(profile.image)}
                   alt={profile.name || 'Profile'}
                   fill
                   className="rounded-lg object-cover"

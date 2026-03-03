@@ -2,6 +2,7 @@ import { Project } from '@/lib/data';
 import { Calendar, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { withBasePath } from '@/lib/with-base-path';
 
 interface ResearchCardProps {
   project: Project;
@@ -27,7 +28,7 @@ export function ResearchCard({ project }: ResearchCardProps) {
         {/* Project Image */}
         <div className="relative h-48">
           <Image
-            src={project.image}
+            src={withBasePath(project.image)}
             alt={project.title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"

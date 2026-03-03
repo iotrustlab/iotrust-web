@@ -65,9 +65,10 @@
     "Secure, Private, and Useful Ubiquitous Sensing: With the explosion of IoT sensors, how can we expose useful programming abstractions to developers while ensuring secure and private cyber-physical information flow?"
   ],
   "current_projects": [
-    "semantic-retrofitting",
-    "trustworthy-autonomous-design", 
-    "secure-ubiquitous-sensing"
+    "nsf-sphere",
+    "nsf-fmitf",
+    "darpa-smellcps",
+    "nih-neuroscience-wild"
   ],
   "publications_count": 25,
   "type": "json"

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
@@ -10,7 +9,9 @@ import LogoMark from '@/components/logo-mark';
 
 const navigation = [
   { name: 'Home', href: '#home', isScroll: true },
-  { name: 'Research', href: '#research', isScroll: true },
+  { name: 'Research', href: '/research', isScroll: false },
+  { name: 'Projects', href: '/projects', isScroll: false },
+  { name: 'News', href: '/news', isScroll: false },
   { name: 'Publications', href: '#publications', isScroll: true },
   { name: 'Courses', href: '/courses', isScroll: false },
   { name: 'People', href: '#people', isScroll: true },
@@ -100,10 +101,10 @@ export function Navigation() {
 
   const isActiveSection = (href: string) => {
     if (pathname !== '/') {
-      // If not on homepage, no scroll sections are active
-      return false;
+      // For page-based navigation, check if current pathname matches
+      return pathname === href;
     }
-    // Check if this section is currently active
+    // For scroll-based navigation on homepage, check if this section is currently active
     return activeSection === href;
   };
 

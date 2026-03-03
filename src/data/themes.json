@@ -1,0 +1,68 @@
+[
+  {
+    "id": "cps-security-semantics",
+    "title": "Cyber-Physical Systems Security & Semantics",
+    "summary": "Semantics-driven hardening of legacy and modern CPS; symbolic recovery of logic; testbed-based security experimentation.",
+    "projectIds": ["nsf-sphere", "nsf-fmitf", "darpa-smellcps"],
+    "featuredPubIds": [
+      "garcia2019-hyplc",
+      "wang2022-autocps",
+      "garcia2025-sphere",
+      "ahmed2025-icstracker"
+    ],
+    "image": "/images/themes/cps-security-semantics.jpg"
+  },
+  {
+    "id": "digital-twins-verification",
+    "title": "Digital Twins & Formal Verification",
+    "summary": "Formal and hybrid systems verification; fidelity-aware digital twins; verification-driven testbed design.",
+    "projectIds": ["nsf-sphere", "nsf-fmitf"],
+    "featuredPubIds": [
+      "paul2025-hytwin",
+      "garcia2023-collaborative",
+      "garcia2025-sphere",
+      "ghaeini2019-patt"
+    ],
+    "image": "/images/themes/digital-twins-verification.jpg"
+  },
+  {
+    "id": "iot-sensor-privacy",
+    "title": "IoT & Sensor Privacy",
+    "summary": "Privacy-preserving sensing and information flow for trustworthy ubiquitous systems, from edge to cloud.",
+    "projectIds": [],
+    "featuredPubIds": [
+      "wang2024-privacyoracle",
+      "singh2024-understanding",
+      "singh2021-i",
+      "liu2021-secdeep"
+    ],
+    "image": "/images/themes/iot-sensor-privacy.jpg"
+  },
+  {
+    "id": "brain-centered-cps",
+    "title": "Brain-Centered CPS / NeuroIoT",
+    "summary": "Human-in-the-loop CPS with neural & environmental sensing; multimodal fusion and memory-centric modeling.",
+    "projectIds": ["nih-neuroscience-wild", "nsf-ncs"],
+    "featuredPubIds": [
+      "garcia2024-collaborative",
+      "nguyen2025-detecting",
+      "cahoon2023-continuous",
+      "xing2020-neuroplex"
+    ],
+    "image": "/images/themes/brain-centered-cps.jpg"
+  },
+  {
+    "id": "digital-twinning-for-ics",
+    "title": "Digital Twinning for Industrial Control Systems",
+    "summary": "This theme develops fidelity-aware digital twins that bridge engineered control code, physical process models, and experimental testbeds. Our work spans formal verification, real-system validation, and runtime conformance checking. We also leverage agentic testing frameworks for CPS that allow autonomous evaluation of system resilience, enabling verification and mitigation synthesis across realistic testbeds. Together, these efforts establish a principled foundation for trustworthy experimentation and security in cyber-physical infrastructure.",
+    "projectIds": ["nsf-sphere", "nsf-fmitf", "darpa-smellcps"],
+    "featuredPubIds": [
+      "paul2025-hytwin",
+      "garcia2019-hyplc",
+      "garcia2025-sphere",
+      "ahmed2025-icstracker"
+    ],
+    "image": "/images/themes/digital-twinning-for-ics.jpg"
+  }
+]
+

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Publication } from '@/lib/data';
 import { Check, ChevronDown, Search, X } from 'lucide-react';
+import themes from '@/data/themes.json';
 
 interface PublicationFiltersProps {
   publications: Publication[];
@@ -14,13 +15,36 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [yearFilter, setYearFilter] = useState<string>('all');
+  const [themeFilter, setThemeFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<string | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // Initialize theme filter from URL query parameter
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const themeParam = params.get('theme');
+    if (themeParam && themes.find(t => t.id === themeParam)) {
+      setThemeFilter(themeParam);
+    }
+  }, []);
+
+  // Update URL when theme filter changes
+  useEffect(() => {
+    if (themeFilter !== 'all') {
+      const url = new URL(window.location.href);
+      url.searchParams.set('theme', themeFilter);
+      window.history.replaceState({}, '', url.toString());
+    } else {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('theme');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, [themeFilter]);
+
   // Get unique years from publications
   const years = [...new Set(publications.map(pub => pub.year))].sort((a, b) => b - a);
-  
+
   // Get unique types from publications
   const types = [...new Set(publications.map(pub => pub.type))];
 
@@ -57,34 +81,39 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
   // Apply filters and sorting
   const applyFiltersAndSort = useCallback(() => {
     let filtered = [...publications];
-    
+
     // Apply search filter (case insensitive)
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(pub => 
-        pub.title.toLowerCase().includes(query) || 
-        pub.abstract.toLowerCase().includes(query) || 
+      filtered = filtered.filter(pub =>
+        pub.title.toLowerCase().includes(query) ||
+        pub.abstract.toLowerCase().includes(query) ||
         pub.authors.some(author => author.toLowerCase().includes(query)) ||
         pub.venue.toLowerCase().includes(query) ||
         pub.keywords.some(keyword => keyword.toLowerCase().includes(query))
       );
     }
-    
+
+    // Apply theme filter
+    if (themeFilter !== 'all') {
+      filtered = filtered.filter(pub => pub.themeIds?.includes(themeFilter));
+    }
+
     // Apply type filter
     if (typeFilter !== 'all') {
       filtered = filtered.filter(pub => pub.type === typeFilter);
     }
-    
+
     // Apply year filter
     if (yearFilter !== 'all') {
       filtered = filtered.filter(pub => pub.year === parseInt(yearFilter));
     }
-    
+
     // Apply sorting
     filtered.sort((a, b) => {
       if (sortBy === 'year') {
-        return sortOrder === 'asc' 
-          ? a.year - b.year 
+        return sortOrder === 'asc'
+          ? a.year - b.year
           : b.year - a.year;
       } else {
         return sortOrder === 'asc'
@@ -92,14 +121,14 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
           : b.title.localeCompare(a.title);
       }
     });
-    
+
     onFilteredPublications(filtered, searchQuery.trim());
-  }, [publications, searchQuery, typeFilter, yearFilter, sortBy, sortOrder, onFilteredPublications]);
+  }, [publications, searchQuery, themeFilter, typeFilter, yearFilter, sortBy, sortOrder, onFilteredPublications]);
 
   // Apply filters when any filter/sort option changes
   useEffect(() => {
     applyFiltersAndSort();
-  }, [sortBy, sortOrder, typeFilter, yearFilter, searchQuery, applyFiltersAndSort]);
+  }, [sortBy, sortOrder, themeFilter, typeFilter, yearFilter, searchQuery, applyFiltersAndSort]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -145,12 +174,61 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
       
       <div className="flex flex-col md:flex-row gap-3 text-sm">
         <div className="flex flex-col md:flex-row gap-3 flex-1">
+          {/* Theme Filter */}
+          <div className="relative dropdown-container">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDropdown(showDropdown === 'theme' ? null : 'theme');
+              }}
+              className="flex items-center justify-between px-3 py-2 w-full md:w-48 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            >
+              <span className="truncate">
+                Theme: {themeFilter === 'all' ? 'All' : themes.find(t => t.id === themeFilter)?.title.split(':')[0] || 'All'}
+              </span>
+              <ChevronDown size={16} className="ml-1 flex-shrink-0" />
+            </button>
+
+            {showDropdown === 'theme' && (
+              <div className="absolute z-50 mt-1 w-full md:w-80 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-96 overflow-auto">
+                <div
+                  className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setThemeFilter('all');
+                    setShowDropdown(null);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <span className="flex-1">All Themes</span>
+                    {themeFilter === 'all' && <Check size={16} />}
+                  </div>
+                </div>
+                {themes.map(theme => (
+                  <div
+                    key={theme.id}
+                    className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setThemeFilter(theme.id);
+                      setShowDropdown(null);
+                    }}
+                  >
+                    <div className="flex items-center">
+                      <span className="flex-1 text-sm">{theme.title}</span>
+                      {themeFilter === theme.id && <Check size={16} className="flex-shrink-0" />}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Type Filter */}
           <div className="relative dropdown-container">
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                console.log('Type dropdown clicked, current state:', showDropdown);
                 setShowDropdown(showDropdown === 'type' ? null : 'type');
               }}
               className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
@@ -199,7 +277,6 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                console.log('Year dropdown clicked, current state:', showDropdown);
                 setShowDropdown(showDropdown === 'year' ? null : 'year');
               }}
               className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"

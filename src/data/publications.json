@@ -1,178 +1,1910 @@
 {
   "recentPublications": [
     {
-      "id": "ddflow-2019",
-      "title": "Ddflow: visualized declarative programming for heterogeneous iot networks",
-      "authors": ["Joseph Noor", "Hsiao-Yun Tseng", "Luis Garcia", "Mani Srivastava"],
-      "venue": "Proceedings of the International Conference on Internet of Things Design and Implementation",
-      "year": 2019,
+      "id": "ahmed2025-icstracker",
+      "title": "ICSTracker: Backtracking Intrusions in Modern Industrial Control Systems",
+      "authors": [
+        "Md Raihan Ahmed",
+        "Jainta Paul",
+        "Levi Taiji Li",
+        "Luis Garcia",
+        "Mu Zhang"
+      ],
+      "venue": "2025 55th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)",
+      "year": 2025,
       "type": "conference",
-      "pages": "172-177",
-      "abstract": "Declarative programming framework for heterogeneous IoT networks with visualization capabilities.",
-      "keywords": ["IoT", "Declarative Programming", "Heterogeneous Networks", "Visualization"],
-      "citations": 12,
-      "url": "https://dl.acm.org/doi/10.1145/3302505.3302506"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "193--207",
+      "organization": "IEEE",
+      "themeIds": [
+        "cps-security-semantics",
+        "digital-twinning-for-ics"
+      ]
     },
     {
-      "id": "hyplc-2019-finalist",
-      "title": "HyPLC: Hybrid Programmable Logic Controller Program Translation for Verification",
-      "authors": ["Luis Garcia", "Stefan Mitsch", "André Platzer"],
-      "venue": "IEEE/ACM International Conference on Cyber-Physical Systems (ICCPS)",
-      "year": 2019,
-      "type": "conference",
-      "abstract": "Hybrid programmable logic controller program translation framework for formal verification of industrial control systems.",
-      "keywords": ["PLC Security", "Formal Verification", "Program Translation", "Industrial Control Systems"],
-      "citations": 25,
-      "url": "https://ieeexplore.ieee.org/document/1234567",
-      "awards": ["Best Paper Finalist"]
+      "id": "arasteh2025-trim",
+      "title": "Trim My View: An LLM-Based Code Query System for Module Retrieval in Robotic Firmware",
+      "authors": [
+        "Sima Arasteh",
+        "Pegah Jandaghi",
+        "Nicolaas Weideman",
+        "Dennis Perepech",
+        "Mukund Raghothaman",
+        "Christophe Hauser",
+        "Luis Garcia"
+      ],
+      "venue": "arXiv preprint arXiv:2503.03969",
+      "year": 2025,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
     },
     {
-      "id": "autocps-2022-best-paper",
-      "title": "AutoCPS: Control Software Dataset Generation for Semantic Reverse Engineering",
-      "authors": ["Haoda Wang", "Christophe Hauser", "Luis Garcia"],
-      "venue": "IEEE Workshop on the Internet of Safe Things (SafeThings)",
+      "id": "chan$^1$2025-leaking",
+      "title": "Leaking Through the Physics: Covert Cyber-Physical Data Exfiltration Through Unobserved Physics",
+      "authors": [
+        "Matthew Chan$^1$",
+        "Luis Garcia",
+        "Nathaniel Snyder",
+        "Marcus Lucas"
+      ],
+      "venue": "Security and Privacy in Cyber-Physical Systems and Smart Vehicles: Second EAI International Conference, SmartSP 2024, New Orleans, LA, USA, November 7--8, 2024, Proceedings",
+      "year": 2025,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "3",
+      "volume": "622",
+      "organization": "Springer Nature"
+    },
+    {
+      "id": "garcia2025-sphere",
+      "title": "SPHERE CPS Enclave: A Reconfigurable Testbed for Industrial Control System Security Experimentation",
+      "authors": [
+        "Luis Garcia",
+        "Jelena Mirkovic",
+        "David Balenson",
+        "Erik Kline",
+        "Yuri Pradkin",
+        "David Choffnes",
+        "Daniel Dubois",
+        "Terry Benzel",
+        "Srivatsan Ravi",
+        "Joseph Barnes",
+        "others"
+      ],
+      "venue": "Proceedings of the ACM/IEEE 16th International Conference on Cyber-Physical Systems (with CPS-IoT Week 2025)",
+      "year": 2025,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--2",
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
+    },
+    {
+      "id": "nguyen2025-detecting",
+      "title": "Detecting Context Shifts in the Human Experience Using Multimodal Foundation Models",
+      "authors": [
+        "Iris Nguyen",
+        "Liying Han",
+        "Burke Dambly",
+        "Alireza Kazemi",
+        "Marina Kogan",
+        "Cory Inman",
+        "Mani Srivastava",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings of the 23rd ACM Conference on Embedded Networked Sensor Systems",
+      "year": 2025,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1145/3715014.3724037",
+      "tags": [],
+      "pages": "620--621",
+      "themeIds": [
+        "brain-centered-cps"
+      ]
+    },
+    {
+      "id": "paul2025-hytwin",
+      "title": "HyTwin: Hybrid Program Semantics for Digital Twin-Based Security Interventions in Industrial Control Systems",
+      "authors": [
+        "Jainta Paul",
+        "Stefan Mitsch",
+        "Luis Garcia"
+      ],
+      "venue": "NASA Formal Methods Symposium",
+      "year": 2025,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1007/978-3-031-93706-4_17",
+      "tags": [],
+      "pages": "294--312",
+      "organization": "Springer",
+      "themeIds": [
+        "cps-security-semantics",
+        "digital-twinning-for-ics",
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "sayom2025-property-guided",
+      "title": "Property-Guided Cyber-Physical Reduction and Surrogation for Safety Analysis in Robotic Vehicles",
+      "authors": [
+        "Nazmus Shakib Sayom",
+        "Luis A Garcia"
+      ],
+      "venue": "Security and Privacy in Cyber-Physical Systems and Smart Vehicles: Third EAI International Conference, SmartSP 2025, Salt Lake City, Utah, USA, December 1--2, 2025, Proceedings",
+      "year": 2025,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "cps-security-semantics"
+      ]
+    },
+    {
+      "id": "chandio2024-a",
+      "title": "A Neurosymbolic Approach to Adaptive Feature Extraction in SLAM",
+      "authors": [
+        "Yasra Chandio",
+        "Momin A Khan",
+        "Khotso Selialia",
+        "Luis Garcia",
+        "Joseph DeGol",
+        "Fatima M Anwar"
+      ],
+      "venue": "2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "year": 2024,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1109/IROS58592.2024.10802379",
+      "tags": [],
+      "pages": "4941--4948",
+      "organization": "IEEE",
+      "themeIds": [
+        "brain-centered-cps"
+      ]
+    },
+    {
+      "id": "chandio2024-lost",
+      "title": "Lost in Tracking Translation: A Comprehensive Analysis of Visual SLAM in Human-Centered XR and IoT Ecosystems",
+      "authors": [
+        "Yasra Chandio",
+        "Khotso Selialia",
+        "Joseph DeGol",
+        "Luis Garcia",
+        "Fatima M Anwar"
+      ],
+      "venue": "ACM Transactions on Sensor Networks (TOSN)",
+      "year": 2025,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1145/3785140",
+      "tags": [],
+      "themeIds": [
+        "brain-centered-cps"
+      ]
+    },
+    {
+      "id": "deepsingh2024-understanding",
+      "title": "Understanding factors behind IoT privacy--A user's perspective on RF sensors",
+      "authors": [
+        "Akash Deep Singh",
+        "Brian Wang",
+        "Luis Garcia",
+        "Xiang Chen",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv e-prints",
+      "year": 2024,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "arXiv--2401",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "garcia2024-collaborative",
+      "title": "Collaborative Research: NCS: FO: Enhancing Episodic Memory through Real-world Integration of Brain Recording and Stimulation with Semantic Alignment of Human and IoT Perception",
+      "authors": [
+        "Luis A Garcia"
+      ],
+      "venue": "NSF Award Number 2435642. Directorate for Computer and Information Science and Engineering",
+      "year": 2024,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://www.nsf.gov/awardsearch/show-award?AWD_ID=2435642",
+      "tags": [],
+      "pages": "35642",
+      "volume": "24",
+      "themeIds": [
+        "brain-centered-cps"
+      ]
+    },
+    {
+      "id": "mirkovic2024-poster",
+      "title": "Poster: Security and Privacy Heterogeneous Environment for Reproducible Experimentation (SPHERE)",
+      "authors": [
+        "Jelena Mirkovic",
+        "David Balenson",
+        "Brian Kocoloski",
+        "Geoff Lawler",
+        "Chris Tran",
+        "Joseph Barnes",
+        "Yuri Pradkin",
+        "Terry Benzel",
+        "Srivatsan Ravi",
+        "Ganesh Sankaran",
+        "others"
+      ],
+      "venue": "Proceedings of the 2024 on ACM SIGSAC Conference on Computer and Communications Security",
+      "year": 2024,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "5051--5053"
+    },
+    {
+      "id": "saha2024-locomote",
+      "title": "Locomote: Ai-driven sensor tags for fine-grained undersea localization and sensing",
+      "authors": [
+        "Swapnil Sayan Saha",
+        "Caden Davis",
+        "Sandeep Singh Sandha",
+        "Junha Park",
+        "Joshua Geronimo",
+        "Luis Antonio Garcia",
+        "Mani B Srivastava"
+      ],
+      "venue": "IEEE Sensors Journal",
+      "year": 2024,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "16999--17018",
+      "volume": "24",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "singh2024-understanding",
+      "title": "Understanding factors behind IoT privacy--A user's perspective on RF sensors",
+      "authors": [
+        "Akash Deep Singh",
+        "Brian Wang",
+        "Luis Garcia",
+        "Xiang Chen",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv preprint arXiv:2401.08037",
+      "year": 2024,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "wang2024-privacyoracle",
+      "title": "PrivacyOracle: Configuring Sensor Privacy Firewalls with Large Language Models in Smart Built Environments",
+      "authors": [
+        "Brian Wang",
+        "Luis Antonio Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "2024 IEEE Security and Privacy Workshops (SPW)",
+      "year": 2024,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "239--245",
+      "organization": "IEEE Computer Society",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "yurcik2024-healthsec-24",
+      "title": "HealthSec'24: First ACM CCS Workshop on Cybersecurity in Healthcare",
+      "authors": [
+        "William Yurcik",
+        "Gregory Pluta",
+        "Toan Luong",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings of the 2024 on ACM SIGSAC Conference on Computer and Communications Security",
+      "year": 2024,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "4882--4883"
+    },
+    {
+      "id": "cahoon2023-continuous",
+      "title": "Continuous Stress Monitoring for Healthcare Workers: Evaluating Generalizability Across Real-World Datasets",
+      "authors": [
+        "Jordan Li Cahoon",
+        "Luis Antonio Garcia"
+      ],
+      "venue": "Proceedings of the 14th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics",
+      "year": 2023,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--5"
+    },
+    {
+      "id": "dasbach-prisk2023-sensorloader",
+      "title": "SensorLoader: Bridging the Gap in Cyber-Physical Reverse Engineering Across Embedded Peripheral Devices",
+      "authors": [
+        "Anmei Dasbach-Prisk",
+        "Cory Dewitt",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings of the First International Workshop on Security and Privacy of Sensing Systems",
+      "year": 2023,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1145/3628356.3630117",
+      "tags": [],
+      "pages": "30--36",
+      "themeIds": [
+        "cps-security-semantics"
+      ]
+    },
+    {
+      "id": "garcia2023-collaborative",
+      "title": "Collaborative Research: FMitF: Track I: A Formal Verification and Implementation Stack for Programmable Logic Controllers",
+      "authors": [
+        "Luis A Garcia"
+      ],
+      "venue": "NSF Award Number 2425711. Directorate for Computer and Information Science and Engineering",
+      "year": 2023,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "25711",
+      "volume": "24",
+      "themeIds": [
+        "digital-twinning-for-ics",
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "han2023-why",
+      "title": "Why Don't You Clean Your Glasses? Perception Attacks with Dynamic Optical Perturbations",
+      "authors": [
+        "Yi Han",
+        "Matthew Chan",
+        "Eric Wengrowski",
+        "Zhuohuan Li",
+        "Nils Ole Tippenhauer",
+        "Mani Srivastava",
+        "Saman Zonouz",
+        "Luis Garcia"
+      ],
+      "venue": "arXiv preprint arXiv:2307.13131",
+      "year": 2023,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "jeyakumar2023-x-char",
+      "title": "X-CHAR: A Concept-based Explainable Complex Human Activity Recognition Model",
+      "authors": [
+        "Jeya Vikranth Jeyakumar",
+        "Ankur Sarker",
+        "Luis Antonio Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies",
+      "year": 2023,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--28",
+      "volume": "7"
+    },
+    {
+      "id": "paul2023-towards",
+      "title": "Towards Cross-Physical-Domain Threat Inference for Industrial Control System Defense Adaptation",
+      "authors": [
+        "Jainta Paul",
+        "Lawrence Ponce",
+        "Mu Zhang",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings of the 2024 Workshop on Re-design Industrial Control Systems with Security",
+      "year": 2023,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "57--64",
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
+    },
+    {
+      "id": "saha2023-inertial",
+      "title": "Inertial Navigation on Extremely Resource-Constrained Platforms: Methods, Opportunities and Challenges",
+      "authors": [
+        "Swapnil Sayan Saha",
+        "Yayun Du",
+        "Sandeep Singh Sandha",
+        "Luis Antonio Garcia",
+        "Mohammad Khalid Jawed",
+        "Mani Srivastava"
+      ],
+      "venue": "2023 IEEE/ION Position, Location and Navigation Symposium (PLANS)",
+      "year": 2023,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "708--723"
+    },
+    {
+      "id": "sandha2023-eagle",
+      "title": "Eagle: End-to-end Deep Reinforcement Learning based Autonomous Control of PTZ Cameras",
+      "authors": [
+        "Sandeep Singh Sandha",
+        "Bharathan Balaji",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the 8th ACM/IEEE Conference on Internet of Things Design and Implementation",
+      "year": 2023,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "144--157"
+    },
+    {
+      "id": "singhsandha2023-eagle",
+      "title": "Eagle: End-to-end Deep Reinforcement Learning based Autonomous Control of PTZ Cameras",
+      "authors": [
+        "Sandeep Singh Sandha",
+        "Bharathan Balaji",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv e-prints",
+      "year": 2023,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "arXiv--2304"
+    },
+    {
+      "id": "vilamala2023-deepprobcep",
+      "title": "DeepProbCEP: A neuro-symbolic approach for complex event processing in adversarial settings",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Tianwei Xing",
+        "Harrison Taylor",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Angelika Kimmig",
+        "Federico Cerutti"
+      ],
+      "venue": "Expert Systems with Applications",
+      "year": 2023,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "119376",
+      "volume": "215"
+    },
+    {
+      "id": "wang2023-systems",
+      "title": "Systems and Methods for Using Ultrawideband Audio Sensing Systems",
+      "authors": [
+        "Ziqi Wang",
+        "Mani Srivastava",
+        "Akash Deep Singh",
+        "Luis Garcia",
+        "Zhe Chen",
+        "Jun Luo"
+      ],
+      "venue": "",
+      "year": 2023,
+      "type": "preprint",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "alzantot2022-physiogan",
+      "title": "PhysioGAN: Training High Fidelity Generative Model for Physiological Sensor Readings",
+      "authors": [
+        "Moustafa Alzantot",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv preprint arXiv:2204.13597",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "arakelyan2022-ns3",
+      "title": "NS3: Neuro-symbolic semantic code search",
+      "authors": [
+        "Shushan Arakelyan",
+        "Anna Hakhverdyan",
+        "Miltiadis Allamanis",
+        "Luis Garcia",
+        "Christophe Hauser",
+        "Xiang Ren"
+      ],
+      "venue": "Advances in Neural Information Processing Systems",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "10476--10491",
+      "volume": "35"
+    },
+    {
+      "id": "garcia2022-collaborative",
+      "title": "Collaborative Research: FMitF: Track I: A Formal Verification and Implementation Stack for Programmable Logic Controllers",
+      "authors": [
+        "Luis A Garcia"
+      ],
+      "venue": "NSF Award Number 2220312. Directorate for Computer and Information Science and Engineering",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "20312",
+      "volume": "22",
+      "themeIds": [
+        "digital-twinning-for-ics",
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "garcia2022-explaining",
+      "title": "Explaining Deep Learning Models for Per-packet Encrypted Network Traffic Classification",
+      "authors": [
+        "Luis Garcia",
+        "Genevieve Bartlett",
+        "Srivatsan Ravi",
+        "Harun Ibrahim",
+        "Wes Hardaker",
+        "Erik Kline"
+      ],
+      "venue": "2022 IEEE International Symposium on Measurements \\& Networking (M\\&N)",
       "year": 2022,
       "type": "conference",
-      "abstract": "Automated control software dataset generation for semantic reverse engineering in industrial control systems.",
-      "keywords": ["Control Software", "Dataset Generation", "Semantic Reverse Engineering", "Industrial Control Systems"],
-      "citations": 8,
-      "url": "https://ieeexplore.ieee.org/document/1234567",
-      "awards": ["Best Paper Award"]
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--6",
+      "organization": "IEEE"
     },
     {
-      "id": "ddflow-demo-2019-best-demo",
-      "title": "Demo: DDFlow Visualized Declarative Programming for Heterogeneous IoT Networks on Heliot Testbed Platform",
-      "authors": ["Joseph Noor", "Sandeep Singh Sandha", "Luis Garcia", "Mani Srivastava"],
-      "venue": "International Conference on Internet-of-Things Design and Implementation (IoTDI)",
-      "year": 2019,
-      "type": "conference",
-      "abstract": "Demonstration of DDFlow visualized declarative programming framework on the Heliot testbed platform for heterogeneous IoT networks.",
-      "keywords": ["IoT", "Declarative Programming", "Testbed", "Demo", "Visualization"],
-      "citations": 5,
-      "url": "https://dl.acm.org/doi/10.1145/3302505.3302506",
-      "awards": ["Best Demo Award"]
+      "id": "ghandeharizadeh2022-safety",
+      "title": "Safety in the Emerging Holodeck Applications",
+      "authors": [
+        "Shahram Ghandeharizadeh",
+        "Luis Garcia"
+      ],
+      "venue": "arXiv preprint arXiv:2208.08398",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
     },
     {
-      "id": "plc-detection-2016",
-      "title": "Detecting PLC control corruption via on-device runtime verification",
-      "authors": ["Luis Garcia", "Saman Zonouz", "Dong Wei", "Leandro Pfleger De Aguiar"],
-      "venue": "2016 Resilience Week (RWS)",
-      "year": 2016,
+      "id": "jeyakumar2022-automatic",
+      "title": "Automatic Concept Extraction for Concept Bottleneck-based Video Classification",
+      "authors": [
+        "Jeya Vikranth Jeyakumar",
+        "Luke Dickens",
+        "Luis Garcia",
+        "Yu-Hsi Cheng",
+        "Diego Ramirez Echavarria",
+        "Joseph Noor",
+        "Alessandra Russo",
+        "Lance Kaplan",
+        "Erik Blasch",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv preprint arXiv:2206.10129",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "kim2022-reverse",
+      "title": "Reverse engineering and retrofitting robotic aerial vehicle control firmware using dispatch",
+      "authors": [
+        "Taegyu Kim",
+        "Aolin Ding",
+        "Sriharsha Etigowni",
+        "Pengfei Sun",
+        "Jizhou Chen",
+        "Luis Garcia",
+        "Saman Zonouz",
+        "Dongyan Xu",
+        "Dave Tian"
+      ],
+      "venue": "Proceedings of the 20th Annual International Conference on Mobile Systems, Applications and Services",
+      "year": 2022,
       "type": "conference",
-      "pages": "67-72",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "69--83"
+    },
+    {
+      "id": "ngo2022-modeling",
+      "title": "Modeling Human-Cyber Interactions in Safety-Critical Cyber-Physical/Industrial Control Systems",
+      "authors": [
+        "Steven Ngo",
+        "Dave DeAngelis",
+        "Luis Garcia"
+      ],
+      "venue": "2022 IEEE 19th International Conference on Mobile Ad Hoc and Smart Systems (MASS)",
+      "year": 2022,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "716--717",
       "organization": "IEEE",
-      "abstract": "Runtime verification techniques for detecting control corruption in programmable logic controllers.",
-      "keywords": ["PLC Security", "Runtime Verification", "Control Systems", "Corruption Detection"],
-      "citations": 28,
-      "url": "https://ieeexplore.ieee.org/document/1234567"
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
     },
     {
-      "id": "hybrid-neuro-symbolic-2020",
-      "title": "A Hybrid Neuro-Symbolic Approach for Complex Event Processing",
-      "authors": ["Marc Roig Vilamala", "Harrison Taylor", "Tianwei Xing", "Luis Garcia", "Mani Srivastava", "Lance Kaplan", "Alun Preece", "Angelika Kimmig", "Federico Cerutti"],
+      "id": "saha2022-tinyodom",
+      "title": "Tinyodom: Hardware-aware efficient neural inertial navigation",
+      "authors": [
+        "Swapnil Sayan Saha",
+        "Sandeep Singh Sandha",
+        "Luis Antonio Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--32",
+      "volume": "6"
+    },
+    {
+      "id": "sankarramachandran2022-distributed",
+      "title": "Distributed computing for internet of things under adversarial environments",
+      "authors": [
+        "Gowri Sankar Ramachandran",
+        "Luis A Garcia",
+        "Bhaskar Krishnamachari"
+      ],
+      "venue": "IoT for Defense and National Security",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "285--306"
+    },
+    {
+      "id": "vikranthjeyakumar2022-automatic",
+      "title": "Automatic Concept Extraction for Concept Bottleneck-based Video Classification",
+      "authors": [
+        "Jeya Vikranth Jeyakumar",
+        "Luke Dickens",
+        "Luis Garcia",
+        "Yu-Hsi Cheng",
+        "Diego Ramirez Echavarria",
+        "Joseph Noor",
+        "Alessandra Russo",
+        "Lance Kaplan",
+        "Erik Blasch",
+        "Mani Srivastava"
+      ],
+      "venue": "arXiv e-prints",
+      "year": 2022,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "arXiv--2206"
+    },
+    {
+      "id": "wang2022-autocps",
+      "title": "AutoCPS: Control Software Dataset Generation for Semantic Reverse Engineering",
+      "authors": [
+        "Haoda Wang",
+        "Christophe Hauser",
+        "Luis Garcia"
+      ],
+      "venue": "2022 IEEE Security and Privacy Workshops (SPW)",
+      "year": 2022,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1109/SPW54247.2022.9833887",
+      "tags": [],
+      "pages": "236--242",
+      "organization": "IEEE",
+      "themeIds": [
+        "cps-security-semantics"
+      ]
+    },
+    {
+      "id": "ding2021-mini-me",
+      "title": "Mini-Me, You Complete Me! Data-Driven Drone Security via DNN-based Approximate Computing",
+      "authors": [
+        "Aolin Ding",
+        "Praveen Murthy",
+        "Luis Garcia",
+        "Pengfei Sun",
+        "Matthew Chan",
+        "Saman Zonouz"
+      ],
+      "venue": "24th International Symposium on Research in Attacks, Intrusions and Defenses",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "428--441"
+    },
+    {
+      "id": "liu2021-aerogel",
+      "title": "Aerogel: Lightweight Access Control Framework for WebAssembly-Based Bare-Metal IoT Devices",
+      "authors": [
+        "Renju Liu",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "2021 IEEE/ACM Symposium on Edge Computing (SEC)",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "94--105",
+      "organization": "IEEE",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "liu2021-secdeep",
+      "title": "SecDeep: Secure and Performant On-device Deep Learning Inference Framework for Mobile and IoT Devices",
+      "authors": [
+        "Renju Liu",
+        "Luis Garcia",
+        "Zaoxing Liu",
+        "Botong Ou",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the International Conference on Internet-of-Things Design and Implementation",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "67--79",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "roigvilamala2021-using",
+      "title": "Using DeepProbLog to perform Complex Event Processing on an Audio Stream",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Tianwei Xing",
+        "Harrison Taylor",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Angelika Kimmig",
+        "Federico Cerutti"
+      ],
+      "venue": "arXiv e-prints",
+      "year": 2021,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "arXiv--2110"
+    },
+    {
+      "id": "sandha2021-sim2real",
+      "title": "Sim2real transfer for deep reinforcement learning with stochastic state transition delays",
+      "authors": [
+        "Sandeep Singh Sandha",
+        "Luis Garcia",
+        "Bharathan Balaji",
+        "Fatima Anwar",
+        "Mani Srivastava"
+      ],
+      "venue": "Conference on Robot Learning",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1066--1083",
+      "organization": "PMLR"
+    },
+    {
+      "id": "singh2021-i",
+      "title": "I Always Feel Like Somebody's Sensing Me! A Framework to Detect, Identify, and Localize Clandestine Wireless Sensors",
+      "authors": [
+        "Akash Deep Singh",
+        "Luis Garcia",
+        "Joseph Noor",
+        "Mani Srivastava"
+      ],
+      "venue": "30th USENIX Security Symposium (USENIX Security 21)",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1829--1846",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "sun2021-poster",
+      "title": "Poster: Known Vulnerability Detection for WebAssembly Binaries",
+      "authors": [
+        "Pengfei Sun",
+        "Luis Garcia",
+        "Yi Han",
+        "Saman Zonouz",
+        "Yao Zhao"
+      ],
+      "venue": "Poster: Known Vulnerability Detection for WebAssembly Binaries",
+      "year": 2021,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "cps-security-semantics"
+      ]
+    },
+    {
+      "id": "vilamala2021-using",
+      "title": "Using DeepProbLog to perform Complex Event Processing on an Audio Stream",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Tianwei Xing",
+        "Harrison Taylor",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Angelika Kimmig",
+        "Federico Cerutti"
+      ],
+      "venue": "arXiv preprint arXiv:2110.08090",
+      "year": 2021,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "weideman2021-perfume",
+      "title": "PERFUME: Programmatic Extraction and Refinement for Usability of Mathematical Expression",
+      "authors": [
+        "Nicolaas Weideman",
+        "Virginia K Felkner",
+        "Wei-Cheng Wu",
+        "Jonathan May",
+        "Christophe Hauser",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings of the 2021 Research on offensive and defensive techniques in the Context of Man At The End (MATE) Attacks",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1145/3465413.3488575",
+      "tags": [],
+      "pages": "59--69",
+      "themeIds": [
+        "cps-security-semantics"
+      ]
+    },
+    {
+      "id": "xing2021-deepsqa",
+      "title": "DeepSQA: Understanding Sensor Data via Question Answering",
+      "authors": [
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Federico Cerutti",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the International Conference on Internet-of-Things Design and Implementation",
+      "year": 2021,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "106--118"
+    },
+    {
+      "id": "adepu2020-control",
+      "title": "Control behavior integrity for distributed cyber-physical systems",
+      "authors": [
+        "Sridhar Adepu",
+        "Ferdinand Brasser",
+        "Luis Garcia",
+        "Michael Rodler",
+        "Lucas Davi",
+        "Ahmad-Reza Sadeghi",
+        "Saman Zonouz"
+      ],
+      "venue": "2020 ACM/IEEE 11th International Conference on Cyber-Physical Systems (ICCPS)",
+      "year": 2020,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "30--40",
+      "organization": "IEEE"
+    },
+    {
+      "id": "barrett-powell2020-an",
+      "title": "An Experimentation Platform for Explainable Coalition Situational Understanding",
+      "authors": [
+        "Katie Barrett-Powell",
+        "Jack Furby",
+        "Liam Hiley",
+        "Marc Roig Vilamala",
+        "Harrison Taylor",
+        "Federico Cerutti",
+        "Alun Preece",
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "others"
+      ],
+      "venue": "arXiv preprint arXiv:2010.14388",
+      "year": 2020,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "jeyakumar2020-how",
+      "title": "How can i explain this to you? an empirical study of deep neural network explanation methods",
+      "authors": [
+        "Jeya Vikranth Jeyakumar",
+        "Joseph Noor",
+        "Yu-Hsi Cheng",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Advances in Neural Information Processing Systems",
+      "year": 2020,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "4211--4222",
+      "volume": "33"
+    },
+    {
+      "id": "roigvilamala2020-a",
+      "title": "A Hybrid Neuro-Symbolic Approach for Complex EventProcessing",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Harrison Taylor",
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Angelika Kimmig",
+        "Federico Cerutti"
+      ],
+      "venue": "arXiv e-prints",
+      "year": 2020,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "arXiv--2009",
+      "themeIds": [
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "salles-loustau2020-don-t",
+      "title": "Don't Just BYOD, Bring-Your-Own-App Too! Protection via Virtual Micro Security Perimeters",
+      "authors": [
+        "Gabriel Salles-Loustau",
+        "Vidyasagar Sadhu",
+        "Luis Garcia",
+        "Kaustubh Joshi",
+        "Dario Pompili",
+        "Saman Zonouz"
+      ],
+      "venue": "IEEE Transactions on Mobile Computing",
+      "year": 2020,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "76--92",
+      "volume": "21"
+    },
+    {
+      "id": "singh2020-i",
+      "title": "I Always Feel Like Somebody's Sensing Me! A Framework to Detect, Identify, and Localize Clandestine Wireless Sensors",
+      "authors": [
+        "Akash Deep Singh",
+        "Luis Garcia",
+        "Joseph Noor",
+        "Mani Srivastava"
+      ],
+      "venue": "University of California, Los Angeles",
+      "year": 2020,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "sun2020-hybrid",
+      "title": "Hybrid firmware analysis for known mobile and iot security vulnerabilities",
+      "authors": [
+        "Pengfei Sun",
+        "Luis Garcia",
+        "Gabriel Salles-Loustau",
+        "Saman Zonouz"
+      ],
+      "venue": "2020 50th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)",
+      "year": 2020,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "373--384",
+      "organization": "IEEE"
+    },
+    {
+      "id": "vilamala2020-a",
+      "title": "A Hybrid Neuro-Symbolic Approach for Complex EventProcessing",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Harrison Taylor",
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Mani Srivastava",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Angelika Kimmig",
+        "Federico Cerutti"
+      ],
       "venue": "arXiv preprint arXiv:2009.03420",
       "year": 2020,
-      "type": "preprint",
-      "abstract": "Hybrid approach combining neural networks and symbolic reasoning for complex event processing in cyber-physical systems.",
-      "keywords": ["Neuro-Symbolic AI", "Complex Event Processing", "Deep Learning", "Symbolic Reasoning"],
-      "citations": 8,
-      "url": "https://arxiv.org/abs/2009.03420"
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "digital-twins-verification"
+      ]
     },
     {
-      "id": "uwhear-2020",
+      "id": "wang2020-uwhear",
       "title": "UWHear: through-wall extraction and separation of audio vibrations using wireless signals",
-      "authors": ["Ziqi Wang", "Zhe Chen", "Akash Deep Singh", "Luis Garcia", "Jun Luo", "Mani B Srivastava"],
+      "authors": [
+        "Ziqi Wang",
+        "Zhe Chen",
+        "Akash Deep Singh",
+        "Luis Garcia",
+        "Jun Luo",
+        "Mani B Srivastava"
+      ],
       "venue": "Proceedings of the 18th Conference on Embedded Networked Sensor Systems",
       "year": 2020,
       "type": "conference",
-      "pages": "1-14",
-      "abstract": "Wireless signal-based through-wall audio extraction and separation techniques for IoT sensing applications.",
-      "keywords": ["Wireless Sensing", "Audio Processing", "Through-wall Communication", "IoT"],
-      "citations": 15,
-      "url": "https://dl.acm.org/doi/10.1145/3302505.3302506"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--14"
     },
     {
-      "id": "tell-me-more-2019",
+      "id": "xing2020-neuroplex",
+      "title": "Neuroplex: learning to detect complex events in sensor networks through knowledge injection",
+      "authors": [
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Marc Roig Vilamala",
+        "Federico Cerutti",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the 18th Conference on Embedded Networked Sensor Systems",
+      "year": 2020,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "489--502",
+      "themeIds": [
+        "iot-sensor-privacy"
+      ]
+    },
+    {
+      "id": "anwar2019-securing",
+      "title": "Securing Time in Untrusted Operating Systems with TimeSeal",
+      "authors": [
+        "Fatima M Anwar",
+        "Luis Garcia",
+        "Xi Han",
+        "Mani Srivastava"
+      ],
+      "venue": "2019 IEEE Real-Time Systems Symposium (RTSS)",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "80--92",
+      "organization": "IEEE"
+    },
+    {
+      "id": "garcia2019-hyplc",
+      "title": "HyPLC: Hybrid programmable logic controller program translation for verification",
+      "authors": [
+        "Luis Garcia",
+        "Stefan Mitsch",
+        "Andr{\\'e} Platzer"
+      ],
+      "venue": "Proceedings of the 10th ACM/IEEE International Conference on Cyber-Physical Systems",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "https://doi.org/10.1145/3302509.3311036",
+      "tags": [],
+      "awards": [
+        "ICCPS 2019 Best Paper Award Honorable Mention"
+      ],
+      "pages": "47--56",
+      "themeIds": [
+        "digital-twinning-for-ics",
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "garcia2019-toward",
+      "title": "Toward multi-task support and security analyses in PLC program translation for verification",
+      "authors": [
+        "Luis Garcia",
+        "Stefan Mitsch",
+        "Andr{\\'e} Platzer"
+      ],
+      "venue": "Proceedings of the 10th ACM/IEEE International Conference on Cyber-Physical Systems",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "348--349"
+    },
+    {
+      "id": "ghaeini2019-patt",
+      "title": "$\\{$PAtt$\\}$: Physics-based Attestation of Control Systems",
+      "authors": [
+        "Hamid Reza Ghaeini",
+        "Matthew Chan",
+        "Raad Bahmani",
+        "Ferdinand Brasser",
+        "Luis Garcia",
+        "Jianying Zhou",
+        "Ahmad-Reza Sadeghi",
+        "Nils Ole Tippenhauer",
+        "Saman Zonouz"
+      ],
+      "venue": "22nd International Symposium on Research in Attacks, Intrusions and Defenses (RAID 2019)",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "165--180",
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
+    },
+    {
+      "id": "liu2019-remediot",
+      "title": "RemedIoT: Remedial actions for Internet-of-Things conflicts",
+      "authors": [
+        "Renju Liu",
+        "Ziqi Wang",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the 6th ACM International Conference on Systems for Energy-Efficient Buildings, Cities, and Transportation",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "101--110"
+    },
+    {
+      "id": "noor2019-ddflow",
+      "title": "Ddflow: visualized declarative programming for heterogeneous iot networks",
+      "authors": [
+        "Joseph Noor",
+        "Hsiao-Yun Tseng",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the International Conference on Internet of Things Design and Implementation",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "172--177"
+    },
+    {
+      "id": "noor2019-the",
+      "title": "The Case for Robust Adaptation: Autonomic Resource Management is a Vulnerability",
+      "authors": [
+        "Joseph Noor",
+        "Ahmed Ali-Eldin",
+        "Luis Garcia",
+        "Chirag Rao",
+        "Venkat R Dasari",
+        "Deepak Ganesan",
+        "Brian Jalaian",
+        "Prashant Shenoy",
+        "Mani Srivastava"
+      ],
+      "venue": "MILCOM 2019-2019 IEEE Military Communications Conference (MILCOM)",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "821--826",
+      "organization": "IEEE"
+    },
+    {
+      "id": "singh2019-radhar",
+      "title": "Radhar: Human activity recognition from point clouds generated through a millimeter-wave radar",
+      "authors": [
+        "Akash Deep Singh",
+        "Sandeep Singh Sandha",
+        "Luis Garcia",
+        "Mani Srivastava"
+      ],
+      "venue": "Proceedings of the 3rd ACM Workshop on Millimeter-wave Networks and Sensing Systems",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "51--56"
+    },
+    {
+      "id": "sun2019-tell",
       "title": "Tell Me More Than Just Assembly! Reversing Cyber-Physical Execution Semantics of Embedded IoT Controller Software Binaries",
-      "authors": ["Pengfei Sun", "Luis Garcia", "Saman Zonouz"],
+      "authors": [
+        "Pengfei Sun",
+        "Luis Garcia",
+        "Saman Zonouz"
+      ],
       "venue": "2019 49th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)",
       "year": 2019,
       "type": "conference",
-      "pages": "349-361",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "349--361",
       "organization": "IEEE",
-      "abstract": "Reverse engineering techniques for extracting cyber-physical execution semantics from embedded IoT controller binaries.",
-      "keywords": ["Reverse Engineering", "IoT Security", "Binary Analysis", "Cyber-Physical Systems"],
-      "citations": 22,
-      "url": "https://ieeexplore.ieee.org/document/1234567"
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
     },
     {
-      "id": "algorithmic-attack-2018",
+      "id": "xing2019-a",
+      "title": "A hybrid neural-symbolic approach to uncertainty-aware complex event detection",
+      "authors": [
+        "Tianwei Xing",
+        "Marc Roig Vilamala",
+        "Luis Garcia",
+        "Paul Sullivan",
+        "Federico Cerutti",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Mani Srivastava"
+      ],
+      "venue": "Workshop on Distributed Analytics InfraStructure and Algorithms for Multi-Organization Federations 2019",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "themeIds": [
+        "digital-twins-verification"
+      ]
+    },
+    {
+      "id": "xing2019-deepcep",
+      "title": "Deepcep: Deep complex event processing using distributed multimodal information",
+      "authors": [
+        "Tianwei Xing",
+        "Marc Roig Vilamala",
+        "Luis Garcia",
+        "Federico Cerutti",
+        "Lance Kaplan",
+        "Alun Preece",
+        "Mani Srivastava"
+      ],
+      "venue": "2019 IEEE International Conference on Smart Computing (SMARTCOMP)",
+      "year": 2019,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "87--92",
+      "organization": "IEEE"
+    },
+    {
+      "id": "zonouz2019-method",
+      "title": "Method for verifying the integrity of an additive manufacturing process",
+      "authors": [
+        "Saman Zonouz",
+        "Mehdi Javanmard",
+        "Raheem Beyah",
+        "Luis A Garcia",
+        "Tuan-anh Le",
+        "Christian Bayens"
+      ],
+      "venue": "Google Patents",
+      "year": 2019,
+      "type": "preprint",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "zonouz2019-post-print",
+      "title": "Post-Print Physical Vetting of 3D Prints with Minimal Embedded Nano-Material Assessor",
+      "authors": [
+        "Saman Aliari Zonouz",
+        "Mehdi Javanmard",
+        "Abdul Beyah",
+        "Luis Garcia",
+        "Tuan-Anh Le",
+        "Christopher Bayens"
+      ],
+      "venue": "",
+      "year": 2019,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "garcia2018-physics",
+      "title": "Physics for the sake of security, security for the sake of physics",
+      "authors": [
+        "Luis Garcia"
+      ],
+      "venue": "",
+      "year": 2018,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "huang2018-algorithmic",
       "title": "Algorithmic attack synthesis using hybrid dynamics of power grid critical infrastructures",
-      "authors": ["Zhenqi Huang", "Sriharsha Etigowni", "Luis Garcia", "Sayan Mitra", "Saman Zonouz"],
+      "authors": [
+        "Zhenqi Huang",
+        "Sriharsha Etigowni",
+        "Luis Garcia",
+        "Sayan Mitra",
+        "Saman Zonouz"
+      ],
       "venue": "2018 48th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)",
       "year": 2018,
       "type": "conference",
-      "pages": "151-162",
-      "organization": "IEEE",
-      "abstract": "Algorithmic methods for synthesizing attacks on power grid critical infrastructure using hybrid dynamics modeling.",
-      "keywords": ["Power Grid Security", "Attack Synthesis", "Critical Infrastructure", "Hybrid Dynamics"],
-      "citations": 18,
-      "url": "https://ieeexplore.ieee.org/document/1234567"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "151--162",
+      "organization": "IEEE"
     },
     {
-      "id": "tmq-2014",
-      "title": "TMQ: threat model quantification in smart grid critical infrastructures",
-      "authors": ["Luis Garcia", "Saman Zonouz"],
-      "venue": "2014 IEEE International Conference on Smart Grid Communications (SmartGridComm)",
-      "year": 2014,
+      "id": "zonouz2018-dynamic",
+      "title": "Dynamic memory protection via intel sgx-supported heap allocation",
+      "authors": [
+        "Saman Zonouz",
+        "Mingbo Zhang",
+        "Pengfei Sun",
+        "Luis Garcia",
+        "Xiruo Liu"
+      ],
+      "venue": "2018 IEEE 16th Intl Conf on Dependable, Autonomic and Secure Computing, 16th Intl Conf on Pervasive Intelligence and Computing, 4th Intl Conf on Big Data Intelligence and Computing and Cyber Science and Technology Congress (DASC/PiCom/DataCom/CyberSciTech)",
+      "year": 2018,
       "type": "conference",
-      "pages": "584-589",
-      "organization": "IEEE",
-      "abstract": "Threat model quantification framework for assessing security risks in smart grid critical infrastructures.",
-      "keywords": ["Smart Grid Security", "Threat Modeling", "Risk Assessment", "Critical Infrastructure"],
-      "citations": 35,
-      "url": "https://ieeexplore.ieee.org/document/1234567"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "608--617",
+      "organization": "IEEE"
     },
     {
-      "id": "power-grid-safety-2017",
-      "title": "Power grid safety control via fine-grained multi-persona programmable logic controllers",
-      "authors": ["Gabriel Salles-Loustau", "Luis Garcia", "Pengfei Sun", "Maryam Dehnavi", "Saman Zonouz"],
-      "venue": "2017 IEEE International Conference on Smart Grid Communications (SmartGridComm)",
+      "id": "bayens2017-see",
+      "title": "See no evil, hear no evil, feel no evil, print no evil? malicious fill patterns detection in additive manufacturing",
+      "authors": [
+        "Christian Bayens",
+        "Tuan Le",
+        "Luis Garcia",
+        "Raheem Beyah",
+        "Mehdi Javanmard",
+        "Saman Zonouz"
+      ],
+      "venue": "26th USENIX Security Symposium (USENIX Security 17)",
       "year": 2017,
       "type": "conference",
-      "pages": "283-288",
-      "organization": "IEEE",
-      "abstract": "Fine-grained multi-persona PLC approach for enhanced power grid safety control and security.",
-      "keywords": ["Power Grid", "Safety Control", "PLC Security", "Multi-persona Systems"],
-      "citations": 12,
-      "url": "https://ieeexplore.ieee.org/document/1234567"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1181--1198"
     },
     {
-      "id": "hey-malware-2017",
+      "id": "garcia2017-hey",
       "title": "Hey, My Malware Knows Physics! Attacking PLCs with Physical Model Aware Rootkit",
-      "authors": ["Luis Garcia", "Ferdinand Brasser", "Mehmet Hazar Cintuglu", "Ahmad-Reza Sadeghi", "Osama A Mohammed", "Saman A Zonouz"],
+      "authors": [
+        "Luis Garcia",
+        "Ferdinand Brasser",
+        "Mehmet Hazar Cintuglu",
+        "Ahmad-Reza Sadeghi",
+        "Osama A Mohammed",
+        "Saman A Zonouz"
+      ],
       "venue": "NDSS",
       "year": 2017,
       "type": "conference",
-      "pages": "1-15",
-      "abstract": "Physics-aware malware techniques for attacking programmable logic controllers in industrial control systems.",
-      "keywords": ["PLC Security", "Physics-aware Malware", "Industrial Control Systems", "Rootkit"],
-      "citations": 45,
-      "url": "https://www.ndss-symposium.org/ndss2017/ndss-2017-programme/"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "1--15",
+      "themeIds": [
+        "cps-security-semantics",
+        "digital-twinning-for-ics"
+      ]
     },
     {
-      "id": "explainable-dnn-2020",
-      "title": "How can i explain this to you? an empirical study of deep neural network explanation methods",
-      "authors": ["Jeya Vikranth Jeyakumar", "Joseph Noor", "Yu-Hsi Cheng", "Luis Garcia", "Mani Srivastava"],
-      "venue": "Advances in Neural Information Processing Systems",
-      "year": 2020,
+      "id": "salles-loustau2017-power",
+      "title": "Power grid safety control via fine-grained multi-persona programmable logic controllers",
+      "authors": [
+        "Gabriel Salles-Loustau",
+        "Luis Garcia",
+        "Pengfei Sun",
+        "Maryam Dehnavi",
+        "Saman Zonouz"
+      ],
+      "venue": "2017 IEEE International Conference on Smart Grid Communications (SmartGridComm)",
+      "year": 2017,
       "type": "conference",
-      "volume": "33",
-      "pages": "4211-4222",
-      "abstract": "Empirical study comparing different explanation methods for deep neural networks in cyber-physical systems.",
-      "keywords": ["Explainable AI", "Deep Learning", "Interpretability", "Neural Networks"],
-      "citations": 28,
-      "url": "https://proceedings.neurips.cc/paper/2020/hash/1234567890abcdef"
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "283--288",
+      "organization": "IEEE",
+      "themeIds": [
+        "digital-twinning-for-ics"
+      ]
+    },
+    {
+      "id": "garcia2016-cyber-physical",
+      "title": "Cyber-Physical Security Assessment (CyPSA) Toolset",
+      "authors": [
+        "Luis Garcia",
+        "Panini Patapanchala",
+        "Saman Zonouz",
+        "Kate Davis",
+        "Matt Davis",
+        "Robin Berthier",
+        "Mouna Bamba",
+        "Olivier Soubigou",
+        "Vishnu Priya Rayala",
+        "Gabe Weaver",
+        "others"
+      ],
+      "venue": "",
+      "year": 2016,
+      "type": "preprint",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "garcia2016-detecting",
+      "title": "Detecting PLC control corruption via on-device runtime verification",
+      "authors": [
+        "Luis Garcia",
+        "Saman Zonouz",
+        "Dong Wei",
+        "Leandro Pfleger De Aguiar"
+      ],
+      "venue": "2016 Resilience Week (RWS)",
+      "year": 2016,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "67--72",
+      "organization": "IEEE"
+    },
+    {
+      "id": "salles-loustau2016-don-t",
+      "title": "Don't Just BYOD, Bring-Your-Own-App Too! Protection via Virtual Micro Security Perimeters",
+      "authors": [
+        "Gabriel Salles-Loustau",
+        "Luis Garcia",
+        "Kaustubh Joshi",
+        "Saman Zonouz"
+      ],
+      "venue": "2016 46th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)",
+      "year": 2016,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "526--537",
+      "organization": "IEEE"
+    },
+    {
+      "id": "davis2015-a",
+      "title": "A cyber-physical modeling and assessment framework for power grid infrastructures",
+      "authors": [
+        "Katherine R Davis",
+        "Charles M Davis",
+        "Saman A Zonouz",
+        "Rakesh B Bobba",
+        "Robin Berthier",
+        "Luis Garcia",
+        "Peter W Sauer"
+      ],
+      "venue": "IEEE Transactions on smart grid",
+      "year": 2015,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "2464--2475",
+      "volume": "6"
+    },
+    {
+      "id": "garcia2014-covert",
+      "title": "Covert channel communication through physical interdependencies in cyber-physical infrastructures",
+      "authors": [
+        "Luis Garcia",
+        "Henry Senyondo",
+        "Stephen McLaughlin",
+        "Saman Zonouz"
+      ],
+      "venue": "2014 IEEE International Conference on Smart Grid Communications (SmartGridComm)",
+      "year": 2014,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "952--957",
+      "organization": "IEEE"
+    },
+    {
+      "id": "garcia2014-tmq",
+      "title": "TMQ: threat model quantification in smart grid critical infrastructures",
+      "authors": [
+        "Luis Garcia",
+        "Saman Zonouz"
+      ],
+      "venue": "2014 IEEE International Conference on Smart Grid Communications (SmartGridComm)",
+      "year": 2014,
+      "type": "conference",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": [],
+      "pages": "584--589",
+      "organization": "IEEE"
+    },
+    {
+      "id": "adebayon.d.-2025",
+      "title": "2025 55th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)| 979-8-3315-1201-9/25/$31.00{\\copyright} 2025 IEEE| DOI: 10.1109/DSN64029. 2025.00073",
+      "authors": [
+        "Abdulhamid Adebayo",
+        "Md Raihan Ahmed",
+        "Sam Ainsworth",
+        "Kemal Akkaya",
+        "Homa Alemzadeh",
+        "Mohannad Alhanahnah",
+        "Ghada Almashaqbeh",
+        "Gheorghe Almasi",
+        "Eric Andrechek",
+        "Martin Andreoni",
+        "others"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "liun.d.-journal",
+      "title": "Journal: Proceedings of the International Conference on Internet-of-Things Design and Implementation, 2021",
+      "authors": [
+        "Renju Liu",
+        "Luis Garcia",
+        "Zaoxing Liu",
+        "Botong Ou",
+        "Mani Srivastava"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "mirkovicn.d.-poster",
+      "title": "Poster: SPHERE: A National Testbed for Reproducible Cybersecurity and Privacy Research",
+      "authors": [
+        "Jelena Mirkovic",
+        "David Balenson",
+        "Erik Kline",
+        "David Choffnes",
+        "Daniel Dubois",
+        "Geoff Lawler",
+        "Joseph Barnes",
+        "Yuri Pradkin",
+        "Christopher Tran",
+        "Srivatsan Ravi",
+        "others"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "sunn.d.-poster",
+      "title": "Poster: Towards Robust Semantic Reverse Engineering of Control System Binaries",
+      "authors": [
+        "Pengfei Sun",
+        "Luis Garcia",
+        "Saman Zonouz"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "vilamalan.d.-towards",
+      "title": "Towards Maintaining and Reusing Complex Event Processing Systems",
+      "authors": [
+        "Marc Roig Vilamala",
+        "Mark Law",
+        "Harrison Taylor",
+        "Tianwei Xing",
+        "Luis Garcia",
+        "Dave Braines",
+        "Dan Cunnington",
+        "Graham White",
+        "Alessandra Russo",
+        "Mani Srivastava",
+        "others"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "yaon.d.-special",
+      "title": "SPECIAL SECTION ON CYBER PHYSICAL SYSTEMS AND SECURITY FOR SMART GRID",
+      "authors": [
+        "J Yao",
+        "P Venkitasubramaniam",
+        "X Liu",
+        "P Zhu",
+        "Y Zhang",
+        "K Chen",
+        "R Liu",
+        "C Vellaithurai",
+        "SS Biswas",
+        "TT Gamage",
+        "others"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
+    },
+    {
+      "id": "zhangn.d.-dynamic",
+      "title": "Dynamic Memory Protection via Intel SGX-Supported Heap Allocation",
+      "authors": [
+        "Mingbo Zhang",
+        "Luis Garcia",
+        "Xiruo Liu",
+        "Pengfei Sun",
+        "Saman Zonouz"
+      ],
+      "venue": "",
+      "year": null,
+      "type": "journal",
+      "abstract": "",
+      "keywords": [],
+      "url": "",
+      "tags": []
     }
   ]
-} 
+}

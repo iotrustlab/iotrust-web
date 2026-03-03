@@ -73,14 +73,18 @@ export interface Publication {
     doi?: string;
     abstract: string;
     keywords: string[];
+    tags?: string[];
+    themeIds?: string[];
     citations?: number;
     url?: string;
+    awards?: string[];
 }
 
 interface PeopleIndex {
     principalInvestigator: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     postdocs: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     phdStudents: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    mastersStudents?: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     undergrads: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     alumni: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     furryMembers: FurryMember[];
@@ -93,21 +97,9 @@ export async function getLabInfo(): Promise<LabInfo> {
     return JSON.parse(jsonData);
 }
 
-export async function getProjects(): Promise<Project[]> {
-    const filePath = path.join(process.cwd(), 'src/data/research-projects.json');
-    const jsonData = await fs.readFile(filePath, 'utf8');
-    const data = JSON.parse(jsonData);
-    return data.featuredProjects;
-}
-
-export async function getFeaturedProjects(): Promise<Project[]> {
-    return await getProjects();
-}
-
-export async function getProject(id: string): Promise<Project | null> {
-    const projects = await getProjects();
-    return projects.find(project => project.id === id) || null;
-}
+// Deprecated - use getFundedProjects() instead
+// These functions have been removed as they referenced the deprecated research-projects.json file
+// All project data now comes from projects.json via getFundedProjects()
 
 // Get people index (IDs and types only)
 async function getPeopleIndex(): Promise<PeopleIndex> {
@@ -157,8 +149,32 @@ export async function getPeople(): Promise<Person[]> {
         }
     }
 
+    // Add master's students
+    for (const personRef of index.mastersStudents ?? []) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
     // Add undergrads
     for (const personRef of index.undergrads) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
+    // Add alumni
+    for (const personRef of index.alumni) {
         try {
             const person = await getPerson(personRef.id);
             if (person) {
@@ -200,6 +216,7 @@ export async function getCurrentTeam(): Promise<Person[]> {
     const activeGroups = [
         ...index.postdocs,
         ...index.phdStudents,
+        ...(index.mastersStudents ?? []),
         ...index.undergrads,
     ];
 
@@ -258,9 +275,12 @@ export async function getPersonByType(id: string, type: 'native' | 'static' | 'j
     return person && person.type === type ? person : null;
 }
 
-export async function getProjectByType(id: string, type: 'native' | 'static' | 'json'): Promise<Project | null> {
-    const project = await getProject(id);
-    return project && project.type === type ? project : null;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function getProjectByType(id: string, _type: 'native' | 'static' | 'json'): Promise<FundedProject | null> {
+    const project = await getFundedProject(id);
+    // Note: FundedProject doesn't have a type field, so we just return the project if it exists
+    // The type parameter is kept for backwards compatibility but not used
+    return project;
 }
 
 export async function getTeamMembers(): Promise<Person[]> {
@@ -290,8 +310,8 @@ export async function resolveTeamMembers(teamIds: string[]): Promise<Person[]> {
 }
 
 // Helper function to get projects by person ID
-export async function getProjectsByPersonId(personId: string): Promise<Project[]> {
-    const projects = await getProjects();
+export async function getProjectsByPersonId(personId: string): Promise<FundedProject[]> {
+    const projects = await getFundedProjects();
     return projects.filter(project => project.team.includes(personId));
 }
 
@@ -302,6 +322,7 @@ export async function getPeopleTypes(): Promise<Array<{ id: string; type: 'nativ
         ...index.principalInvestigator,
         ...index.postdocs,
         ...index.phdStudents,
+        ...(index.mastersStudents ?? []),
         ...index.undergrads,
         ...index.alumni,
     ];
@@ -378,4 +399,89 @@ export async function getCourses(): Promise<Course[]> {
     const jsonData = await fs.readFile(filePath, 'utf8');
     const data = JSON.parse(jsonData);
     return data.courses;
+}
+
+// Research themes and projects interfaces
+export interface Theme {
+    id: string;
+    title: string;
+    summary: string;
+    projectIds: string[];
+    featuredPubIds: string[];
+    image?: string;
+    featured?: Array<{ type: 'project' | 'pub'; id: string }>;
+}
+
+export interface FundedProject {
+    id: string;
+    title: string;
+    agency: string;
+    awardNumber?: string;
+    years: string;
+    status: 'active' | 'completed' | 'proposed';
+    themes: string[];
+    abstract: string;
+    team: string[];
+    publications: string[];
+    heroImage: string;
+    overview?: string[];
+    capabilities?: string[];
+    useCases?: string[];
+    publicStatus?: string;
+    links?: Array<{
+        label: string;
+        url: string;
+    }>;
+    figures?: Array<{
+        image: string;
+        caption?: string;
+    }>;
+    keywords: string[];
+    impact: string;
+}
+
+export async function getThemes(): Promise<Theme[]> {
+    const filePath = path.join(process.cwd(), 'src/data/themes.json');
+    const jsonData = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(jsonData);
+}
+
+export async function getTheme(id: string): Promise<Theme | null> {
+    const themes = await getThemes();
+    return themes.find(theme => theme.id === id) || null;
+}
+
+export async function getPublicationsByTheme(themeId: string): Promise<Publication[]> {
+    const publications = await getPublications();
+    return publications.filter(pub => pub.themeIds?.includes(themeId));
+}
+
+export async function getFundedProjects(): Promise<FundedProject[]> {
+    const filePath = path.join(process.cwd(), 'src/data/projects.json');
+    const jsonData = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(jsonData);
+}
+
+export async function getFundedProject(id: string): Promise<FundedProject | null> {
+    const projects = await getFundedProjects();
+    return projects.find(project => project.id === id) || null;
+}
+
+export async function getProjectsByTheme(themeId: string): Promise<FundedProject[]> {
+    const projects = await getFundedProjects();
+    return projects.filter(project => project.themes.includes(themeId));
+}
+
+export async function getProjectsByAgency(): Promise<Record<string, FundedProject[]>> {
+    const projects = await getFundedProjects();
+    const grouped: Record<string, FundedProject[]> = {};
+    
+    projects.forEach(project => {
+        if (!grouped[project.agency]) {
+            grouped[project.agency] = [];
+        }
+        grouped[project.agency].push(project);
+    });
+    
+    return grouped;
 } 

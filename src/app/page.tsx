@@ -1,16 +1,88 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ResearchCard } from '@/components/research-card';
 import { PublicationCard } from '@/components/publication-card';
 import { TeamMemberCard } from '@/components/team-member-card';
 import { LabBanner } from '@/components/lab-banner';
 import LogoMark from '@/components/logo-mark';
-import { getLabInfo, getFeaturedProjects, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
+import { getLabInfo, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
+import { withBasePath } from '@/lib/with-base-path';
+import news from '@/data/news.json';
+import themes from '@/data/themes.json';
+import projects from '@/data/projects.json';
+
+function ThemeCard({ theme }: { theme: { id: string; title: string; summary: string; projectIds: string[]; image?: string } }) {
+  const related = projects.filter(p => theme.projectIds.includes(p.id)).slice(0, 3);
+  return (
+    <div className="rounded-xl border overflow-hidden hover:bg-muted/10">
+      {theme.image && (
+        <div className="relative h-32 w-full">
+          <Image src={withBasePath(theme.image)} alt={theme.title} fill className="object-cover" />
+          {/* optional subtle overlay for light/dark consistency */}
+          <div className="absolute inset-0 pointer-events-none bg-black/0 dark:bg-black/0"></div>
+        </div>
+      )}
+      <div className="p-5 space-y-3">
+        <h3 className="text-lg font-semibold">{theme.title}</h3>
+        <p className="text-sm text-muted-foreground">{theme.summary}</p>
+        {related.length ? (
+          <ul className="mt-2 space-y-1">
+            {related.map(p => (
+              <li key={p.id} className="text-sm">
+                <Link href={`/research/${p.id}`} className="hover:underline">{p.title}</Link>
+                <span className="text-xs text-muted-foreground"> • {p.agency}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <div className="pt-2">
+          <Link href={`/research#${theme.id}`} className="text-sm hover:underline">
+            Explore this theme →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ThemesPreview() {
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-12 space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold">Research Themes</h2>
+        <Link href="/research" className="text-sm hover:underline">View all themes →</Link>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {themes.map(t => <ThemeCard key={t.id} theme={t} />)}
+      </div>
+    </section>
+  );
+}
+
+function RecentNews() {
+  const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3);
+  if (!items.length) return null;
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-12">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold">Latest News</h2>
+        <Link href="/news" className="text-sm hover:underline">View all →</Link>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {items.map((n) => (
+          <Link key={n.id} href={`/news/${n.id}`} className="rounded-lg border p-4 hover:bg-muted/10">
+            <div className="text-xs text-muted-foreground">{new Date(n.date).toLocaleDateString()}</div>
+            <div className="font-medium mt-1">{n.title}</div>
+            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{n.summary}</p>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default async function HomePage() {
-  const [labInfo, featuredProjects, recentPublications, principalInvestigator, currentTeam, furryMembers, alumni] = await Promise.all([
+  const [labInfo, recentPublications, principalInvestigator, currentTeam, furryMembers, alumni] = await Promise.all([
     getLabInfo(),
-    getFeaturedProjects(),
     getPublications(),
     getPrincipalInvestigator(),
     getCurrentTeam(),
@@ -94,25 +166,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Featured Research Projects */}
-      <section id="research" className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Research Projects
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Current research initiatives advancing the state of cyber-physical systems security.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <ResearchCard key={project.id} project={project} />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Research Themes Preview */}
+      <ThemesPreview />
+
+      {/* Recent News */}
+      <RecentNews />
 
       {/* Recent Publications */}
       <section id="publications" className="bg-gray-50 dark:bg-gray-800 py-16 sm:py-24">
@@ -244,7 +302,7 @@ export default async function HomePage() {
                     <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-4xl relative">
                       {hasImage && (
                         <Image 
-                          src={member.image!} 
+                          src={withBasePath(member.image!)} 
                           alt={member.name}
                           fill
                           className="rounded-full object-cover object-[50%_30%]"

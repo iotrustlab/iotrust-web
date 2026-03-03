@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, Users, DollarSign, ExternalLink, Shield, Code, Activity, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { withBasePath } from '@/lib/with-base-path';
 
 interface ResearchProject {
   id: string;
@@ -160,7 +161,7 @@ export function ResearchProjectJSON({ project, data }: ResearchProjectJSONProps)
             
             <div className="relative h-80 rounded-lg overflow-hidden">
               <Image
-                src={content.overview.heroImage}
+                src={withBasePath(content.overview.heroImage)}
                 alt={project.title}
                 fill
                 className="object-cover"

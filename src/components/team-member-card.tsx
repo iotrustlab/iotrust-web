@@ -2,6 +2,7 @@ import { Person } from '@/lib/data';
 import { Mail, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { withBasePath } from '@/lib/with-base-path';
 
 interface TeamMemberCardProps {
   member: Person;
@@ -19,7 +20,7 @@ export function TeamMemberCard({ member, isPI = false }: TeamMemberCardProps) {
           <div className={`${avatarSize} rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 flex-shrink-0 relative`}>
             {hasImage && (
               <Image
-                src={member.image!}
+                src={withBasePath(member.image!)}
                 alt={member.name}
                 fill
                 className="object-cover object-[50%_30%] rounded-full"

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/lib/with-base-path";
 
 interface LogoMarkProps {
   size?: number;
@@ -16,7 +17,7 @@ export default function LogoMark({ size = 64, className = "" }: LogoMarkProps) {
     >
       {/* Light mode logo */}
       <Image
-        src="/images/iotrust-logo.png"
+        src={withBasePath("/images/iotrust-logo.png")}
         alt="IoTrust Lab logo"
         height={size}
         width={width}
@@ -25,7 +26,7 @@ export default function LogoMark({ size = 64, className = "" }: LogoMarkProps) {
       />
       {/* Dark mode logo */}
       <Image
-        src="/images/iotrust-logo-dark.png"
+        src={withBasePath("/images/iotrust-logo-dark.png")}
         alt="IoTrust Lab logo (dark mode)"
         height={size}
         width={width}

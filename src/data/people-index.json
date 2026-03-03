@@ -8,18 +8,22 @@
   "phdStudents": [
     { "id": "jainta", "type": "json" },
     { "id": "yanran", "type": "json" },
-    { "id": "iris", "type": "json" },
     { "id": "nsssayom", "type": "json" },
     { "id": "sangshin", "type": "json" }
   ],
+  "mastersStudents": [
+    { "id": "andrew_dron", "type": "json" }
+  ],
   "undergrads": [
-    { "id": "andrew_dron", "type": "json" },
     { "id": "brandon_vo", "type": "json" },
     { "id": "burke", "type": "json" },
     { "id": "dylan_ladds", "type": "json" },
+    { "id": "helen_zhang", "type": "json" },
     { "id": "jared_pratt", "type": "json" },
     { "id": "lawrence", "type": "json" },
-    { "id": "miles_bovero", "type": "json" }
+    { "id": "maxwell_smith", "type": "json" },
+    { "id": "miles_bovero", "type": "json" },
+    { "id": "ryan_gessel", "type": "json" }
   ],
   "alumni": [
     { "id": "jordan_cahoon", "type": "json" },

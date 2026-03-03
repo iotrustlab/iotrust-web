@@ -1,0 +1,110 @@
+[
+  {
+    "id": "2026-cra-wp-yanran",
+    "title": "Yanran Lin Selected as CRA-WP Grad Cohort Workshop Scholar (2026)",
+    "date": "2026-01-16",
+    "tags": ["Student Award", "CRA-WP", "PhD"],
+    "summary": "Yanran Lin was selected as a 2026 CRA-WP Grad Cohort Workshop Scholar, recognizing her momentum in trustworthy CPS and formal methods research.",
+    "image": "",
+    "links": [
+      {
+        "label": "Yanran Lin profile",
+        "url": "/people/yanran"
+      },
+      {
+        "label": "CRA-WP 2026 Grad Cohort Workshop",
+        "url": "https://cra.org/cra-wp/events/2026-cra-wp-grad-cohort-workshop/"
+      }
+    ]
+  },
+  {
+    "id": "2026-urop-fellows",
+    "title": "Jared Pratt and Helen Zhang Receive UROP Fellowships for Spring 2026",
+    "date": "2026-01-08",
+    "tags": ["Student Award", "UROP", "Undergraduate"],
+    "summary": "Jared Pratt and Helen Zhang were awarded UROP fellowships for Spring 2026 to support their undergraduate research contributions in IoTrust Lab.",
+    "image": "",
+    "links": [
+      {
+        "label": "Jared Pratt profile",
+        "url": "/people/jared_pratt"
+      },
+      {
+        "label": "Helen Zhang profile",
+        "url": "/people/helen_zhang"
+      }
+    ]
+  },
+  {
+    "id": "2025-eai-fellow-garcia",
+    "title": "PI Luis Garcia Named an EAI Fellow (2025)",
+    "date": "2025-12-15",
+    "tags": ["Honor", "EAI", "Leadership"],
+    "summary": "Luis Garcia was honored as an EAI Fellow in the 2025 class for sustained research and community impact in cyber-physical systems security.",
+    "image": "",
+    "links": [
+      {
+        "label": "EAI Fellows 2025 announcement",
+        "url": "https://eai.eu/blog/eai-fellows-2025/"
+      },
+      {
+        "label": "Luis Garcia profile",
+        "url": "/people/lag"
+      }
+    ]
+  },
+  {
+    "id": "2025-uofu-ece-demo-day",
+    "title": "IoTrust Team Wins Best CE Project at University of Utah ECE Demo Day",
+    "date": "2025-12-05",
+    "tags": ["Award", "Demo Day", "Robotics"],
+    "summary": "Miles Bovero, Burke Dambly, and Lawrence Ponce earned Best CE Project for 'Enhancing Robotic Manipulation with Vision-Enabled Large Language Models.'",
+    "image": "",
+    "links": [
+      {
+        "label": "Demo Day highlight reel",
+        "url": "https://www.instagram.com/reel/DSIYEkqjS32/"
+      },
+      {
+        "label": "Miles Bovero profile",
+        "url": "/people/miles_bovero"
+      },
+      {
+        "label": "Burke Dambly profile",
+        "url": "/people/burke"
+      },
+      {
+        "label": "Lawrence Ponce profile",
+        "url": "/people/lawrence"
+      }
+    ]
+  },
+  {
+    "id": "2025-smartsp-three-papers",
+    "title": "IoTrust Lab Publishes Three Papers at SmartSP 2025",
+    "date": "2025-12-01",
+    "tags": ["Publications", "SmartSP", "Conference"],
+    "summary": "IoTrust Lab contributed three papers to SmartSP 2025, highlighting new results across CPS security, semantic reverse engineering, and trustworthy system analysis.",
+    "image": "",
+    "links": [
+      {
+        "label": "Browse lab publications",
+        "url": "/publications"
+      }
+    ]
+  },
+  {
+    "id": "2025-smartsp-chair",
+    "title": "PI Luis Garcia Served as Chair for SmartSP 2025",
+    "date": "2025-12-01",
+    "tags": ["Leadership", "SmartSP", "Service"],
+    "summary": "Luis Garcia served as chair for SmartSP 2025, helping shape the technical program and community discussions around CPS and smart-vehicle security.",
+    "image": "",
+    "links": [
+      {
+        "label": "Luis Garcia profile",
+        "url": "/people/lag"
+      }
+    ]
+  }
+]
