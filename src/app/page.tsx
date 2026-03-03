@@ -252,6 +252,16 @@ export default async function HomePage() {
               </div>
             </div>
 
+            {/* Master's Students */}
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Master's Students</h4>
+            <div className="flex justify-center mb-10">
+              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
+                {currentTeam.filter(m => m.role.toLowerCase().includes('master')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
+                  <TeamMemberCard key={member.id} member={member} />
+                ))}
+              </div>
+            </div>
+
             {/* Undergraduate Researchers */}
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Undergraduate Researchers</h4>
             <div className="flex justify-center">
