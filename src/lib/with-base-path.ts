@@ -1,4 +1,4 @@
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/iotrust-web" : "";
+const BASE_PATH = "";
 
 export function withBasePath(path: string): string {
   if (!path) return path;
