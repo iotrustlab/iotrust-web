@@ -54,10 +54,10 @@
     }
   ],
   "website": "https://lagarcia.us",
-  "google_scholar": "https://scholar.google.com/citations?user=example",
-  "linkedin": "https://linkedin.com/in/luisgarcia-utah",
-  "github": "https://github.com/luisgarcia-utah",
-  "twitter": "@luisgarcia_utah",
+  "google_scholar": "https://scholar.google.com/citations?user=F6Gzg9gAAAAJ&hl=en&oi=sra",
+  "linkedin": "https://www.linkedin.com/in/luis-garcia-59648b26/",
+  "github": "https://github.com/lagarcia38",
+  "twitter": "@lgarc38",
   "research_statement": "I develop methods to ensure trustworthy and resilient autonomous systems that interact with humans both in and on control loops. Driven by real-world stakeholders, my goal is to enable a relationship for providing mutual assurances between deep-learning-enabled cyber-physical systems and humans in safety-critical contexts.",
   "research_questions": [
     "Leveraging semantics to retrofit security and resiliency: For deployed and legacy systems, how can we leverage knowledge about a cyber-physical system's semantics, e.g., the underlying physical equations, to enhance safety and security at all levels of the software stack?",
