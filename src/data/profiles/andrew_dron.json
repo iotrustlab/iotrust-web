@@ -5,9 +5,11 @@
   "title": "M.S. Student Researcher",
   "department": "Kahlert School of Computing",
   "university": "University of Utah",
-  "email": "",
-  "image": "/images/profile-avatar-placeholder.png",
+  "email": "u1027713@utah.edu",
+  "image": "/images/team/a-dron.jpg",
   "bio": "Master's student researcher contributing to trustworthy CPS projects.",
+  "website": "https://Andrew-Dron27.github.io",
+  "github": "https://github.com/Andrew-Dron27",
   "current_projects": [],
   "publications_count": 0,
   "type": "json"
