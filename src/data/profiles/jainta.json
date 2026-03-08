@@ -5,8 +5,8 @@
   "title": "Graduate Research Assistant",
   "department": "Kahlert School of Computing",
   "university": "University of Utah",
-  "email": "jainta.paul@utah.edu",
-  "image": "/images/team/jainta-1.png",
+  "email": "u1471999@utah.edu",
+  "image": "/images/team/jp.jpg",
   "bio": "PhD student in Computer Science at the University of Utah, focusing on cyber-physical systems security and trustworthy AI. Jainta's research explores the intersection of symbolic reasoning and deep learning for enhanced security in industrial control systems.",
   "research_interests": [
     "Cyber-Physical Systems Security",
@@ -18,7 +18,7 @@
   "education": [
     {
       "degree": "B.S. Computer Science",
-      "institution": "University of California, Berkeley",
+      "institution": "Bangladesh University of Engineering and Technology, Bangladesh",
       "year": "2022"
     }
   ],
@@ -26,8 +26,9 @@
     "nsf-sphere",
     "nsf-fmitf"
   ],
-  "publications_count": 2,
-  "type": "json"
+  "publications_count": 3,
+  "type": "json", 
+   "website": "https://pauljainta.github.io/jp/"
 }
 
 
