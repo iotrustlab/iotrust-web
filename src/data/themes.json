@@ -2,7 +2,7 @@
   {
     "id": "cps-security-semantics",
     "title": "Cyber-Physical Systems Security & Semantics",
-    "summary": "Semantics-driven hardening of legacy and modern CPS; symbolic recovery of logic; testbed-based security experimentation.",
+    "summary": "We recover system semantics from legacy and modern cyber-physical systems, then use that structure to test, harden, and explain behavior in physical testbeds.",
     "projectIds": ["nsf-sphere", "nsf-fmitf", "darpa-smellcps"],
     "featuredPubIds": [
       "garcia2019-hyplc",
@@ -15,7 +15,7 @@
   {
     "id": "digital-twins-verification",
     "title": "Digital Twins & Formal Verification",
-    "summary": "Formal and hybrid systems verification; fidelity-aware digital twins; verification-driven testbed design.",
+    "summary": "We build fidelity-aware twins that connect hybrid models, runtime traces, and verification workflows for safer design decisions.",
     "projectIds": ["nsf-sphere", "nsf-fmitf"],
     "featuredPubIds": [
       "paul2025-hytwin",
@@ -41,7 +41,7 @@
   {
     "id": "brain-centered-cps",
     "title": "Brain-Centered CPS / NeuroIoT",
-    "summary": "Human-in-the-loop CPS with neural & environmental sensing; multimodal fusion and memory-centric modeling.",
+    "summary": "We study human-in-the-loop CPS that combines neural and environmental sensing with multimodal, memory-centered modeling.",
     "projectIds": ["nih-neuroscience-wild", "nsf-ncs"],
     "featuredPubIds": [
       "garcia2024-collaborative",
@@ -54,7 +54,7 @@
   {
     "id": "digital-twinning-for-ics",
     "title": "Digital Twinning for Industrial Control Systems",
-    "summary": "This theme develops fidelity-aware digital twins that bridge engineered control code, physical process models, and experimental testbeds. Our work spans formal verification, real-system validation, and runtime conformance checking. We also leverage agentic testing frameworks for CPS that allow autonomous evaluation of system resilience, enabling verification and mitigation synthesis across realistic testbeds. Together, these efforts establish a principled foundation for trustworthy experimentation and security in cyber-physical infrastructure.",
+    "summary": "We build industrial-control twins that connect control code, process models, and testbeds for validation, conformance checking, and mitigation synthesis.",
     "projectIds": ["nsf-sphere", "nsf-fmitf", "darpa-smellcps"],
     "featuredPubIds": [
       "paul2025-hytwin",
@@ -65,4 +65,3 @@
     "image": "/images/themes/digital-twinning-for-ics.jpg"
   }
 ]
-

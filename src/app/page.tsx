@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
   BookOpen,
   Brain,
+  ChevronDown,
   Cpu,
   ExternalLink,
   Factory,
@@ -19,6 +21,7 @@ import {
 import { TeamMemberCard } from '@/components/team-member-card';
 import LogoMark from '@/components/logo-mark';
 import { ObfuscatedEmailLink } from '@/components/obfuscated-email-link';
+import { MobileThemeAccordion } from '@/components/mobile-theme-accordion';
 import type { Course, FurryMember, Person, Publication } from '@/lib/data';
 import { getCourses, getLabInfo, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
 import { encodeEmailAddress } from '@/lib/email-obfuscation';
@@ -30,11 +33,11 @@ import projects from '@/data/projects.json';
 type ThemeVisualConfig = {
   accent: string;
   background: string;
+  lightBackground: string;
   grid: string;
+  lightGrid: string;
   Icon: LucideIcon;
   label: string;
-  subtitle: string;
-  lede: string;
   pills: string[];
   variant: 'circuit' | 'twin' | 'sensor' | 'brain' | 'industrial';
 };
@@ -43,55 +46,55 @@ const themeVisuals: Record<string, ThemeVisualConfig> = {
   'cps-security-semantics': {
     accent: '#d83e3e',
     background: '#102a3b',
-    grid: 'rgba(148, 190, 214, 0.18)',
+    lightBackground: '#eef3f6',
+    grid: 'rgba(148, 190, 214, 0.10)',
+    lightGrid: 'rgba(15, 42, 59, 0.055)',
     Icon: ShieldCheck,
     label: 'CPS Security',
-    subtitle: 'Semantics and assurance',
-    lede: 'Securing physical systems by recovering their semantics, then using that knowledge to test, harden, and explain behavior.',
     pills: ['Semantics', 'Testbeds', 'Resilience'],
     variant: 'circuit',
   },
   'digital-twins-verification': {
     accent: '#7c8df5',
     background: '#20284d',
-    grid: 'rgba(186, 197, 255, 0.18)',
+    lightBackground: '#f0f1ff',
+    grid: 'rgba(186, 197, 255, 0.10)',
+    lightGrid: 'rgba(46, 56, 117, 0.055)',
     Icon: Cpu,
     label: 'Digital Twins',
-    subtitle: 'Models, traces, verification',
-    lede: 'Digital models that stay close to real systems, then support verification, testing, and design decisions.',
     pills: ['Hybrid Models', 'Verification', 'Runtime Evidence'],
     variant: 'twin',
   },
   'iot-sensor-privacy': {
     accent: '#38b89d',
     background: '#123b35',
-    grid: 'rgba(166, 233, 219, 0.18)',
+    lightBackground: '#e9f5f1',
+    grid: 'rgba(166, 233, 219, 0.10)',
+    lightGrid: 'rgba(18, 72, 62, 0.055)',
     Icon: RadioTower,
     label: 'Sensor Privacy',
-    subtitle: 'Edge-to-cloud trust',
-    lede: 'Privacy-aware sensing pipelines that preserve useful information without exposing physical-world context.',
     pills: ['IoT', 'Information Flow', 'Privacy'],
     variant: 'sensor',
   },
   'brain-centered-cps': {
     accent: '#a86bd5',
     background: '#332446',
-    grid: 'rgba(215, 183, 239, 0.18)',
+    lightBackground: '#f4edf8',
+    grid: 'rgba(215, 183, 239, 0.10)',
+    lightGrid: 'rgba(82, 50, 107, 0.055)',
     Icon: Brain,
     label: 'NeuroIoT',
-    subtitle: 'Human-centered sensing',
-    lede: 'Human-centered sensing for brain and environment data, built around memory, attention, and multimodal context.',
     pills: ['Neural Data', 'Multimodal Fusion', 'Human-in-the-loop'],
     variant: 'brain',
   },
   'digital-twinning-for-ics': {
     accent: '#e0a33a',
     background: '#342d1d',
-    grid: 'rgba(244, 211, 143, 0.18)',
+    lightBackground: '#f6efe3',
+    grid: 'rgba(244, 211, 143, 0.10)',
+    lightGrid: 'rgba(84, 62, 25, 0.06)',
     Icon: Factory,
     label: 'ICS Twins',
-    subtitle: 'Industrial testbeds',
-    lede: 'Industrial-control twins that connect control code, physics, testbeds, and runtime conformance.',
     pills: ['ICS', 'Physics Models', 'Conformance'],
     variant: 'industrial',
   },
@@ -100,11 +103,11 @@ const themeVisuals: Record<string, ThemeVisualConfig> = {
 const fallbackThemeVisual: ThemeVisualConfig = {
   accent: '#d83e3e',
   background: '#182334',
-  grid: 'rgba(203, 213, 225, 0.16)',
+  lightBackground: '#eef2f6',
+  grid: 'rgba(203, 213, 225, 0.10)',
+  lightGrid: 'rgba(15, 23, 42, 0.055)',
   Icon: ShieldCheck,
   label: 'Research Theme',
-  subtitle: 'IoTrust Lab',
-  lede: 'A cross-cutting research area for trustworthy cyber-physical systems.',
   pills: ['Security', 'Trust', 'Systems'],
   variant: 'circuit',
 };
@@ -138,23 +141,23 @@ function WireNode({ cx, cy, accent, muted = false }: { cx: number; cy: number; a
       cx={cx}
       cy={cy}
       r={muted ? 4 : 6}
-      fill={muted ? 'rgba(255,255,255,0.32)' : accent}
-      style={muted ? undefined : { filter: `drop-shadow(0 0 10px ${accent})` }}
+      fill={muted ? 'var(--theme-node-muted)' : accent}
     />
   );
 }
 
 function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant']; accent: string }) {
-  const dimStroke = 'rgba(255,255,255,0.30)';
-  const softStroke = 'rgba(255,255,255,0.18)';
+  const dimStroke = 'var(--theme-pattern-strong)';
+  const softStroke = 'var(--theme-pattern-soft)';
+  const patternFill = 'var(--theme-pattern-fill)';
 
   if (variant === 'twin') {
     return (
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
-        <path d="M72 104l58-34 58 34v76l-58 34-58-34Z" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2" />
+        <path d="M72 104l58-34 58 34v76l-58 34-58-34Z" fill={patternFill} stroke={dimStroke} strokeWidth="2" />
         <path d="M130 70v76m-58-42 58 42 58-42M72 180l58-34 58 34" fill="none" stroke={softStroke} strokeWidth="2" />
-        <path d="M242 104l58-34 58 34v76l-58 34-58-34Z" fill="rgba(255,255,255,0.04)" stroke={accent} strokeWidth="2.5" />
-        <path d="M300 70v76m-58-42 58 42 58-42M242 180l58-34 58 34" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+        <path d="M242 104l58-34 58 34v76l-58 34-58-34Z" fill={patternFill} stroke={accent} strokeWidth="2.5" />
+        <path d="M300 70v76m-58-42 58 42 58-42M242 180l58-34 58 34" fill="none" stroke={dimStroke} strokeWidth="2" />
         <path d="M188 118C214 86 230 86 242 118M188 168c28 34 54 34 82 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" />
         <path d="M120 238h180M90 250h226" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
         <WireNode cx={130} cy={146} accent={accent} muted />
@@ -168,12 +171,12 @@ function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant
   if (variant === 'sensor') {
     return (
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
-        <circle cx="210" cy="146" r="28" fill="rgba(255,255,255,0.06)" stroke={accent} strokeWidth="3" />
+        <circle cx="210" cy="146" r="28" fill={patternFill} stroke={accent} strokeWidth="3" />
         <circle cx="210" cy="146" r="70" fill="none" stroke={dimStroke} strokeWidth="2" strokeDasharray="5 9" />
         <circle cx="210" cy="146" r="108" fill="none" stroke={softStroke} strokeWidth="2" />
         <path d="M210 146 92 84M210 146l128-38M210 146 96 218M210 146l120 66M210 146v-98M210 146v96" fill="none" stroke={dimStroke} strokeWidth="2" strokeLinecap="round" />
         <path d="M86 68c70-46 150-48 240-6M94 242c78 42 158 42 240 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" opacity="0.85" />
-        <path d="M191 146l14 15 28-36" fill="none" stroke="rgba(255,255,255,0.86)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M191 146l14 15 28-36" fill="none" stroke="var(--theme-pattern-text)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         <WireNode cx={92} cy={84} accent={accent} muted />
         <WireNode cx={338} cy={108} accent={accent} muted />
         <WireNode cx={96} cy={218} accent={accent} muted />
@@ -187,7 +190,7 @@ function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant
   if (variant === 'brain') {
     return (
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
-        <path d="M116 198c-30-18-42-46-36-82 8-46 46-70 92-62 18-32 66-34 92-8 38-13 78 8 88 48 42 5 64 40 55 80-9 38-44 60-91 55-33 30-88 31-121 1-24 12-50 10-79-32Z" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
+        <path d="M116 198c-30-18-42-46-36-82 8-46 46-70 92-62 18-32 66-34 92-8 38-13 78 8 88 48 42 5 64 40 55 80-9 38-44 60-91 55-33 30-88 31-121 1-24 12-50 10-79-32Z" fill={patternFill} stroke={dimStroke} strokeWidth="2.5" />
         <path d="M132 145c36-28 70-28 102 0s66 28 102 0M140 185c39 22 78 22 117 0M166 96c20 9 38 25 54 48M282 90c-24 18-42 42-54 72" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" opacity="0.9" />
         <path d="M122 232c64 28 148 30 250 8" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
         <WireNode cx={166} cy={96} accent={accent} />
@@ -203,9 +206,9 @@ function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant
   if (variant === 'industrial') {
     return (
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
-        <path d="M58 218h322M78 218V112l60 36v-36l62 36v-58h94v128" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M58 218h322M78 218V112l60 36v-36l62 36v-58h94v128" fill={patternFill} stroke={dimStroke} strokeWidth="2.5" strokeLinejoin="round" />
         <path d="M294 90V52h42v166M96 218v-56h48v56M176 218v-46h54v46" fill="none" stroke={accent} strokeWidth="3" strokeLinejoin="round" />
-        <path d="M118 162h24M188 172h26M312 116h28M312 142h28M312 168h28" stroke="rgba(255,255,255,0.44)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M118 162h24M188 172h26M312 116h28M312 142h28M312 168h28" stroke={dimStroke} strokeWidth="2" strokeLinecap="round" />
         <path d="M92 76h74c24 0 36 12 36 36v36M336 76h-46c-22 0-34 12-34 34v42" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
         <path d="M202 148c22-25 48-25 78 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" />
         <WireNode cx={92} cy={76} accent={accent} muted />
@@ -218,9 +221,9 @@ function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant
 
   return (
     <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
-      <rect x="70" y="74" width="118" height="74" rx="8" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
-      <rect x="244" y="152" width="114" height="78" rx="8" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
-      <path d="M104 98h42M104 120h64M276 176h48M276 198h30" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinecap="round" />
+      <rect x="70" y="74" width="118" height="74" rx="8" fill={patternFill} stroke={dimStroke} strokeWidth="2.5" />
+      <rect x="244" y="152" width="114" height="78" rx="8" fill={patternFill} stroke={dimStroke} strokeWidth="2.5" />
+      <path d="M104 98h42M104 120h64M276 176h48M276 198h30" stroke={dimStroke} strokeWidth="2" strokeLinecap="round" />
       <path d="M188 110h44c20 0 30 10 30 30v52M128 148v42c0 20 10 30 30 30h84M128 74V48h116M302 152V92h58" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M72 232h290M92 248h248" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
       <WireNode cx={128} cy={148} accent={accent} />
@@ -232,90 +235,105 @@ function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant
   );
 }
 
-function ThemeVisual({ themeId }: { themeId: string }) {
-  const visual = themeVisuals[themeId] ?? fallbackThemeVisual;
+function ThemeCard({ theme }: { theme: { id: string; title: string; summary: string; projectIds: string[]; image?: string } }) {
+  const visual = themeVisuals[theme.id] ?? fallbackThemeVisual;
   const Icon = visual.Icon;
+  const themeVars = {
+    '--theme-accent': visual.accent,
+    '--theme-bg-light': visual.lightBackground,
+    '--theme-bg-dark': visual.background,
+    '--theme-grid-light': visual.lightGrid,
+    '--theme-grid-dark': visual.grid,
+  } as CSSProperties;
 
   return (
-    <div
-      className="relative min-h-[180px] overflow-hidden sm:min-h-[200px] md:min-h-full"
-      style={{ background: `linear-gradient(135deg, ${visual.background} 0%, #081018 100%)` }}
+    <article
+      className="group relative flex min-h-[156px] overflow-hidden rounded-lg border border-gray-200/85 bg-white text-gray-950 transition-colors hover:border-gray-300 dark:border-white/[0.09] dark:bg-[#0a0f19] dark:text-white dark:hover:border-white/20 md:min-h-[286px] lg:min-h-[318px] xl:min-h-[334px] [--theme-grid:var(--theme-grid-light)] [--theme-node-muted:rgb(15_23_42_/_0.12)] [--theme-pattern-fill:rgb(15_23_42_/_0.018)] [--theme-pattern-soft:rgb(15_23_42_/_0.045)] [--theme-pattern-strong:rgb(15_23_42_/_0.085)] [--theme-pattern-text:rgb(15_23_42_/_0.24)] dark:[--theme-grid:var(--theme-grid-dark)] dark:[--theme-node-muted:rgb(255_255_255_/_0.12)] dark:[--theme-pattern-fill:rgb(255_255_255_/_0.018)] dark:[--theme-pattern-soft:rgb(255_255_255_/_0.045)] dark:[--theme-pattern-strong:rgb(255_255_255_/_0.085)] dark:[--theme-pattern-text:rgb(255_255_255_/_0.34)]"
+      style={themeVars}
     >
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,var(--theme-bg-light)_0%,rgb(255_255_255)_48%,rgb(255_255_255)_100%)] opacity-70 dark:bg-[linear-gradient(135deg,var(--theme-bg-dark)_0%,#0a0f19_50%,#0a0f19_100%)] dark:opacity-80" />
       <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `linear-gradient(${visual.grid} 1px, transparent 1px), linear-gradient(90deg, ${visual.grid} 1px, transparent 1px)`,
-          backgroundSize: '44px 44px',
-        }}
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(var(--theme-grid)_1px,transparent_1px),linear-gradient(90deg,var(--theme-grid)_1px,transparent_1px)] bg-[length:44px_44px] opacity-45 dark:opacity-55"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_45%,rgba(0,0,0,0.16)_100%)]" />
-      <ThemePattern variant={visual.variant} accent={visual.accent} />
-      <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: visual.accent }} />
-      <div className="relative z-10 flex h-full min-h-[180px] flex-col justify-between p-5 sm:min-h-[200px] sm:p-6 md:min-h-full">
+      <div className="pointer-events-none absolute -right-20 -top-10 h-[72%] w-[86%] opacity-[0.22] transition-opacity group-hover:opacity-[0.28] dark:opacity-[0.24] dark:group-hover:opacity-[0.30] sm:-right-24 sm:-top-12">
+        <ThemePattern variant={visual.variant} accent={visual.accent} />
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[74%] bg-[linear-gradient(180deg,transparent_0%,rgb(255_255_255_/_0.90)_30%,rgb(255_255_255)_100%)] dark:bg-[linear-gradient(180deg,transparent_0%,rgb(10_15_25_/_0.88)_30%,#0a0f19_100%)]" />
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-[3px] bg-[var(--theme-accent)] opacity-75 transition-opacity group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 opacity-0 ring-1 ring-inset ring-[var(--theme-accent)] transition-opacity group-hover:opacity-35" />
+
+      <details
+        name="homepage-research-themes"
+        data-theme-accordion-item
+        className="group/details relative z-10 min-h-[156px] w-full p-4 pl-5 md:hidden"
+      >
+        <summary className="flex min-h-[124px] cursor-pointer list-none flex-col outline-none focus-visible:ring-2 focus-visible:ring-[var(--theme-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0a0f19] [&::-webkit-details-marker]:hidden">
+          <div className="flex items-start justify-between gap-4">
+            <span className="text-[0.68rem] font-semibold uppercase tracking-[0.20em] text-[var(--theme-accent)] dark:text-[var(--theme-accent)] sm:text-[0.72rem]">
+              {visual.label}
+            </span>
+            <Icon className="h-5 w-5 text-gray-400 transition-colors group-hover:text-[var(--theme-accent)] dark:text-gray-500" aria-hidden="true" />
+          </div>
+
+          <div className="mt-auto max-w-2xl pt-7">
+            <h3 className="text-xl font-semibold leading-[1.16] text-gray-950 dark:text-white">
+              {theme.title}
+            </h3>
+            <div className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 dark:text-brand-200">
+              <span className="group-open/details:hidden">Details</span>
+              <span className="hidden group-open/details:inline">Hide details</span>
+              <ChevronDown className="h-4 w-4 transition-transform group-open/details:rotate-180" aria-hidden="true" />
+            </div>
+          </div>
+        </summary>
+
+        <div className="hidden max-w-2xl group-open/details:block">
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {visual.pills.map((pill) => (
+              <span
+                key={pill}
+                className="rounded-full bg-gray-950/[0.045] px-2.5 py-1 text-[0.7rem] font-medium text-gray-700 dark:bg-white/[0.06] dark:text-gray-300"
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+          <p className="mt-3 line-clamp-4 text-[0.93rem] leading-6 text-gray-600 dark:text-gray-300 sm:text-[0.96rem] sm:leading-[1.65] lg:line-clamp-5">
+            {theme.summary}
+          </p>
+          <Link href={`/research#${theme.id}`} className="mt-5 inline-flex w-fit text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white">
+            Explore theme →
+          </Link>
+        </div>
+      </details>
+
+      <div className="relative z-10 hidden min-h-[286px] w-full flex-col p-5 pl-6 md:flex lg:min-h-[318px] lg:p-6 lg:pl-7 xl:min-h-[334px]">
         <div className="flex items-start justify-between gap-4">
-          <span className="rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/85 ring-1 ring-white/15 backdrop-blur">
+          <span className="text-[0.72rem] font-semibold uppercase tracking-[0.20em] text-[var(--theme-accent)] dark:text-[var(--theme-accent)]">
             {visual.label}
           </span>
-          <span className="rounded-md bg-white/10 p-2.5 text-white ring-1 ring-white/15 backdrop-blur">
-            <Icon className="h-5 w-5" aria-hidden="true" />
-          </span>
-        </div>
-        <p className="max-w-[17rem] text-xl font-semibold leading-7 text-white sm:text-2xl sm:leading-8">
-          {visual.subtitle}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function ThemeCard({ theme }: { theme: { id: string; title: string; summary: string; projectIds: string[]; image?: string } }) {
-  const related = projects.filter(p => theme.projectIds.includes(p.id)).slice(0, 2);
-  const visual = themeVisuals[theme.id] ?? fallbackThemeVisual;
-  return (
-    <article className="grid overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 dark:hover:border-brand-700/70 dark:hover:bg-white/[0.04] md:min-h-[300px] md:grid-cols-[minmax(220px,0.75fr)_minmax(0,1.35fr)] lg:grid-cols-[minmax(300px,0.85fr)_minmax(0,1.5fr)]">
-      <ThemeVisual themeId={theme.id} />
-      <div className="flex flex-col p-5 sm:p-6 md:min-h-[300px]">
-        <h3 className="max-w-4xl text-2xl font-semibold leading-tight text-gray-950 dark:text-white sm:text-3xl sm:leading-tight">
-          {theme.title}
-        </h3>
-
-        <p className="mt-3.5 max-w-4xl text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg sm:leading-8">
-          {visual.lede}
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {visual.pills.map((pill) => (
-            <span
-              key={pill}
-              className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
-            >
-              {pill}
-            </span>
-          ))}
+          <Icon className="h-5 w-5 text-gray-400 transition-colors group-hover:text-[var(--theme-accent)] dark:text-gray-500" aria-hidden="true" />
         </div>
 
-        <div className="mt-5">
-          {related.length ? (
-            <div className="rounded-md bg-gray-50/80 p-3.5 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:ring-white/10">
-              <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
-                Linked Projects
-              </p>
-              <ul className="grid gap-2.5 lg:grid-cols-2">
-                {related.map(p => (
-                  <li key={p.id} className="text-sm leading-6 sm:text-base sm:leading-7">
-                    <Link href={`/research/${p.id}`} className="font-medium text-gray-900 hover:text-brand-700 dark:text-gray-100 dark:hover:text-brand-300">{p.title}</Link>
-                    <span className="text-sm text-gray-500 dark:text-gray-400"> • {p.agency}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <p className="rounded-md bg-gray-50/80 p-3.5 text-base leading-7 text-gray-600 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:text-gray-400 dark:ring-white/10">
-              Cross-cutting research area spanning sensing, privacy, and resilient system design.
-            </p>
-          )}
-          <Link href={`/research#${theme.id}`} className="mt-4 inline-flex text-base font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
-            Explore this theme →
+        <div className="mt-auto max-w-2xl pt-10 lg:pt-14">
+          <div className="mb-3 flex flex-wrap gap-1.5 lg:mb-4">
+            {visual.pills.map((pill) => (
+              <span
+                key={pill}
+                className="rounded-full bg-gray-950/[0.045] px-2.5 py-1 text-[0.7rem] font-medium text-gray-700 dark:bg-white/[0.06] dark:text-gray-300"
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+          <h3 className="text-[1.34rem] font-semibold leading-[1.16] text-gray-950 dark:text-white lg:text-[1.48rem]">
+            {theme.title}
+          </h3>
+          <p className="mt-2.5 line-clamp-4 max-w-xl text-[0.92rem] leading-[1.58] text-gray-600 dark:text-gray-300 lg:mt-3 lg:line-clamp-5 lg:text-[0.96rem] lg:leading-[1.65]">
+            {theme.summary}
+          </p>
+          <Link href={`/research#${theme.id}`} className="mt-4 inline-flex w-fit text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white lg:mt-5">
+            Explore theme →
           </Link>
         </div>
       </div>
@@ -325,21 +343,17 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
 
 function ThemesPreview() {
   return (
-    <section id="research" className="mx-auto max-w-7xl scroll-mt-24 space-y-8 px-4 py-14 sm:px-6 sm:py-16">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-4xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
-            Research Themes
-          </p>
-          <h2 className="mt-3 text-4xl font-semibold leading-tight text-gray-950 dark:text-white">
-            Research programs built around systems that need evidence, not just accuracy.
-          </h2>
-        </div>
-        <Link href="/research" className="text-lg font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">View all themes →</Link>
+    <section id="research" className="mx-auto max-w-7xl scroll-mt-24 space-y-6 px-4 py-12 sm:px-6 sm:py-14 lg:py-16">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+          Research Themes
+        </p>
+        <Link href="/research" className="text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">View all themes →</Link>
       </div>
-      <div className="mx-auto grid w-full max-w-6xl items-stretch gap-5 sm:gap-6">
+      <div className="mx-auto grid w-full max-w-7xl items-stretch gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3">
         {themes.map((t) => <ThemeCard key={t.id} theme={t} />)}
       </div>
+      <MobileThemeAccordion />
     </section>
   );
 }
@@ -380,7 +394,7 @@ function ProjectsPreview() {
                   {project.years}
                 </span>
               </div>
-              <h3 className="mt-4 text-2xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
+              <h3 className="mt-4 text-xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200 sm:text-2xl">
                 {project.title}
               </h3>
               <p className="mt-3 line-clamp-3 text-base leading-7 text-gray-600 dark:text-gray-400">
@@ -990,15 +1004,15 @@ export default async function HomePage() {
               University of Utah research lab
             </p>
 
-            <h1 className="text-4xl font-semibold leading-[0.98] text-gray-950 sm:text-6xl lg:text-7xl dark:text-white">
+            <h1 className="text-4xl font-semibold leading-[0.98] text-gray-950 sm:text-5xl lg:text-7xl dark:text-white">
               IoTrust Lab
             </h1>
 
-            <p className="mt-5 max-w-3xl text-2xl font-semibold leading-tight text-gray-950 sm:mt-6 sm:text-4xl dark:text-white">
+            <p className="mt-5 max-w-3xl text-[1.42rem] font-semibold leading-[1.22] text-gray-950 sm:mt-6 sm:text-3xl sm:leading-tight lg:text-4xl dark:text-white">
               Trustworthy autonomy starts with systems we can explain, test, and defend.
             </p>
 
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-700 sm:mt-6 sm:text-2xl sm:leading-9 dark:text-white/80">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-700 sm:mt-6 sm:text-xl sm:leading-8 lg:text-2xl lg:leading-9 dark:text-white/80">
               We connect semantic reasoning, digital twins, human-centered sensing, and real CPS
               testbeds into practical evidence for autonomous systems.
             </p>
@@ -1140,7 +1154,7 @@ export default async function HomePage() {
               <h2 className="mt-2 text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
                 Work With Us
               </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+              <p className="mt-5 max-w-xl text-base leading-7 text-gray-600 dark:text-gray-300 sm:text-lg sm:leading-8">
                 Share the research problem you want to work on, the systems you have built, and how it connects to trustworthy CPS.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">

@@ -53,10 +53,10 @@ export function TeamMemberCard({ member, isPI = false, variant = 'default' }: Te
     const featured = isPI;
 
     return (
-      <article className={`${featured ? 'grid gap-5 p-4 sm:grid-cols-[12rem_minmax(0,1fr)] sm:p-5' : 'grid grid-cols-[7.5rem_minmax(0,1fr)] gap-4 p-3'} group h-full w-full rounded-lg bg-gray-100/70 transition-colors hover:bg-gray-100 dark:bg-white/[0.045] dark:hover:bg-white/[0.065]`}>
+      <article className={`${featured ? 'grid gap-5 p-4 sm:grid-cols-[12rem_minmax(0,1fr)] sm:p-5' : 'grid gap-3 p-3 min-[360px]:grid-cols-[7.5rem_minmax(0,1fr)] min-[360px]:gap-4'} group h-full w-full rounded-lg bg-gray-100/70 transition-colors hover:bg-gray-100 dark:bg-white/[0.045] dark:hover:bg-white/[0.065]`}>
         <Link
           href={profileHref}
-          className={`${featured ? 'mx-auto aspect-square w-44 sm:w-full' : 'aspect-square w-full self-start'} block overflow-hidden rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500`}
+          className={`${featured ? 'mx-auto aspect-square w-44 sm:w-full' : 'mx-auto aspect-square w-24 self-start min-[360px]:mx-0 min-[360px]:w-full'} block overflow-hidden rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500`}
           aria-label={`View ${member.name}'s profile`}
         >
           <div className="relative h-full w-full overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
@@ -121,14 +121,14 @@ export function TeamMemberCard({ member, isPI = false, variant = 'default' }: Te
           <div className={`${featured ? 'px-3 pb-2 sm:px-5' : 'px-2 pb-1'} mt-auto flex items-center justify-between`}>
             <Link
               href={profileHref}
-              className="text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              className="inline-flex min-h-8 items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             >
               Profile →
             </Link>
             <div className="flex items-center gap-3">
               <ObfuscatedEmailLink
                 encodedEmail={encodedEmail}
-                className="text-gray-400 transition-colors hover:text-brand-600 dark:hover:text-brand-300"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-200/70 hover:text-brand-600 dark:hover:bg-white/[0.08] dark:hover:text-brand-300"
                 title="Send email"
                 aria-label={`Email ${member.name}`}
               >
@@ -140,7 +140,7 @@ export function TeamMemberCard({ member, isPI = false, variant = 'default' }: Te
                   href={member.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 transition-colors hover:text-brand-600 dark:hover:text-brand-300"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-200/70 hover:text-brand-600 dark:hover:bg-white/[0.08] dark:hover:text-brand-300"
                   title="Visit website"
                   aria-label={`Visit ${member.name}'s website`}
                 >
@@ -221,13 +221,13 @@ export function TeamMemberCard({ member, isPI = false, variant = 'default' }: Te
       <div className="mt-5 flex items-center justify-center gap-4 border-t border-gray-100 pt-4 dark:border-white/10">
         <Link
           href={profileHref}
-          className="text-xs font-semibold uppercase tracking-[0.08em] text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+          className="inline-flex min-h-8 items-center text-xs font-semibold uppercase tracking-[0.08em] text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
         >
           Profile
         </Link>
         <ObfuscatedEmailLink
           encodedEmail={encodedEmail}
-          className="text-gray-400 transition-colors hover:text-brand-600 dark:hover:text-brand-300"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-100 hover:text-brand-600 dark:hover:bg-white/[0.08] dark:hover:text-brand-300"
           title="Send email"
           aria-label={`Email ${member.name}`}
         >
@@ -239,7 +239,7 @@ export function TeamMemberCard({ member, isPI = false, variant = 'default' }: Te
             href={member.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 transition-colors hover:text-brand-600 dark:hover:text-brand-300"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-400 transition-colors hover:bg-gray-100 hover:text-brand-600 dark:hover:bg-white/[0.08] dark:hover:text-brand-300"
             title="Visit website"
             aria-label={`Visit ${member.name}'s website`}
           >
