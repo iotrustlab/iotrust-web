@@ -276,13 +276,14 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
           </div>
 
           <div className="mt-auto max-w-2xl pt-7">
-            <h3 className="text-xl font-semibold leading-[1.16] text-gray-950 dark:text-white">
-              {theme.title}
-            </h3>
-            <div className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 dark:text-brand-200">
-              <span className="group-open/details:hidden">Details</span>
-              <span className="hidden group-open/details:inline">Hide details</span>
-              <ChevronDown className="h-4 w-4 transition-transform group-open/details:rotate-180" aria-hidden="true" />
+            <div className="grid grid-cols-[minmax(0,1fr)_1.75rem] items-center gap-3">
+              <h3 className="min-w-0 text-xl font-semibold leading-[1.16] text-gray-950 dark:text-white">
+                {theme.title}
+              </h3>
+              <span className="grid h-7 w-7 translate-y-px place-items-center rounded-full border border-gray-950/10 bg-white/60 text-gray-600 shadow-[0_8px_24px_rgb(15_23_42_/_0.10)] backdrop-blur transition-all duration-200 group-hover/details:-translate-y-0.5 group-hover/details:border-[var(--theme-accent)] group-hover/details:text-[var(--theme-accent)] group-open/details:border-[var(--theme-accent)] group-open/details:bg-[var(--theme-accent)] group-open/details:text-white dark:border-white/15 dark:bg-white/[0.055] dark:text-gray-300 dark:shadow-none dark:group-open/details:text-[#0a0f19]">
+                <ChevronDown className="h-3 w-3 transition-transform duration-200 group-open/details:rotate-180" aria-hidden="true" />
+              </span>
+              <span className="sr-only">Toggle details for {theme.title}</span>
             </div>
           </div>
         </summary>
