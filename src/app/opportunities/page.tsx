@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getLabInfo } from "@/lib/data";
-import { encodeEmailAddress } from "@/lib/email-obfuscation";
+import { ArrowRight, Mail } from "lucide-react";
 import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
+import { PageIntro } from "@/components/page-intro";
+import { encodeEmailAddress } from "@/lib/email-obfuscation";
+import { getLabInfo } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Opportunities",
@@ -11,24 +13,28 @@ export const metadata: Metadata = {
 
 const tracks = [
   {
-    title: "Prospective PhD Students",
+    label: "PhD Students",
+    title: "Long-horizon research in CPS security, IoT privacy, formal methods, and trustworthy autonomy.",
     details:
-      "Students with interests in CPS security, IoT privacy, formal methods, or trustworthy AI are encouraged to reach out with research background and goals.",
+      "Send a concise research statement, CV, transcripts if available, and links to systems, papers, or code that show how you work.",
   },
   {
-    title: "Postdoctoral Researchers",
+    label: "Postdocs",
+    title: "Project leadership, mentoring, and publication-driven research across trustworthy cyber-physical systems.",
     details:
-      "We welcome postdoctoral applicants interested in leading projects and mentoring students in cyber-physical systems and trustworthy autonomy.",
+      "Share the research agenda you want to lead, the communities you publish in, and the students or systems you hope to build around.",
   },
   {
-    title: "Undergraduate Researchers",
+    label: "Undergraduates",
+    title: "Hands-on contributions through prototypes, experiments, literature reviews, and testbed evaluation.",
     details:
-      "Undergraduates can contribute to active projects through literature reviews, prototyping, data collection, and system evaluation.",
+      "A short note is enough: include your technical background, weekly availability, and one or two topics that genuinely interest you.",
   },
   {
-    title: "Collaborators and Visiting Scholars",
+    label: "Collaborators",
+    title: "Cross-institution work on resilient autonomy, secure infrastructure, and human-centered sensing.",
     details:
-      "We collaborate across academia, industry, and government on resilient autonomous systems, secure infrastructure, and human-in-the-loop intelligence.",
+      "Bring a concrete problem, deployment context, dataset, system, or evaluation setting where trustworthy CPS research can matter.",
   },
 ];
 
@@ -37,67 +43,83 @@ export default async function OpportunitiesPage() {
   const encodedLeadEmail = encodeEmailAddress(labInfo.lead.email);
 
   return (
-    <div className="bg-white dark:bg-gray-900 py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <header className="mx-auto max-w-3xl text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-            Opportunities
-          </h1>
-          <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-            Join us in building trustworthy, resilient cyber-physical systems.
-          </p>
-        </header>
-
-        <section className="rounded-2xl border border-blue-200/60 dark:border-blue-800/50 bg-blue-50/70 dark:bg-blue-900/20 p-6 sm:p-8 mb-10">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">How to Reach Out</h2>
-          <p className="mt-2 text-gray-700 dark:text-gray-200">
-            Send a brief email to{" "}
-            <ObfuscatedEmailLink
-              encodedEmail={encodedLeadEmail}
-              showAddress
-              className="text-blue-700 dark:text-blue-300 hover:underline"
-            />{" "}
-            including your CV, interests, and any relevant publications or project links.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {labInfo.focus_areas.map((area) => (
-              <span
-                key={area}
-                className="rounded-md border border-blue-200 dark:border-blue-700 bg-white/80 dark:bg-blue-900/30 px-3 py-1.5 text-sm text-blue-900 dark:text-blue-100"
-              >
-                {area}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-5 sm:grid-cols-2">
-          {tracks.map((track) => (
-            <article
-              key={track.title}
-              className="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6"
-            >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{track.title}</h3>
-              <p className="mt-2 text-sm text-gray-700 dark:text-gray-200 leading-6">{track.details}</p>
-            </article>
-          ))}
-        </section>
-
-        <section className="mt-10 flex flex-wrap gap-3">
+    <main className="bg-white dark:bg-gray-950">
+      <PageIntro
+        eyebrow="Opportunities"
+        title="Work with IoTrust Lab."
+        lede="The best first email is specific: what you want to study, what you have built, and how it connects to trustworthy CPS."
+      >
+        <div className="flex flex-wrap gap-3">
+          <ObfuscatedEmailLink
+            encodedEmail={encodedLeadEmail}
+            className="inline-flex items-center gap-2 rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          >
+            <Mail className="h-4 w-4" />
+            Email the lab
+          </ObfuscatedEmailLink>
           <Link
             href="/research"
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 transition-colors"
+            className="inline-flex items-center gap-2 rounded-md border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:border-brand-300 hover:text-brand-700 dark:border-white/15 dark:text-gray-100 dark:hover:border-brand-500 dark:hover:text-brand-200"
           >
-            Explore Current Research
+            Current research
+            <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link
-            href="/people"
-            className="rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-semibold text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            Meet the Team
-          </Link>
-        </section>
-      </div>
-    </div>
+        </div>
+      </PageIntro>
+
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:px-8 lg:py-16">
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-950 dark:text-white">
+            Paths Into the Lab
+          </h2>
+          <div className="mt-6 divide-y divide-gray-200 border-y border-gray-200 dark:divide-white/10 dark:border-white/10">
+            {tracks.map((track) => (
+              <article key={track.label} className="grid gap-4 py-7 sm:grid-cols-[10rem_minmax(0,1fr)]">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-300">
+                  {track.label}
+                </p>
+                <div>
+                  <h3 className="text-xl font-semibold leading-snug tracking-tight text-gray-950 dark:text-white">
+                    {track.title}
+                  </h3>
+                  <p className="mt-3 text-base leading-7 text-gray-700 dark:text-gray-300">
+                    {track.details}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <aside className="lg:pt-12">
+          <div className="border-y border-gray-200 py-6 dark:border-white/10">
+            <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
+              What We Work On
+            </h2>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {labInfo.focus_areas.map((area) => (
+                <span
+                  key={area}
+                  className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-white/[0.07] dark:text-gray-300"
+                >
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 border-b border-gray-200 pb-6 dark:border-white/10">
+            <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
+              Before You Send
+            </h2>
+            <ul className="mt-4 space-y-3 text-sm leading-6 text-gray-700 dark:text-gray-300">
+              <li>Keep the message short and concrete.</li>
+              <li>Include links instead of large attachments when possible.</li>
+              <li>Name the research direction you want to join or shape.</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
   );
 }

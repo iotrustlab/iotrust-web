@@ -1,38 +1,51 @@
-import { getCourses } from '@/lib/data';
-import { CourseCard } from '@/components/course-card';
+import { CourseCard } from "@/components/course-card";
+import { PageIntro } from "@/components/page-intro";
+import { getCourses } from "@/lib/data";
 
 export default async function CoursesPage() {
   const courses = await getCourses();
+  const institutions = new Set(courses.map((course) => course.institution)).size;
+  const latestTerms = courses
+    .flatMap((course) => course.terms)
+    .slice(0, 4)
+    .join(" / ");
 
   return (
-    <div className="bg-white dark:bg-gray-900">
-      {/* Header Section */}
-      <section className="bg-gray-50 dark:bg-gray-800 py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-              Teaching
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Courses taught by Dr. Luis A. Garcia at the University of Utah and beyond.
-            </p>
+    <main className="bg-white dark:bg-gray-950">
+      <PageIntro
+        eyebrow="Courses"
+        title="Teaching that connects systems, security, and implementation."
+        lede="A compact catalog of courses taught across digital systems, CPS security, and applied network security."
+      >
+        <dl className="grid max-w-3xl grid-cols-3 gap-5">
+          <div>
+            <dt className="text-sm text-gray-500 dark:text-gray-400">Courses</dt>
+            <dd className="mt-1 text-2xl font-semibold text-gray-950 dark:text-white">
+              {courses.length}
+            </dd>
           </div>
-        </div>
-      </section>
+          <div>
+            <dt className="text-sm text-gray-500 dark:text-gray-400">Institutions</dt>
+            <dd className="mt-1 text-2xl font-semibold text-gray-950 dark:text-white">
+              {institutions}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-sm text-gray-500 dark:text-gray-400">Recent terms</dt>
+            <dd className="mt-1 text-sm font-semibold leading-6 text-gray-950 dark:text-white">
+              {latestTerms}
+            </dd>
+          </div>
+        </dl>
+      </PageIntro>
 
-      {/* Courses Section */}
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {courses.map((course) => (
-              <CourseCard key={course.id} course={course} />
-            ))}
-          </div>
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
+        <div className="divide-y divide-gray-200 border-y border-gray-200 dark:divide-white/10 dark:border-white/10">
+          {courses.map((course) => (
+            <CourseCard key={course.id} course={course} />
+          ))}
         </div>
       </section>
-    </div>
+    </main>
   );
 }
-
-
-

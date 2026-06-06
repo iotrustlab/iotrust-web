@@ -100,10 +100,10 @@ export default async function PersonDetailPage({ params }: PageProps) {
 
   return (
     <main className="bg-white dark:bg-gray-950">
-      <section className="border-b border-gray-200 bg-gray-50 py-12 dark:border-white/10 dark:bg-gray-900/70 sm:py-16">
+      <section className="border-b border-gray-200 bg-white py-12 dark:border-white/10 dark:bg-gray-950 sm:py-16">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-8">
           <div className="order-2 lg:order-1">
-            <div className="relative mx-auto aspect-[4/5] max-w-[280px] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-white/10 dark:bg-gray-800">
+            <div className="relative mx-auto aspect-square max-w-[280px] overflow-hidden rounded-lg bg-gray-100 dark:bg-white/[0.055]">
               <Image
                 src={withBasePath(person.image)}
                 alt={person.name}
@@ -188,11 +188,11 @@ export default async function PersonDetailPage({ params }: PageProps) {
               <h2 className="text-2xl font-semibold tracking-tight text-gray-950 dark:text-white">
                 Research Questions
               </h2>
-              <div className="mt-4 space-y-3">
+              <div className="mt-4 divide-y divide-gray-200 border-y border-gray-200 dark:divide-white/10 dark:border-white/10">
                 {person.research_questions.map((question) => (
                   <p
                     key={question}
-                    className="rounded-md border border-gray-200 bg-gray-50 p-4 text-sm leading-6 text-gray-700 dark:border-white/10 dark:bg-gray-900 dark:text-gray-300"
+                    className="py-4 text-base leading-7 text-gray-700 dark:text-gray-300"
                   >
                     {question}
                   </p>
@@ -228,7 +228,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
         </div>
 
         <aside className="space-y-8">
-          <section className="rounded-lg border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-gray-900">
+          <section className="border-y border-gray-200 py-5 dark:border-white/10">
             <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
               Contact
             </h2>
@@ -241,7 +241,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
           </section>
 
           {person.research_interests?.length ? (
-            <section className="rounded-lg border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-gray-900">
+            <section className="border-b border-gray-200 pb-5 dark:border-white/10">
               <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
                 Research Interests
               </h2>
@@ -259,7 +259,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
           ) : null}
 
           {(projects.length > 0 || person.current_projects?.length) && (
-            <section className="rounded-lg border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-gray-900">
+            <section className="border-b border-gray-200 pb-5 dark:border-white/10">
               <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
                 Projects
               </h2>
