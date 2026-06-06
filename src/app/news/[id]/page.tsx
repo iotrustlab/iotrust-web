@@ -49,6 +49,12 @@ export default async function NewsPost({ params }: PageProps) {
     notFound();
   }
 
+  const articleBody = Array.isArray((post as { body?: unknown }).body)
+    ? (post as { body: string[] }).body
+    : [];
+  const isPortraitImage =
+    (post as { imageLayout?: string }).imageLayout === "portrait";
+
   return (
     <main className="bg-white dark:bg-gray-950">
       <article>
@@ -86,18 +92,63 @@ export default async function NewsPost({ params }: PageProps) {
 
         <div className="mx-auto max-w-4xl px-6 py-10 lg:px-8 lg:py-14">
           {post.image ? (
-            <figure className="mb-10">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100 dark:bg-white/[0.055]">
+            <figure
+              className={
+                isPortraitImage
+                  ? "mb-10 grid gap-6 border-y border-gray-200 py-8 dark:border-white/10 sm:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]"
+                  : "mb-10"
+              }
+            >
+              <div
+                className={
+                  isPortraitImage
+                    ? "relative aspect-[2/3] overflow-hidden rounded-md bg-gray-100 ring-1 ring-gray-300 dark:bg-white/[0.055] dark:ring-white/15"
+                    : "relative aspect-[16/9] overflow-hidden rounded-lg bg-gray-100 dark:bg-white/[0.055]"
+                }
+              >
                 <Image
                   src={withBasePath(post.image)}
                   alt={post.title}
                   fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 56rem"
+                  className={isPortraitImage ? "object-cover object-top" : "object-cover"}
+                  sizes={
+                    isPortraitImage
+                      ? "(max-width: 640px) 90vw, 24rem"
+                      : "(max-width: 1024px) 100vw, 56rem"
+                  }
                   priority
                 />
               </div>
+              {isPortraitImage ? (
+                <figcaption className="flex flex-col justify-end border-t border-gray-200 pt-4 text-sm leading-6 text-gray-600 dark:border-white/10 dark:text-gray-400 sm:border-t-0 sm:pt-0">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                    Radio Interview
+                  </p>
+                  <p className="mt-2 text-base font-semibold text-gray-950 dark:text-white">
+                    KPCW Mountain Money
+                  </p>
+                  <p className="mt-3">
+                    Luis Garcia discussed AI guardrails, Mythos Preview, and why high-capability tools need structured test environments.
+                  </p>
+                  <p className="mt-4 text-xs uppercase tracking-[0.14em] text-gray-500 dark:text-gray-500">
+                    Photo: Kahlert School of Computing
+                  </p>
+                </figcaption>
+              ) : null}
             </figure>
+          ) : null}
+
+          {articleBody.length ? (
+            <section className="mb-10 space-y-7 border-b border-gray-200 pb-8 dark:border-white/10">
+              {articleBody.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="text-lg leading-9 text-gray-800 dark:text-gray-200"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </section>
           ) : null}
 
           {post.links?.length ? (

@@ -27,7 +27,7 @@ export async function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="site-footer" className="border-t border-gray-200 bg-white dark:border-white/10 dark:bg-gray-950">
+    <footer id="site-footer" className="border-t border-gray-200 bg-transparent dark:border-white/10">
       <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
         <div className="grid gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div className="max-w-xl">

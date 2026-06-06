@@ -17,6 +17,8 @@ function formatDate(date: string) {
 export default function NewsIndex() {
   const items = [...data].sort((a, b) => b.date.localeCompare(a.date));
   const [lead, ...rest] = items;
+  const leadImageIsPortrait =
+    (lead as { imageLayout?: string } | undefined)?.imageLayout === "portrait";
   const tagCount = new Set(items.flatMap((item) => item.tags ?? [])).size;
 
   return (
@@ -90,7 +92,7 @@ export default function NewsIndex() {
                   src={withBasePath(lead.image)}
                   alt={lead.title}
                   fill
-                  className="object-cover"
+                  className={leadImageIsPortrait ? "object-cover object-top" : "object-cover"}
                   sizes="(max-width: 1024px) 100vw, 20rem"
                 />
               ) : (

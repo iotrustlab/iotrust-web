@@ -238,7 +238,7 @@ function ThemeVisual({ themeId }: { themeId: string }) {
 
   return (
     <div
-      className="relative min-h-[235px] overflow-hidden md:min-h-full"
+      className="relative min-h-[180px] overflow-hidden sm:min-h-[200px] md:min-h-full"
       style={{ background: `linear-gradient(135deg, ${visual.background} 0%, #081018 100%)` }}
     >
       <div
@@ -251,16 +251,16 @@ function ThemeVisual({ themeId }: { themeId: string }) {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_45%,rgba(0,0,0,0.16)_100%)]" />
       <ThemePattern variant={visual.variant} accent={visual.accent} />
       <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: visual.accent }} />
-      <div className="relative z-10 flex h-full min-h-[235px] flex-col justify-between p-6 md:min-h-full lg:p-7">
+      <div className="relative z-10 flex h-full min-h-[180px] flex-col justify-between p-5 sm:min-h-[200px] sm:p-6 md:min-h-full">
         <div className="flex items-start justify-between gap-4">
-          <span className="rounded-md bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 ring-1 ring-white/15 backdrop-blur">
+          <span className="rounded-md bg-white/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/85 ring-1 ring-white/15 backdrop-blur">
             {visual.label}
           </span>
-          <span className="rounded-md bg-white/10 p-3 text-white ring-1 ring-white/15 backdrop-blur">
-            <Icon className="h-6 w-6" aria-hidden="true" />
+          <span className="rounded-md bg-white/10 p-2.5 text-white ring-1 ring-white/15 backdrop-blur">
+            <Icon className="h-5 w-5" aria-hidden="true" />
           </span>
         </div>
-        <p className="max-w-[18rem] text-2xl font-semibold leading-8 text-white lg:text-3xl lg:leading-10">
+        <p className="max-w-[17rem] text-xl font-semibold leading-7 text-white sm:text-2xl sm:leading-8">
           {visual.subtitle}
         </p>
       </div>
@@ -272,37 +272,37 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
   const related = projects.filter(p => theme.projectIds.includes(p.id)).slice(0, 2);
   const visual = themeVisuals[theme.id] ?? fallbackThemeVisual;
   return (
-    <article className="grid overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 dark:hover:border-brand-700/70 dark:hover:bg-white/[0.04] md:min-h-[350px] md:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.35fr)] lg:grid-cols-[minmax(330px,0.9fr)_minmax(0,1.45fr)]">
+    <article className="grid overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 dark:hover:border-brand-700/70 dark:hover:bg-white/[0.04] md:min-h-[300px] md:grid-cols-[minmax(220px,0.75fr)_minmax(0,1.35fr)] lg:grid-cols-[minmax(300px,0.85fr)_minmax(0,1.5fr)]">
       <ThemeVisual themeId={theme.id} />
-      <div className="flex min-h-[350px] flex-col p-6 sm:p-7">
-        <h3 className="max-w-4xl text-3xl font-semibold leading-tight text-gray-950 dark:text-white sm:text-4xl">
+      <div className="flex flex-col p-5 sm:p-6 md:min-h-[300px]">
+        <h3 className="max-w-4xl text-2xl font-semibold leading-tight text-gray-950 dark:text-white sm:text-3xl sm:leading-tight">
           {theme.title}
         </h3>
 
-        <p className="mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300 sm:text-xl sm:leading-9">
+        <p className="mt-3.5 max-w-4xl text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg sm:leading-8">
           {visual.lede}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2.5">
+        <div className="mt-4 flex flex-wrap gap-2">
           {visual.pills.map((pill) => (
             <span
               key={pill}
-              className="rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+              className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm font-medium text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
             >
               {pill}
             </span>
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-5">
           {related.length ? (
-            <div className="rounded-md bg-gray-50/80 p-4 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:ring-white/10">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
+            <div className="rounded-md bg-gray-50/80 p-3.5 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:ring-white/10">
+              <p className="mb-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
                 Linked Projects
               </p>
-              <ul className="grid gap-3 lg:grid-cols-2">
+              <ul className="grid gap-2.5 lg:grid-cols-2">
                 {related.map(p => (
-                  <li key={p.id} className="text-base leading-7">
+                  <li key={p.id} className="text-sm leading-6 sm:text-base sm:leading-7">
                     <Link href={`/research/${p.id}`} className="font-medium text-gray-900 hover:text-brand-700 dark:text-gray-100 dark:hover:text-brand-300">{p.title}</Link>
                     <span className="text-sm text-gray-500 dark:text-gray-400"> • {p.agency}</span>
                   </li>
@@ -310,11 +310,11 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
               </ul>
             </div>
           ) : (
-            <p className="rounded-md bg-gray-50/80 p-4 text-base leading-7 text-gray-600 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:text-gray-400 dark:ring-white/10">
+            <p className="rounded-md bg-gray-50/80 p-3.5 text-base leading-7 text-gray-600 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:text-gray-400 dark:ring-white/10">
               Cross-cutting research area spanning sensing, privacy, and resilient system design.
             </p>
           )}
-          <Link href={`/research#${theme.id}`} className="mt-5 inline-flex text-base font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
+          <Link href={`/research#${theme.id}`} className="mt-4 inline-flex text-base font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
             Explore this theme →
           </Link>
         </div>
@@ -325,7 +325,7 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
 
 function ThemesPreview() {
   return (
-    <section id="research" className="mx-auto max-w-7xl scroll-mt-24 space-y-10 px-4 py-16 sm:px-6">
+    <section id="research" className="mx-auto max-w-7xl scroll-mt-24 space-y-8 px-4 py-14 sm:px-6 sm:py-16">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
@@ -337,7 +337,7 @@ function ThemesPreview() {
         </div>
         <Link href="/research" className="text-lg font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">View all themes →</Link>
       </div>
-      <div className="mx-auto grid w-full max-w-6xl items-stretch gap-7">
+      <div className="mx-auto grid w-full max-w-6xl items-stretch gap-5 sm:gap-6">
         {themes.map((t) => <ThemeCard key={t.id} theme={t} />)}
       </div>
     </section>
@@ -474,6 +474,8 @@ function RecentNews() {
   const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 4);
   if (!items.length) return null;
   const [lead, ...briefs] = items;
+  const leadImageIsPortrait =
+    (lead as { imageLayout?: string }).imageLayout === 'portrait';
 
   return (
     <section id="news" className="scroll-mt-24 border-y border-gray-200 bg-[#fbfbfa] dark:border-white/10 dark:bg-gray-950">
@@ -497,34 +499,98 @@ function RecentNews() {
           </div>
         </div>
 
-        <div className="grid gap-8 py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
-          <Link
-            href={`/news/${lead.id}`}
-            className="group border-b border-gray-300 pb-8 transition-colors hover:border-brand-300 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8 dark:border-white/15 dark:hover:border-brand-500"
-          >
-            <div className="flex flex-wrap items-center gap-3 text-sm">
-              <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
-                Front Page
-              </span>
-              <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(lead.date)}</span>
-            </div>
-            <h3 className="mt-5 max-w-3xl font-serif text-3xl font-semibold leading-tight text-gray-950 group-hover:text-brand-700 sm:text-5xl dark:text-white dark:group-hover:text-brand-200">
-              {lead.title}
-            </h3>
-            <p className="mt-5 max-w-3xl text-xl leading-9 text-gray-700 dark:text-gray-300">
-              {lead.summary}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {lead.tags.slice(0, 3).map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-gray-300 bg-white px-3 py-1 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
-                >
-                  {tag}
+        <div
+          className={
+            lead.image
+              ? 'grid gap-8 py-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.55fr)]'
+              : 'grid gap-8 py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]'
+          }
+        >
+          {lead.image ? (
+            <Link
+              href={`/news/${lead.id}`}
+              className="group grid overflow-hidden border-y border-gray-300 text-inherit transition-colors hover:border-brand-300 dark:border-white/15 dark:hover:border-brand-500 lg:grid-cols-[minmax(220px,0.58fr)_minmax(0,1fr)]"
+            >
+              <figure className="relative min-h-[320px] overflow-hidden bg-gray-100 dark:bg-white/[0.055] sm:min-h-[390px] lg:min-h-[500px]">
+                <Image
+                  src={withBasePath(lead.image)}
+                  alt={lead.title}
+                  fill
+                  className={leadImageIsPortrait ? 'object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]' : 'object-cover transition-transform duration-500 group-hover:scale-[1.03]'}
+                  sizes="(max-width: 1024px) 100vw, 28rem"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.78)_100%)]" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-200">
+                    Radio Interview
+                  </p>
+                  <p className="mt-1 text-base font-semibold leading-tight">
+                    KPCW Mountain Money
+                  </p>
+                  <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/65">
+                    Photo: Kahlert School of Computing
+                  </p>
+                </figcaption>
+              </figure>
+
+              <div className="flex flex-col border-t border-gray-300 bg-[#fbfbfa] p-5 dark:border-white/15 dark:bg-gray-950 sm:p-6 lg:border-l lg:border-t-0 lg:p-7">
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                    Front Page
+                  </span>
+                  <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(lead.date)}</span>
+                </div>
+                <h3 className="mt-5 font-serif text-3xl font-semibold leading-tight text-gray-950 group-hover:text-brand-700 sm:text-5xl lg:text-4xl xl:text-5xl dark:text-white dark:group-hover:text-brand-200">
+                  {lead.title}
+                </h3>
+                <p className="mt-5 text-lg leading-8 text-gray-700 dark:text-gray-300 xl:text-xl xl:leading-9">
+                  {lead.summary}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {lead.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-gray-300 bg-white px-3 py-1 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-auto inline-flex items-center pt-8 text-base font-semibold text-brand-600 dark:text-brand-300">
+                  Read front story
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
-              ))}
-            </div>
-          </Link>
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href={`/news/${lead.id}`}
+              className="group border-b border-gray-300 pb-8 transition-colors hover:border-brand-300 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8 dark:border-white/15 dark:hover:border-brand-500"
+            >
+              <div className="flex flex-wrap items-center gap-3 text-sm">
+                <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                  Front Page
+                </span>
+                <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(lead.date)}</span>
+              </div>
+              <h3 className="mt-5 max-w-3xl font-serif text-3xl font-semibold leading-tight text-gray-950 group-hover:text-brand-700 sm:text-5xl dark:text-white dark:group-hover:text-brand-200">
+                {lead.title}
+              </h3>
+              <p className="mt-5 max-w-3xl text-xl leading-9 text-gray-700 dark:text-gray-300">
+                {lead.summary}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {lead.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-gray-300 bg-white px-3 py-1 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </Link>
+          )}
 
           <div className="space-y-0">
             {briefs.map((item) => (
@@ -1001,7 +1067,7 @@ export default async function HomePage() {
       <CoursesPreview courses={courses} />
 
       {/* Research Team */}
-      <section id="people" className="scroll-mt-24 border-y border-gray-200 bg-gray-50/70 py-14 dark:border-white/10 dark:bg-gray-950 sm:py-20">
+      <section id="people" className="scroll-mt-24 border-y border-gray-200 py-14 dark:border-white/10 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -1119,7 +1185,7 @@ export default async function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="scroll-mt-24 border-t border-gray-200 bg-gray-50/70 py-14 dark:border-white/10 dark:bg-gray-950 sm:py-20">
+      <section id="contact" className="scroll-mt-24 border-t border-gray-200 py-14 dark:border-white/10 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-9 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:items-start">
             <div>
@@ -1132,7 +1198,7 @@ export default async function HomePage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <article className="rounded-lg bg-white p-5 dark:bg-white/[0.045]">
+              <article className="rounded-lg bg-gray-50/80 p-5 ring-1 ring-gray-200 dark:bg-white/[0.045] dark:ring-white/10">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200">
                   <Mail className="h-5 w-5" aria-hidden="true" />
                 </div>
@@ -1153,7 +1219,7 @@ export default async function HomePage() {
                 />
               </article>
 
-              <article className="rounded-lg bg-white p-5 dark:bg-white/[0.045]">
+              <article className="rounded-lg bg-gray-50/80 p-5 ring-1 ring-gray-200 dark:bg-white/[0.045] dark:ring-white/10">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200">
                   <MapPin className="h-5 w-5" aria-hidden="true" />
                 </div>
