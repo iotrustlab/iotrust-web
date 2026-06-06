@@ -43,7 +43,6 @@ next-env.d.ts
 # local working files (not for repo)
 /HANDOFF.md
 /tasks/
-/docs/
 /all_pubs.bib
 /bib_to_pubs_json.py
 /themes.json

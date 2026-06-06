@@ -292,7 +292,6 @@ export async function getPersonByType(id: string, type: 'native' | 'static' | 'j
     return person && person.type === type ? person : null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getProjectByType(id: string, _type: 'native' | 'static' | 'json'): Promise<FundedProject | null> {
     const project = await getFundedProject(id);
     // Note: FundedProject doesn't have a type field, so we just return the project if it exists

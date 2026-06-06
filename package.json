@@ -8,7 +8,7 @@
     "prebuild": "npm run generate:og",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "deploy": "npm run build && touch out/.nojekyll",
     "export:project-report": "tsx scripts/export_project_report.ts",
     "lint:links": "tsx scripts/check_links.ts",

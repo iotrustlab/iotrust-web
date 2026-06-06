@@ -1,227 +1,110 @@
 # IoTrust Lab Website
 
-The official website for IoTrust Lab at the University of Utah. Built with Next.js and hosted on GitHub Pages.
+Official website for IoTrust Lab at the University of Utah.
 
-**Live site:** https://iotrustlab.com
+Live site: https://iotrustlab.com
 
----
+This repository is a static-export Next.js site deployed with GitHub Pages. Most site content is edited through JSON files in `src/data/` and images in `public/images/`.
 
-## For Students: Update Your Profile
+## First: Work On A PR Branch
 
-Your profile lives in `src/data/profiles/<your-id>.json`. Here's how to update it:
+Use a GitHub pull request for normal website updates. Do not make site-content changes directly on `main`.
 
-### 1. Find your profile file
-
-```
-src/data/profiles/
-├── jane_doe.json      ← Your file is named after your ID
-├── john_smith.json
-└── ...
-```
-
-### 2. Edit your profile
-
-Open your JSON file and update any fields:
-
-```json
-{
-  "id": "jane_doe",
-  "name": "Jane Doe",
-  "role": "PhD Student",
-  "email": "jane.doe@utah.edu",
-  "image": "/images/team/jane-doe.jpg",
-  "bio": "Brief bio about yourself and your research interests.",
-  "research_interests": [
-    "IoT Security",
-    "Machine Learning"
-  ],
-  "website": "https://your-website.com",
-  "google_scholar": "https://scholar.google.com/citations?user=YOUR_ID",
-  "linkedin": "https://linkedin.com/in/your-profile",
-  "github": "https://github.com/your-username",
-  "twitter": "@your_handle",
-  "type": "json"
-}
-```
-
-### 3. Update your headshot
-
-1. Add your photo to `/public/images/team/your-name.jpg`
-2. Update the `"image"` field in your profile to match the path
-3. Recommended: square image, at least 400x400px
-
-### 4. Test and submit
+Before editing a profile, project, news item, publication, image, or page text, create a new branch from the latest `main`:
 
 ```bash
-# Test locally
+git switch main
+git pull
+git switch -c update-my-profile   # choose a short branch name for your change
+git branch --show-current         # should not print "main"
 npm install
 npm run dev
-# Open http://localhost:3000/people and check your profile
+```
 
-# If it looks good, commit and push
-git add .
+Make your content changes, preview them at `http://localhost:3000`, then run:
+
+```bash
+npm run lint
+npm run lint:links
+npm run build
+```
+
+Commit your work and open a pull request:
+
+```bash
+git status
+git add <files-you-changed>
 git commit -m "Update my profile"
-git push
+git push -u origin update-my-profile
 ```
 
-The site will automatically rebuild and deploy.
+GitHub will deploy the site after the PR is reviewed, merged into `main`, and the Pages workflow finishes.
 
----
+## Start Here
 
-## Quick Reference
+After you are on a PR branch, use the relevant guide:
 
-| Task | What to edit |
-|------|--------------|
-| Update your profile | `src/data/profiles/<your-id>.json` |
-| Add your headshot | `/public/images/team/<name>.jpg` |
-| Add a publication | `src/data/publications.json` |
-| Add a news item | `src/data/news.json` + image in `/public/images/news/` |
-| Add a course | `src/data/courses.json` |
+| Need to do this | Read this |
+| --- | --- |
+| Run the site locally | [docs/local-development.md](docs/local-development.md) |
+| Open a GitHub pull request | [docs/pull-request-workflow.md](docs/pull-request-workflow.md) |
+| Understand pages, routes, and data files | [docs/site-structure.md](docs/site-structure.md) |
+| Update your people/profile page | [docs/update-profiles.md](docs/update-profiles.md) |
+| Add or edit research themes and funded projects | [docs/update-research.md](docs/update-research.md) |
+| Add a news post | [docs/update-news.md](docs/update-news.md) |
+| Add or edit publications | [docs/update-publications.md](docs/update-publications.md) |
+| Update courses, lab info, footer/contact basics | [docs/update-courses-and-lab-info.md](docs/update-courses-and-lab-info.md) |
+| Prepare images, PDFs, and other assets | [docs/assets-and-media.md](docs/assets-and-media.md) |
+| Understand deployment | [docs/deployment.md](docs/deployment.md) |
 
----
+## Repository Map
 
-## Development
-
-### Setup
-
-```bash
-npm install
-npm run dev      # Start dev server at http://localhost:3000
+```text
+src/app/                 Next.js routes and page components
+src/components/          Shared UI components
+src/data/                Site content edited by lab members
+src/data/profiles/       Individual member profile JSON files
+src/lib/                 Data loaders, SEO helpers, utilities
+public/images/           Images served by the website
+public/docs/             Public PDFs and downloadable files
+docs/                    Contributor documentation
+scripts/                 Validation, import, and generation scripts
 ```
 
-### Build & Test
+Most updates do not require editing React components. Start with the docs page for the section you want to update.
 
-```bash
-npm run build    # Build static site
-npm run start    # Preview production build
-npm run lint     # Check for errors
-```
+## Important Rules
 
-### Useful Scripts
-
-```bash
-npx tsx scripts/validate-themes.ts   # Validate data references
-npx tsx scripts/check_links.ts       # Check for broken links
-```
-
----
-
-## Content Structure
-
-All content is stored as JSON in `src/data/`:
-
-```
-src/data/
-├── lab-info.json       # Lab name, mission, PI info
-├── people-index.json   # Who's in which category (PI, PhD, undergrad, etc.)
-├── profiles/           # Individual profile files
-│   ├── lag.json
-│   ├── jane_doe.json
-│   └── ...
-├── publications.json   # All publications
-├── projects.json       # Funded research projects
-├── themes.json         # Research themes/areas
-├── courses.json        # Courses taught
-└── news.json           # News items
-```
-
-Images live in `/public/images/`:
-
-```
-public/images/
-├── team/              # Headshots
-├── news/              # News article images
-├── themes/            # Research theme hero images
-├── projects/          # Project images
-└── iotrust-logo.png   # Lab logo
-```
-
----
-
-## Adding Content
-
-### New Team Member
-
-1. Create `src/data/profiles/<id>.json`:
-   ```json
-   {
-     "id": "new_person",
-     "name": "New Person",
-     "role": "PhD Student",
-     "email": "new.person@utah.edu",
-     "image": "/images/team/new-person.jpg",
-     "type": "json"
-   }
-   ```
-
-2. Add to `src/data/people-index.json` under the right category:
-   ```json
-   "phdStudents": [
-     { "id": "new_person", "type": "json" }
-   ]
-   ```
-
-3. Add headshot to `/public/images/team/new-person.jpg`
-
-### New Publication
-
-Add to `src/data/publications.json`:
-
-```json
-{
-  "id": "unique-pub-id",
-  "title": "Paper Title",
-  "authors": ["Author One", "Author Two"],
-  "venue": "Conference/Journal Name",
-  "year": 2024,
-  "type": "conference",
-  "doi": "https://doi.org/..."
-}
-```
-
-### New News Item
-
-Add to `src/data/news.json`:
-
-```json
-{
-  "id": "news-url-slug",
-  "title": "News Title",
-  "date": "2024-03-15",
-  "summary": "Brief description.",
-  "tags": ["Award", "Publication"],
-  "image": "/images/news/news-image.jpg"
-}
-```
-
-Add the image to `/public/images/news/`.
-
----
-
-## Deployment
-
-The site automatically deploys to GitHub Pages when you push to `main`.
-
-1. Make changes
-2. Test locally with `npm run dev`
-3. Commit and push
-4. Wait ~2 minutes for GitHub Actions to deploy
-5. Check https://iotrustlab.com
-
----
+- Do not commit secrets, private datasets, internal credentials, or unpublished sensitive material.
+- Use root-relative asset paths such as `/images/team/example.jpg`.
+- Keep IDs stable once they are public. IDs become URLs, anchors, and cross-file references.
+- Use `type: "json"` for normal people/profile entries.
+- Check that every referenced image or PDF exists under `public/`.
+- Prefer clear factual content over marketing copy.
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router, static export)
-- **Styling:** Tailwind CSS v4
-- **Language:** TypeScript
-- **Hosting:** GitHub Pages
-- **Domain:** iotrustlab.com
+- Next.js 16 with App Router and static export
+- React 19
+- TypeScript
+- Tailwind CSS 3
+- GitHub Pages
 
----
+## Useful Commands
 
-## Need Help?
+```bash
+npm run dev              # Local dev server
+npm run lint             # ESLint
+npm run lint:links       # Internal references and public asset checks
+npx tsx scripts/validate-themes.ts
+npm run build            # Static production build
+npm run deploy           # Local build plus out/.nojekyll marker
+```
 
-- Check existing profiles in `src/data/profiles/` for examples
-- Run `npm run dev` to test changes locally before pushing
-- Ask in the lab Slack if you're stuck
+`npm run build` also regenerates Open Graph images through `npm run generate:og`.
+
+## Getting Help
+
+Look at nearby examples before adding new content. Existing files in `src/data/` are the best templates because they are already rendered by the site.
+
+If you are unsure which fields to use, open a small draft PR and ask for review.
