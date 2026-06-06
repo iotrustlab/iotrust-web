@@ -3,14 +3,17 @@ import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { ArrowRight, BookOpen, BriefcaseBusiness } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
+import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 import themes from "@/data/themes.json";
 import projects from "@/data/projects.json";
 import pubs from "@/data/publications.json";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Research",
   description: "Explore our research themes and funded projects in cyber-physical systems security, IoT privacy, and brain-centered computing.",
-};
+  path: "/research",
+  image: SOCIAL_IMAGES.research,
+});
 
 function PublicationTitleLink({ id, title, url }: { id: string; title: string; url?: string }) {
   const cleanUrl = url?.trim();

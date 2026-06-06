@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { getPublications } from "@/lib/data";
 import { PublicationsClient } from "@/components/publications-client";
 import { PageIntro } from "@/components/page-intro";
+import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Publications",
-  description: "Browse our research publications and academic contributions to IoT security.",
-};
+  description: "Search IoTrust Lab publications across cyber-physical systems security, formal methods, digital twins, sensing, and trustworthy autonomy.",
+  path: "/publications",
+  image: SOCIAL_IMAGES.publications,
+});
 
 export default async function PublicationsPage() {
   const publications = await getPublications();

@@ -5,11 +5,13 @@ import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
 import { PageIntro } from "@/components/page-intro";
 import { encodeEmailAddress } from "@/lib/email-obfuscation";
 import { getLabInfo } from "@/lib/data";
+import { createMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Opportunities",
-  description: "Explore research opportunities and join our team at IoTrust Lab.",
-};
+  description: "Explore PhD, undergraduate, postdoctoral, visiting scholar, and collaboration opportunities with IoTrust Lab.",
+  path: "/opportunities",
+});
 
 const tracks = [
   {

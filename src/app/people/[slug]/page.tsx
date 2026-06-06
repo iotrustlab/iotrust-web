@@ -26,6 +26,8 @@ import {
 import { encodeEmailAddress } from "@/lib/email-obfuscation";
 import { withBasePath } from "@/lib/with-base-path";
 import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
+import { JsonLd } from "@/components/json-ld";
+import { createMetadata, personJsonLd } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{
@@ -50,10 +52,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  return {
+  return createMetadata({
     title: person.name,
     description: person.bio,
-  };
+    path: `/people/${person.id}`,
+    image: `/images/social/profile-${person.id}.png`,
+    imageAlt: `${person.name}, ${person.role} at IoTrust Lab`,
+  });
 }
 
 function formatProjectId(id: string) {
@@ -155,6 +160,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
 
   return (
     <main className="bg-white dark:bg-gray-950">
+      <JsonLd data={personJsonLd(person)} />
       <section className="border-b border-gray-200 bg-white py-10 dark:border-white/10 dark:bg-gray-950 sm:py-14">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <Link

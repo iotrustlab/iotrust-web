@@ -11,6 +11,7 @@ import {
 import projects from "@/data/projects.json";
 import themes from "@/data/themes.json";
 import pubs from "@/data/publications.json";
+import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 import { withBasePath } from "@/lib/with-base-path";
 
 interface PageProps {
@@ -159,18 +160,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (contentType === "theme") {
     const theme = themes.find((item) => item.id === slug)!;
-    return {
+    return createMetadata({
       title: theme.title,
       description: theme.summary,
-    };
+      path: `/research/${theme.id}`,
+      image: SOCIAL_IMAGES.research,
+      imageAlt: `${theme.title} research theme at IoTrust Lab`,
+    });
   }
 
   if (contentType === "project") {
     const project = projects.find((item) => item.id === slug)!;
-    return {
+    return createMetadata({
       title: project.title,
       description: project.abstract,
-    };
+      path: `/research/${project.id}`,
+      image: SOCIAL_IMAGES.research,
+      imageAlt: `${project.title} project at IoTrust Lab`,
+    });
   }
 
   return {

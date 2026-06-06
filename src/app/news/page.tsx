@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
+import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 import data from "@/data/news.json";
 import { withBasePath } from "@/lib/with-base-path";
+
+export const metadata: Metadata = createMetadata({
+  title: "News",
+  description: "Read IoTrust Lab news, media notes, student awards, research milestones, and publication announcements.",
+  path: "/news",
+  image: SOCIAL_IMAGES.news,
+});
 
 function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-US", {

@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
+import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 import projects from "@/data/projects.json";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Funded Projects",
-  description: "Browse all our funded research projects organized by agency and timeline.",
-};
+  description: "Browse IoTrust Lab funded research projects organized by agency, status, timeline, and research theme.",
+  path: "/projects",
+  image: SOCIAL_IMAGES.research,
+});
 
 type FundedProject = (typeof projects)[number];
 type AgencyGroup = "NSF" | "NIH" | "DARPA" | "Other";

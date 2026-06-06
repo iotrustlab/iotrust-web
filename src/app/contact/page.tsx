@@ -5,11 +5,13 @@ import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
 import { PageIntro } from "@/components/page-intro";
 import { encodeEmailAddress } from "@/lib/email-obfuscation";
 import { getLabInfo } from "@/lib/data";
+import { createMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Contact",
-  description: "Get in touch with IoTrust Lab for collaborations and inquiries.",
-};
+  description: "Contact IoTrust Lab at the University of Utah for research collaboration, visits, advising, and lab opportunities.",
+  path: "/contact",
+});
 
 export default async function ContactPage() {
   const labInfo = await getLabInfo();

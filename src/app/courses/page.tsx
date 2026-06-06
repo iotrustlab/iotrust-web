@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { CourseCard } from "@/components/course-card";
 import { PageIntro } from "@/components/page-intro";
 import { getCourses } from "@/lib/data";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createMetadata({
+  title: "Courses",
+  description: "Courses taught by IoTrust Lab members across digital systems, cyber-physical systems security, and applied network security.",
+  path: "/courses",
+});
 
 export default async function CoursesPage() {
   const courses = await getCourses();

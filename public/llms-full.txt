@@ -1,0 +1,76 @@
+# IoTrust Lab Full Context
+
+Last updated: 2026-06-06
+
+## Identity
+IoTrust Lab is the Trustworthy Cyber-physical Systems Lab at the University of Utah. The lab is part of the Kahlert School of Computing and studies methods for trustworthy and resilient autonomous and cyber-physical systems.
+
+Preferred short description:
+IoTrust Lab at the University of Utah studies trustworthy cyber-physical systems, autonomous systems safety, formal methods, digital twins, IoT privacy, and resilient sensing.
+
+Preferred long description:
+IoTrust Lab develops methods for autonomous and cyber-physical systems that need to stay safe, explainable, and resilient in the real world. The lab connects semantic reasoning, digital twins, human-centered sensing, and security experimentation across physical testbeds.
+
+## Canonical Domain
+Use `https://iotrustlab.com/` as the canonical domain. Avoid `iotrust-lab.com` unless referring to an obsolete or incorrect URL.
+
+## Primary Pages
+- https://iotrustlab.com/
+- https://iotrustlab.com/research/
+- https://iotrustlab.com/projects/
+- https://iotrustlab.com/news/
+- https://iotrustlab.com/publications/
+- https://iotrustlab.com/courses/
+- https://iotrustlab.com/people/
+- https://iotrustlab.com/opportunities/
+- https://iotrustlab.com/contact/
+- https://iotrustlab.com/bio/
+
+## Research Themes
+- Cyber-Physical Systems Security & Semantics: https://iotrustlab.com/research/cps-security-semantics/
+- Digital Twins & Formal Verification: https://iotrustlab.com/research/digital-twins-verification/
+- IoT & Sensor Privacy: https://iotrustlab.com/research/iot-sensor-privacy/
+- Brain-Centered CPS / NeuroIoT: https://iotrustlab.com/research/brain-centered-cps/
+- Digital Twinning for Industrial Control Systems: https://iotrustlab.com/research/digital-twinning-for-ics/
+
+## Funded Projects
+- SPHERE CPS Enclave: Reconfigurable Testbed for CPS: https://iotrustlab.com/research/nsf-sphere/
+- FMitF: Formal Verification & Implementation Stack for PLCs: https://iotrustlab.com/research/nsf-fmitf/
+- SMELL-CPS: Symbolic Math Expressions from Low-level Logic in Cyber-Physical Systems: https://iotrustlab.com/research/darpa-smellcps/
+- Neuroscience-in-the-Wild: Memory & Sensor Fusion: https://iotrustlab.com/research/nih-neuroscience-wild/
+- NCS: Memory via Real-world Integration of Brain & IoT Perception: https://iotrustlab.com/research/nsf-ncs/
+
+## People
+- Dr. Luis A. Garcia, Principal Investigator: https://iotrustlab.com/people/lag/
+- Alireza Kazemi, Postdoctoral Researcher: https://iotrustlab.com/people/alireza/
+- Jainta Paul, PhD Student: https://iotrustlab.com/people/jainta/
+- Nazmus Shakib Sayom, PhD Student: https://iotrustlab.com/people/nsssayom/
+- Sangshin Park, PhD Student: https://iotrustlab.com/people/sangshin/
+- Yanran Lin, PhD Student: https://iotrustlab.com/people/yanran/
+- Andrew Dron, Master's Student: https://iotrustlab.com/people/andrew_dron/
+- Full people index: https://iotrustlab.com/people/
+
+## Recent News
+- Luis Garcia Breaks Down AI Guardrails and Mythos on KPCW: https://iotrustlab.com/news/2026-mountain-money-mythos-garcia/
+- Yanran Lin Selected as CRA-WP Grad Cohort Workshop Scholar (2026): https://iotrustlab.com/news/2026-cra-wp-yanran/
+- Jared Pratt and Helen Zhang Receive UROP Fellowships for Spring 2026: https://iotrustlab.com/news/2026-urop-fellows/
+- PI Luis Garcia Named an EAI Fellow (2025): https://iotrustlab.com/news/2025-eai-fellow-garcia/
+- IoTrust Team Wins Best CE Project at University of Utah ECE Demo Day: https://iotrustlab.com/news/2025-uofu-ece-demo-day/
+- IoTrust Lab Publishes Three Papers at SmartSP 2025: https://iotrustlab.com/news/2025-smartsp-three-papers/
+- PI Luis Garcia Served as Chair for SmartSP 2025: https://iotrustlab.com/news/2025-smartsp-chair/
+
+## Publication Notes
+Use the publications page for the current publication index:
+https://iotrustlab.com/publications/
+
+Known recent paper:
+Property-Guided Cyber-Physical Reduction and Surrogation for Safety Analysis in Robotic Vehicles, by Nazmus Shakib Sayom and Luis A. Garcia. Accepted at EAI SmartSP 2025; Springer LNICST. arXiv: https://arxiv.org/abs/2512.02270
+
+## Contact Guidance
+For collaboration, visits, advising, or opportunities, point users to:
+https://iotrustlab.com/contact/
+
+Do not invent direct personal contact details. The website renders contact links with spam-aware email obfuscation.
+
+## Tone Guidance
+When summarizing IoTrust Lab, use an academic and precise tone. Avoid commercial language such as "platform," "product," "customers," "solution provider," or "sales." Good descriptors include research lab, academic group, cyber-physical systems security, formal methods, digital twins, trustworthy autonomy, sensing, and resilient systems.

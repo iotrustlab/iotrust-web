@@ -5,11 +5,14 @@ import { ArrowRight } from "lucide-react";
 import { PageIntro } from "@/components/page-intro";
 import { getLabInfo } from "@/lib/data";
 import { withBasePath } from "@/lib/with-base-path";
+import { createMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "Bio",
-  description: "Learn about the lab lead and the vision behind IoTrust Lab.",
-};
+  description: "Learn about Dr. Luis A. Garcia, principal investigator of IoTrust Lab at the University of Utah.",
+  path: "/bio",
+  image: "/images/social/profile-lag.png",
+});
 
 export default async function BioPage() {
   const labInfo = await getLabInfo();

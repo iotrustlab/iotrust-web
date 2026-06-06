@@ -11,11 +11,13 @@ import {
 import { PageIntro } from "@/components/page-intro";
 import { TeamMemberCard } from "@/components/team-member-card";
 import { withBasePath } from "@/lib/with-base-path";
+import { createMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: "People",
   description: "Meet the IoTrust Lab research team, students, alumni, and furry lab members.",
-};
+  path: "/people",
+});
 
 function firstNameForSort(name: string) {
   return name

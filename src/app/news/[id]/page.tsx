@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
 import data from "@/data/news.json";
+import { articleJsonLd, createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 import { withBasePath } from "@/lib/with-base-path";
 
 type PageProps = {
@@ -35,10 +37,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  return {
+  const socialImage =
+    (post as { socialImage?: string }).socialImage || post.image || SOCIAL_IMAGES.news;
+
+  return createMetadata({
     title: post.title,
     description: post.summary,
-  };
+    path: `/news/${post.id}`,
+    image: socialImage,
+    imageAlt: post.title,
+    type: "article",
+    publishedTime: `${post.date}T00:00:00.000Z`,
+    modifiedTime: `${post.date}T00:00:00.000Z`,
+    authors: ["IoTrust Lab"],
+    tags: post.tags,
+  });
 }
 
 export default async function NewsPost({ params }: PageProps) {
@@ -54,9 +67,11 @@ export default async function NewsPost({ params }: PageProps) {
     : [];
   const isPortraitImage =
     (post as { imageLayout?: string }).imageLayout === "portrait";
+  const postForJsonLd = post as typeof post & { socialImage?: string };
 
   return (
     <main className="bg-white dark:bg-gray-950">
+      <JsonLd data={articleJsonLd(postForJsonLd)} />
       <article>
         <header className="border-b border-gray-200 bg-white py-12 dark:border-white/10 dark:bg-gray-950 sm:py-16">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
