@@ -39,40 +39,37 @@ export function PublicationsClient({ publications }: PublicationsClientProps) {
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-8 rounded-lg bg-gray-50 p-4 dark:bg-white/[0.045] sm:p-5">
         <PublicationFilters 
           publications={publications}
           onFilteredPublications={handleFilteredPublications}
         />
         {searchQuery && (
-          <div className="mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <div className="mt-4 text-sm text-gray-600 dark:text-gray-300">
             Search results for: <span className="font-semibold">{searchQuery}</span>
           </div>
         )}
       </div>
       
-      <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-        <div className="divide-y divide-gray-200 dark:divide-gray-700">
-          {filteredPublications.length > 0 ? (
-            filteredPublications.map((publication) => (
-              <PublicationScholarItem 
-                key={publication.id} 
-                publication={publication}
-                searchQuery={searchQuery}
-              />
-            ))
-          ) : (
-            <div className="py-10 text-center text-gray-500 dark:text-gray-400">
-              No publications found matching your filters.
-            </div>
-          )}
-        </div>
+      <div className="border-t border-gray-200 dark:border-white/10">
+        {filteredPublications.length > 0 ? (
+          filteredPublications.map((publication) => (
+            <PublicationScholarItem
+              key={publication.id}
+              publication={publication}
+              searchQuery={searchQuery}
+            />
+          ))
+        ) : (
+          <div className="py-12 text-center text-gray-500 dark:text-gray-400">
+            No publications found matching your filters.
+          </div>
+        )}
       </div>
       
-      <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+      <div className="mt-5 text-sm text-gray-500 dark:text-gray-400">
         Showing {filteredPublications.length} of {publications.length} publications
-        {searchQuery && <span> • Press <kbd className="px-1 py-0.5 text-xs border rounded">Esc</kbd> to clear search</span>}
       </div>
     </div>
   );
-} 
+}

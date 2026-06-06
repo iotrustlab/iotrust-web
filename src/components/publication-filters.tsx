@@ -43,7 +43,9 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
   }, [themeFilter]);
 
   // Get unique years from publications
-  const years = [...new Set(publications.map(pub => pub.year))].sort((a, b) => b - a);
+  const years = [...new Set(publications.map(pub => pub.year))]
+    .filter((year): year is number => typeof year === 'number' && year > 0)
+    .sort((a, b) => b - a);
 
   // Get unique types from publications
   const types = [...new Set(publications.map(pub => pub.type))];
@@ -155,8 +157,8 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
           id="publications-search"
           ref={searchInputRef}
           type="search"
-          className="w-full p-3 pl-10 text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-          placeholder="Search by title, authors, keywords... (Ctrl+K)"
+          className="w-full rounded-md border border-gray-200 bg-white p-3 pl-10 text-sm text-gray-950 transition-colors placeholder:text-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-white/10 dark:bg-gray-950 dark:text-white dark:placeholder:text-gray-500"
+          placeholder="Search publications"
           value={searchQuery}
           onChange={handleSearchChange}
           onKeyDown={handleSearchKeyDown}
@@ -172,8 +174,8 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
         )}
       </div>
       
-      <div className="flex flex-col md:flex-row gap-3 text-sm">
-        <div className="flex flex-col md:flex-row gap-3 flex-1">
+      <div className="flex flex-col gap-3 text-sm lg:flex-row">
+        <div className="flex flex-col gap-3 md:flex-row md:flex-wrap lg:flex-1">
           {/* Theme Filter */}
           <div className="relative dropdown-container">
             <button
@@ -181,7 +183,7 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 e.stopPropagation();
                 setShowDropdown(showDropdown === 'theme' ? null : 'theme');
               }}
-              className="flex items-center justify-between px-3 py-2 w-full md:w-48 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex w-full items-center justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-800 transition-colors hover:bg-gray-50 dark:border-white/10 dark:bg-gray-950 dark:text-gray-200 dark:hover:bg-white/[0.06] md:w-56"
             >
               <span className="truncate">
                 Theme: {themeFilter === 'all' ? 'All' : themes.find(t => t.id === themeFilter)?.title.split(':')[0] || 'All'}
@@ -190,9 +192,9 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
             </button>
 
             {showDropdown === 'theme' && (
-              <div className="absolute z-50 mt-1 w-full md:w-80 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-96 overflow-auto">
+              <div className="absolute z-50 mt-1 max-h-96 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-white/10 dark:bg-gray-950 md:w-80">
                 <div
-                  className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                   onClick={(e) => {
                     e.stopPropagation();
                     setThemeFilter('all');
@@ -207,7 +209,7 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 {themes.map(theme => (
                   <div
                     key={theme.id}
-                    className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                    className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                     onClick={(e) => {
                       e.stopPropagation();
                       setThemeFilter(theme.id);
@@ -231,16 +233,16 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 e.stopPropagation();
                 setShowDropdown(showDropdown === 'type' ? null : 'type');
               }}
-              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex w-full items-center justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-800 transition-colors hover:bg-gray-50 dark:border-white/10 dark:bg-gray-950 dark:text-gray-200 dark:hover:bg-white/[0.06] md:w-40"
             >
               <span>Type: {typeFilter === 'all' ? 'All' : typeFilter}</span>
               <ChevronDown size={16} />
             </button>
             
             {showDropdown === 'type' && (
-              <div className="absolute z-50 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
+              <div className="absolute z-50 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-lg dark:border-white/10 dark:bg-gray-950">
                 <div 
-                  className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                   onClick={(e) => { 
                     e.stopPropagation();
                     setTypeFilter('all'); 
@@ -255,7 +257,7 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 {types.map(type => (
                   <div 
                     key={type}
-                    className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                    className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                     onClick={(e) => { 
                       e.stopPropagation();
                       setTypeFilter(type); 
@@ -279,16 +281,16 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 e.stopPropagation();
                 setShowDropdown(showDropdown === 'year' ? null : 'year');
               }}
-              className="flex items-center justify-between px-3 py-2 w-full md:w-40 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="flex w-full items-center justify-between rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-800 transition-colors hover:bg-gray-50 dark:border-white/10 dark:bg-gray-950 dark:text-gray-200 dark:hover:bg-white/[0.06] md:w-40"
             >
               <span>Year: {yearFilter === 'all' ? 'All' : yearFilter}</span>
               <ChevronDown size={16} />
             </button>
             
             {showDropdown === 'year' && (
-              <div className="absolute z-50 mt-1 w-full max-h-60 overflow-auto bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg">
+              <div className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-200 bg-white shadow-lg dark:border-white/10 dark:bg-gray-950">
                 <div 
-                  className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                   onClick={(e) => { 
                     e.stopPropagation();
                     setYearFilter('all'); 
@@ -303,7 +305,7 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
                 {years.map(year => (
                   <div 
                     key={year}
-                    className="px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                    className="cursor-pointer px-3 py-2 hover:bg-gray-100 dark:hover:bg-white/[0.06]"
                     onClick={(e) => { 
                       e.stopPropagation();
                       setYearFilter(year.toString()); 
@@ -325,10 +327,10 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
         <div className="flex gap-3">
           <button
             onClick={() => handleSort('year')}
-            className={`px-3 py-2 border rounded-md ${
+            className={`rounded-md border px-3 py-2 font-medium transition-colors ${
               sortBy === 'year' 
-                ? 'border-blue-500 text-blue-600 dark:text-blue-400' 
-                : 'border-gray-300 dark:border-gray-700'
+                ? 'border-brand-500 text-brand-700 dark:text-brand-300'
+                : 'border-gray-200 text-gray-700 hover:bg-gray-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/[0.06]'
             }`}
           >
             Year {sortBy === 'year' && (sortOrder === 'asc' ? '↑' : '↓')}
@@ -336,10 +338,10 @@ export function PublicationFilters({ publications, onFilteredPublications }: Pub
           
           <button
             onClick={() => handleSort('title')}
-            className={`px-3 py-2 border rounded-md ${
+            className={`rounded-md border px-3 py-2 font-medium transition-colors ${
               sortBy === 'title' 
-                ? 'border-blue-500 text-blue-600 dark:text-blue-400' 
-                : 'border-gray-300 dark:border-gray-700'
+                ? 'border-brand-500 text-brand-700 dark:text-brand-300'
+                : 'border-gray-200 text-gray-700 hover:bg-gray-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/[0.06]'
             }`}
           >
             Title {sortBy === 'title' && (sortOrder === 'asc' ? 'A-Z' : 'Z-A')}
