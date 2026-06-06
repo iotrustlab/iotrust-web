@@ -116,7 +116,7 @@ export function Navigation() {
     const element = document.getElementById(item.sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.history.pushState(null, '', item.sectionId === 'home' ? '/' : href);
+      window.history.replaceState(null, '', item.sectionId === 'home' ? '/' : href);
       setActiveSection(item.sectionId);
     }
 
