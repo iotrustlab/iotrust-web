@@ -1,0 +1,4 @@
+Contact: mailto:la.garcia@utah.edu
+Preferred-Languages: en
+Canonical: https://iotrustlab.com/.well-known/security.txt
+Expires: 2027-06-06T00:00:00Z

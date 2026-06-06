@@ -52,7 +52,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route({ path: "/opportunities", changeFrequency: "monthly", priority: 0.74, images: [SOCIAL_IMAGES.default] }),
     route({ path: "/contact", changeFrequency: "yearly", priority: 0.65, images: [SOCIAL_IMAGES.default] }),
     route({ path: "/bio", changeFrequency: "yearly", priority: 0.64, images: ["/images/social/profile-lag.png"] }),
-    route({ path: "/static/research/trustworthy-autonomous-design", changeFrequency: "yearly", priority: 0.42 }),
     ...themes.map((theme) =>
       route({
         path: `/research/${theme.id}`,

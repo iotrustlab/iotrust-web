@@ -3,14 +3,12 @@ const BASE_PATH = "";
 export function withBasePath(path: string): string {
   if (!path) return path;
 
-  if (
-    path.startsWith("http://") ||
-    path.startsWith("https://") ||
-    path.startsWith("data:") ||
-    path.startsWith("mailto:") ||
-    path.startsWith("tel:")
-  ) {
+  if (path.startsWith("http://") || path.startsWith("https://")) {
     return path;
+  }
+
+  if (!path.startsWith("/")) {
+    return "";
   }
 
   if (!BASE_PATH) {

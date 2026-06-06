@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: 'academic research',
+  referrer: 'strict-origin-when-cross-origin',
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
