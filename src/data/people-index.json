@@ -39,7 +39,7 @@
       "species": "dog",
       "emoji": "🐕",
       "role": "Lab Overseer",
-      "description": "A hacker whose only skill is singing sea shanties on command.",
+      "description": "Luis's morale auditor and snack-security supervisor, with an occasional sea-shanty stress test for the lab.",
       "image": "/images/team/pets/ruth.png"
     },
     {
@@ -48,8 +48,8 @@
       "species": "cat",
       "emoji": "🐱",
       "role": "Chief Purring Officer", 
-      "description": "Sayom's feline associate specializing in keyboard warming, paper organizing, and midnight debugging sessions.",
-      "image": "/images/team/pets/valley.png"
+      "description": "Sayom's keyboard-thermal specialist, paper-stack reorganizer, and late-night debugging supervisor.",
+      "image": "/images/team/pets/valley-on-grass.jpeg"
     }
   ]
 } 

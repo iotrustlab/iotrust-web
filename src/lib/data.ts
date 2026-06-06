@@ -26,6 +26,8 @@ export interface Person {
     name: string;
     role: string;
     title?: string;
+    department?: string;
+    university?: string;
     email: string;
     image: string;
     bio?: string;
@@ -57,8 +59,10 @@ export interface Person {
 export interface FurryMember {
     id: string;
     name: string;
+    species?: string;
+    emoji?: string;
     role: string;
-    title: string;
+    title?: string;
     description: string;
     image: string;
 }

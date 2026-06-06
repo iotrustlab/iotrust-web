@@ -1,419 +1,1181 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { PublicationCard } from '@/components/publication-card';
+import type { LucideIcon } from 'lucide-react';
+import {
+  ArrowRight,
+  BookOpen,
+  Brain,
+  Cpu,
+  ExternalLink,
+  Factory,
+  GraduationCap,
+  Handshake,
+  Mail,
+  MapPin,
+  RadioTower,
+  ShieldCheck,
+  Users,
+} from 'lucide-react';
 import { TeamMemberCard } from '@/components/team-member-card';
-import { LabBanner } from '@/components/lab-banner';
 import LogoMark from '@/components/logo-mark';
-import { getLabInfo, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
+import { ObfuscatedEmailLink } from '@/components/obfuscated-email-link';
+import type { Course, FurryMember, Person, Publication } from '@/lib/data';
+import { getCourses, getLabInfo, getPublications, getPrincipalInvestigator, getCurrentTeam, getFurryMembers, getAlumni } from '@/lib/data';
+import { encodeEmailAddress } from '@/lib/email-obfuscation';
 import { withBasePath } from '@/lib/with-base-path';
 import news from '@/data/news.json';
 import themes from '@/data/themes.json';
 import projects from '@/data/projects.json';
 
-function ThemeCard({ theme }: { theme: { id: string; title: string; summary: string; projectIds: string[]; image?: string } }) {
-  const related = projects.filter(p => theme.projectIds.includes(p.id)).slice(0, 3);
+type ThemeVisualConfig = {
+  accent: string;
+  background: string;
+  grid: string;
+  Icon: LucideIcon;
+  label: string;
+  subtitle: string;
+  lede: string;
+  pills: string[];
+  variant: 'circuit' | 'twin' | 'sensor' | 'brain' | 'industrial';
+};
+
+const themeVisuals: Record<string, ThemeVisualConfig> = {
+  'cps-security-semantics': {
+    accent: '#d83e3e',
+    background: '#102a3b',
+    grid: 'rgba(148, 190, 214, 0.18)',
+    Icon: ShieldCheck,
+    label: 'CPS Security',
+    subtitle: 'Semantics and assurance',
+    lede: 'Securing physical systems by recovering their semantics, then using that knowledge to test, harden, and explain behavior.',
+    pills: ['Semantics', 'Testbeds', 'Resilience'],
+    variant: 'circuit',
+  },
+  'digital-twins-verification': {
+    accent: '#7c8df5',
+    background: '#20284d',
+    grid: 'rgba(186, 197, 255, 0.18)',
+    Icon: Cpu,
+    label: 'Digital Twins',
+    subtitle: 'Models, traces, verification',
+    lede: 'Digital models that stay close to real systems, then support verification, testing, and design decisions.',
+    pills: ['Hybrid Models', 'Verification', 'Runtime Evidence'],
+    variant: 'twin',
+  },
+  'iot-sensor-privacy': {
+    accent: '#38b89d',
+    background: '#123b35',
+    grid: 'rgba(166, 233, 219, 0.18)',
+    Icon: RadioTower,
+    label: 'Sensor Privacy',
+    subtitle: 'Edge-to-cloud trust',
+    lede: 'Privacy-aware sensing pipelines that preserve useful information without exposing physical-world context.',
+    pills: ['IoT', 'Information Flow', 'Privacy'],
+    variant: 'sensor',
+  },
+  'brain-centered-cps': {
+    accent: '#a86bd5',
+    background: '#332446',
+    grid: 'rgba(215, 183, 239, 0.18)',
+    Icon: Brain,
+    label: 'NeuroIoT',
+    subtitle: 'Human-centered sensing',
+    lede: 'Human-centered sensing for brain and environment data, built around memory, attention, and multimodal context.',
+    pills: ['Neural Data', 'Multimodal Fusion', 'Human-in-the-loop'],
+    variant: 'brain',
+  },
+  'digital-twinning-for-ics': {
+    accent: '#e0a33a',
+    background: '#342d1d',
+    grid: 'rgba(244, 211, 143, 0.18)',
+    Icon: Factory,
+    label: 'ICS Twins',
+    subtitle: 'Industrial testbeds',
+    lede: 'Industrial-control twins that connect control code, physics, testbeds, and runtime conformance.',
+    pills: ['ICS', 'Physics Models', 'Conformance'],
+    variant: 'industrial',
+  },
+};
+
+const fallbackThemeVisual: ThemeVisualConfig = {
+  accent: '#d83e3e',
+  background: '#182334',
+  grid: 'rgba(203, 213, 225, 0.16)',
+  Icon: ShieldCheck,
+  label: 'Research Theme',
+  subtitle: 'IoTrust Lab',
+  lede: 'A cross-cutting research area for trustworthy cyber-physical systems.',
+  pills: ['Security', 'Trust', 'Systems'],
+  variant: 'circuit',
+};
+
+const opportunityTracks: Array<{ title: string; detail: string; Icon: LucideIcon }> = [
+  {
+    title: 'Prospective Students',
+    detail: 'PhD and undergraduate researchers interested in CPS security, sensing, and autonomy.',
+    Icon: GraduationCap,
+  },
+  {
+    title: 'Postdoctoral Researchers',
+    detail: 'Researchers ready to lead focused work across formal methods, testbeds, and trustworthy AI.',
+    Icon: BookOpen,
+  },
+  {
+    title: 'Visiting Scholars',
+    detail: 'Short-term visits around shared systems problems, datasets, and experimental platforms.',
+    Icon: Users,
+  },
+  {
+    title: 'Research Collaborators',
+    detail: 'Academic and industry partners building safer cyber-physical systems in real settings.',
+    Icon: Handshake,
+  },
+];
+
+function WireNode({ cx, cy, accent, muted = false }: { cx: number; cy: number; accent: string; muted?: boolean }) {
   return (
-    <div className="rounded-xl border overflow-hidden hover:bg-muted/10">
-      {theme.image && (
-        <div className="relative h-32 w-full">
-          <Image src={withBasePath(theme.image)} alt={theme.title} fill className="object-cover" />
-          {/* optional subtle overlay for light/dark consistency */}
-          <div className="absolute inset-0 pointer-events-none bg-black/0 dark:bg-black/0"></div>
+    <circle
+      cx={cx}
+      cy={cy}
+      r={muted ? 4 : 6}
+      fill={muted ? 'rgba(255,255,255,0.32)' : accent}
+      style={muted ? undefined : { filter: `drop-shadow(0 0 10px ${accent})` }}
+    />
+  );
+}
+
+function ThemePattern({ variant, accent }: { variant: ThemeVisualConfig['variant']; accent: string }) {
+  const dimStroke = 'rgba(255,255,255,0.30)';
+  const softStroke = 'rgba(255,255,255,0.18)';
+
+  if (variant === 'twin') {
+    return (
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
+        <path d="M72 104l58-34 58 34v76l-58 34-58-34Z" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2" />
+        <path d="M130 70v76m-58-42 58 42 58-42M72 180l58-34 58 34" fill="none" stroke={softStroke} strokeWidth="2" />
+        <path d="M242 104l58-34 58 34v76l-58 34-58-34Z" fill="rgba(255,255,255,0.04)" stroke={accent} strokeWidth="2.5" />
+        <path d="M300 70v76m-58-42 58 42 58-42M242 180l58-34 58 34" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" />
+        <path d="M188 118C214 86 230 86 242 118M188 168c28 34 54 34 82 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" />
+        <path d="M120 238h180M90 250h226" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
+        <WireNode cx={130} cy={146} accent={accent} muted />
+        <WireNode cx={300} cy={146} accent={accent} />
+        <WireNode cx={214} cy={100} accent={accent} muted />
+        <WireNode cx={214} cy={190} accent={accent} muted />
+      </svg>
+    );
+  }
+
+  if (variant === 'sensor') {
+    return (
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
+        <circle cx="210" cy="146" r="28" fill="rgba(255,255,255,0.06)" stroke={accent} strokeWidth="3" />
+        <circle cx="210" cy="146" r="70" fill="none" stroke={dimStroke} strokeWidth="2" strokeDasharray="5 9" />
+        <circle cx="210" cy="146" r="108" fill="none" stroke={softStroke} strokeWidth="2" />
+        <path d="M210 146 92 84M210 146l128-38M210 146 96 218M210 146l120 66M210 146v-98M210 146v96" fill="none" stroke={dimStroke} strokeWidth="2" strokeLinecap="round" />
+        <path d="M86 68c70-46 150-48 240-6M94 242c78 42 158 42 240 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" opacity="0.85" />
+        <path d="M191 146l14 15 28-36" fill="none" stroke="rgba(255,255,255,0.86)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <WireNode cx={92} cy={84} accent={accent} muted />
+        <WireNode cx={338} cy={108} accent={accent} muted />
+        <WireNode cx={96} cy={218} accent={accent} muted />
+        <WireNode cx={330} cy={212} accent={accent} muted />
+        <WireNode cx={210} cy={48} accent={accent} />
+        <WireNode cx={210} cy={242} accent={accent} />
+      </svg>
+    );
+  }
+
+  if (variant === 'brain') {
+    return (
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
+        <path d="M116 198c-30-18-42-46-36-82 8-46 46-70 92-62 18-32 66-34 92-8 38-13 78 8 88 48 42 5 64 40 55 80-9 38-44 60-91 55-33 30-88 31-121 1-24 12-50 10-79-32Z" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
+        <path d="M132 145c36-28 70-28 102 0s66 28 102 0M140 185c39 22 78 22 117 0M166 96c20 9 38 25 54 48M282 90c-24 18-42 42-54 72" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" opacity="0.9" />
+        <path d="M122 232c64 28 148 30 250 8" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
+        <WireNode cx={166} cy={96} accent={accent} />
+        <WireNode cx={220} cy={144} accent={accent} muted />
+        <WireNode cx={282} cy={90} accent={accent} />
+        <WireNode cx={140} cy={185} accent={accent} muted />
+        <WireNode cx={336} cy={145} accent={accent} muted />
+        <WireNode cx={256} cy={185} accent={accent} muted />
+      </svg>
+    );
+  }
+
+  if (variant === 'industrial') {
+    return (
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
+        <path d="M58 218h322M78 218V112l60 36v-36l62 36v-58h94v128" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M294 90V52h42v166M96 218v-56h48v56M176 218v-46h54v46" fill="none" stroke={accent} strokeWidth="3" strokeLinejoin="round" />
+        <path d="M118 162h24M188 172h26M312 116h28M312 142h28M312 168h28" stroke="rgba(255,255,255,0.44)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M92 76h74c24 0 36 12 36 36v36M336 76h-46c-22 0-34 12-34 34v42" fill="none" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
+        <path d="M202 148c22-25 48-25 78 0" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" />
+        <WireNode cx={92} cy={76} accent={accent} muted />
+        <WireNode cx={202} cy={148} accent={accent} />
+        <WireNode cx={280} cy={148} accent={accent} muted />
+        <WireNode cx={336} cy={76} accent={accent} />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="absolute inset-0 h-full w-full" viewBox="0 0 420 300" aria-hidden="true">
+      <rect x="70" y="74" width="118" height="74" rx="8" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
+      <rect x="244" y="152" width="114" height="78" rx="8" fill="rgba(255,255,255,0.04)" stroke={dimStroke} strokeWidth="2.5" />
+      <path d="M104 98h42M104 120h64M276 176h48M276 198h30" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinecap="round" />
+      <path d="M188 110h44c20 0 30 10 30 30v52M128 148v42c0 20 10 30 30 30h84M128 74V48h116M302 152V92h58" fill="none" stroke={accent} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M72 232h290M92 248h248" stroke={softStroke} strokeWidth="2" strokeLinecap="round" />
+      <WireNode cx={128} cy={148} accent={accent} />
+      <WireNode cx={244} cy={48} accent={accent} muted />
+      <WireNode cx={302} cy={152} accent={accent} />
+      <WireNode cx={360} cy={92} accent={accent} muted />
+      <WireNode cx={242} cy={220} accent={accent} muted />
+    </svg>
+  );
+}
+
+function ThemeVisual({ themeId }: { themeId: string }) {
+  const visual = themeVisuals[themeId] ?? fallbackThemeVisual;
+  const Icon = visual.Icon;
+
+  return (
+    <div
+      className="relative min-h-[235px] overflow-hidden md:min-h-full"
+      style={{ background: `linear-gradient(135deg, ${visual.background} 0%, #081018 100%)` }}
+    >
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(${visual.grid} 1px, transparent 1px), linear-gradient(90deg, ${visual.grid} 1px, transparent 1px)`,
+          backgroundSize: '44px 44px',
+        }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_45%,rgba(0,0,0,0.16)_100%)]" />
+      <ThemePattern variant={visual.variant} accent={visual.accent} />
+      <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: visual.accent }} />
+      <div className="relative z-10 flex h-full min-h-[235px] flex-col justify-between p-6 md:min-h-full lg:p-7">
+        <div className="flex items-start justify-between gap-4">
+          <span className="rounded-md bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 ring-1 ring-white/15 backdrop-blur">
+            {visual.label}
+          </span>
+          <span className="rounded-md bg-white/10 p-3 text-white ring-1 ring-white/15 backdrop-blur">
+            <Icon className="h-6 w-6" aria-hidden="true" />
+          </span>
         </div>
-      )}
-      <div className="p-5 space-y-3">
-        <h3 className="text-lg font-semibold">{theme.title}</h3>
-        <p className="text-sm text-muted-foreground">{theme.summary}</p>
-        {related.length ? (
-          <ul className="mt-2 space-y-1">
-            {related.map(p => (
-              <li key={p.id} className="text-sm">
-                <Link href={`/research/${p.id}`} className="hover:underline">{p.title}</Link>
-                <span className="text-xs text-muted-foreground"> • {p.agency}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-        <div className="pt-2">
-          <Link href={`/research#${theme.id}`} className="text-sm hover:underline">
-            Explore this theme →
-          </Link>
-        </div>
+        <p className="max-w-[18rem] text-2xl font-semibold leading-8 text-white lg:text-3xl lg:leading-10">
+          {visual.subtitle}
+        </p>
       </div>
     </div>
   );
 }
 
+function ThemeCard({ theme }: { theme: { id: string; title: string; summary: string; projectIds: string[]; image?: string } }) {
+  const related = projects.filter(p => theme.projectIds.includes(p.id)).slice(0, 2);
+  const visual = themeVisuals[theme.id] ?? fallbackThemeVisual;
+  return (
+    <article className="grid overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl dark:border-white/10 dark:bg-gray-900 dark:hover:border-brand-700/70 dark:hover:bg-white/[0.04] md:min-h-[350px] md:grid-cols-[minmax(240px,0.8fr)_minmax(0,1.35fr)] lg:grid-cols-[minmax(330px,0.9fr)_minmax(0,1.45fr)]">
+      <ThemeVisual themeId={theme.id} />
+      <div className="flex min-h-[350px] flex-col p-6 sm:p-7">
+        <h3 className="max-w-4xl text-3xl font-semibold leading-tight text-gray-950 dark:text-white sm:text-4xl">
+          {theme.title}
+        </h3>
+
+        <p className="mt-5 max-w-4xl text-lg leading-8 text-gray-700 dark:text-gray-300 sm:text-xl sm:leading-9">
+          {visual.lede}
+        </p>
+
+        <div className="mt-6 flex flex-wrap gap-2.5">
+          {visual.pills.map((pill) => (
+            <span
+              key={pill}
+              className="rounded-full border border-gray-200 bg-gray-50 px-3.5 py-1.5 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+            >
+              {pill}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8">
+          {related.length ? (
+            <div className="rounded-md bg-gray-50/80 p-4 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:ring-white/10">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500 dark:text-gray-400">
+                Linked Projects
+              </p>
+              <ul className="grid gap-3 lg:grid-cols-2">
+                {related.map(p => (
+                  <li key={p.id} className="text-base leading-7">
+                    <Link href={`/research/${p.id}`} className="font-medium text-gray-900 hover:text-brand-700 dark:text-gray-100 dark:hover:text-brand-300">{p.title}</Link>
+                    <span className="text-sm text-gray-500 dark:text-gray-400"> • {p.agency}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p className="rounded-md bg-gray-50/80 p-4 text-base leading-7 text-gray-600 ring-1 ring-gray-200 dark:bg-white/[0.035] dark:text-gray-400 dark:ring-white/10">
+              Cross-cutting research area spanning sensing, privacy, and resilient system design.
+            </p>
+          )}
+          <Link href={`/research#${theme.id}`} className="mt-5 inline-flex text-base font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
+            Explore this theme →
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function ThemesPreview() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12 space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Research Themes</h2>
-        <Link href="/research" className="text-sm hover:underline">View all themes →</Link>
+    <section id="research" className="mx-auto max-w-7xl scroll-mt-24 space-y-10 px-4 py-16 sm:px-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+            Research Themes
+          </p>
+          <h2 className="mt-3 text-4xl font-semibold leading-tight text-gray-950 dark:text-white">
+            Research programs built around systems that need evidence, not just accuracy.
+          </h2>
+        </div>
+        <Link href="/research" className="text-lg font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">View all themes →</Link>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {themes.map(t => <ThemeCard key={t.id} theme={t} />)}
+      <div className="mx-auto grid w-full max-w-6xl items-stretch gap-7">
+        {themes.map((t) => <ThemeCard key={t.id} theme={t} />)}
       </div>
     </section>
   );
 }
 
-function RecentNews() {
-  const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3);
-  if (!items.length) return null;
+function ProjectsPreview() {
+  const featuredProjects = projects
+    .filter((project) => project.status === 'active')
+    .slice(0, 4);
+
+  if (!featuredProjects.length) return null;
+
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Latest News</h2>
-        <Link href="/news" className="text-sm hover:underline">View all →</Link>
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {items.map((n) => (
-          <Link key={n.id} href={`/news/${n.id}`} className="rounded-lg border p-4 hover:bg-muted/10">
-            <div className="text-xs text-muted-foreground">{new Date(n.date).toLocaleDateString()}</div>
-            <div className="font-medium mt-1">{n.title}</div>
-            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{n.summary}</p>
+    <section id="projects" className="scroll-mt-24 bg-white py-14 dark:bg-gray-900 sm:py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col gap-3 border-b border-gray-200 pb-5 sm:flex-row sm:items-end sm:justify-between dark:border-white/10">
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
+            Projects
+          </h2>
+          <Link
+            href="/projects"
+            className="text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+          >
+            View all projects →
           </Link>
+        </div>
+
+        <div className="grid gap-x-10 lg:grid-cols-2">
+          {featuredProjects.map((project) => (
+            <article
+              key={project.id}
+              className="group border-b border-gray-200 py-7 dark:border-white/10"
+            >
+              <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                <span className="rounded-full bg-brand-50 px-3 py-1 text-brand-700 dark:bg-brand-600/15 dark:text-brand-200">
+                  {project.agency}
+                </span>
+                <span className="rounded-full bg-gray-100 px-3 py-1 text-gray-700 dark:bg-white/[0.07] dark:text-gray-300">
+                  {project.years}
+                </span>
+              </div>
+              <h3 className="mt-4 text-2xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
+                {project.title}
+              </h3>
+              <p className="mt-3 line-clamp-3 text-base leading-7 text-gray-600 dark:text-gray-400">
+                {project.abstract}
+              </p>
+              <Link
+                href={`/research/${project.id}`}
+                className="mt-5 inline-flex items-center text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              >
+                Project details
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CoursesPreview({ courses }: { courses: Course[] }) {
+  if (!courses.length) return null;
+
+  return (
+    <section id="courses" className="scroll-mt-24 border-t border-gray-200 bg-white py-14 dark:border-white/10 dark:bg-gray-900 sm:py-20">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+              Courses
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
+              Teaching
+            </h2>
+          </div>
+          <Link
+            href="/courses"
+            className="text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+          >
+            View all courses →
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          {courses.slice(0, 3).map((course) => (
+            <article
+              key={course.id}
+              className="rounded-lg bg-gray-50 p-5 transition-colors hover:bg-gray-100 dark:bg-white/[0.045] dark:hover:bg-white/[0.065]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-300">
+                  {course.code}
+                </p>
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-600 dark:bg-white/[0.08] dark:text-gray-300">
+                  {course.level}
+                </span>
+              </div>
+              <h3 className="mt-4 text-lg font-semibold leading-snug text-gray-950 dark:text-white">
+                {course.title}
+              </h3>
+              <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                {course.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {course.terms.slice(0, 2).map((term) => (
+                  <span
+                    key={term}
+                    className="rounded-full bg-white px-3 py-1 text-xs font-medium text-gray-600 dark:bg-white/[0.08] dark:text-gray-300"
+                  >
+                    {term}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function formatNewsDate(date: string) {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date(`${date}T00:00:00`));
+}
+
+function RecentNews() {
+  const items = [...news].sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 4);
+  if (!items.length) return null;
+  const [lead, ...briefs] = items;
+
+  return (
+    <section id="news" className="scroll-mt-24 border-y border-gray-200 bg-[#fbfbfa] dark:border-white/10 dark:bg-gray-950">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="border-y-2 border-gray-950 py-4 dark:border-white/85">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+                Latest News
+              </p>
+              <h2 className="mt-1 font-serif text-4xl font-semibold leading-none text-gray-950 sm:text-5xl dark:text-white">
+                IoTrust Dispatch
+              </h2>
+            </div>
+            <div className="flex items-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
+              <span>{formatNewsDate(lead.date)}</span>
+              <Link href="/news" className="text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
+                View all news →
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-8 py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
+          <Link
+            href={`/news/${lead.id}`}
+            className="group border-b border-gray-300 pb-8 transition-colors hover:border-brand-300 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8 dark:border-white/15 dark:hover:border-brand-500"
+          >
+            <div className="flex flex-wrap items-center gap-3 text-sm">
+              <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                Front Page
+              </span>
+              <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(lead.date)}</span>
+            </div>
+            <h3 className="mt-5 max-w-3xl font-serif text-3xl font-semibold leading-tight text-gray-950 group-hover:text-brand-700 sm:text-5xl dark:text-white dark:group-hover:text-brand-200">
+              {lead.title}
+            </h3>
+            <p className="mt-5 max-w-3xl text-xl leading-9 text-gray-700 dark:text-gray-300">
+              {lead.summary}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {lead.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-gray-300 bg-white px-3 py-1 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Link>
+
+          <div className="space-y-0">
+            {briefs.map((item) => (
+              <Link
+                key={item.id}
+                href={`/news/${item.id}`}
+                className="group block border-b border-gray-200 py-5 first:pt-0 last:border-b-0 last:pb-0 dark:border-white/10"
+              >
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <span className="font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-300">
+                    {item.tags[0] ?? 'News'}
+                  </span>
+                  <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(item.date)}</span>
+                </div>
+                <h3 className="mt-3 font-serif text-2xl font-semibold leading-snug text-gray-950 group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-base leading-7 text-gray-600 dark:text-gray-400">
+                  {item.summary}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function publicationTypeLabel(type: Publication['type']) {
+  return type.charAt(0).toUpperCase() + type.slice(1);
+}
+
+function compactVenue(publication: Publication) {
+  if (publication.venue.includes('IEEE/IFIP International Conference on Dependable Systems and Networks')) {
+    return `IEEE/IFIP DSN ${publication.year}`;
+  }
+
+  if (publication.venue.includes('ACM/IEEE') && publication.venue.includes('Cyber-Physical Systems')) {
+    return `ACM/IEEE ICCPS ${publication.year}`;
+  }
+
+  if (publication.venue.includes('NASA Formal Methods')) {
+    return `NASA Formal Methods ${publication.year}`;
+  }
+
+  if (publication.venue.includes('arXiv')) {
+    return `arXiv ${publication.year}`;
+  }
+
+  return publication.venue;
+}
+
+function publicationThemeLabels(publication: Publication) {
+  return (publication.themeIds ?? [])
+    .map((themeId) => themeVisuals[themeId]?.label ?? themes.find((theme) => theme.id === themeId)?.title)
+    .filter(Boolean)
+    .slice(0, 2) as string[];
+}
+
+type AuthorProfile = Pick<Person, 'id' | 'name'>;
+
+function cleanAuthorName(name: string) {
+  return name
+    .replace(/\$\^[^$]+\$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function authorNameKeys(name: string) {
+  const normalized = cleanAuthorName(name)
+    .replace(/\b(dr|prof|professor)\.?\s+/gi, '')
+    .replace(/[^a-zA-Z\s-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+  const parts = normalized.split(' ').filter(Boolean);
+  const withoutInitials = parts.filter((part) => part.length > 1);
+  const keys = new Set<string>();
+
+  if (parts.length) {
+    keys.add(parts.join(' '));
+  }
+
+  if (parts.length >= 2) {
+    keys.add(`${parts[0]} ${parts[parts.length - 1]}`);
+  }
+
+  if (withoutInitials.length >= 2) {
+    keys.add(`${withoutInitials[0]} ${withoutInitials[withoutInitials.length - 1]}`);
+  }
+
+  return Array.from(keys);
+}
+
+function buildAuthorProfileMap(profiles: AuthorProfile[]) {
+  const map = new Map<string, AuthorProfile>();
+
+  for (const profile of profiles) {
+    for (const key of authorNameKeys(profile.name)) {
+      map.set(key, profile);
+    }
+  }
+
+  return map;
+}
+
+function AuthorList({
+  authors,
+  authorProfileMap,
+}: {
+  authors: string[];
+  authorProfileMap: Map<string, AuthorProfile>;
+}) {
+  const visibleAuthors = authors.length > 5 ? authors.slice(0, 4) : authors;
+
+  return (
+    <span>
+      {visibleAuthors.map((author, index) => {
+        const displayName = cleanAuthorName(author);
+        const profile = authorNameKeys(author)
+          .map((key) => authorProfileMap.get(key))
+          .find(Boolean);
+
+        return (
+          <span key={`${author}-${index}`}>
+            {index > 0 ? ', ' : ''}
+            {profile ? (
+              <Link
+                href={`/people/${profile.id}/`}
+                className="font-medium text-gray-800 underline decoration-gray-300 underline-offset-4 transition-colors hover:text-brand-700 hover:decoration-brand-500 dark:text-gray-200 dark:decoration-white/25 dark:hover:text-brand-200 dark:hover:decoration-brand-300"
+              >
+                {displayName}
+              </Link>
+            ) : (
+              displayName
+            )}
+          </span>
+        );
+      })}
+      {authors.length > visibleAuthors.length ? (
+        <span>, +{authors.length - visibleAuthors.length} more</span>
+      ) : null}
+    </span>
+  );
+}
+
+function PublicationIndexRow({
+  publication,
+  authorProfileMap,
+}: {
+  publication: Publication;
+  authorProfileMap: Map<string, AuthorProfile>;
+}) {
+  const themeLabels = publicationThemeLabels(publication);
+  const externalLabel = publication.url?.includes('doi.org') ? 'DOI' : 'Paper';
+
+  return (
+    <article className="group relative grid gap-4 overflow-hidden rounded-lg px-4 py-4 transition-colors hover:bg-gray-50 focus-within:bg-gray-50 dark:hover:bg-white/[0.045] dark:focus-within:bg-white/[0.045] sm:grid-cols-[6.5rem_minmax(0,1fr)] sm:gap-6 lg:grid-cols-[7rem_minmax(0,1fr)_2.75rem]">
+      <span
+        aria-hidden="true"
+        className="absolute bottom-4 left-0 top-4 w-px rounded-full bg-gray-200 transition-all duration-300 group-hover:w-1 group-hover:bg-brand-500 group-focus-within:w-1 group-focus-within:bg-brand-500 dark:bg-white/15 dark:group-hover:bg-brand-400 dark:group-focus-within:bg-brand-400"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0_50%,rgba(214,59,59,0.12),transparent_42%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 dark:bg-[radial-gradient(circle_at_0_50%,rgba(239,103,103,0.13),transparent_42%)]"
+      />
+
+      <div className="relative z-10 flex items-center gap-3 sm:block">
+        <span className="block text-base font-semibold tabular-nums text-gray-900 dark:text-white">
+          {publication.year}
+        </span>
+        <span className="mt-2 block w-fit rounded-full bg-gray-100 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-gray-500 dark:bg-white/[0.07] dark:text-gray-400">
+          {publicationTypeLabel(publication.type)}
+        </span>
+      </div>
+
+      <div className="relative z-10 min-w-0">
+        <Link
+          href="/publications"
+          className="block max-w-5xl text-lg font-semibold leading-snug text-gray-950 transition-colors group-hover:text-brand-700 dark:text-white dark:group-hover:text-brand-200 sm:text-xl"
+        >
+          {publication.title}
+        </Link>
+
+        <p className="mt-2 text-[0.95rem] leading-7 text-gray-700 dark:text-gray-300">
+          <AuthorList authors={publication.authors} authorProfileMap={authorProfileMap} />
+        </p>
+
+        <p className="mt-1.5 max-w-4xl text-sm leading-6 text-gray-500 dark:text-gray-400">
+          {compactVenue(publication)}
+        </p>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2.5">
+          {themeLabels.map((label) => (
+            <span
+              key={label}
+              className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-white/[0.08] dark:text-gray-300"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {publication.url ? (
+        <a
+          href={publication.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={`Open ${externalLabel}`}
+          className="relative z-10 inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-200 text-gray-500 transition-colors hover:border-brand-300 hover:bg-white hover:text-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-white/10 dark:text-gray-300 dark:hover:border-brand-400 dark:hover:bg-white/[0.08] dark:hover:text-brand-200"
+        >
+          <span className="sr-only">Open {externalLabel}</span>
+          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+        </a>
+      ) : null}
+    </article>
+  );
+}
+
+function PublicationsIndex({
+  publications,
+  authorProfiles,
+}: {
+  publications: Publication[];
+  authorProfiles: AuthorProfile[];
+}) {
+  const items = publications.slice(0, 4);
+  const authorProfileMap = buildAuthorProfileMap(authorProfiles);
+
+  if (!items.length) return null;
+
+  return (
+    <section id="publications" className="scroll-mt-24 bg-white py-10 dark:bg-gray-900 sm:py-14">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <h2 className="text-2xl font-semibold leading-tight text-gray-950 dark:text-white sm:text-3xl">
+            Recent Publications
+          </h2>
+          <Link
+            href="/publications"
+            className="text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+          >
+            Browse all publications →
+          </Link>
+        </div>
+
+        <div className="mt-5 space-y-1">
+          {items.map((publication) => (
+            <PublicationIndexRow
+              key={publication.id}
+              publication={publication}
+              authorProfileMap={authorProfileMap}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function firstNameForSort(name: string) {
+  const parts = name
+    .replace(/\b(dr|prof|professor)\.?\s+/gi, '')
+    .split(/\s+/)
+    .filter(Boolean);
+
+  return parts[0] ?? name;
+}
+
+function byFirstName<T extends { name: string }>(items: T[]) {
+  return [...items].sort((a, b) => {
+    const firstNameCompare = firstNameForSort(a.name).localeCompare(firstNameForSort(b.name));
+
+    return firstNameCompare || a.name.localeCompare(b.name);
+  });
+}
+
+function PeopleGroup({ title, members }: { title: string; members: Person[] }) {
+  if (!members.length) return null;
+
+  return (
+    <section className="space-y-4">
+      <div className="flex items-center gap-4">
+        <h3 className="shrink-0 text-lg font-semibold text-gray-950 dark:text-white sm:text-xl">
+          {title}
+        </h3>
+        <span className="h-px flex-1 bg-gray-200 dark:bg-white/10" aria-hidden="true" />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {members.map((member) => (
+          <TeamMemberCard key={member.id} member={member} variant="homepage" />
         ))}
       </div>
     </section>
   );
 }
 
+function FurryMemberCard({ member }: { member: FurryMember }) {
+  const hasImage = Boolean(member.image);
+  const primaryMeta = member.title ?? member.role;
+  const secondaryMeta = member.title ? member.role : null;
+  const initials = member.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+
+  return (
+    <article className="grid h-full grid-cols-[6.5rem_minmax(0,1fr)] gap-4 rounded-lg bg-gray-100/70 p-3 transition-colors hover:bg-gray-100 dark:bg-white/[0.045] dark:hover:bg-white/[0.065] sm:grid-cols-[7.25rem_minmax(0,1fr)]">
+      <div className="relative aspect-square overflow-hidden rounded-md bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-200">
+        {hasImage ? (
+          <Image
+            src={withBasePath(member.image)}
+            alt={member.name}
+            fill
+            className="object-cover object-[50%_30%]"
+            sizes="8rem"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-3xl font-semibold tracking-tight">
+            {initials}
+          </div>
+        )}
+      </div>
+
+      <div className="flex min-w-0 flex-col justify-center py-1">
+        <h4 className="text-lg font-semibold leading-snug text-gray-950 dark:text-white">
+          {member.name}
+        </h4>
+        <p className="mt-1 text-sm font-medium text-brand-600 dark:text-brand-300">
+          {primaryMeta}
+        </p>
+        {secondaryMeta ? (
+          <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
+            {secondaryMeta}
+          </p>
+        ) : null}
+        <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          {member.description}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 export default async function HomePage() {
-  const [labInfo, recentPublications, principalInvestigator, currentTeam, furryMembers, alumni] = await Promise.all([
+  const [labInfo, recentPublications, principalInvestigator, currentTeam, furryMembers, alumni, courses] = await Promise.all([
     getLabInfo(),
     getPublications(),
     getPrincipalInvestigator(),
     getCurrentTeam(),
     getFurryMembers(),
-    getAlumni()
+    getAlumni(),
+    getCourses()
   ]);
+  const heroFocusAreas = labInfo.focus_areas.slice(0, 5);
+  const publicationAuthorProfiles = [...principalInvestigator, ...currentTeam, ...alumni];
+  const sortedPrincipalInvestigator = byFirstName(principalInvestigator);
+  const postdocs = byFirstName(currentTeam.filter((m) => m.role.toLowerCase().includes('postdoc')));
+  const phdStudents = byFirstName(currentTeam.filter((m) => m.role.toLowerCase().includes('phd')));
+  const mastersStudents = byFirstName(currentTeam.filter((m) => m.role.toLowerCase().includes('master')));
+  const undergrads = byFirstName(
+    currentTeam.filter((m) => {
+      const role = m.role.toLowerCase();
+      return role.includes('undergrad') || role.includes('undergraduate');
+    })
+  );
+  const sortedAlumni = byFirstName(alumni);
+  const encodedLeadEmail = encodeEmailAddress(labInfo.lead.email);
 
   return (
     <div className="bg-white dark:bg-gray-900">
-      {/* Academic Hero Section */}
-      <section id="home" className="relative bg-gray-50 dark:bg-[#0f141a] pt-20 sm:pt-24 pb-8 sm:pb-10">
-        <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-7xl px-6 lg:px-8'}`}>
-          <div className={`mx-auto ${labInfo.banner?.fullWidth ? '' : 'max-w-4xl'} text-center flex flex-col items-center justify-start`}>
-            {/* Lab Banner Image - Above Title */}
-            {labInfo.banner?.enabled && labInfo.banner.position === 'above-title' && (
-              <LabBanner
-                image={labInfo.banner.image}
-                alt={labInfo.banner.alt}
-                showOnMobile={labInfo.banner.showOnMobile}
-                height={labInfo.banner.height}
-                fullWidth={labInfo.banner.fullWidth}
-              />
-            )}
-            
-            <div className={labInfo.banner?.fullWidth ? 'max-w-4xl mx-auto px-6 lg:px-8' : ''}>
-            {/* Logo prominently featured */}
-            <div className={labInfo.banner?.fullWidth ? 'max-w-4xl mx-auto px-6 lg:px-8' : ''}>
-              <div className="mx-auto mt-0 mb-4 min-h-[160px] sm:min-h-[192px] flex items-center justify-center">
-                <LogoMark size={256} className="mx-auto" />
-              </div>
-            </div>
-            <h1 className="sr-only">IoTrust Lab — University of Utah</h1>
-            <p className="mt-2 text-3xl sm:text-4xl font-semibold">Trustworthy Autonomy via Semantic Foundations</p>
+      <section id="home" className="relative isolate overflow-hidden bg-white text-gray-950 dark:bg-[#070b10] dark:text-white">
+        <Image
+          src={withBasePath("/images/projects/ncs/hero.jpg")}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_38%] opacity-[0.42] saturate-[0.9] dark:opacity-75 dark:saturate-[0.86]"
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(255,255,255,0.98)_0%,rgba(255,255,255,0.92)_42%,rgba(255,255,255,0.68)_78%,rgba(255,255,255,0.88)_100%)] dark:bg-[linear-gradient(90deg,rgba(7,11,16,0.97)_0%,rgba(7,11,16,0.9)_42%,rgba(7,11,16,0.63)_78%,rgba(7,11,16,0.88)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.84)_0%,rgba(255,255,255,0.28)_44%,rgba(255,255,255,0.98)_100%)] dark:bg-[linear-gradient(180deg,rgba(7,11,16,0.68)_0%,rgba(7,11,16,0.12)_44%,rgba(7,11,16,0.92)_100%)]" />
 
-            {/* Lab Banner Image - Below Title */}
-            {labInfo.banner?.enabled && labInfo.banner.position === 'below-title' && (
-              <div className="mt-1">
-                <LabBanner
-                  image={labInfo.banner.image}
-                  alt={labInfo.banner.alt}
-                  showOnMobile={labInfo.banner.showOnMobile}
-                  height={labInfo.banner.height}
-                  fullWidth={labInfo.banner.fullWidth}
-                />
-              </div>
-            )}
-            
-            <p className="mt-2 text-base leading-snug text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              {labInfo.mission}
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 sm:py-16 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-end lg:px-8 lg:py-20">
+          <div className="max-w-4xl">
+            <div className="mb-10 hidden sm:block sm:mb-12">
+              <LogoMark size={58} variant="light" className="dark:hidden" />
+              <LogoMark size={58} variant="dark" className="hidden dark:block" />
+            </div>
+
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-brand-700 sm:mb-5 sm:text-sm dark:text-brand-300">
+              University of Utah research lab
             </p>
 
-            <div className="mt-3">
-              <h3 className="text-xs font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-1.5">
-                Research Focus Areas
-              </h3>
-              <div className="flex flex-wrap justify-center gap-1">
-                {labInfo.focus_areas.map((area) => (
-                  <span 
-                    key={area}
-                    className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2.5 py-0.5 rounded-md text-xs font-medium"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <h1 className="text-4xl font-semibold leading-[0.98] text-gray-950 sm:text-6xl lg:text-7xl dark:text-white">
+              IoTrust Lab
+            </h1>
 
-            <div className="mt-4 flex items-center justify-center gap-x-5">
+            <p className="mt-5 max-w-3xl text-2xl font-semibold leading-tight text-gray-950 sm:mt-6 sm:text-4xl dark:text-white">
+              Trustworthy autonomy starts with systems we can explain, test, and defend.
+            </p>
+
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-700 sm:mt-6 sm:text-2xl sm:leading-9 dark:text-white/80">
+              We connect semantic reasoning, digital twins, human-centered sensing, and real CPS
+              testbeds into practical evidence for autonomous systems.
+            </p>
+
+            <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
               <a
                 href="#research"
-                className="rounded-md bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
+                className="inline-flex min-h-12 items-center justify-center rounded-md bg-brand-600 px-5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
               >
                 Explore Research
               </a>
-              <a href="#publications" className="text-sm font-semibold leading-6 text-blue-600 dark:text-blue-400 hover:underline">
+              <a
+                href="#publications"
+                className="inline-flex min-h-12 items-center justify-center rounded-md border border-gray-300 bg-white/75 px-5 text-base font-semibold text-gray-950 transition-colors hover:border-brand-300 hover:bg-brand-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-white/20 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/[0.12] dark:focus-visible:outline-white"
+              >
                 View Publications →
               </a>
             </div>
-            </div>
           </div>
+
+          <aside className="hidden rounded-lg border border-gray-200/80 bg-white/[0.82] p-5 shadow-xl shadow-gray-900/10 backdrop-blur-md dark:border-white/[0.14] dark:bg-[#0b1118]/[0.78] dark:shadow-2xl sm:p-6 lg:block">
+            <div className="flex items-center justify-between border-b border-gray-200 pb-4 dark:border-white/[0.12]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gray-600 dark:text-white/70">
+                Focus Areas
+              </p>
+              <span className="rounded-md bg-brand-50 px-2.5 py-1 text-sm font-semibold text-brand-700 ring-1 ring-brand-200 dark:bg-brand-600/20 dark:text-brand-200 dark:ring-brand-400/30">
+                {heroFocusAreas.length}
+              </span>
+            </div>
+
+            <div className="mt-3 divide-y divide-gray-200 dark:divide-white/10">
+              {heroFocusAreas.map((area, index) => (
+                <Link
+                  key={area}
+                  href="/research"
+                  className="group grid grid-cols-[2.25rem_minmax(0,1fr)] gap-4 py-4 transition-colors"
+                >
+                  <span className="text-base font-semibold tabular-nums text-brand-700 dark:text-brand-300">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-lg font-semibold leading-7 text-gray-900 group-hover:text-brand-700 dark:text-white/90 dark:group-hover:text-brand-100">
+                    {area}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <p className="mt-5 border-t border-gray-200 pt-4 text-base leading-7 text-gray-600 dark:border-white/10 dark:text-white/60">
+              Research spans field sensing, industrial controls, formal methods, and security
+              experimentation.
+            </p>
+          </aside>
         </div>
       </section>
 
       {/* Research Themes Preview */}
       <ThemesPreview />
 
+      <ProjectsPreview />
+
       {/* Recent News */}
       <RecentNews />
 
-      {/* Recent Publications */}
-      <section id="publications" className="bg-gray-50 dark:bg-gray-800 py-16 sm:py-24">
+      <PublicationsIndex publications={recentPublications} authorProfiles={publicationAuthorProfiles} />
+
+      <CoursesPreview courses={courses} />
+
+      {/* Research Team */}
+      <section id="people" className="scroll-mt-24 border-y border-gray-200 bg-gray-50/70 py-14 dark:border-white/10 dark:bg-gray-950 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Recent Publications
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Latest contributions to the academic literature in cybersecurity research.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {recentPublications.slice(0, 4).map((publication) => (
-              <PublicationCard key={publication.id} publication={publication} />
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <Link 
-              href="/publications"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+          <div className="mb-10 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+                People
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
+                Research Team
+              </h2>
+            </div>
+            <Link
+              href="/people"
+              className="text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             >
-              View All Publications →
+              View all people →
             </Link>
           </div>
-        </div>
-      </section>
 
-      {/* Principal Investigator */}
-      <section id="people" className="py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Research Team
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Meet the researchers driving innovation in cyber-physical systems security.
-            </p>
-          </div>
-          
-          {/* Principal Investigator */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
-              Principal Investigator
-            </h3>
-            <div className="flex justify-center">
-              <div className="max-w-md">
-                {principalInvestigator.map((member) => (
-                  <TeamMemberCard key={member.id} member={member} isPI={true} />
+          {sortedPrincipalInvestigator.length > 0 && (
+            <section className="mb-12 space-y-4">
+              <div className="flex items-center gap-4">
+                <h3 className="shrink-0 text-lg font-semibold text-gray-950 dark:text-white sm:text-xl">
+                  Principal Investigator
+                </h3>
+                <span className="h-px flex-1 bg-gray-200 dark:bg-white/10" aria-hidden="true" />
+              </div>
+              <div className="w-full">
+                {sortedPrincipalInvestigator.map((member) => (
+                  <TeamMemberCard key={member.id} member={member} isPI={true} variant="homepage" />
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* Current Team - split into Postdocs, PhD Students, Undergrads */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
-              Current Team
-            </h3>
-            {/* Postdocs */}
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Postdoctoral Researchers</h4>
-            <div className="flex justify-center mb-10">
-              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
-                {currentTeam.filter(m => m.role.toLowerCase().includes('postdoc')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
-                  <TeamMemberCard key={member.id} member={member} />
-                ))}
-              </div>
-            </div>
-
-            {/* PhD Students */}
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">PhD Students</h4>
-            <div className="flex justify-center mb-10">
-              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
-                {currentTeam.filter(m => m.role.toLowerCase().includes('phd')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
-                  <TeamMemberCard key={member.id} member={member} />
-                ))}
-              </div>
-            </div>
-
-            {/* Master's Students */}
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Master&apos;s Students</h4>
-            <div className="flex justify-center mb-10">
-              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
-                {currentTeam.filter(m => m.role.toLowerCase().includes('master')).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
-                  <TeamMemberCard key={member.id} member={member} />
-                ))}
-              </div>
-            </div>
-
-            {/* Undergraduate Researchers */}
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-4 text-center">Undergraduate Researchers</h4>
-            <div className="flex justify-center">
-              <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
-                {currentTeam.filter(m => (m.role.toLowerCase().includes('undergrad') || m.role.toLowerCase().includes('undergraduate'))).sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
-                  <TeamMemberCard key={member.id} member={member} />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Alumni */}
-          {alumni.length > 0 && (
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 text-center">
-                Alumni
-              </h3>
-              <div className="flex justify-center">
-                <div className="flex flex-wrap justify-center gap-6 max-w-6xl">
-                  {alumni.sort((a,b)=>a.name.split(' ').pop()!.localeCompare(b.name.split(' ').pop()!)).map((member) => (
-                    <TeamMemberCard key={member.id} member={member} />
-                  ))}
-                </div>
-              </div>
-            </div>
+            </section>
           )}
 
-          {/* Furry Members Section */}
-          <div className="mt-20">
-            <div className="mx-auto max-w-2xl text-center mb-12">
-              <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                Furry Members
-              </h3>
-              <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-                Our beloved four-legged colleagues who keep the lab spirits high.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto">
-              {furryMembers.map((member) => {
-                const hasImage = Boolean(member.image);
-                
-                return (
-                  <div 
-                    key={member.id} 
-                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
-                  >
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-4xl relative">
-                      {hasImage && (
-                        <Image 
-                          src={withBasePath(member.image!)} 
-                          alt={member.name}
-                          fill
-                          className="rounded-full object-cover object-[50%_30%]"
-                          sizes="96px"
-                        />
-                      )}
-                    </div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {member.name}
-                    </h4>
-                    <p className="text-blue-600 dark:text-blue-400 text-sm font-medium">
-                      {member.title}
-                    </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                      {member.role}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-3">
-                      {member.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+          <div className="space-y-12">
+            <PeopleGroup title="Postdoctoral Researchers" members={postdocs} />
+            <PeopleGroup title="PhD Students" members={phdStudents} />
+            <PeopleGroup title="Master's Students" members={mastersStudents} />
+            <PeopleGroup title="Undergraduate Researchers" members={undergrads} />
+            <PeopleGroup title="Alumni" members={sortedAlumni} />
           </div>
+
+          {furryMembers.length > 0 ? (
+            <div className="mt-16 space-y-4">
+              <div className="flex items-center gap-4">
+                <h3 className="shrink-0 text-lg font-semibold text-gray-950 dark:text-white sm:text-xl">
+                  Furry Members
+                </h3>
+                <span className="h-px flex-1 bg-gray-200 dark:bg-white/10" aria-hidden="true" />
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                {furryMembers.map((member) => (
+                  <FurryMemberCard key={member.id} member={member} />
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 
       {/* Opportunities Section */}
-      <section id="opportunities" className="bg-blue-50 dark:bg-blue-900/20 py-16 sm:py-24">
+      <section id="opportunities" className="scroll-mt-24 bg-white py-14 dark:bg-gray-900 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Join Our Team
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              We are always looking for talented and enthusiastic individuals to collaborate with us in advancing the frontiers of cybersecurity research. While we don&apos;t have any specific openings at the moment, we believe in building relationships with passionate researchers.
-            </p>
-            <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Whether you&apos;re a prospective PhD student, postdoctoral researcher, or interested in collaboration opportunities, we&apos;d love to hear from you. When new positions become available, they will be posted here.
-            </p>
-            <div className="mt-10">
-              <p className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-                We welcome
+          <div className="grid gap-9 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+                Opportunities
               </p>
-              <div className="flex flex-wrap justify-center gap-2">
-                {['PhD Students', 'Postdoctoral Researchers', 'Visiting Scholars', 'Undergraduate Researchers', 'Collaborations'].map((type) => (
-                  <span 
-                    key={type}
-                    className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-md text-sm font-medium"
-                  >
-                    {type}
-                  </span>
-                ))}
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
+                Work With Us
+              </h2>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+                Share the research problem you want to work on, the systems you have built, and how it connects to trustworthy CPS.
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <ObfuscatedEmailLink
+                  encodedEmail={encodedLeadEmail}
+                  subject="Research Collaboration Inquiry"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-600 px-4 text-base font-semibold text-white transition-colors hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                >
+                  <Mail className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Email the lab
+                </ObfuscatedEmailLink>
+                <Link
+                  href="/opportunities"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-gray-100 px-4 text-base font-semibold text-gray-950 transition-colors hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:bg-white/[0.07] dark:text-white dark:hover:bg-white/[0.11]"
+                >
+                  Open positions
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </Link>
               </div>
             </div>
-            <div className="mt-10">
-              <a
-                href={`mailto:${labInfo.lead.email}?subject=Research Collaboration Inquiry`}
-                className="rounded-md bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
-              >
-                Get in Touch
-              </a>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {opportunityTracks.map(({ title, detail, Icon }) => (
+                <article
+                  key={title}
+                  className="rounded-lg bg-gray-50 p-5 transition-colors hover:bg-gray-100 dark:bg-white/[0.045] dark:hover:bg-white/[0.065]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold leading-snug text-gray-950 dark:text-white">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                    {detail}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 sm:py-24">
+      <section id="contact" className="scroll-mt-24 border-t border-gray-200 bg-gray-50/70 py-14 dark:border-white/10 dark:bg-gray-950 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-              Contact Us
-            </h2>
-            <div className="mt-8 space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="grid gap-9 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+                Contact
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">
+                Reach the Lab
+              </h2>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <article className="rounded-lg bg-white p-5 dark:bg-white/[0.045]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200">
+                  <Mail className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold leading-snug text-gray-950 dark:text-white">
                   {labInfo.lead.name}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {labInfo.lead.title}
                 </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {labInfo.university.department}
+                <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
+                  {labInfo.university.department}, {labInfo.university.name}
                 </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {labInfo.university.name}
-                </p>
-                <p className="mt-2">
-                  <a 
-                    href={`mailto:${labInfo.lead.email}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-                  >
-                    {labInfo.lead.email}
-                  </a>
-                </p>
-              </div>
-              <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
-                <p>{labInfo.university.address.street}</p>
-                <p>{labInfo.university.address.city}, {labInfo.university.address.state} {labInfo.university.address.zip}</p>
-              </div>
+                <ObfuscatedEmailLink
+                  encodedEmail={encodedLeadEmail}
+                  showAddress
+                  className="mt-4 inline-flex items-center text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                  suffix={<ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />}
+                />
+              </article>
+
+              <article className="rounded-lg bg-white p-5 dark:bg-white/[0.045]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200">
+                  <MapPin className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold leading-snug text-gray-950 dark:text-white">
+                  University of Utah
+                </h3>
+                <div className="mt-2 space-y-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                  <p>{labInfo.university.department}</p>
+                  <p>{labInfo.university.address.street}</p>
+                  <p>
+                    {labInfo.university.address.city}, {labInfo.university.address.state}{' '}
+                    {labInfo.university.address.zip}
+                  </p>
+                </div>
+                <a
+                  href="/contact"
+                  className="mt-4 inline-flex items-center text-base font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                >
+                  Contact page
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </a>
+              </article>
             </div>
           </div>
         </div>

@@ -4,35 +4,64 @@ import { withBasePath } from "@/lib/with-base-path";
 interface LogoMarkProps {
   size?: number;
   className?: string;
+  variant?: "auto" | "light" | "dark";
 }
 
-export default function LogoMark({ size = 64, className = "" }: LogoMarkProps) {
-  const width = size * 2; // approximate aspect ratio
+export default function LogoMark({ size = 64, className = "", variant = "auto" }: LogoMarkProps) {
+  const width = Math.round(size * (1409 / 423));
+  const imageClassName = "h-auto w-full object-contain";
 
   return (
     <div
-      style={{ height: size, width: "auto" }}
+      style={{ width: `${width}px`, maxWidth: "100%" }}
       className={`block ${className}`}
       aria-label="IoTrust Lab"
     >
+      {variant === "light" ? (
+        <Image
+          src={withBasePath("/images/iotrust-logo.png")}
+          alt="IoTrust Lab logo"
+          height={size}
+          width={width}
+          className={imageClassName}
+          priority
+        />
+      ) : null}
+
+      {variant === "dark" ? (
+        <Image
+          src={withBasePath("/images/iotrust-logo-dark.png")}
+          alt="IoTrust Lab logo"
+          height={size}
+          width={width}
+          className={imageClassName}
+          priority
+        />
+      ) : null}
+
       {/* Light mode logo */}
-      <Image
-        src={withBasePath("/images/iotrust-logo.png")}
-        alt="IoTrust Lab logo"
-        height={size}
-        width={width}
-        className="object-contain dark:hidden"
-        priority
-      />
+      {variant === "auto" ? (
+        <Image
+          src={withBasePath("/images/iotrust-logo.png")}
+          alt="IoTrust Lab logo"
+          height={size}
+          width={width}
+          className={`${imageClassName} dark:hidden`}
+          priority
+        />
+      ) : null}
+
       {/* Dark mode logo */}
-      <Image
-        src={withBasePath("/images/iotrust-logo-dark.png")}
-        alt="IoTrust Lab logo (dark mode)"
-        height={size}
-        width={width}
-        className="hidden dark:block object-contain"
-        priority
-      />
+      {variant === "auto" ? (
+        <Image
+          src={withBasePath("/images/iotrust-logo-dark.png")}
+          alt="IoTrust Lab logo (dark mode)"
+          height={size}
+          width={width}
+          className={`hidden ${imageClassName} dark:block`}
+          priority
+        />
+      ) : null}
     </div>
   );
 }

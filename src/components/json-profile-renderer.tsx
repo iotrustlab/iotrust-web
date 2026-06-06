@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Mail, Linkedin } from 'lucide-react';
 import { withBasePath } from '@/lib/with-base-path';
+import { encodeEmailAddress } from '@/lib/email-obfuscation';
+import { ObfuscatedEmailLink } from '@/components/obfuscated-email-link';
 
 interface SectionContent {
   badges?: string[];
@@ -56,6 +58,8 @@ interface JsonProfileProps {
 }
 
 export function JsonProfileRenderer({ profile }: JsonProfileProps) {
+  const encodedProfileEmail = profile.email ? encodeEmailAddress(profile.email) : '';
+
   const renderSection = (section: Section, index: number) => {
     const spacing = profile.styling?.section_spacing || "mb-8";
     
@@ -110,13 +114,13 @@ export function JsonProfileRenderer({ profile }: JsonProfileProps) {
             {headerContent?.contact_links && (
               <div className="flex flex-wrap gap-4">
                 {headerContent.contact_links.includes('email') && profile.email && (
-                  <a
-                    href={`mailto:${profile.email}`}
+                  <ObfuscatedEmailLink
+                    encodedEmail={encodedProfileEmail}
                     className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                   >
                     <Mail className="h-4 w-4" />
                     Email
-                  </a>
+                  </ObfuscatedEmailLink>
                 )}
                 {headerContent.contact_links.includes('linkedin') && profile.linkedin && (
                   <a
@@ -213,7 +217,13 @@ export function JsonProfileRenderer({ profile }: JsonProfileProps) {
             <div className="space-y-2">
               <div>
                 <span className="font-medium text-gray-900 dark:text-white">Email:</span>
-                <span className="ml-2 text-gray-600 dark:text-gray-300">{profile.email}</span>
+                {profile.email ? (
+                  <ObfuscatedEmailLink
+                    encodedEmail={encodedProfileEmail}
+                    showAddress
+                    className="ml-2 text-gray-600 hover:text-blue-700 dark:text-gray-300 dark:hover:text-blue-300"
+                  />
+                ) : null}
               </div>
               <div>
                 <span className="font-medium text-gray-900 dark:text-white">Office:</span>

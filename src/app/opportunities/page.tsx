@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getLabInfo } from "@/lib/data";
+import { encodeEmailAddress } from "@/lib/email-obfuscation";
+import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
 
 export const metadata: Metadata = {
   title: "Opportunities",
@@ -32,6 +34,7 @@ const tracks = [
 
 export default async function OpportunitiesPage() {
   const labInfo = await getLabInfo();
+  const encodedLeadEmail = encodeEmailAddress(labInfo.lead.email);
 
   return (
     <div className="bg-white dark:bg-gray-900 py-16 sm:py-24">
@@ -49,9 +52,11 @@ export default async function OpportunitiesPage() {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">How to Reach Out</h2>
           <p className="mt-2 text-gray-700 dark:text-gray-200">
             Send a brief email to{" "}
-            <a href={`mailto:${labInfo.lead.email}`} className="text-blue-700 dark:text-blue-300 hover:underline">
-              {labInfo.lead.email}
-            </a>{" "}
+            <ObfuscatedEmailLink
+              encodedEmail={encodedLeadEmail}
+              showAddress
+              className="text-blue-700 dark:text-blue-300 hover:underline"
+            />{" "}
             including your CV, interests, and any relevant publications or project links.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">

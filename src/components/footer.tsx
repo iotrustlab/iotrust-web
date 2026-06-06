@@ -1,115 +1,72 @@
-import { Mail } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { getLabInfo } from '@/lib/data';
-import { withBasePath } from '@/lib/with-base-path';
+
+const footerGroups = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Research', href: '/#research' },
+      { label: 'Projects', href: '/#projects' },
+      { label: 'News', href: '/#news' },
+      { label: 'Publications', href: '/#publications' },
+    ],
+  },
+  {
+    title: 'Lab',
+    links: [
+      { label: 'Courses', href: '/#courses' },
+      { label: 'People', href: '/#people' },
+      { label: 'Opportunities', href: '/#opportunities' },
+      { label: 'Contact', href: '/#contact' },
+    ],
+  },
+];
 
 export async function Footer() {
   const labInfo = await getLabInfo();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Lab and University Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <Image 
-                src={withBasePath("/images/iotrust-logo.png")} 
-                alt="IoTrust Lab" 
-                width={24} 
-                height={24} 
-                className="opacity-90" 
-              />
-              <h3 className="text-lg font-bold text-foreground">
-                IoTrust Lab
-              </h3>
-            </div>
-            <div className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-              <p>{labInfo.university.department}</p>
-              <p>{labInfo.university.name}</p>
-              <div className="mt-3">
-                <p>{labInfo.university.address.street}</p>
-                <p>{labInfo.university.address.city}, {labInfo.university.address.state} {labInfo.university.address.zip}</p>
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                Principal Investigator
-              </h4>
-              <div className="text-sm text-gray-600 dark:text-gray-300">
-                <p className="font-medium">{labInfo.lead.name}</p>
-                <p>{labInfo.lead.title}</p>
-                <a 
-                  href={`mailto:${labInfo.lead.email}`}
-                  className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 mt-1"
-                >
-                  <Mail className="h-3 w-3" />
-                  {labInfo.lead.email}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Navigation */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-4">
-              Quick Links
-            </h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#research" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Research Projects
-                </a>
-              </li>
-              <li>
-                <a href="#publications" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Publications
-                </a>
-              </li>
-              <li>
-                <Link href="/courses" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Courses
-                </Link>
-              </li>
-              <li>
-                <a href="#people" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Research Team
-                </a>
-              </li>
-              <li>
-                <a href="#opportunities" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Join Our Lab
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-3">
-              <Image
-                src={withBasePath("/images/block-u.png")}
-                alt="University of Utah"
-                width={28}
-                height={28}
-              />
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                © {currentYear} IoTrust Lab, {labInfo.university.name}. All rights reserved.
-              </p>
-            </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Advancing IoT Security Research
+    <footer id="site-footer" className="border-t border-gray-200 bg-white dark:border-white/10 dark:bg-gray-950">
+      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+        <div className="grid gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+          <div className="max-w-xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
+              IoTrust Lab
+            </p>
+            <p className="mt-3 text-2xl font-semibold leading-tight text-gray-950 dark:text-white">
+              Evidence for systems that sense, decide, and act in the physical world.
+            </p>
+            <p className="mt-4 text-base leading-7 text-gray-600 dark:text-gray-400">
+              {labInfo.university.department}
             </p>
           </div>
+
+          <nav className="grid grid-cols-2 gap-10 sm:gap-14" aria-label="Footer navigation">
+            {footerGroups.map((group) => (
+              <div key={group.title}>
+                <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+                  {group.title}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-base font-medium text-gray-700 transition-colors hover:text-brand-700 dark:text-gray-300 dark:hover:text-brand-200"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-10 border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-white/10 dark:text-gray-400">
+          <p>© {currentYear} IoTrust Lab, {labInfo.university.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>

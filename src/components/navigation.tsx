@@ -7,145 +7,176 @@ import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 import LogoMark from '@/components/logo-mark';
 
-const navigation = [
-  { name: 'Home', href: '#home', isScroll: true },
-  { name: 'Research', href: '/research', isScroll: false },
-  { name: 'Projects', href: '/projects', isScroll: false },
-  { name: 'News', href: '/news', isScroll: false },
-  { name: 'Publications', href: '#publications', isScroll: true },
-  { name: 'Courses', href: '/courses', isScroll: false },
-  { name: 'People', href: '#people', isScroll: true },
-  { name: 'Opportunities', href: '#opportunities', isScroll: true },
-  { name: 'Contact', href: '#contact', isScroll: true },
+type NavigationItem = {
+  name: string;
+  href: string;
+  sectionId?: string;
+};
+
+const navigation: NavigationItem[] = [
+  { name: 'Home', href: '/', sectionId: 'home' },
+  { name: 'Research', href: '/research', sectionId: 'research' },
+  { name: 'Projects', href: '/projects', sectionId: 'projects' },
+  { name: 'News', href: '/news', sectionId: 'news' },
+  { name: 'Publications', href: '/publications', sectionId: 'publications' },
+  { name: 'Courses', href: '/courses', sectionId: 'courses' },
+  { name: 'People', href: '/people', sectionId: 'people' },
+  { name: 'Opportunities', href: '/opportunities', sectionId: 'opportunities' },
+  { name: 'Contact', href: '/contact', sectionId: 'contact' },
 ];
 
-export function Navigation() {
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const [activeSection, setActiveSection] = React.useState('');
+function sectionHref(item: NavigationItem) {
+  return item.sectionId ? `#${item.sectionId}` : undefined;
+}
 
-  // Set up Intersection Observer to detect which section is in view
+function homepageSectionHref(item: NavigationItem) {
+  if (!item.sectionId) return item.href;
+  return item.sectionId === 'home' ? '/' : `/#${item.sectionId}`;
+}
+
+function isPathActive(pathname: string, href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export function Navigation() {
+  const pathname = usePathname() ?? '/';
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState('home');
+
   React.useEffect(() => {
     if (pathname !== '/') return;
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle of viewport
-      threshold: 0
+    const sectionItems = navigation.filter((item) => item.sectionId);
+    const sectionIds = new Set(sectionItems.map((item) => item.sectionId));
+    let frame: number | null = null;
+
+    const updateActiveSection = () => {
+      const marker = window.scrollY + 112;
+      let currentSection = 'home';
+
+      for (const item of sectionItems) {
+        const sectionId = item.sectionId;
+        if (!sectionId) continue;
+
+        const element = document.getElementById(sectionId);
+        if (!element) continue;
+
+        if (element.offsetTop <= marker) {
+          currentSection = sectionId;
+        }
+      }
+
+      setActiveSection(currentSection);
     };
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = `#${entry.target.id}`;
-          setActiveSection(sectionId);
-        }
+    const requestActiveSectionUpdate = () => {
+      if (frame !== null) return;
+
+      frame = window.requestAnimationFrame(() => {
+        frame = null;
+        updateActiveSection();
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const scrollToHashSection = () => {
+      const sectionId = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+      if (!sectionId || !sectionIds.has(sectionId)) return;
 
-    // Observe all sections that have corresponding navigation items
-    const sectionsToObserve = navigation
-      .filter(item => item.isScroll)
-      .map(item => item.href.substring(1)) // Remove # from href
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
+      window.requestAnimationFrame(() => {
+        const element = document.getElementById(sectionId);
+        if (!element) return;
 
-    sectionsToObserve.forEach(section => {
-      if (section) observer.observe(section);
-    });
-
-    // Set initial active section based on scroll position
-    const handleInitialScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
-      for (const item of navigation) {
-        if (item.isScroll) {
-          const element = document.querySelector(item.href);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            const elementTop = rect.top + window.scrollY;
-            const elementBottom = elementTop + rect.height;
-            
-            if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
-              setActiveSection(item.href);
-              break;
-            }
-          }
-        }
-      }
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setActiveSection(sectionId);
+      });
     };
 
-    // Check initial position
-    handleInitialScroll();
+    updateActiveSection();
+    scrollToHashSection();
+    window.addEventListener('scroll', requestActiveSectionUpdate, { passive: true });
+    window.addEventListener('resize', requestActiveSectionUpdate);
+    window.addEventListener('hashchange', scrollToHashSection);
 
     return () => {
-      observer.disconnect();
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame);
+      }
+
+      window.removeEventListener('scroll', requestActiveSectionUpdate);
+      window.removeEventListener('resize', requestActiveSectionUpdate);
+      window.removeEventListener('hashchange', scrollToHashSection);
     };
   }, [pathname]);
 
-  const handleScroll = (href: string) => {
-    if (pathname !== '/') {
-      // If not on home page, navigate to home first then scroll
-      window.location.href = `/${href}`;
-    } else {
-      // If on home page, just scroll
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+  const handleScroll = (item: NavigationItem) => {
+    const href = sectionHref(item);
+    if (!href || !item.sectionId) return;
+
+    const element = document.getElementById(item.sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.history.pushState(null, '', item.sectionId === 'home' ? '/' : href);
+      setActiveSection(item.sectionId);
     }
+
     setMobileMenuOpen(false);
   };
 
-  const isActiveSection = (href: string) => {
-    if (pathname !== '/') {
-      // For page-based navigation, check if current pathname matches
-      return pathname === href;
+  const isActiveItem = (item: NavigationItem) => {
+    if (pathname === '/') {
+      return item.sectionId ? activeSection === item.sectionId : false;
     }
-    // For scroll-based navigation on homepage, check if this section is currently active
-    return activeSection === href;
+
+    return isPathActive(pathname, item.href);
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-[color:var(--bg)]/70 border-b border-white/5">
-      <nav className="mx-auto max-w-7xl px-4 h-24 sm:h-24 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <LogoMark size={28} className="shrink-0" />
-          <span className="ml-2 text-base font-semibold tracking-tight group-hover:text-accent transition-colors">
-            IoTrust Lab
-          </span>
+    <header className="sticky top-0 z-50 border-b border-gray-200/70 bg-[color:var(--bg)]/90 backdrop-blur dark:border-white/10">
+      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-20 lg:px-6">
+        <Link href="/" className="flex min-w-[132px] items-center" aria-label="IoTrust Lab home">
+          <LogoMark size={36} className="shrink-0" />
         </Link>
 
         {/* Desktop navigation */}
-        <div className="hidden sm:flex sm:space-x-8">
+        <div className="hidden xl:flex xl:items-center xl:gap-8">
           {navigation.map((item) => {
-            if (item.isScroll) {
+            const isActive = isActiveItem(item);
+
+            if (item.sectionId && pathname === '/') {
+              const href = sectionHref(item)!;
+
               return (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => handleScroll(item.href)}
-                  className={`inline-flex items-center px-1 pt-1 text-base font-medium transition-colors border-b-2 ${
-                    isActiveSection(item.href)
+                  href={href}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleScroll(item);
+                  }}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`inline-flex h-20 items-center border-b-2 px-1 text-[15px] font-medium transition-colors ${
+                    isActive
                       ? 'border-brand-600 text-foreground'
                       : 'border-transparent text-muted-foreground hover:border-brand-300 hover:text-foreground'
                   }`}
                 >
                   {item.name}
-                </button>
+                </a>
               );
             }
             
             return (
               <Link
                 key={item.name}
-                href={item.href}
-                className={`inline-flex items-center px-1 pt-1 text-base font-medium transition-colors ${
-                  isActiveSection(item.href)
-                    ? 'border-b-2 border-brand-600 text-foreground'
-                    : 'border-b-2 border-transparent text-muted-foreground hover:border-brand-300 hover:text-foreground'
+                href={item.sectionId ? homepageSectionHref(item) : item.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={`inline-flex h-20 items-center border-b-2 px-1 text-[15px] font-medium transition-colors ${
+                  isActive
+                    ? 'border-brand-600 text-foreground'
+                    : 'border-transparent text-muted-foreground hover:border-brand-300 hover:text-foreground'
                 }`}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
@@ -156,12 +187,12 @@ export function Navigation() {
         {/* Theme toggle and mobile menu button */}
         <div className="flex items-center space-x-4">
           <ThemeToggle />
-          <div className="sm:hidden">
+          <div className="xl:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
               aria-controls="mobile-menu"
-              aria-expanded="false"
+              aria-expanded={mobileMenuOpen}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -176,31 +207,41 @@ export function Navigation() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="sm:hidden" id="mobile-menu">
-            <div className="space-y-1 pb-3 pt-2">
+          <div className="absolute inset-x-0 top-20 border-b border-gray-200 bg-[color:var(--bg)] shadow-lg dark:border-white/10 xl:hidden" id="mobile-menu">
+            <div className="space-y-1 px-4 pb-4 pt-2">
               {navigation.map((item) => {
-                if (item.isScroll) {
+                const isActive = isActiveItem(item);
+
+                if (item.sectionId && pathname === '/') {
+                  const href = sectionHref(item)!;
+
                   return (
-                    <button
+                    <a
                       key={item.name}
-                      onClick={() => handleScroll(item.href)}
+                      href={href}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        handleScroll(item);
+                      }}
+                      aria-current={isActive ? 'page' : undefined}
                       className={`block w-full text-left border-l-4 py-2 pl-3 pr-4 text-base font-medium transition-colors ${
-                        isActiveSection(item.href)
+                        isActive
                           ? 'border-brand-600 bg-brand-50 text-brand-700 dark:bg-brand-900/20 dark:text-brand-300'
                           : 'border-transparent text-muted-foreground hover:border-brand-300 hover:bg-muted hover:text-foreground'
                       }`}
                     >
                       {item.name}
-                    </button>
+                    </a>
                   );
                 }
                 
                 return (
                   <Link
                     key={item.name}
-                    href={item.href}
+                    href={item.sectionId ? homepageSectionHref(item) : item.href}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`block border-l-4 py-2 pl-3 pr-4 text-base font-medium transition-colors ${
-                      isActiveSection(item.href)
+                      isActive
                         ? 'border-brand-600 bg-brand-50 text-brand-700 dark:bg-brand-900/20 dark:text-brand-300'
                         : 'border-transparent text-muted-foreground hover:border-brand-300 hover:bg-muted hover:text-foreground'
                     }`}
@@ -216,4 +257,4 @@ export function Navigation() {
       </nav>
     </header>
   );
-} 
+}

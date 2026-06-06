@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail, MapPin, Building2 } from "lucide-react";
 import { getLabInfo } from "@/lib/data";
+import { encodeEmailAddress } from "@/lib/email-obfuscation";
+import { ObfuscatedEmailLink } from "@/components/obfuscated-email-link";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,6 +15,7 @@ export default async function ContactPage() {
   const mapsQuery = encodeURIComponent(
     `${labInfo.university.address.street}, ${labInfo.university.address.city}, ${labInfo.university.address.state} ${labInfo.university.address.zip}`
   );
+  const encodedLeadEmail = encodeEmailAddress(labInfo.lead.email);
 
   return (
     <div className="bg-white dark:bg-gray-900 py-16 sm:py-24">
@@ -36,12 +39,11 @@ export default async function ContactPage() {
                 <div>
                   <p className="font-medium text-gray-900 dark:text-white">{labInfo.lead.name}</p>
                   <p className="text-gray-600 dark:text-gray-300">{labInfo.lead.title}</p>
-                  <a
-                    href={`mailto:${labInfo.lead.email}`}
+                  <ObfuscatedEmailLink
+                    encodedEmail={encodedLeadEmail}
+                    showAddress
                     className="text-blue-700 dark:text-blue-300 hover:underline"
-                  >
-                    {labInfo.lead.email}
-                  </a>
+                  />
                 </div>
               </div>
 
