@@ -131,14 +131,14 @@ export default function ResearchHub() {
                   <div className="mt-7 flex flex-wrap gap-4">
                     <Link
                       href={`/research/${theme.id}`}
-                      className="inline-flex items-center text-base font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                      className="inline-flex min-h-8 items-center text-base font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
                     >
                       Explore theme
                       <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                     </Link>
                     <Link
                       href={`/publications?theme=${theme.id}`}
-                      className="inline-flex items-center text-base font-semibold text-gray-600 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+                      className="inline-flex min-h-8 items-center text-base font-semibold text-gray-600 transition-colors hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
                     >
                       Theme publications
                       <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

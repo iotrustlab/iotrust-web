@@ -301,7 +301,7 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
           <p className="mt-3 line-clamp-4 text-[0.93rem] leading-6 text-gray-600 dark:text-gray-300 sm:text-[0.96rem] sm:leading-[1.65] lg:line-clamp-5">
             {theme.summary}
           </p>
-          <Link href={`/research#${theme.id}`} className="mt-5 inline-flex w-fit text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white">
+          <Link href={`/research#${theme.id}`} className="mt-5 inline-flex min-h-8 w-fit items-center text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white">
             Explore theme →
           </Link>
         </div>
@@ -332,7 +332,7 @@ function ThemeCard({ theme }: { theme: { id: string; title: string; summary: str
           <p className="mt-2.5 line-clamp-4 max-w-xl text-[0.92rem] leading-[1.58] text-gray-600 dark:text-gray-300 lg:mt-3 lg:line-clamp-5 lg:text-[0.96rem] lg:leading-[1.65]">
             {theme.summary}
           </p>
-          <Link href={`/research#${theme.id}`} className="mt-4 inline-flex w-fit text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white lg:mt-5">
+          <Link href={`/research#${theme.id}`} className="mt-4 inline-flex min-h-8 w-fit items-center text-sm font-semibold text-brand-700 hover:text-brand-800 dark:text-brand-200 dark:hover:text-white lg:mt-5">
             Explore theme →
           </Link>
         </div>

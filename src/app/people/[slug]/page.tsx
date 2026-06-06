@@ -165,17 +165,17 @@ export default async function PersonDetailPage({ params }: PageProps) {
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <Link
             href="/people"
-            className="inline-flex text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+            className="inline-flex min-h-8 items-center text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
           >
             &larr; Back to People
           </Link>
 
-          <div className="mt-8 grid gap-9 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_22rem]">
+          <div className="mt-8 grid gap-7 md:grid-cols-[minmax(0,1fr)_15rem] md:items-start lg:grid-cols-[minmax(0,1fr)_20rem] xl:grid-cols-[minmax(0,1fr)_22rem]">
             <div className="flex flex-col justify-center">
               <p className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">
                 {person.role}
               </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+              <h1 className="mt-3 text-4xl font-semibold leading-[1.12] tracking-tight text-gray-950 dark:text-white lg:text-5xl lg:leading-none">
                 {person.name}
               </h1>
               {person.title && (
@@ -204,7 +204,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
                 </p>
               )}
               {person.bio && (
-                <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-700 dark:text-gray-300">
+                <p className="mt-6 max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg sm:leading-8">
                   {person.bio}
                 </p>
               )}
@@ -235,7 +235,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="relative mx-auto aspect-square w-full max-w-[18rem] overflow-hidden rounded-lg bg-gray-100 dark:bg-white/[0.055] lg:mx-0 lg:mt-2 lg:max-w-none lg:justify-self-end">
+            <div className="relative mx-auto aspect-square w-full max-w-[18rem] overflow-hidden rounded-lg bg-gray-100 dark:bg-white/[0.055] md:mx-0 md:mt-1 md:max-w-none md:justify-self-end lg:mt-2">
               <Image
                 src={withBasePath(person.image)}
                 alt={person.name}
@@ -339,7 +339,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                            className="inline-flex min-h-8 items-center gap-1.5 text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
                           >
                             {link.label}
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -347,7 +347,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
                         ))}
                         <Link
                           href={`/publications#${publication.id}`}
-                          className="text-gray-600 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+                          className="inline-flex min-h-8 items-center text-gray-600 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
                         >
                           Publication index
                         </Link>
@@ -428,7 +428,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
               encodedEmail={encodedPersonEmail}
               showAddress
               icon
-              className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              className="mt-3 inline-flex min-h-8 items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             />
             {(person.office || person.location) && (
               <div className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -477,7 +477,7 @@ export default async function PersonDetailPage({ params }: PageProps) {
                       <Link
                         key={project.id}
                         href={`/research/${project.id}`}
-                        className="block text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                        className="inline-flex min-h-8 items-center text-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
                       >
                         {project.title}
                       </Link>

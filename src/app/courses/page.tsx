@@ -25,7 +25,7 @@ export default async function CoursesPage() {
         title="Teaching that connects systems, security, and implementation."
         lede="A compact catalog of courses taught across digital systems, CPS security, and applied network security."
       >
-        <dl className="grid max-w-3xl grid-cols-3 gap-5">
+        <dl className="grid max-w-3xl grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-3">
           <div>
             <dt className="text-sm text-gray-500 dark:text-gray-400">Courses</dt>
             <dd className="mt-1 text-2xl font-semibold text-gray-950 dark:text-white">
@@ -38,7 +38,7 @@ export default async function CoursesPage() {
               {institutions}
             </dd>
           </div>
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <dt className="text-sm text-gray-500 dark:text-gray-400">Recent terms</dt>
             <dd className="mt-1 text-sm font-semibold leading-6 text-gray-950 dark:text-white">
               {latestTerms}

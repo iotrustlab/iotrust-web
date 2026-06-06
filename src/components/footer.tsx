@@ -48,12 +48,12 @@ export async function Footer() {
                 <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
                   {group.title}
                 </h2>
-                <ul className="mt-4 space-y-3">
+                <ul className="mt-3 space-y-1.5">
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-base font-medium text-gray-700 transition-colors hover:text-brand-700 dark:text-gray-300 dark:hover:text-brand-200"
+                        className="inline-flex min-h-8 items-center text-base font-medium text-gray-700 transition-colors hover:text-brand-700 dark:text-gray-300 dark:hover:text-brand-200"
                       >
                         {link.label}
                       </Link>

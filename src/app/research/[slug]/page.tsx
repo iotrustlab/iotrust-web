@@ -51,7 +51,7 @@ function PublicationTitleLink({ id, title, url }: { id: string; title: string; u
     return (
       <a
         href={cleanUrl}
-        className="text-inherit transition-colors hover:text-brand-700 dark:hover:text-brand-200"
+        className="inline-flex min-h-8 items-center text-inherit transition-colors hover:text-brand-700 dark:hover:text-brand-200"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -63,7 +63,7 @@ function PublicationTitleLink({ id, title, url }: { id: string; title: string; u
   return (
     <Link
       href={`/publications#${id}`}
-      className="text-inherit transition-colors hover:text-brand-700 dark:hover:text-brand-200"
+      className="inline-flex min-h-8 items-center text-inherit transition-colors hover:text-brand-700 dark:hover:text-brand-200"
     >
       {title}
     </Link>
@@ -90,7 +90,7 @@ function BackLink() {
   return (
     <Link
       href="/research"
-      className="inline-flex items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+      className="inline-flex min-h-8 items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
     >
       &larr; Back to Research
     </Link>
@@ -229,10 +229,10 @@ function ThemePage({ themeId }: { themeId: string }) {
             <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
               Research Theme
             </p>
-            <h1 className="mt-3 max-w-5xl text-4xl font-semibold leading-tight tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+            <h1 className="mt-3 max-w-5xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-gray-950 dark:text-white sm:text-4xl sm:leading-[1.08] lg:text-5xl lg:leading-none">
               {theme.title}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-300 sm:text-xl sm:leading-9">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-300 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9">
               {theme.summary}
             </p>
 
@@ -324,7 +324,7 @@ function ThemePage({ themeId }: { themeId: string }) {
               {allThemePubs.length > 10 ? (
                 <Link
                   href={`/publications?theme=${themeId}`}
-                  className="inline-flex items-center text-base font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+                  className="inline-flex min-h-8 items-center text-base font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
                 >
                   View all {allThemePubs.length} related publications
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
@@ -405,11 +405,11 @@ function ProjectPage({ projectId }: { projectId: string }) {
               </span>
             </div>
 
-            <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-tight tracking-tight text-gray-950 dark:text-white sm:text-5xl">
+            <h1 className="mt-5 max-w-5xl text-[2rem] font-semibold leading-[1.12] tracking-tight text-gray-950 dark:text-white sm:text-4xl sm:leading-[1.08] lg:text-5xl lg:leading-none">
               {project.title}
               {project.awardNumber ? ` (${project.awardNumber})` : ""}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-300 sm:text-xl sm:leading-9">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-300 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9">
               {project.abstract}
             </p>
 

@@ -84,7 +84,7 @@ export function PublicationScholarItem({ publication, searchQuery = '' }: Public
               href={`https://doi.org/${publication.doi}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              className="inline-flex min-h-8 items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             >
               <ExternalLink className="mr-1 h-3 w-3" />
               DOI
@@ -96,7 +96,7 @@ export function PublicationScholarItem({ publication, searchQuery = '' }: Public
               href={publication.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
+              className="inline-flex min-h-8 items-center text-sm font-semibold text-brand-600 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             >
               <ExternalLink className="mr-1 h-3 w-3" />
               View paper
