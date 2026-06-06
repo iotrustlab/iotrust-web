@@ -31,6 +31,13 @@ export interface Person {
     email: string;
     image: string;
     bio?: string;
+    advisor?: {
+        name: string;
+        url?: string;
+    };
+    location?: string;
+    office?: string;
+    resume?: string;
     research_interests?: string[];
     education?: Array<{
         degree: string;
@@ -43,9 +50,11 @@ export interface Person {
         institution: string;
         department?: string;
         duration: string;
+        summary?: string;
     }>;
     current_projects?: string[];
     publications_count?: number;
+    publication_names?: string[];
     website?: string;
     linkedin?: string;
     google_scholar?: string;
@@ -81,6 +90,10 @@ export interface Publication {
     themeIds?: string[];
     citations?: number;
     url?: string;
+    links?: Array<{
+        label: string;
+        url: string;
+    }>;
     awards?: string[];
 }
 

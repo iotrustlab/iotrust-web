@@ -150,10 +150,39 @@
       "venue": "Security and Privacy in Cyber-Physical Systems and Smart Vehicles: Third EAI International Conference, SmartSP 2025, Salt Lake City, Utah, USA, December 1--2, 2025, Proceedings",
       "year": 2025,
       "type": "conference",
-      "abstract": "",
-      "keywords": [],
-      "url": "",
-      "tags": [],
+      "doi": "10.48550/arXiv.2512.02270",
+      "abstract": "This paper proposes property-guided reduction and surrogate execution for falsifying safety properties in robotic vehicle systems. The method isolates controller logic and physical dynamics relevant to a target specification, then uses lightweight surrogate models with trace analysis and temporal-logic oracles to search for safety violations.",
+      "keywords": [
+        "Cyber-Physical Systems",
+        "Robotic Vehicles",
+        "Safety Analysis",
+        "Falsification",
+        "Surrogate Execution",
+        "Temporal Logic"
+      ],
+      "url": "https://arxiv.org/abs/2512.02270",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2512.02270"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2512.02270"
+        },
+        {
+          "label": "Accepted Papers",
+          "url": "https://smartsp.eai-conferences.org/2025/accepted-papers/"
+        },
+        {
+          "label": "Springer LNICST",
+          "url": "https://link.springer.com/series/8197"
+        }
+      ],
+      "tags": [
+        "Accepted at EAI SmartSP 2025",
+        "Springer LNICST"
+      ],
       "themeIds": [
         "cps-security-semantics"
       ]

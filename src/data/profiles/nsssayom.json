@@ -2,37 +2,87 @@
   "id": "nsssayom",
   "name": "Nazmus Shakib Sayom",
   "role": "PhD Student",
+  "title": "Graduate Research Assistant",
   "department": "Kahlert School of Computing",
   "university": "University of Utah",
-  "email": "nsssayom@utah.edu",
-  "image": "/images/team/sayom-1.jpeg",
-  "bio": "Nazmus Shakib Sayom is a PhD student in the Kahlert School of Computing at the University of Utah, working under the supervision of Dr. Luis Garcia. His research focuses on the intersection of cybersecurity and cyber-physical systems, with particular interest in IoT security and privacy-preserving technologies.",
+  "email": "sayom.shakib@utah.edu",
+  "image": "/images/team/sayom-formal-profile.jpg",
+  "advisor": {
+    "name": "Dr. Luis A. Garcia",
+    "url": "https://lagarcia.us/"
+  },
+  "location": "Salt Lake City, UT, USA",
+  "office": "Room 3115, MEB",
+  "bio": "Nazmus Shakib Sayom is a PhD student and graduate research assistant in the Kahlert School of Computing at the University of Utah. His work focuses on cyber-physical systems safety and security, with emphasis on system verification, safety falsification, property-guided reduction, and surrogate execution for robotic and autonomous systems.",
   "research_interests": [
-    "IoT Security",
-    "Privacy-Preserving Technologies",
-    "Cyber-physical Systems",
-    "Machine Learning Security",
-    "Network Security"
+    "Cyber-Physical Systems Safety and Security",
+    "System Verification",
+    "Safety Falsification",
+    "Robotic Vehicles",
+    "Property-Guided Surrogation",
+    "Embedded and IoT Systems"
   ],
   "education": [
     {
       "degree": "Ph.D. Computer Science (In Progress)",
       "institution": "University of Utah",
-      "year": "2021-Present"
+      "year": "Aug 2024-Present",
+      "focus": "Cyber-physical systems security, falsification, and safety verification for autonomous systems"
     },
     {
-      "degree": "M.S. Computer Science",
-      "institution": "Previous University",
-      "year": "2021"
+      "degree": "B.Sc. Computer Science & Engineering",
+      "institution": "American International University-Bangladesh",
+      "year": "2017-2020",
+      "focus": "Summa Cum Laude; CGPA 3.96/4.00; thesis on disaster victim tracking and rescue support systems"
+    }
+  ],
+  "experience": [
+    {
+      "position": "Linux Developer",
+      "institution": "meldCX",
+      "department": "Dhaka (Remote)",
+      "duration": "Jan 2023-Jul 2024",
+      "summary": "Built embedded Linux distributions for ARM platforms with Yocto, OTA update flows, device-service integrations, and security hardening for deployed edge systems."
+    },
+    {
+      "position": "Lecturer",
+      "institution": "Daffodil International University",
+      "duration": "Jan 2022-Dec 2022",
+      "summary": "Taught operating systems, embedded systems, and computer fundamentals while continuing research collaborations and student mentoring."
+    },
+    {
+      "position": "Senior Software Engineer",
+      "institution": "HelloTask Platform Ltd.",
+      "duration": "Apr 2021-Dec 2021",
+      "summary": "Led platform work for a jobs marketplace and built IVR-based access paths for users without reliable internet connectivity."
+    },
+    {
+      "position": "Embedded Systems Engineer",
+      "institution": "HelloTask Platform Ltd.",
+      "duration": "Jun 2020-Mar 2021",
+      "summary": "Prototyped IoT and computer-vision systems for self-checkout and centralized advertising delivery."
     }
   ],
   "current_projects": [
-    "secure-ubiquitous-sensing",
-    "privacy-preserving-sensing"
+    "darpa-smellcps"
   ],
-  "publications_count": 3,
-  "linkedin": "https://linkedin.com/in/nsssayom",
+  "publications_count": 4,
+  "publication_names": [
+    "Nazmus Shakib Sayom",
+    "N. S. Sayom",
+    "N. Sayom",
+    "Sayom, Nazmus Shakib"
+  ],
+  "research_statement": "I study how cyber-physical and autonomous systems can be reduced, tested, and checked against safety properties without losing the behaviors that matter.",
+  "research_questions": [
+    "How can complex CPS control stacks be reduced into property-relevant surrogates for scalable falsification?",
+    "How can temporal-logic oracles and execution traces expose safety violations in robotic vehicles?",
+    "How can embedded and IoT systems be engineered with stronger security and privacy guarantees from sensing through deployment?"
+  ],
+  "linkedin": "https://www.linkedin.com/in/nsssayom/",
   "github": "https://github.com/nsssayom",
-  "website": "https://nsssayom.github.io",
-  "type": "native"
-} 
+  "google_scholar": "https://scholar.google.com/citations?user=RLNbdK4AAAAJ&hl=en",
+  "website": "https://sayom.me/",
+  "resume": "https://sayom.me/assets/files/sayom_resume_sept_2025.pdf",
+  "type": "json"
+}
