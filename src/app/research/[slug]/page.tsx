@@ -165,7 +165,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: theme.summary,
       path: `/research/${theme.id}`,
       image: SOCIAL_IMAGES.research,
-      imageAlt: `${theme.title} research theme at IoTrust Lab`,
+      imageAlt: `${theme.title} research theme at IOTrust Lab`,
     });
   }
 
@@ -176,7 +176,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: project.abstract,
       path: `/research/${project.id}`,
       image: SOCIAL_IMAGES.research,
-      imageAlt: `${project.title} project at IoTrust Lab`,
+      imageAlt: `${project.title} project at IOTrust Lab`,
     });
   }
 

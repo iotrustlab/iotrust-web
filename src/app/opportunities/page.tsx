@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Opportunities",
-  description: "Explore PhD, undergraduate, postdoctoral, visiting scholar, and collaboration opportunities with IoTrust Lab.",
+  description: "Explore PhD, undergraduate, postdoctoral, visiting scholar, and collaboration opportunities with IOTrust Lab.",
   path: "/opportunities",
 });
 
@@ -48,7 +48,7 @@ export default async function OpportunitiesPage() {
     <main className="bg-white dark:bg-gray-950">
       <PageIntro
         eyebrow="Opportunities"
-        title="Work with IoTrust Lab."
+        title="Work with IOTrust Lab."
         lede="The best first email is specific: what you want to study, what you have built, and how it connects to trustworthy CPS."
       >
         <div className="flex flex-wrap gap-3">

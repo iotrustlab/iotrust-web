@@ -32,7 +32,7 @@ export async function Footer() {
         <div className="grid gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div className="max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
-              IoTrust Lab
+              IOTrust Lab
             </p>
             <p className="mt-3 text-2xl font-semibold leading-tight text-gray-950 dark:text-white">
               Evidence for systems that sense, decide, and act in the physical world.
@@ -66,7 +66,7 @@ export async function Footer() {
         </div>
 
         <div className="mt-10 border-t border-gray-200 pt-6 text-sm text-gray-500 dark:border-white/10 dark:text-gray-400">
-          <p>© {currentYear} IoTrust Lab, {labInfo.university.name}. All rights reserved.</p>
+          <p>© {currentYear} IOTrust Lab, {labInfo.university.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -9,7 +9,7 @@ import { withBasePath } from "@/lib/with-base-path";
 
 export const metadata: Metadata = createMetadata({
   title: "News",
-  description: "Read IoTrust Lab news, media notes, student awards, research milestones, and publication announcements.",
+  description: "Read IOTrust Lab news, media notes, student awards, research milestones, and publication announcements.",
   path: "/news",
   image: SOCIAL_IMAGES.news,
 });
@@ -35,7 +35,7 @@ export default function NewsIndex() {
       <PageIntro
         eyebrow="News"
         title="A lab record of awards, releases, and research milestones."
-        lede="Recent notes from the IoTrust Lab, organized like a running research newspaper."
+        lede="Recent notes from the IOTrust Lab, organized like a running research newspaper."
       >
         <dl className="grid max-w-2xl grid-cols-3 gap-5">
           <div>
@@ -107,7 +107,7 @@ export default function NewsIndex() {
               ) : (
                 <div className="flex h-full min-h-56 flex-col justify-between p-6">
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300">
-                    IoTrust Lab
+                    IOTrust Lab
                   </p>
                   <p className="max-w-44 text-4xl font-semibold leading-none tracking-tight text-gray-950 dark:text-white">
                     Field Notes

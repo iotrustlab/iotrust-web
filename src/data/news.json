@@ -10,7 +10,7 @@
       "The discussion soon turned to guardrails. Garcia described them as ways to align a model with the values of a particular domain, using techniques such as data filtering, human feedback, input and output checks, and traditional code analysis. He also explained why those guardrails are hard to rely on by themselves. Long contexts can weaken instructions, users can jailbreak models, and a chatbot can sound confident even when it is wrong.",
       "On Anthropic's Mythos Preview, Garcia took a careful middle position. He said the model appears strong at tool use and vulnerability testing, but he did not treat it as a sudden leap into science fiction. In his view, the interesting part is the workflow: a model can propose a vulnerability, run tests, revise its hypothesis, and give a security team evidence it can inspect.",
       "He pointed to Mozilla's use of Mythos to find 271 Firefox vulnerabilities as a useful example because the model was not simply left to roam through a codebase. Mozilla built a harness around it, gave it testing environments, and used that structure to reduce noise. Without that kind of setup, AI-assisted security work can produce false positives or unverified leads faster than people can sort through them.",
-      "That framing is close to the work IoTrust Lab does with cyber-physical systems. AI tools may help researchers and engineers move faster, especially when they bridge gaps between software, hardware, and domain knowledge. But speed is only helpful when the output can be checked. Garcia's closing advice was to stop treating AI as one big brain and start asking where each tool belongs, how it should be constrained, and what evidence should be required before it is trusted."
+      "That framing is close to the work IOTrust Lab does with cyber-physical systems. AI tools may help researchers and engineers move faster, especially when they bridge gaps between software, hardware, and domain knowledge. But speed is only helpful when the output can be checked. Garcia's closing advice was to stop treating AI as one big brain and start asking where each tool belongs, how it should be constrained, and what evidence should be required before it is trusted."
     ],
     "image": "/images/news/luis-garcia-kpcw-mythos.jpg",
     "imageLayout": "portrait",
@@ -53,7 +53,7 @@
     "title": "Jared Pratt and Helen Zhang Receive UROP Fellowships for Spring 2026",
     "date": "2026-01-08",
     "tags": ["Student Award", "UROP", "Undergraduate"],
-    "summary": "Jared Pratt and Helen Zhang were awarded UROP fellowships for Spring 2026 to support their undergraduate research contributions in IoTrust Lab.",
+    "summary": "Jared Pratt and Helen Zhang were awarded UROP fellowships for Spring 2026 to support their undergraduate research contributions in IOTrust Lab.",
     "image": "",
     "links": [
       {
@@ -86,7 +86,7 @@
   },
   {
     "id": "2025-uofu-ece-demo-day",
-    "title": "IoTrust Team Wins Best CE Project at University of Utah ECE Demo Day",
+    "title": "IOTrust Team Wins Best CE Project at University of Utah ECE Demo Day",
     "date": "2025-12-05",
     "tags": ["Award", "Demo Day", "Robotics"],
     "summary": "Miles Bovero, Burke Dambly, and Lawrence Ponce earned Best CE Project for 'Enhancing Robotic Manipulation with Vision-Enabled Large Language Models.'",
@@ -112,10 +112,10 @@
   },
   {
     "id": "2025-smartsp-three-papers",
-    "title": "IoTrust Lab Publishes Three Papers at SmartSP 2025",
+    "title": "IOTrust Lab Publishes Three Papers at SmartSP 2025",
     "date": "2025-12-01",
     "tags": ["Publications", "SmartSP", "Conference"],
-    "summary": "IoTrust Lab contributed three papers to SmartSP 2025, highlighting new results across CPS security, semantic reverse engineering, and trustworthy system analysis.",
+    "summary": "IOTrust Lab contributed three papers to SmartSP 2025, highlighting new results across CPS security, semantic reverse engineering, and trustworthy system analysis.",
     "image": "",
     "links": [
       {

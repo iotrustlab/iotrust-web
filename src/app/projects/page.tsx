@@ -7,7 +7,7 @@ import projects from "@/data/projects.json";
 
 export const metadata: Metadata = createMetadata({
   title: "Funded Projects",
-  description: "Browse IoTrust Lab funded research projects organized by agency, status, timeline, and research theme.",
+  description: "Browse IOTrust Lab funded research projects organized by agency, status, timeline, and research theme.",
   path: "/projects",
   image: SOCIAL_IMAGES.research,
 });
@@ -87,7 +87,7 @@ export default function ProjectsIndex() {
       <PageIntro
         eyebrow="Projects"
         title="Funded systems work, from formal stacks to field testbeds."
-        lede="A structured index of IoTrust Lab projects by agency, status, and timeline."
+        lede="A structured index of IOTrust Lab projects by agency, status, and timeline."
       >
         <dl className="grid max-w-3xl grid-cols-3 gap-3 border-y border-gray-200 py-4 text-sm dark:border-white/10">
           <div>

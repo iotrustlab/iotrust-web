@@ -6,7 +6,7 @@ import { createMetadata, SOCIAL_IMAGES } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Publications",
-  description: "Search IoTrust Lab publications across cyber-physical systems security, formal methods, digital twins, sensing, and trustworthy autonomy.",
+  description: "Search IOTrust Lab publications across cyber-physical systems security, formal methods, digital twins, sensing, and trustworthy autonomy.",
   path: "/publications",
   image: SOCIAL_IMAGES.publications,
 });
@@ -24,7 +24,7 @@ export default async function PublicationsPage() {
     <main className="bg-white dark:bg-gray-950">
       <PageIntro
         eyebrow="Publications"
-        title="A searchable index of IoTrust Lab papers and results."
+        title="A searchable index of IOTrust Lab papers and results."
         lede="Filter by theme, type, and year to follow the lab's work across CPS security, sensing, formal methods, and digital twins."
       >
         <dl className="grid max-w-3xl grid-cols-3 gap-3 border-y border-gray-200 py-4 text-sm dark:border-white/10">

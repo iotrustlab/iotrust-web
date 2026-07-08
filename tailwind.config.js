@@ -51,7 +51,7 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // IoTrust Lab brand colors
+        // IOTrust Lab brand colors
         brand: {
           50:  "#FDF2F2",
           100: "#FDE8E8",

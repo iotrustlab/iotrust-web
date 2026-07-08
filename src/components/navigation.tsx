@@ -134,7 +134,7 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200/70 bg-[color:var(--bg)]/90 backdrop-blur dark:border-white/10">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-20 lg:px-6">
-        <Link href="/" className="flex min-w-[132px] items-center" aria-label="IoTrust Lab home">
+        <Link href="/" className="flex min-w-[132px] items-center" aria-label="IOTrust Lab home">
           <LogoMark size={36} className="shrink-0" />
         </Link>
 

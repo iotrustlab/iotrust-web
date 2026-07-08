@@ -25,7 +25,7 @@
   --ring: 0 0% 3.9%;
   --radius: 0.5rem;
   
-  /* IoTrust Lab brand theme variables */
+  /* IOTrust Lab brand theme variables */
   --bg: #ffffff;
   --fg: #0b0f14;
   --muted: #4b5563;
@@ -88,7 +88,7 @@
   --input: 0 0% 14.9%;
   --ring: 0 0% 83.1%;
   
-  /* IoTrust Lab dark theme variables */
+  /* IOTrust Lab dark theme variables */
   --bg: #0B0F14;     /* ink-900 */
   --fg: #E5E7EB;
   --muted: #9CA3AF;
@@ -132,7 +132,7 @@
     scroll-behavior: smooth;
   }
   
-  /* IoTrust Lab brand utilities */
+  /* IOTrust Lab brand utilities */
   a, .text-accent { 
     color: var(--accent); 
   }

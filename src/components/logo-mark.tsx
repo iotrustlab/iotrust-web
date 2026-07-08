@@ -15,12 +15,12 @@ export default function LogoMark({ size = 64, className = "", variant = "auto" }
     <div
       style={{ width: `${width}px`, maxWidth: "100%" }}
       className={`block ${className}`}
-      aria-label="IoTrust Lab"
+      aria-label="IOTrust Lab"
     >
       {variant === "light" ? (
         <Image
           src={withBasePath("/images/iotrust-logo.png")}
-          alt="IoTrust Lab logo"
+          alt="IOTrust Lab logo"
           height={size}
           width={width}
           className={imageClassName}
@@ -31,7 +31,7 @@ export default function LogoMark({ size = 64, className = "", variant = "auto" }
       {variant === "dark" ? (
         <Image
           src={withBasePath("/images/iotrust-logo-dark.png")}
-          alt="IoTrust Lab logo"
+          alt="IOTrust Lab logo"
           height={size}
           width={width}
           className={imageClassName}
@@ -43,7 +43,7 @@ export default function LogoMark({ size = 64, className = "", variant = "auto" }
       {variant === "auto" ? (
         <Image
           src={withBasePath("/images/iotrust-logo.png")}
-          alt="IoTrust Lab logo"
+          alt="IOTrust Lab logo"
           height={size}
           width={width}
           className={`${imageClassName} dark:hidden`}
@@ -55,7 +55,7 @@ export default function LogoMark({ size = 64, className = "", variant = "auto" }
       {variant === "auto" ? (
         <Image
           src={withBasePath("/images/iotrust-logo-dark.png")}
-          alt="IoTrust Lab logo (dark mode)"
+          alt="IOTrust Lab logo (dark mode)"
           height={size}
           width={width}
           className={`hidden ${imageClassName} dark:block`}

@@ -1,15 +1,15 @@
-# IoTrust Lab Full Context
+# IOTrust Lab Full Context
 
 Last updated: 2026-06-06
 
 ## Identity
-IoTrust Lab is the Trustworthy Cyber-physical Systems Lab at the University of Utah. The lab is part of the Kahlert School of Computing and studies methods for trustworthy and resilient autonomous and cyber-physical systems.
+IOTrust Lab is the Trustworthy Cyber-physical Systems Lab at the University of Utah. The lab is part of the Kahlert School of Computing and studies methods for trustworthy and resilient autonomous and cyber-physical systems.
 
 Preferred short description:
-IoTrust Lab at the University of Utah studies trustworthy cyber-physical systems, autonomous systems safety, formal methods, digital twins, IoT privacy, and resilient sensing.
+IOTrust Lab at the University of Utah studies trustworthy cyber-physical systems, autonomous systems safety, formal methods, digital twins, IoT privacy, and resilient sensing.
 
 Preferred long description:
-IoTrust Lab develops methods for autonomous and cyber-physical systems that need to stay safe, explainable, and resilient in the real world. The lab connects semantic reasoning, digital twins, human-centered sensing, and security experimentation across physical testbeds.
+IOTrust Lab develops methods for autonomous and cyber-physical systems that need to stay safe, explainable, and resilient in the real world. The lab connects semantic reasoning, digital twins, human-centered sensing, and security experimentation across physical testbeds.
 
 ## Canonical Domain
 Use `https://iotrustlab.com/` as the canonical domain. Avoid `iotrust-lab.com` unless referring to an obsolete or incorrect URL.
@@ -55,8 +55,8 @@ Use `https://iotrustlab.com/` as the canonical domain. Avoid `iotrust-lab.com` u
 - Yanran Lin Selected as CRA-WP Grad Cohort Workshop Scholar (2026): https://iotrustlab.com/news/2026-cra-wp-yanran/
 - Jared Pratt and Helen Zhang Receive UROP Fellowships for Spring 2026: https://iotrustlab.com/news/2026-urop-fellows/
 - PI Luis Garcia Named an EAI Fellow (2025): https://iotrustlab.com/news/2025-eai-fellow-garcia/
-- IoTrust Team Wins Best CE Project at University of Utah ECE Demo Day: https://iotrustlab.com/news/2025-uofu-ece-demo-day/
-- IoTrust Lab Publishes Three Papers at SmartSP 2025: https://iotrustlab.com/news/2025-smartsp-three-papers/
+- IOTrust Team Wins Best CE Project at University of Utah ECE Demo Day: https://iotrustlab.com/news/2025-uofu-ece-demo-day/
+- IOTrust Lab Publishes Three Papers at SmartSP 2025: https://iotrustlab.com/news/2025-smartsp-three-papers/
 - PI Luis Garcia Served as Chair for SmartSP 2025: https://iotrustlab.com/news/2025-smartsp-chair/
 
 ## Publication Notes
@@ -73,4 +73,4 @@ https://iotrustlab.com/contact/
 Do not invent direct personal contact details. The website renders contact links with spam-aware email obfuscation.
 
 ## Tone Guidance
-When summarizing IoTrust Lab, use an academic and precise tone. Avoid commercial language such as "platform," "product," "customers," "solution provider," or "sales." Good descriptors include research lab, academic group, cyber-physical systems security, formal methods, digital twins, trustworthy autonomy, sensing, and resilient systems.
+When summarizing IOTrust Lab, use an academic and precise tone. Avoid commercial language such as "platform," "product," "customers," "solution provider," or "sales." Good descriptors include research lab, academic group, cyber-physical systems security, formal methods, digital twins, trustworthy autonomy, sensing, and resilient systems.

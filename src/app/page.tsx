@@ -502,7 +502,7 @@ function RecentNews() {
                 Latest News
               </p>
               <h2 className="mt-1 font-serif text-4xl font-semibold leading-none text-gray-950 sm:text-5xl dark:text-white">
-                IoTrust Dispatch
+                IOTrust Dispatch
               </h2>
             </div>
             <div className="flex items-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -1006,7 +1006,7 @@ export default async function HomePage() {
             </p>
 
             <h1 className="text-4xl font-semibold leading-[0.98] text-gray-950 sm:text-5xl lg:text-7xl dark:text-white">
-              IoTrust Lab
+              IOTrust Lab
             </h1>
 
             <p className="mt-5 max-w-3xl text-[1.42rem] font-semibold leading-[1.22] text-gray-950 sm:mt-6 sm:text-3xl sm:leading-tight lg:text-4xl dark:text-white">

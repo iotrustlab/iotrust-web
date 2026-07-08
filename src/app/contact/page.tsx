@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact",
-  description: "Contact IoTrust Lab at the University of Utah for research collaboration, visits, advising, and lab opportunities.",
+  description: "Contact IOTrust Lab at the University of Utah for research collaboration, visits, advising, and lab opportunities.",
   path: "/contact",
 });
 
@@ -24,7 +24,7 @@ export default async function ContactPage() {
     <main className="bg-white dark:bg-gray-950">
       <PageIntro
         eyebrow="Contact"
-        title="Reach the IoTrust Lab."
+        title="Reach the IOTrust Lab."
         lede="For collaboration, advising, visits, and research opportunities, start with the principal investigator."
       />
 

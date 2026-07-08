@@ -6,7 +6,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Courses",
-  description: "Courses taught by IoTrust Lab members across digital systems, cyber-physical systems security, and applied network security.",
+  description: "Courses taught by IOTrust Lab members across digital systems, cyber-physical systems security, and applied network security.",
   path: "/courses",
 });
 

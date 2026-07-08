@@ -1,6 +1,6 @@
-# IoTrust Lab Website
+# IOTrust Lab Website
 
-Official website for IoTrust Lab at the University of Utah.
+Official website for IOTrust Lab at the University of Utah.
 
 Live site: https://iotrustlab.com
 

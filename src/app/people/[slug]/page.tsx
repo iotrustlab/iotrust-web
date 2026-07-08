@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: person.bio,
     path: `/people/${person.id}`,
     image: `/images/social/profile-${person.id}.png`,
-    imageAlt: `${person.name}, ${person.role} at IoTrust Lab`,
+    imageAlt: `${person.name}, ${person.role} at IOTrust Lab`,
   });
 }
 

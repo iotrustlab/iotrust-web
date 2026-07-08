@@ -12,7 +12,7 @@
   "banner": {
     "enabled": false,
     "image": "/images/banners/lab-banner.jpg",
-    "alt": "IoTrust Lab Banner",
+    "alt": "IOTrust Lab Banner",
     "showOnMobile": true,
     "position": "above-title",
     "height": {

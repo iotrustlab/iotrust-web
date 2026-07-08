@@ -9,7 +9,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "Bio",
-  description: "Learn about Dr. Luis A. Garcia, principal investigator of IoTrust Lab at the University of Utah.",
+  description: "Learn about Dr. Luis A. Garcia, principal investigator of IOTrust Lab at the University of Utah.",
   path: "/bio",
   image: "/images/social/profile-lag.png",
 });

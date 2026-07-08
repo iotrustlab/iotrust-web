@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    template: '%s | IoTrust Lab',
+    template: '%s | IOTrust Lab',
     default: SITE_NAME,
   },
   description: SITE_DESCRIPTION,

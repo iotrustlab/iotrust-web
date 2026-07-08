@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     type: "article",
     publishedTime: `${post.date}T00:00:00.000Z`,
     modifiedTime: `${post.date}T00:00:00.000Z`,
-    authors: ["IoTrust Lab"],
+    authors: ["IOTrust Lab"],
     tags: post.tags,
   });
 }

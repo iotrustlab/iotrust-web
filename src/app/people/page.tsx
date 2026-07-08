@@ -15,7 +15,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
   title: "People",
-  description: "Meet the IoTrust Lab research team, students, alumni, and furry lab members.",
+  description: "Meet the IOTrust Lab research team, students, alumni, and furry lab members.",
   path: "/people",
 });
 
@@ -107,7 +107,7 @@ export default async function PeoplePage() {
       <PageIntro
         eyebrow="People"
         title="Researchers, students, alumni, and lab companions."
-        lede="A full index of the IoTrust Lab community, organized by role and sorted by first name for quick scanning."
+        lede="A full index of the IOTrust Lab community, organized by role and sorted by first name for quick scanning."
       >
         <dl className="grid max-w-3xl grid-cols-3 gap-3 border-y border-gray-200 py-4 text-sm dark:border-white/10">
           <div>

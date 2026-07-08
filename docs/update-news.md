@@ -35,7 +35,7 @@ Minimal post:
 ```json
 {
   "id": "2026-example-news",
-  "title": "IoTrust Lab Shares Example News",
+  "title": "IOTrust Lab Shares Example News",
   "date": "2026-06-06",
   "tags": ["Award", "Research"],
   "summary": "One concise sentence that explains the update.",

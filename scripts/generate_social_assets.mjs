@@ -243,7 +243,7 @@ async function main() {
       logoDataUri,
       kicker: 'RESEARCH THEMES',
       title: 'Semantics, verification, and sensing for CPS',
-      description: 'A structured map of active IoTrust Lab research directions and funded systems work.',
+      description: 'A structured map of active IOTrust Lab research directions and funded systems work.',
       sideNotes: ['SECURITY', 'VERIFICATION', 'PRIVACY', 'NEURO IOT'],
     }),
     'iotrust-research-og.png'
@@ -254,7 +254,7 @@ async function main() {
       logoDataUri,
       kicker: 'PUBLICATIONS',
       title: 'Recent papers and lab results',
-      description: 'A searchable index of IoTrust Lab work across CPS security and trustworthy autonomy.',
+      description: 'A searchable index of IOTrust Lab work across CPS security and trustworthy autonomy.',
       sideNotes: ['PAPERS', 'VENUES', 'AUTHORS', 'ARTIFACTS'],
     }),
     'iotrust-publications-og.png'
@@ -265,7 +265,7 @@ async function main() {
       logoDataUri,
       kicker: 'NEWS',
       title: 'Lab notes, awards, and research milestones',
-      description: 'A running record of IoTrust Lab announcements and media coverage.',
+      description: 'A running record of IOTrust Lab announcements and media coverage.',
       sideNotes: ['DISPATCHES', 'AWARDS', 'MEDIA', 'RELEASES'],
     }),
     'iotrust-news-og.png'

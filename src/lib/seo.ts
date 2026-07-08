@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const SITE_URL = "https://iotrustlab.com";
-export const SITE_NAME = "IoTrust Lab";
+export const SITE_NAME = "IOTrust Lab";
 export const SITE_LONG_NAME = "Trustworthy Cyber-physical Systems Lab";
 export const SITE_DESCRIPTION =
-  "IoTrust Lab at the University of Utah studies trustworthy cyber-physical systems, autonomous systems safety, formal methods, digital twins, IoT privacy, and resilient sensing.";
+  "IOTrust Lab at the University of Utah studies trustworthy cyber-physical systems, autonomous systems safety, formal methods, digital twins, IoT privacy, and resilient sensing.";
 
 export const SOCIAL_IMAGES = {
   default: "/images/social/iotrust-lab-og.png",
@@ -15,7 +15,7 @@ export const SOCIAL_IMAGES = {
 };
 
 export const SITE_KEYWORDS = [
-  "IoTrust Lab",
+  "IOTrust Lab",
   "University of Utah",
   "Kahlert School of Computing",
   "cyber-physical systems security",
