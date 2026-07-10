@@ -1,0 +1,46 @@
+name: CI
+
+# Lightweight, non-blocking validation for pull requests targeting main.
+# Runs the same checks contributors are asked to run locally
+# (see docs/pull-request-workflow.md): ESLint, internal link/asset
+# integrity, and a full static build. These are reported on the PR but
+# are not configured as required status checks, so they never block a
+# merge — they exist to catch broken profile JSON, missing images, dead
+# internal references, and build failures early.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check internal links and assets
+        run: npm run lint:links
+
+      - name: Build
+        run: npm run build
