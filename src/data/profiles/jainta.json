@@ -7,18 +7,21 @@
   "university": "University of Utah",
   "email": "u1471999@utah.edu",
   "image": "/images/team/jp.jpg",
-  "bio": "PhD student in Computer Science at the University of Utah, focusing on cyber-physical systems security and trustworthy AI. Jainta's research explores the intersection of symbolic reasoning and deep learning for enhanced security in industrial control systems.",
+  "bio": "Jainta Paul is a PhD student at the University of Utah. His research focuses on cybersecurity and privacy of critical infrastructures, sensing, and multimodal systems.",
   "research_interests": [
-    "Cyber-Physical Systems Security",
-    "Trustworthy AI",
-    "Symbolic Reasoning",
-    "Industrial Control Systems",
-    "Formal Verification"
+    "Cybersecurity of Critical Infrastructures",
+    "Edge AI",
+    "Multimodal Systems"
   ],
   "education": [
     {
-      "degree": "B.S. Computer Science",
-      "institution": "Bangladesh University of Engineering and Technology, Bangladesh",
+      "degree": "M.S. in Computer Science",
+      "institution": "University of Utah",
+      "year": "2026"
+    },
+    {
+      "degree": "B.Sc. in Computer Science and Engineering",
+      "institution": "Bangladesh University of Engineering and Technology",
       "year": "2022"
     }
   ],
@@ -27,9 +30,11 @@
     "nsf-fmitf"
   ],
   "publications_count": 3,
-  "type": "json", 
-   "website": "https://pauljainta.github.io/jp/"
+  "website": "https://pauljainta.github.io/jp/",
+  "resume": "https://pauljainta.github.io/jp/CV.pdf",
+  "linkedin": "https://www.linkedin.com/in/jainta-paul/",
+  "google_scholar": "https://scholar.google.com/citations?user=-QooDmMAAAAJ&hl=en",
+  "type": "json"
 }
-
 
 
