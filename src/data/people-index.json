@@ -15,6 +15,7 @@
     { "id": "andrew_dron", "type": "json" }
   ],
   "undergrads": [
+    { "id": "andrew_koebbe", "type": "json" },
     { "id": "brandon_vo", "type": "json" },
     { "id": "burke", "type": "json" },
     { "id": "dylan_ladds", "type": "json" },
