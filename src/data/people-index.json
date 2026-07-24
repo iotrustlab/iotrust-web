@@ -26,6 +26,9 @@
     { "id": "miles_bovero", "type": "json" },
     { "id": "ryan_gessel", "type": "json" }
   ],
+  "interns": [
+    { "id": "shuyan_zhou", "type": "json" }
+  ],
   "alumni": [
     { "id": "jordan_cahoon", "type": "json" },
     { "id": "matthew_morales", "type": "json" },

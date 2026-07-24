@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...peopleIndex.phdStudents,
     ...(peopleIndex.mastersStudents ?? []),
     ...peopleIndex.undergrads,
+    ...(peopleIndex.interns ?? []),
     ...peopleIndex.alumni,
   ];
 

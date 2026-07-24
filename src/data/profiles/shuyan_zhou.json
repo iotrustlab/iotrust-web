@@ -1,0 +1,24 @@
+{
+  "id": "shuyan_zhou",
+  "name": "Shuyan (Apple) Zhou",
+  "role": "SPHERE Summer Internship",
+  "title": "Researcher in Industrial Control Systems Security and Signal/Fidelity Lead",
+  "department": "Electrical and Computer Engineering",
+  "university": "Virginia Tech",
+  "email": "shuyan26apple@vt.edu",
+  "image": "/images/team/shuyan-zhou.jpg",
+  "bio": "Shuyan recently completed her B.S. in Electrical and Computer Engineering at Virginia Tech and will begin her M.S. in Fall 2026. She is a research intern with the IOTrust Lab at the University of Utah, where she studies industrial control systems and cyber-physical security. Her work focuses on cyber-physical security validation using PLC and HMI analysis, controller–simulator mapping, digital twins, and realistic testbeds for critical infrastructure. Her research interests include ICS security, digital twins, hardware-in-the-loop testing, wireless systems, and trustworthy AI.",
+  "research_interests": [
+    "ICS Security",
+    "Digital Twins",
+    "Hardware-in-the-Loop Testing",
+    "Wireless Systems",
+    "Trustworthy AI"
+  ],
+  "current_projects": [
+    "nsf-sphere"
+  ],
+  "linkedin": "https://www.linkedin.com/in/shuyan-zhou-apple66399",
+  "publications_count": 0,
+  "type": "json"
+}
