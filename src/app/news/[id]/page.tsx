@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -19,6 +20,62 @@ function formatDate(date: string) {
     year: "numeric",
     timeZone: "UTC",
   }).format(new Date(`${date}T00:00:00Z`));
+}
+
+// A body entry is either a paragraph string or a figure block.
+type FigureBlock = {
+  type: "figure";
+  image: string;
+  alt: string;
+  caption?: string;
+  credit?: string;
+};
+type BodyBlock = string | FigureBlock;
+
+const inlineLinkClass =
+  "font-medium text-brand-700 underline decoration-brand-300 underline-offset-[3px] transition-colors hover:text-brand-800 hover:decoration-brand-500 dark:text-brand-300 dark:decoration-brand-500/70 dark:hover:text-brand-200";
+
+// Renders markdown-style [label](url) links inside a plain paragraph string.
+// Root-relative links (starting with "/") use next/link; the rest open in a new tab.
+function renderInline(text: string): ReactNode[] {
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+  let key = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      nodes.push(text.slice(lastIndex, match.index));
+    }
+    const [full, label, url] = match;
+    if (url.startsWith("/")) {
+      nodes.push(
+        <Link key={key++} href={url} className={inlineLinkClass}>
+          {label}
+        </Link>
+      );
+    } else {
+      nodes.push(
+        <a
+          key={key++}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={inlineLinkClass}
+        >
+          {label}
+        </a>
+      );
+    }
+    lastIndex = match.index + full.length;
+  }
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+
+  return nodes;
 }
 
 export async function generateStaticParams() {
@@ -62,11 +119,17 @@ export default async function NewsPost({ params }: PageProps) {
     notFound();
   }
 
-  const articleBody = Array.isArray((post as { body?: unknown }).body)
-    ? (post as { body: string[] }).body
+  const articleBody: BodyBlock[] = Array.isArray((post as { body?: unknown }).body)
+    ? (post as { body: BodyBlock[] }).body
     : [];
   const isPortraitImage =
     (post as { imageLayout?: string }).imageLayout === "portrait";
+  const cover = post as {
+    coverKicker?: string;
+    coverLabel?: string;
+    coverNote?: string;
+    coverCredit?: string;
+  };
   const postForJsonLd = post as typeof post & { socialImage?: string };
 
   return (
@@ -134,20 +197,24 @@ export default async function NewsPost({ params }: PageProps) {
                   priority
                 />
               </div>
-              {isPortraitImage ? (
+              {isPortraitImage && (cover.coverKicker || cover.coverLabel || cover.coverNote || cover.coverCredit) ? (
                 <figcaption className="flex flex-col justify-end border-t border-gray-200 pt-4 text-sm leading-6 text-gray-600 dark:border-white/10 dark:text-gray-400 sm:border-t-0 sm:pt-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
-                    Radio Interview
-                  </p>
-                  <p className="mt-2 text-base font-semibold text-gray-950 dark:text-white">
-                    KPCW Mountain Money
-                  </p>
-                  <p className="mt-3">
-                    Luis Garcia discussed AI guardrails, Mythos Preview, and why high-capability tools need structured test environments.
-                  </p>
-                  <p className="mt-4 text-xs uppercase tracking-[0.14em] text-gray-500 dark:text-gray-500">
-                    Photo: Kahlert School of Computing
-                  </p>
+                  {cover.coverKicker ? (
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                      {cover.coverKicker}
+                    </p>
+                  ) : null}
+                  {cover.coverLabel ? (
+                    <p className="mt-2 text-base font-semibold text-gray-950 dark:text-white">
+                      {cover.coverLabel}
+                    </p>
+                  ) : null}
+                  {cover.coverNote ? <p className="mt-3">{renderInline(cover.coverNote)}</p> : null}
+                  {cover.coverCredit ? (
+                    <p className="mt-4 text-xs uppercase tracking-[0.14em] text-gray-500 dark:text-gray-500">
+                      {cover.coverCredit}
+                    </p>
+                  ) : null}
                 </figcaption>
               ) : null}
             </figure>
@@ -155,14 +222,47 @@ export default async function NewsPost({ params }: PageProps) {
 
           {articleBody.length ? (
             <section className="mb-10 space-y-7 border-b border-gray-200 pb-8 dark:border-white/10">
-              {articleBody.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="text-lg leading-9 text-gray-800 dark:text-gray-200"
-                >
-                  {paragraph}
-                </p>
-              ))}
+              {articleBody.map((block, index) => {
+                if (typeof block === "string") {
+                  return (
+                    <p
+                      key={index}
+                      className="text-lg leading-9 text-gray-800 dark:text-gray-200"
+                    >
+                      {renderInline(block)}
+                    </p>
+                  );
+                }
+
+                if (block?.type === "figure") {
+                  return (
+                    <figure key={index} className="space-y-3 py-1">
+                      <div className="overflow-hidden rounded-lg bg-white p-4 ring-1 ring-gray-200 dark:ring-white/10">
+                        <Image
+                          src={withBasePath(block.image)}
+                          alt={block.alt}
+                          width={961}
+                          height={250}
+                          className="h-auto w-full"
+                          sizes="(max-width: 1024px) 100vw, 56rem"
+                        />
+                      </div>
+                      {block.caption || block.credit ? (
+                        <figcaption className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {block.caption ? renderInline(block.caption) : null}
+                          {block.credit ? (
+                            <span className="mt-1 block text-xs uppercase tracking-[0.14em] text-gray-500 dark:text-gray-500">
+                              {block.credit}
+                            </span>
+                          ) : null}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  );
+                }
+
+                return null;
+              })}
             </section>
           ) : null}
 

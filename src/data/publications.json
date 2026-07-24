@@ -1,6 +1,28 @@
 {
   "recentPublications": [
     {
+      "id": "paul2026-sensor-privacy-spectrum",
+      "title": "Sensor Privacy as a Spectrum: Quantifying Privacy in Edge and Multimodal Systems through Games",
+      "authors": [
+        "Jainta Paul",
+        "Miles Bovero",
+        "Swapnil Saha",
+        "Mahesh Chowdhary",
+        "Pratik Soni",
+        "Luis Garcia"
+      ],
+      "venue": "Proceedings on Privacy Enhancing Technologies (PoPETs)",
+      "year": 2026,
+      "type": "journal",
+      "abstract": "Edge intelligence is often assumed to improve privacy because raw sensor streams remain local and only constrained outputs (e.g., binary events, quantized embeddings, or compressed features) are exposed. We show this assumption is misleading: even minimal on-device outputs can retain structured semantics that enable adversaries to infer sensitive behaviors under realistic context and access regimes. We introduce a game-based framework that separates two sources of leakage: statistical leakage, bounded by the information capacity of the observable channel, and algorithmic leakage, unlocked when adversaries exploit temporal coherence, multi-channel structure, or auxiliary context within that bound. Across embedded, smartphone, and multimodal sensing datasets, we find that a quantized motion interface can preserve 70-75% of behavioral structure (via information- and divergence-based scores) and enable ~65% activity inference accuracy (about 4x random guessing) once temporal continuity is restored. Exposing richer continuous channels further increases in-domain leakage but becomes strongly placement- and device-specific, degrading transfer across sensors and datasets. Finally, we show that representation learning can induce cross-modal bridges that erode sensing-layer constraints, making seemingly low-sensitivity IMU signals more predictive of private semantic attributes associated with hidden high-fidelity modalities. Together, these results show that privacy in edge AI is shaped by an interaction between physical constraints and observable-interface design, motivating co-designed sensing, model, and evaluation choices that quantify and limit interface-induced leakage rather than assuming locality implies privacy.",
+      "keywords": ["edge sensing", "privacy leakage", "multimodal inference", "information flow"],
+      "url": "https://doi.org/10.56553/popets-2026-0124",
+      "tags": [],
+      "pages": "341--357",
+      "organization": "Privacy Enhancing Technologies Symposium",
+      "themeIds": ["iot-sensor-privacy"]
+    },
+    {
       "id": "ahmed2025-icstracker",
       "title": "ICSTracker: Backtracking Intrusions in Modern Industrial Control Systems",
       "authors": [

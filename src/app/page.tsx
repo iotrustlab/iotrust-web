@@ -491,6 +491,7 @@ function RecentNews() {
   const [lead, ...briefs] = items;
   const leadImageIsPortrait =
     (lead as { imageLayout?: string }).imageLayout === 'portrait';
+  const cover = lead as { coverKicker?: string; coverLabel?: string; coverCredit?: string };
 
   return (
     <section id="news" className="scroll-mt-24 border-y border-gray-200 bg-[#fbfbfa] dark:border-white/10 dark:bg-gray-950">
@@ -521,7 +522,7 @@ function RecentNews() {
               : 'grid gap-8 py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]'
           }
         >
-          {lead.image ? (
+          {lead.image && leadImageIsPortrait ? (
             <Link
               href={`/news/${lead.id}`}
               className="group grid overflow-hidden border-y border-gray-300 text-inherit transition-colors hover:border-brand-300 dark:border-white/15 dark:hover:border-brand-500 lg:grid-cols-[minmax(220px,0.58fr)_minmax(0,1fr)]"
@@ -535,17 +536,25 @@ function RecentNews() {
                   sizes="(max-width: 1024px) 100vw, 28rem"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05)_0%,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.78)_100%)]" />
-                <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-200">
-                    Radio Interview
-                  </p>
-                  <p className="mt-1 text-base font-semibold leading-tight">
-                    KPCW Mountain Money
-                  </p>
-                  <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/65">
-                    Photo: Kahlert School of Computing
-                  </p>
-                </figcaption>
+                {cover.coverKicker || cover.coverLabel || cover.coverCredit ? (
+                  <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
+                    {cover.coverKicker ? (
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-200">
+                        {cover.coverKicker}
+                      </p>
+                    ) : null}
+                    {cover.coverLabel ? (
+                      <p className="mt-1 text-base font-semibold leading-tight">
+                        {cover.coverLabel}
+                      </p>
+                    ) : null}
+                    {cover.coverCredit ? (
+                      <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/65">
+                        {cover.coverCredit}
+                      </p>
+                    ) : null}
+                  </figcaption>
+                ) : null}
               </figure>
 
               <div className="flex flex-col border-t border-gray-300 bg-[#fbfbfa] p-5 dark:border-white/15 dark:bg-gray-950 sm:p-6 lg:border-l lg:border-t-0 lg:p-7">
@@ -572,6 +581,60 @@ function RecentNews() {
                   ))}
                 </div>
                 <span className="mt-auto inline-flex items-center pt-8 text-base font-semibold text-brand-600 dark:text-brand-300">
+                  Read front story
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </div>
+            </Link>
+          ) : lead.image ? (
+            <Link href={`/news/${lead.id}`} className="group block text-inherit">
+              <figure className="relative aspect-[3/2] w-full overflow-hidden rounded-lg bg-gray-100 ring-1 ring-gray-300 transition-colors group-hover:ring-brand-300 dark:bg-white/[0.055] dark:ring-white/15 dark:group-hover:ring-brand-500">
+                <Image
+                  src={withBasePath(lead.image)}
+                  alt={lead.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  sizes="(max-width: 1024px) 100vw, 46rem"
+                />
+              </figure>
+              {cover.coverKicker || cover.coverCredit ? (
+                <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-gray-200 pb-3 text-xs dark:border-white/10">
+                  {cover.coverKicker ? (
+                    <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                      {cover.coverKicker}
+                    </span>
+                  ) : null}
+                  {cover.coverCredit ? (
+                    <span className="uppercase tracking-[0.14em] text-gray-500 dark:text-gray-500">
+                      {cover.coverCredit}
+                    </span>
+                  ) : null}
+                </figcaption>
+              ) : null}
+              <div className="mt-5">
+                <div className="flex flex-wrap items-center gap-3 text-sm">
+                  <span className="font-semibold uppercase tracking-[0.16em] text-brand-600 dark:text-brand-300">
+                    Front Page
+                  </span>
+                  <span className="text-gray-500 dark:text-gray-400">{formatNewsDate(lead.date)}</span>
+                </div>
+                <h3 className="mt-4 font-serif text-3xl font-semibold leading-tight text-gray-950 group-hover:text-brand-700 sm:text-4xl xl:text-5xl dark:text-white dark:group-hover:text-brand-200">
+                  {lead.title}
+                </h3>
+                <p className="mt-4 max-w-3xl text-lg leading-8 text-gray-700 dark:text-gray-300 xl:text-xl xl:leading-9">
+                  {lead.summary}
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {lead.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-gray-300 bg-white px-3 py-1 text-sm font-semibold text-gray-700 dark:border-white/10 dark:bg-white/5 dark:text-gray-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-7 inline-flex items-center text-base font-semibold text-brand-600 dark:text-brand-300">
                   Read front story
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
@@ -977,6 +1040,9 @@ export default async function HomePage() {
       return role.includes('undergrad') || role.includes('undergraduate');
     })
   );
+  const interns = byFirstName(
+    currentTeam.filter((m) => m.role.toLowerCase().includes('intern'))
+  );
   const sortedAlumni = byFirstName(alumni);
   const encodedLeadEmail = encodeEmailAddress(labInfo.lead.email);
 
@@ -1122,6 +1188,7 @@ export default async function HomePage() {
             <PeopleGroup title="PhD Students" members={phdStudents} />
             <PeopleGroup title="Master's Students" members={mastersStudents} />
             <PeopleGroup title="Undergraduate Researchers" members={undergrads} />
+            <PeopleGroup title="Research Interns" members={interns} />
             <PeopleGroup title="Alumni" members={sortedAlumni} />
           </div>
 
