@@ -1,5 +1,59 @@
 [
   {
+    "id": "2026-pets-jainta-sensor-privacy",
+    "title": "Jainta Paul Presents 'Sensor Privacy as a Spectrum' at PETS 2026 in Calgary",
+    "date": "2026-07-24",
+    "tags": ["Conference", "PETS 2026", "Sensor Privacy"],
+    "summary": "At PETS 2026 in Calgary, PhD student Jainta Paul presented 'Sensor Privacy as a Spectrum,' a study showing that the sparse outputs edge devices share can reveal far more about what people are doing than 'keeping the data on-device' would suggest.",
+    "body": [
+      "Picture the fitness band on your wrist. To save battery and, supposedly, to protect your privacy, it does its thinking on the device and sends out almost nothing, often little more than a flag that flips between moving and still. It sounds like a fair deal: the raw motion never leaves your wrist, so what could a single yes-or-no bit really give away? As it turns out, quite a lot.",
+      "That is the question [Jainta Paul](/people/jainta) carried to [PETS 2026](https://petsymposium.org/), the Privacy Enhancing Technologies Symposium, held this July in Calgary. His paper, [Sensor Privacy as a Spectrum](https://doi.org/10.56553/popets-2026-0124), takes aim at a habit that has crept into how we talk about edge devices: treating 'the data stays on the device' as if it were the same sentence as 'it stays private.'",
+      "Edge and on-device AI are usually pitched on privacy. The raw stream stays local, and the device shares only a trimmed-down result: a label, a short embedding, a compressed feature, a single event. Because those outputs look small and purpose-built, they get waved through as safe by design. Paul and his co-authors show why that is only half the story. An output that is meaningless to a person can still be rich to a model that knows how people tend to move, can watch the signal unfold over time, and can line it up against data it already holds. The concern is not new. Earlier work had shown that motion traces from a VR headset can pick out individual users. What this paper adds is a way to measure how that leakage grows and shrinks as you change what the device exposes.",
+      "Rather than sort systems into private or not, the paper treats privacy as a spectrum and pins down where a design lands. It splits the risk into two parts. Statistical leakage is a ceiling: the most a channel could ever reveal, fixed by the physics of the sensor, where it sits on the body, and how coarsely its output is chopped up. Algorithmic leakage is what an attacker actually pries loose from underneath that ceiling by exploiting structure it leaves behind: the rhythm of a signal over time, the way several sensors move together, and whatever outside knowledge the attacker walks in with.",
+      {
+        "type": "figure",
+        "image": "/images/news/popets-2026-sensing-inference-pipeline.png",
+        "alt": "Diagram of a sensing-to-inference pipeline: a person's activity generates several sensor signals; some channels are marked attacker-accessible in red and others private in black; an on-device model releases a small exposed output that an adversary observes.",
+        "caption": "How the paper frames the problem: one real activity throws off many sensor signals at once. Some channels are visible to an attacker (red), others stay on the device (black), and the model releases only a small output. Yet that sliver, plus a little context, is often enough to work backward to what someone was doing.",
+        "credit": "Figure 2 from Paul et al., PoPETs 2026"
+      },
+      "The distance between those two is where the numbers start to sting. Give an attacker only a coarse on-off signal with its timing shuffled, and guessing which of seven everyday activities someone was doing sits around 30 to 35 percent, better than a coin toss but close to the hard limit the authors work out on paper. Show that same signal in order, as one continuous stretch of time, and accuracy climbs into the high fifties. Hand over the raw accelerometer and gyroscope and it reaches anywhere from 70 to nearly 99 percent inside a single dataset, though that richer leakage is fussy, pinned to the exact device and body position, so it travels badly to other settings.",
+      "The finding most likely to worry a product team is what happens once modern representation learning joins in. Models trained to align different sensors in a shared space can quietly build bridges between them, so a cheap, low-sensitivity motion signal starts to stand in for the richer channels it was trained alongside. An inertial sensor, in other words, can begin to hint at things you would assume needed a camera or a microphone, even though no audio or video is ever sent.",
+      "To keep the study honest about real hardware rather than tidy benchmarks, the team built a new dataset, UTAH-STM-HAR, on [STMicroelectronics](https://www.st.com/)' SensorTile.box PRO, running the chip's on-sensor machine-learning core so the device emitted the same kind of terse output a shipping wearable would. Eleven volunteers worked through seven activities (walking, jogging, climbing and descending stairs, sitting, standing, and lying down), each wearing five sensors at once, and the results were checked against three public datasets. The work ran under IRB approval with de-identified data, and it studies population-level patterns rather than trying to unmask any single person. STMicroelectronics co-authors, who helped design and validate the embedded platform, round out the author list alongside undergraduate researcher [Miles Bovero](/people/miles_bovero).",
+      "The takeaway is not that edge computing is a mistake. It is that 'local' should not be where the privacy conversation ends. The authors argue for reporting privacy as something measured, tied to what a device actually exposes and what an attacker can realistically observe, and they hand designers concrete dials to turn: how finely to quantize an output, how fast to sample, how many channels to expose, whether to preserve timing, and where on the body a sensor sits.",
+      "Paul presented the work as a speaker at the symposium, where he and IOTrust PI [Luis Garcia](/people/lag) represented the lab, Calgary Stampede hats and all. The research was supported by the National Institutes of Health (grant R61MH135109) and the National Science Foundation (grant 2425711)."
+    ],
+    "image": "/images/news/pets-2026-jainta-calgary.jpg",
+    "coverKicker": "PETS 2026 · Calgary",
+    "coverCredit": "Photo: Luis Garcia",
+    "links": [
+      {
+        "label": "Read the paper (PoPETs 2026)",
+        "url": "https://doi.org/10.56553/popets-2026-0124"
+      },
+      {
+        "label": "Paper PDF",
+        "url": "https://petsymposium.org/popets/2026/popets-2026-0124.pdf"
+      },
+      {
+        "label": "PETS 2026 Symposium",
+        "url": "https://petsymposium.org/"
+      },
+      {
+        "label": "Jainta Paul profile",
+        "url": "/people/jainta"
+      },
+      {
+        "label": "Luis Garcia profile",
+        "url": "/people/lag"
+      },
+      {
+        "label": "Browse lab publications",
+        "url": "/publications"
+      }
+    ]
+  },
+  {
     "id": "2026-mountain-money-mythos-garcia",
     "title": "Luis Garcia Breaks Down AI Guardrails and Mythos on KPCW",
     "date": "2026-05-18",
@@ -15,6 +69,10 @@
     "image": "/images/news/luis-garcia-kpcw-mythos.jpg",
     "imageLayout": "portrait",
     "socialImage": "/images/social/iotrust-news-mythos-og.png",
+    "coverKicker": "Radio Interview",
+    "coverLabel": "KPCW Mountain Money",
+    "coverNote": "Luis Garcia discussed AI guardrails, Mythos Preview, and why high-capability tools need structured test environments.",
+    "coverCredit": "Photo: Kahlert School of Computing",
     "links": [
       {
         "label": "Listen on KPCW",
