@@ -100,6 +100,9 @@ export default async function PeoplePage() {
       return role.includes("undergrad") || role.includes("undergraduate");
     })
   );
+  const interns = byFirstName(
+    currentTeam.filter((m) => m.role.toLowerCase().includes("intern"))
+  );
   const sortedAlumni = byFirstName(alumni);
 
   return (
@@ -153,6 +156,7 @@ export default async function PeoplePage() {
           <PeopleSection title="PhD Students" members={phdStudents} />
           <PeopleSection title="Master's Students" members={mastersStudents} />
           <PeopleSection title="Undergraduate Researchers" members={undergrads} />
+          <PeopleSection title="Research Interns" members={interns} />
           <PeopleSection title="Alumni" members={sortedAlumni} />
 
           {furryMembers.length > 0 ? (

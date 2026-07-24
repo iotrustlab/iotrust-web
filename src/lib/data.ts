@@ -103,6 +103,7 @@ interface PeopleIndex {
     phdStudents: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     mastersStudents?: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     undergrads: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
+    interns?: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     alumni: Array<{ id: string; type: 'native' | 'static' | 'json' }>;
     furryMembers: FurryMember[];
 }
@@ -190,6 +191,18 @@ export async function getPeople(): Promise<Person[]> {
         }
     }
 
+    // Add interns
+    for (const personRef of index.interns ?? []) {
+        try {
+            const person = await getPerson(personRef.id);
+            if (person) {
+                people.push(person);
+            }
+        } catch {
+            console.warn(`Failed to load profile for ${personRef.id}`);
+        }
+    }
+
     // Add alumni
     for (const personRef of index.alumni) {
         try {
@@ -235,6 +248,7 @@ export async function getCurrentTeam(): Promise<Person[]> {
         ...index.phdStudents,
         ...(index.mastersStudents ?? []),
         ...index.undergrads,
+        ...(index.interns ?? []),
     ];
 
     for (const personRef of activeGroups) {
@@ -340,6 +354,7 @@ export async function getPeopleTypes(): Promise<Array<{ id: string; type: 'nativ
         ...index.phdStudents,
         ...(index.mastersStudents ?? []),
         ...index.undergrads,
+        ...(index.interns ?? []),
         ...index.alumni,
     ];
 }
