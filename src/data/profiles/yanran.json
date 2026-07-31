@@ -2,36 +2,46 @@
   "id": "yanran",
   "name": "Yanran Lin",
   "role": "PhD Student",
+  "title": "Graduate Research Assistant",
   "department": "Kahlert School of Computing",
   "university": "University of Utah",
-  "email": "yanran.lin@utah.edu",
+  "email": "u1529122@utah.edu",
   "image": "/images/team/yanran-1.jpeg",
-  "bio": "Yanran Lin is a PhD student in the Kahlert School of Computing at the University of Utah, working under the supervision of Dr. Luis Garcia. Her research focuses on formal verification and security analysis of programmable logic controllers in industrial cyber-physical systems.",
+  "bio": "Yanran Lin is a PhD student in the Kahlert School of Computing at the University of Utah. Her research focuses on trustworthy mixed-reality and egocentric computing systems, including gaze- and attention-aware scene understanding, multimodal sensing, and reliable spatial computing. She is interested in developing human-centered AI systems that can interpret user attention and intent and operate reliably in complex real-world environments.",
+  "location": "Salt Lake City, Utah",
   "research_interests": [
-    "Formal Verification",
-    "Industrial Control Systems",
-    "PLC Security",
-    "Cyber-physical Systems",
-    "Safety Analysis"
+    "Trustworthy Mixed Reality",
+    "Egocentric Vision",
+    "Gaze and Visual Attention",
+    "Multimodal Sensing",
+    "Human-Centered AI"
   ],
   "education": [
     {
-      "degree": "Ph.D. Computer Science (In Progress)",
+      "degree": "Ph.D. in Computer Science",
       "institution": "University of Utah",
-      "year": "2020-Present"
+      "year": "2024–Present"
     },
     {
-      "degree": "M.S. Electrical Engineering",
-      "institution": "Previous University",
-      "year": "2020"
+      "degree": "B.S.E. in Computer Science and Engineering",
+      "institution": "University of Michigan",
+      "year": "2024"
+    },
+    {
+      "degree": "B.S.E. in Electrical and Computer Engineering",
+      "institution": "Shanghai Jiao Tong University",
+      "year": "2024"
     }
   ],
   "current_projects": [
-    "nsf-sphere",
-    "nsf-fmitf"
+    "nih-neuroscience-wild"
   ],
-  "publications_count": 4,
-  "linkedin": "https://linkedin.com/in/yanranlin",
-  "github": "https://github.com/yanranlin",
+  "publication_names": [
+    "Yanran Lin"
+  ],
+  "research_statement": "I develop trustworthy and human-centered sensing systems for mixed reality and egocentric computing. My work investigates how gaze, visual context, task knowledge, and spatial information can be combined to infer human attention and intent, support downstream activity understanding, and improve the reliability of XR systems in real-world environments.",
+  "linkedin": "https://www.linkedin.com/in/yanranlin/",
+  "github": "https://github.com/Belinda-007",
+  "google_scholar": "https://scholar.google.com/citations?user=hMQpZSEAAAAJ&hl=en",
   "type": "json"
-} 
+}
