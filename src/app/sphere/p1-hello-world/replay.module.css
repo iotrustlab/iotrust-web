@@ -74,3 +74,95 @@
 .endNote{font-size:18px;line-height:1.45;font-weight:700;margin:35px 0 0 74px;max-width:800px;color:#225753}
 @media(max-width:760px){.page{padding:0 16px 70px}.hero{padding:48px 0 44px}.heroFacts{gap:10px}.heroFacts span{min-width:calc(50% - 8px);padding-right:7px}.section{padding:50px 0}.sectionHead{gap:13px}.stepNumber{width:44px;height:44px;font-size:17px}.sectionLead,.setup,.finePrint,.player,.questionGrid,.evidenceActions,.details,.endNote{margin-left:0}.sectionLead{font-size:18px}.setup{grid-template-columns:1fr;gap:8px}.setupNode{min-height:auto}.setupLink{flex-direction:row;gap:12px;padding:5px 0}.setupLink b{font-size:34px;transform:rotate(90deg)}.setupLink span{font-size:12px}.player{padding:20px 17px}.playerTop{display:block}.sampleCounter{text-align:left;margin-top:15px}.phaseButtons{grid-template-columns:1fr 1fr}.signalGrid{grid-template-columns:1fr}.signal{min-height:auto!important;padding:21px 0!important}.signal:not(:first-child){border-left:0;border-top:1px solid var(--line)}.signal small{min-height:auto}.signal>strong{margin:8px 0}.questionGrid{grid-template-columns:1fr}.question{padding:20px}.evidenceActions{align-items:stretch}.evidenceActions .primaryButton{width:100%}}
 @media(prefers-reduced-motion:reduce){.primaryButton,.secondaryButton,.levelTrack span{transition:none}}
+
+/* The replay is a visual instrument panel driven only by the frozen samples. */
+.page{background:#f1f6f5}
+.wrap{max-width:1260px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:stretch;background:#071d33;color:#fff;border:0;border-radius:0 0 22px 22px;padding:42px 42px 42px 54px;min-height:470px;overflow:hidden}
+.heroCopy{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.hero .eyebrow{color:#85d6c4}
+.hero h1{font-size:clamp(42px,4.8vw,67px);line-height:1.03;max-width:620px;color:#fff;margin:17px 0 20px}
+.heroLead{color:#d2e1e9;font-size:clamp(19px,2vw,25px);max-width:590px;margin:0}
+.heroLink{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;background:#c1f0e2;color:#09293c;font-size:16px;font-weight:800;text-decoration:none;border-radius:7px;padding:14px 18px;margin-top:26px;transition:transform .18s,background .18s}
+.heroLink:hover{background:#e4fff5;transform:translateY(-2px)}
+.heroLink span{font-size:22px;line-height:14px}
+.heroFacts{margin-top:30px;gap:18px}
+.heroFacts span{min-width:auto;border:0;border-left:2px solid #5ea997;color:#d9e6ed;padding:0 0 0 14px;font-size:14px;font-weight:650}
+.heroFacts b{color:#fff;font-size:18px}
+.heroPhoto{position:relative;min-height:375px;margin:0;border-radius:14px;overflow:hidden;background:#17344b;box-shadow:0 25px 60px #0005}
+.heroPhoto img{object-fit:cover;object-position:center}
+.heroPhoto::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#061525b8);pointer-events:none}
+.heroPhoto figcaption{position:absolute;bottom:16px;left:20px;right:20px;z-index:1;color:#fff;font-size:13px;font-weight:700;text-shadow:0 1px 4px #000}
+.notice{max-width:none;margin:24px 0 0;background:#e2efea;color:#143c40;border-left:4px solid #18826f}
+.section{padding:78px 0}
+.sectionHead h2{font-size:clamp(34px,3.6vw,50px)}
+.setupVisuals{display:grid;grid-template-columns:1.28fr .72fr;gap:18px;margin:38px 0 0 74px;min-height:320px}
+.setup{margin:0;max-width:none;grid-template-columns:1fr minmax(95px,.48fr) 1fr;gap:8px;padding:20px;background:#0d2b42;border-radius:14px;box-shadow:0 15px 35px #0b294427}
+.setupNode{background:#143a50;color:#fff;border-top:3px solid #61c5a6;border-radius:8px;min-height:auto;box-shadow:none;padding:18px}
+.setupNode small{color:#9ce8d1;margin-top:8px}
+.setupNode strong{font-size:25px;margin-top:9px}
+.setupNode span{color:#d3e3e8;font-size:14px}
+.setupLink{color:#b9dfd8;font-size:12px;gap:8px}
+.setupLink b{font-size:43px;color:#80dfbe;margin:0}
+.plcGlyph{display:flex!important;flex-direction:row!important;align-items:center;gap:5px;width:105px;height:54px;padding:8px;background:#d7e4df;border:3px solid #9bb3b0;border-radius:4px;margin:0!important}
+.plcGlyph i{height:28px;width:14px;border-radius:2px;background:#1d4050;border-top:5px solid #50bd96}
+.plcGlyph i:first-child{width:23px;border-top-color:#f0c45c}
+.hmiPhoto{position:relative;min-height:320px;margin:0;border:1px solid #d1dedf;border-radius:14px;overflow:hidden;background:white;box-shadow:0 15px 35px #0b29441a}
+.hmiPhoto img{object-fit:contain;object-position:center top;bottom:58px!important;height:calc(100% - 58px)!important}
+.hmiPhoto figcaption{position:absolute;bottom:0;left:0;right:0;min-height:58px;padding:10px 14px;background:#f1f6f5;color:#36505d;font-size:13px;line-height:1.3;font-weight:650}
+.player{border-radius:17px;overflow:hidden;padding:29px 32px 25px;box-shadow:0 18px 52px #0e34491c}
+.stageVisual{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:10px;margin:28px 0;background:#0d2639;border-radius:15px;padding:13px;min-height:350px;color:#fff}
+.stageVisual>div{min-width:0;background:#15384d;border:1px solid #34556a;border-radius:10px;padding:19px}
+.stageVisual small{font-size:11px;letter-spacing:.1em;font-weight:850;color:#a5dfd3}
+.tankPanel{display:flex;flex-direction:column;align-items:center;text-align:center}
+.tankScene{height:194px;display:flex;align-items:center;gap:12px;margin:12px 0 5px}
+.tankTicks{height:180px;display:flex;flex-direction:column;justify-content:space-between;color:#8fb1bb;font-size:11px;text-align:right}
+.tankGlass{height:180px;width:126px;border:3px solid #9fc3cf;border-top:12px solid #9fc3cf;border-radius:16px 16px 12px 12px;position:relative;overflow:hidden;background:linear-gradient(#193a4d,#0c2a3e);box-shadow:inset 0 0 0 4px #ffffff0e,0 14px 25px #0004}
+.tankGlass::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 39px,#ffffff20 40px 41px);z-index:2;pointer-events:none}
+.tankWater{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(#76e2cf,#1a9da3);transition:height .3s ease;box-shadow:0 0 30px #70f2d880}
+.tankWater span{display:block;height:9px;background:#bdfced9e}
+.tankPanel>strong{font-size:30px;font-variant-numeric:tabular-nums}
+.tankPanel>strong em{font-size:15px;font-style:normal;color:#b6d5dc}
+.tankPanel p{font-size:12px;line-height:1.35;color:#b3d1d8;margin:5px 0 0;max-width:220px}
+.controllerPanel h3,.simulatorPanel h3{font-size:29px;margin:7px 0 17px;color:#fff}
+.statePill{display:inline-block;background:#31485b;color:#d7e8eb;border:1px solid #648092;border-radius:999px;padding:7px 15px;font-size:17px;letter-spacing:.04em;margin:2px 0 15px}
+.stateRunning{background:#165e49;border-color:#4ac694;color:#ddfff0;box-shadow:0 0 24px #47df8845}
+.stageVisual .lampLine{color:#dbedf0;font-size:13px;padding:9px 0;border-top:1px solid #ffffff19;margin:0}
+.stageVisual .lampLine strong{color:#fff}
+.stageVisual .lamp{background:#627c88;width:14px;height:14px}
+.stageVisual .lampOn{background:#4fe2a4;box-shadow:0 0 0 4px #4fe2a424,0 0 17px #4fe2a4}
+.simulatorPanel{display:flex;flex-direction:column}
+.routeLine{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:850;color:#b5d0d4;margin:17px 0 5px}
+.routeLine i{position:relative;display:block;flex:1;height:4px;border-radius:3px;background:#617b87}
+.routeLine i::after{content:"";position:absolute;right:-2px;top:-5px;border:7px solid transparent;border-left-color:#617b87}
+.routeOn i{background:#54dfad;box-shadow:0 0 15px #5ff5a8}
+.routeOn i::after{border-left-color:#54dfad}
+.routeMatch{font-size:12px;font-weight:750;color:#c5e5dd;margin:6px 0 17px}
+.simulatorInner{background:#0d2b3d;border:1px solid #34556a;border-radius:8px;padding:13px;margin-top:auto}
+.simulatorInner h3{font-size:22px;margin:5px 0 10px}
+.simulatorInner p{font-size:12px;color:#b3d1d8;margin:13px 0 0}
+.traceChart{border:1px solid #d7e6e6;border-radius:12px;background:#f9fcfb;padding:18px 20px 11px;margin:22px 0 27px}
+.traceHeading{display:flex;justify-content:space-between;gap:16px;align-items:center;color:#0c3447}
+.traceHeading div{display:flex;flex-direction:column;gap:3px}
+.traceHeading small{font-size:10px;font-weight:850;letter-spacing:.1em;color:#08776f}
+.traceHeading strong{font-size:18px}
+.traceHeading span{font-size:12px;color:#506473;white-space:nowrap}
+.traceHeading i,.traceHeading b{display:inline-block;width:14px;height:3px;background:#08776f;vertical-align:middle;margin:0 4px 0 10px}
+.traceHeading b{height:9px;background:#cc3940}
+.traceChart svg{width:100%;height:175px;display:block;margin-top:5px}
+.chartGrid{stroke:#dce7e7;stroke-width:1;stroke-dasharray:4 4}
+.chartAxis{stroke:#b7c9cc;stroke-width:1.4}
+.chartTick,.chartTime{font-size:11px;fill:#677c83;font-family:inherit}
+.chartArea{fill:#81d7c8;fill-opacity:.24}
+.chartLine{fill:none;stroke:#08776f;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.chartBit{fill:#c2363e}
+.chartCursor{stroke:#172d43;stroke-width:2;stroke-dasharray:4 4}
+.chartPoint{fill:#fff;stroke:#08776f;stroke-width:4}
+.traceChart p{color:#60737b;font-size:12px;margin:0}
+.phaseButtons{margin-bottom:15px}
+.phaseButtons button{border-radius:8px;font-size:14px}
+.observation{background:#e9f5f1;border-left:4px solid #08776f;border-radius:0 7px 7px 0;padding:15px 17px}
+.primaryButton,.secondaryButton{border-radius:8px}
+@media(max-width:1050px){.setupVisuals{grid-template-columns:1fr}.hmiPhoto{min-height:380px}.stageVisual{grid-template-columns:1fr 1fr}.simulatorPanel{grid-column:1/-1}.simulatorInner{margin-top:10px}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:35px 22px 22px;gap:24px}.hero h1{font-size:clamp(39px,10vw,58px)}.heroPhoto{min-height:260px}.heroFacts span{min-width:auto}.setupVisuals{margin-left:0}.setup{grid-template-columns:1fr;min-height:auto}.setupLink{flex-direction:row;padding:9px}.setupLink b{transform:none}.hmiPhoto{min-height:280px}.stageVisual{grid-template-columns:1fr}.simulatorPanel{grid-column:auto}.tankScene{margin-top:8px}.tankGlass{height:150px}.tankTicks{height:150px}.traceHeading{align-items:flex-start;flex-direction:column}.traceHeading span{white-space:normal}.traceChart svg{height:145px}.player{padding:19px 15px}}
+@media(prefers-reduced-motion:reduce){.tankWater,.heroLink{transition:none}}
