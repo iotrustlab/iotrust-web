@@ -98,6 +98,38 @@ function CheckQuestion({ question, answers, correct, explanation }: { question: 
   );
 }
 
+function SecurityLens() {
+  const [answer, setAnswer] = useState<number | null>(null);
+  const choices = [
+    'Read the same level tag again',
+    'Check that the PLC output and input bits match',
+    'Compare with a trusted second level reading or flow trend',
+  ];
+  return <div className={styles.securityLens}>
+    <div className={styles.securityStory}>
+      <span className={styles.securityBadge}>HYPOTHETICAL · NO ATTACK WAS RUN</span>
+      <h3>What if the reported 315 mm were false?</h3>
+      <p>The recorded test shows how the controller responded to a scripted level value and Start input. It does not establish the tank&apos;s independent state.</p>
+      <div className={styles.securityChain} aria-label="Recorded controller response to the reported level">
+        <span>Reported level<br /><strong>315 mm</strong></span><b aria-hidden="true">→</b>
+        <span>Controller<br /><strong>RUNNING</strong></span><b aria-hidden="true">→</b>
+        <span>PLC I/O bits<br /><strong>both 1</strong></span>
+      </div>
+    </div>
+    <div className={styles.securityDecision}>
+      <h3>What evidence could expose a false reading?</h3>
+      <p>Choose the observation that does not rely only on the reported value or its downstream response.</p>
+      <div className={styles.securityChoices}>
+        {choices.map((choice, i) => <button type="button" key={choice} className={answer === i ? styles.securityChoiceSelected : ''} onClick={() => setAnswer(i)}>{choice}</button>)}
+      </div>
+      {answer !== null && <p className={answer === 2 ? styles.securityFeedbackCorrect : styles.securityFeedback} role="status">
+        {answer === 2 ? 'Yes. A trusted second level reading or a valid flow balance over time could contradict the reported level. ' : 'That observation depends on the reported value or the controller response. '}
+        This 42-sample capture has no independent tank-level or flow measurement, so it cannot validate an attack or a physical consequence.
+      </p>}
+    </div>
+  </div>;
+}
+
 export function P1Replay({ bundle }: { bundle: Bundle }) {
   const samples = bundle.samples;
   const [index, setIndex] = useState(0);
@@ -132,7 +164,7 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
             <a className={styles.heroLink} href="#step-two">Explore the replay <span aria-hidden="true">↓</span></a>
             <div className={styles.heroFacts}><span><b>02</b> physical PLCs</span><span><b>42</b> samples</span><span><b>~5 min</b> self-guided</span></div>
           </div>
-          <figure className={styles.heroPhoto}><Image src="/images/demos/p1/rockwell-rack.jpeg" alt="One of the two physical Rockwell ControlLogix racks used by the SPHERE ICS facility" fill priority sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>Facility rack photo · illustrative</figcaption></figure>
+          <figure className={styles.heroPhoto}><Image src="/images/demos/p1/rockwell-rack-complete.png" alt="Complete view of one of the two physical Rockwell ControlLogix racks used by the SPHERE ICS facility" fill priority sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>One complete facility rack · illustrative</figcaption></figure>
         </header>
         <p className={styles.notice}><strong>Recorded, not live.</strong> This page does not connect to PLCs. The October 10 test used a scripted tag stimulus, not an HMI click or an attack.</p>
 
@@ -203,12 +235,18 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
           </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="step-four">
-          <div className={styles.sectionHead}><span className={styles.stepNumber}>04</span><div><p className={styles.eyebrow}>Inspect the evidence</p><h2 id="step-four">Take the selected trace with you</h2></div></div>
+        <section className={styles.section} aria-labelledby="security-question">
+          <div className={styles.sectionHead}><span className={styles.stepNumber}>04</span><div><p className={styles.eyebrow}>Apply a security lens</p><h2 id="security-question">Could a false level hide here?</h2></div></div>
+          <p className={styles.sectionLead}>The same reported value that guided the controller could be an attack target. Test what this record can and cannot tell you.</p>
+          <SecurityLens />
+        </section>
+
+        <section className={styles.section} aria-labelledby="step-five">
+          <div className={styles.sectionHead}><span className={styles.stepNumber}>05</span><div><p className={styles.eyebrow}>Inspect the evidence</p><h2 id="step-five">Take the selected trace with you</h2></div></div>
           <p className={styles.sectionLead}>The downloadable CSV contains all 42 recorded positions with teaching-relevant fields and relative time. It omits the private full-column capture and exact UTC timestamps.</p>
           <div className={styles.evidenceActions}><a className={styles.primaryButton} href="/demos/p1-rockwell-replay-42-samples.csv" download>Download filtered CSV</a><a className={styles.textLink} href="#step-one">Review the setup</a></div>
-          <details className={styles.details}><summary>What supports this replay, and what does it not show?</summary><div><p>Source: the October 10, 2026 MDT bounded P1 integrated witness on the SPHERE Rockwell pair. The source capture has SHA-256 <code>{bundle.sourceSha256}</code>. The reviewed rule passed, with {bundle.phaseCounts.baseline} baseline, {bundle.phaseCounts.level_only} level-only, {bundle.phaseCounts.start} Start, and {bundle.phaseCounts.restored} restored samples.</p><p>The observed route is a controller output bit and a matching simulator input bit. The capture does not establish terminal voltage/current, conductor identity, HMI use, an attack, a running tank-model trajectory, or a complete process cycle. Studio 5000 was used separately to inspect the deployed PLC projects.</p><p>Visible terms map to the capture as follows: reported level is <code>P1.RW_Tank_tnk_lvl</code>; valve command is <code>P1.RW_Tank_PR_Valve</code>; output bit 0 is <code>Local:5:O.Data.0</code>; simulator input bit 0 is <code>Local:5:I.Data.0</code>. The full private source remains with the experiment record.</p></div></details>
-          <p className={styles.endNote}>You have completed a read-only replay of one hardware-backed controller response. A separate, guided beta session is needed to operate the live HMI.</p>
+          <details className={styles.details}><summary>What supports this replay, and what does it not show?</summary><div><p>Source: the October 10, 2026 MDT bounded P1 integrated witness on the SPHERE Rockwell pair. The source capture has SHA-256 <code>{bundle.sourceSha256}</code>. The reviewed rule passed, with {bundle.phaseCounts.baseline} baseline, {bundle.phaseCounts.level_only} level-only, {bundle.phaseCounts.start} Start, and {bundle.phaseCounts.restored} restored samples.</p><p>The observed route is a controller output bit and a matching simulator input bit. The capture does not establish terminal voltage/current, conductor identity, HMI use, an attack, a running tank-model trajectory, or a complete process cycle. The false-level exercise is a hypothetical teaching question; no independent tank-level or flow measurement was captured. Studio 5000 was used separately to inspect the deployed PLC projects.</p><p>Visible terms map to the capture as follows: reported level is <code>P1.RW_Tank_tnk_lvl</code>; valve command is <code>P1.RW_Tank_PR_Valve</code>; output bit 0 is <code>Local:5:O.Data.0</code>; simulator input bit 0 is <code>Local:5:I.Data.0</code>. The full private source remains with the experiment record.</p></div></details>
+          <p className={styles.endNote}>You have replayed one hardware-backed controller response and assessed a hypothetical false-level question. A separate, guided beta session is needed to operate the live HMI.</p>
         </section>
       </div>
     </div>
