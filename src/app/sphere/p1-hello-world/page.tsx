@@ -3,8 +3,8 @@ import { P1Replay, type Bundle } from './replay';
 import bundle from '@/data/p1-rockwell-replay.json';
 
 export const metadata: Metadata = {
-  title: 'SPHERE ICS hello world: Rockwell P1 replay',
-  description: 'A self-guided replay of 42 recorded samples from a bounded SPHERE Rockwell controller and simulator PLC test.',
+  title: 'Your First SPHERE Experiment | Raw-Water Intake Replay',
+  description: 'Explore a recorded raw-water intake test on two physical PLCs. Follow the reported level, controller response, and evidence across 42 samples.',
   robots: { index: false, follow: false },
 };
 

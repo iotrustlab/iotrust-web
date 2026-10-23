@@ -158,33 +158,35 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
       <div className={styles.wrap}>
         <header className={styles.hero}>
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>SPHERE ICS CLUSTER / SELF-GUIDED HELLO WORLD</p>
-            <h1>Watch a controller command appear in a second PLC.</h1>
-            <p className={styles.heroLead}>Follow a recorded P1 level, controller response, and matching simulator input through 42 real samples.</p>
-            <a className={styles.heroLink} href="#step-two">Explore the replay <span aria-hidden="true">↓</span></a>
-            <div className={styles.heroFacts}><span><b>02</b> physical PLCs</span><span><b>42</b> samples</span><span><b>~5 min</b> self-guided</span></div>
+            <p className={styles.eyebrow}>SPHERE ICS CLUSTER · HELLO WORLD</p>
+            <p className={styles.heroMode}>Recorded hardware example · P1 raw-water intake</p>
+            <h1>Your first SPHERE experiment</h1>
+            <p className={styles.heroLead}>In water treatment, a tank-level reading helps determine when a valve should open. Follow one recorded test: see the reading change, the controller respond, and the evidence the experiment captured.</p>
+            <a className={styles.heroLink} href="#step-one">Start the walkthrough <span aria-hidden="true">↓</span></a>
+            <div className={styles.heroFacts}><span><b>P1</b> raw-water intake</span><span><b>42</b> recorded samples</span><span><b>Read-only</b> replay</span></div>
           </div>
           <figure className={styles.heroPhoto}><Image src="/images/demos/p1/rockwell-rack-complete.png" alt="Complete view of one of the two physical Rockwell ControlLogix racks used by the SPHERE ICS facility" fill priority sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>One complete facility rack · illustrative</figcaption></figure>
         </header>
-        <p className={styles.notice}><strong>Recorded, not live.</strong> This page does not connect to PLCs. The October 10 test used a scripted tag stimulus, not an HMI click or an attack.</p>
+        <p className={styles.notice}><strong>What you will do:</strong> Play or scrub a recording from two physical controllers, compare the reported level with the controller and simulator tags, and check what that evidence supports. This page has no live controls. The October 10 test used scripted tag inputs, not an operator click or an attack.</p>
 
         <section className={styles.section} aria-labelledby="step-one">
-          <div className={styles.sectionHead}><span className={styles.stepNumber}>01</span><div><p className={styles.eyebrow}>Meet the setup</p><h2 id="step-one">What is connected?</h2></div></div>
-          <p className={styles.sectionLead}>A ControlLogix runs the P1 control logic. A second ControlLogix hosts the simulator I/O image. The tank process is modeled in software.</p>
+          <div className={styles.sectionHead}><span className={styles.stepNumber}>01</span><div><p className={styles.eyebrow}>Understand the scenario</p><h2 id="step-one">A raw-water tank and a valve decision</h2></div></div>
+          <p className={styles.sectionLead}>P1 is the raw-water intake stage of the RoviSys water-treatment use case. In this test, a scripted tank-level reading and Start input led the controller to command its inlet valve. The tank model stayed stopped: you will see the controller decision and simulator input, rather than water moving through a tank.</p>
+          <p className={styles.sectionLead}>Two physical ControlLogix programmable logic controllers (PLCs) make this possible. One runs the control logic; the other hosts simulator input/output (I/O) tags. The prepared human–machine interface (HMI) is used in separate guided beta sessions; it did not trigger this recording.</p>
           <div className={styles.setupVisuals}>
             <div className={styles.setup} aria-label="Controller PLC output and simulator PLC input are compared in the recorded I/O images">
               <div className={styles.setupNode}><span className={styles.plcGlyph} aria-hidden="true"><i /><i /><i /><i /></span><small>PHYSICAL PLC 1</small><strong>Controller</strong><span>Reads reported P1 level<br />Commands the P1 valve</span></div>
               <div className={styles.setupLink}><span>Controller output bit</span><b aria-hidden="true">→</b><span>Simulator input bit</span></div>
               <div className={styles.setupNode}><span className={styles.plcGlyph} aria-hidden="true"><i /><i /><i /><i /></span><small>PHYSICAL PLC 2</small><strong>Simulator</strong><span>Receives the valve bit<br />Tank model stopped in this test</span></div>
             </div>
-            <figure className={styles.hmiPhoto}><Image src="/images/demos/p1/factorytalk-hmi.png" alt="Illustrative FactoryTalk HMI screen showing a water-treatment tank and controls" fill sizes="(max-width: 760px) 100vw, 35vw" /><figcaption>Prepared HMI for guided beta sessions. It did not trigger this recorded test.</figcaption></figure>
+            <figure className={styles.hmiPhoto}><Image src="/images/demos/p1/factorytalk-hmi.png" alt="Illustrative FactoryTalk operator screen showing a water-treatment tank and controls" fill sizes="(max-width: 760px) 100vw, 35vw" /><figcaption>Illustrative operator HMI for guided beta sessions. It did not trigger this recorded test.</figcaption></figure>
           </div>
           <p className={styles.finePrint}>The recorded test observed PLC I/O-image values. It did not measure current at the terminals or run a complete tank cycle.</p>
         </section>
 
         <section className={styles.section} aria-labelledby="step-two">
-          <div className={styles.sectionHead}><span className={styles.stepNumber}>02</span><div><p className={styles.eyebrow}>Explore the recorded run</p><h2 id="step-two">Press Play, then scrub the trace</h2></div></div>
-          <p className={styles.sectionLead}>Playback is slowed to one-third speed for viewing. Every position is an actual recorded sample; the time labels show the original elapsed time.</p>
+          <div className={styles.sectionHead}><span className={styles.stepNumber}>02</span><div><p className={styles.eyebrow}>Observe the response</p><h2 id="step-two">Follow the reading, command, and response</h2></div></div>
+          <p className={styles.sectionLead}>Press Play, or move the slider to any of the 42 recorded samples. Notice when the reported level changes, when the scripted Start input is applied, and when the valve command appears in the simulator PLC input image. Playback is slowed to one-third speed; time labels show the original elapsed time.</p>
           <div className={styles.player}>
             <div className={styles.playerTop}>
               <div><span className={styles.phaseLabel}>{phase.label}</span><p className={styles.phaseExplanation}>{phase.explanation}</p></div>
@@ -228,7 +230,7 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
         </section>
 
         <section className={styles.section} aria-labelledby="step-three">
-          <div className={styles.sectionHead}><span className={styles.stepNumber}>03</span><div><p className={styles.eyebrow}>Check your observation</p><h2 id="step-three">What did the PLCs show?</h2></div></div>
+          <div className={styles.sectionHead}><span className={styles.stepNumber}>03</span><div><p className={styles.eyebrow}>Interpret what you saw</p><h2 id="step-three">What did this test show?</h2></div></div>
           <div className={styles.questionGrid}>
             <CheckQuestion question="During Start, where was the controller valve output also observed?" answers={['In the simulator PLC input image', 'Only on the HMI screen', 'At a measured field terminal']} correct={0} explanation="The captured controller output bit 0 and simulator input bit 0 were both 1 in every Start sample." />
             <CheckQuestion question="What returned to its baseline in the final samples?" answers={['Only the displayed chart', 'Reported level, controller state, and both digital bits', 'A physical water tank']} correct={1} explanation="The reported level returned near 200 mm, the controller was IDLE, and both digital bits were 0." />
