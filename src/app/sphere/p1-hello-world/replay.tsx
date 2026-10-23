@@ -34,8 +34,8 @@ const phaseText: Record<Phase, { label: string; explanation: string; prompt: str
   },
   level_only: {
     label: '2 · Level stimulus',
-    explanation: 'A script changes the level reported to the controller to about 315 mm. The simulator tank model remains stopped.',
-    prompt: 'The level changes first; the valve is still off.',
+    explanation: 'A script changes the level reported to the controller from about 200 to 315 mm across these samples. The simulator tank model remains stopped.',
+    prompt: 'Scrub toward the end of this phase: the level rises before the valve turns on.',
   },
   start: {
     label: '3 · Start pulse',
@@ -44,8 +44,8 @@ const phaseText: Record<Phase, { label: string; explanation: string; prompt: str
   },
   restored: {
     label: '4 · Restored',
-    explanation: 'The script clears Start and restores the original analog value. The controller returns to IDLE and the two digital bits return to 0.',
-    prompt: 'Check that the final sample matches the starting state.',
+    explanation: 'The script clears Start, then returns the reported level from about 315 to 200 mm. The controller is IDLE and the two digital bits are 0.',
+    prompt: 'Scrub to sample 42 to check the final level and digital bits.',
   },
 };
 
