@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import styles from './replay.module.css';
 
@@ -53,6 +54,30 @@ function Lamp({ on, label }: { on: boolean; label: string }) {
   return <span className={styles.lampLine}><span className={`${styles.lamp} ${on ? styles.lampOn : ''}`} aria-hidden="true" /><span>{label}</span><strong>{on ? '1' : '0'}</strong></span>;
 }
 
+function TraceChart({ samples, index }: { samples: Sample[]; index: number }) {
+  const x = (i: number) => 42 + i * 816 / (samples.length - 1);
+  const y = (level: number) => 115 - (level - 190) * 78 / 140;
+  const points = samples.map((s, i) => `${x(i)},${y(s.levelMm)}`).join(' ');
+  const area = `M ${x(0)} 115 L ${samples.map((s, i) => `${x(i)} ${y(s.levelMm)}`).join(' L ')} L ${x(samples.length - 1)} 115 Z`;
+  const cursor = samples[index];
+  return <div className={styles.traceChart}>
+    <div className={styles.traceHeading}><div><small>THE RECORDED TRACE</small><strong>Reported level and PLC I/O bits</strong></div><span><i /> P1 level <b /> Both bits on</span></div>
+    <svg viewBox="0 0 900 175" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="42" x2="858" y1="45" y2="45" className={styles.chartGrid} />
+      <line x1="42" x2="858" y1="115" y2="115" className={styles.chartAxis} />
+      <text x="0" y="49" className={styles.chartTick}>315</text><text x="0" y="119" className={styles.chartTick}>200</text>
+      <path d={area} className={styles.chartArea} />
+      <polyline points={points} className={styles.chartLine} />
+      {samples.map((s, i) => s.controllerOutputBit0 && s.simulatorInputBit0 && <rect key={s.sample} x={x(i) - 8} y="132" width="16" height="12" rx="3" className={styles.chartBit} />)}
+      <line x1={x(index)} x2={x(index)} y1="9" y2="149" className={styles.chartCursor} />
+      <circle cx={x(index)} cy={y(cursor.levelMm)} r="7" className={styles.chartPoint} />
+      <text x="42" y="169" className={styles.chartTime}>0 ms</text>
+      <text x="858" y="169" textAnchor="end" className={styles.chartTime}>{samples.at(-1)?.elapsedMs.toFixed(0)} ms</text>
+    </svg>
+    <p>The line and bit marks use all 42 samples. The vertical marker follows your selection.</p>
+  </div>;
+}
+
 function CheckQuestion({ question, answers, correct, explanation }: { question: string; answers: string[]; correct: number; explanation: string }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
@@ -79,6 +104,7 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
   const [playing, setPlaying] = useState(false);
   const sample = samples[index];
   const phase = phaseText[sample.phase];
+  const fillPercent = Math.min(100, Math.max(0, sample.levelMm / 400 * 100));
   const firstByPhase = useMemo(() => Object.fromEntries((Object.keys(phaseText) as Phase[]).map(p => [p, samples.findIndex(s => s.phase === p)])) as Record<Phase, number>, [samples]);
 
   useEffect(() => {
@@ -99,20 +125,27 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
     <div className={styles.page}>
       <div className={styles.wrap}>
         <header className={styles.hero}>
-          <p className={styles.eyebrow}>SPHERE ICS cluster · self-guided hello world</p>
-          <h1>Watch a physical controller respond</h1>
-          <p className={styles.heroLead}>Play one recorded P1 test. See how a reported tank level, a controller command, and a second PLC&apos;s input changed together.</p>
-          <div className={styles.heroFacts}><span>Two physical ControlLogix PLCs</span><span>Simulated water process</span><span>42 recorded samples</span><span>About 5 minutes</span></div>
-          <p className={styles.notice}><strong>Recorded experiment.</strong> This page does not connect to live PLCs. The test used a scripted tag stimulus, not an HMI click or an attack.</p>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>SPHERE ICS CLUSTER / SELF-GUIDED HELLO WORLD</p>
+            <h1>Watch a controller command appear in a second PLC.</h1>
+            <p className={styles.heroLead}>Follow a recorded P1 level, controller response, and matching simulator input through 42 real samples.</p>
+            <a className={styles.heroLink} href="#step-two">Explore the replay <span aria-hidden="true">↓</span></a>
+            <div className={styles.heroFacts}><span><b>02</b> physical PLCs</span><span><b>42</b> samples</span><span><b>~5 min</b> self-guided</span></div>
+          </div>
+          <figure className={styles.heroPhoto}><Image src="/images/demos/p1/rockwell-rack.jpeg" alt="One of the two physical Rockwell ControlLogix racks used by the SPHERE ICS facility" fill priority sizes="(max-width: 760px) 100vw, 45vw" /><figcaption>Facility rack photo · illustrative</figcaption></figure>
         </header>
+        <p className={styles.notice}><strong>Recorded, not live.</strong> This page does not connect to PLCs. The October 10 test used a scripted tag stimulus, not an HMI click or an attack.</p>
 
         <section className={styles.section} aria-labelledby="step-one">
           <div className={styles.sectionHead}><span className={styles.stepNumber}>01</span><div><p className={styles.eyebrow}>Meet the setup</p><h2 id="step-one">What is connected?</h2></div></div>
           <p className={styles.sectionLead}>A ControlLogix runs the P1 control logic. A second ControlLogix hosts the simulator I/O image. The tank process is modeled in software.</p>
-          <div className={styles.setup} aria-label="Controller PLC sends a valve output to the simulator PLC input image">
-            <div className={styles.setupNode}><small>PHYSICAL PLC 1</small><strong>Controller</strong><span>Reads reported P1 level<br />Commands the P1 valve</span></div>
-            <div className={styles.setupLink}><span>Valve output bit</span><b aria-hidden="true">→</b><span>Observed I/O-image match</span></div>
-            <div className={styles.setupNode}><small>PHYSICAL PLC 2</small><strong>Simulator</strong><span>Receives valve input bit<br />Hosts a software tank model</span></div>
+          <div className={styles.setupVisuals}>
+            <div className={styles.setup} aria-label="Controller PLC output and simulator PLC input are compared in the recorded I/O images">
+              <div className={styles.setupNode}><span className={styles.plcGlyph} aria-hidden="true"><i /><i /><i /><i /></span><small>PHYSICAL PLC 1</small><strong>Controller</strong><span>Reads reported P1 level<br />Commands the P1 valve</span></div>
+              <div className={styles.setupLink}><span>Controller output bit</span><b aria-hidden="true">→</b><span>Simulator input bit</span></div>
+              <div className={styles.setupNode}><span className={styles.plcGlyph} aria-hidden="true"><i /><i /><i /><i /></span><small>PHYSICAL PLC 2</small><strong>Simulator</strong><span>Receives the valve bit<br />Tank model stopped in this test</span></div>
+            </div>
+            <figure className={styles.hmiPhoto}><Image src="/images/demos/p1/factorytalk-hmi.png" alt="Illustrative FactoryTalk HMI screen showing a water-treatment tank and controls" fill sizes="(max-width: 760px) 100vw, 35vw" /><figcaption>Prepared HMI for guided beta sessions. It did not trigger this recorded test.</figcaption></figure>
           </div>
           <p className={styles.finePrint}>The recorded test observed PLC I/O-image values. It did not measure current at the terminals or run a complete tank cycle.</p>
         </section>
@@ -135,11 +168,28 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
             <div className={styles.phaseButtons} aria-label="Jump to a phase">
               {(Object.keys(phaseText) as Phase[]).map(p => <button type="button" key={p} className={sample.phase === p ? styles.phaseActive : ''} onClick={() => jump(firstByPhase[p])}>{phaseText[p].label}</button>)}
             </div>
-            <div className={styles.signalGrid} aria-live="polite">
-              <div className={styles.signal}><small>LEVEL REPORTED TO CONTROLLER</small><strong>{sample.levelMm.toFixed(2)} <em>mm</em></strong><div className={styles.levelTrack}><span style={{ width: `${Math.min(100, sample.levelMm / 400 * 100)}%` }} /></div></div>
-              <div className={styles.signal}><small>CONTROLLER STATE</small><strong>{sample.controllerState}</strong><span className={styles.signalSub}>Scripted Start input: {sample.scriptedStart ? 'on' : 'off'}</span></div>
-              <div className={styles.signal}><small>VALVE ROUTE</small><Lamp on={sample.valveCommand} label="Controller command" /><Lamp on={sample.controllerOutputBit0} label="Controller output bit 0" /><Lamp on={sample.simulatorInputBit0} label="Simulator input bit 0" /></div>
+            <div className={styles.stageVisual} aria-live="polite">
+              <div className={styles.tankPanel}>
+                <small>REPORTED P1 LEVEL</small>
+                <div className={styles.tankScene} aria-hidden="true"><div className={styles.tankTicks}><span>400</span><span>300</span><span>200</span><span>100</span></div><div className={styles.tankGlass}><div className={styles.tankWater} style={{ height: `${fillPercent}%` }}><span /></div></div></div>
+                <strong>{sample.levelMm.toFixed(2)} <em>mm</em></strong>
+                <p>A PLC tag value, not measured water in a physical tank.</p>
+              </div>
+              <div className={styles.controllerPanel}>
+                <small>PHYSICAL PLC 1</small><h3>Controller</h3>
+                <strong className={`${styles.statePill} ${sample.controllerState === 'RUNNING' ? styles.stateRunning : ''}`}>{sample.controllerState}</strong>
+                <Lamp on={sample.scriptedStart} label="Scripted Start input" />
+                <Lamp on={sample.valveCommand} label="P1 valve command" />
+                <Lamp on={sample.controllerOutputBit0} label="Output bit 0" />
+              </div>
+              <div className={styles.simulatorPanel}>
+                <small>OBSERVED I/O-IMAGE ROUTE</small>
+                <div className={`${styles.routeLine} ${sample.controllerOutputBit0 && sample.simulatorInputBit0 ? styles.routeOn : ''}`}><span>OUT</span><i aria-hidden="true" /><span>IN</span></div>
+                <p className={styles.routeMatch}>{sample.controllerOutputBit0 === sample.simulatorInputBit0 ? 'Bits match in this sample' : 'Bits differ in this sample'}</p>
+                <div className={styles.simulatorInner}><small>PHYSICAL PLC 2</small><h3>Simulator</h3><Lamp on={sample.simulatorInputBit0} label="Input bit 0" /><p>Software tank model stopped</p></div>
+              </div>
             </div>
+            <TraceChart samples={samples} index={index} />
             <p className={styles.observation}><strong>Look for:</strong> {phase.prompt}</p>
             <p className={styles.finePrint}>The simulator valve-status tag matched its input bit during the Start interval. Relevant sampled fault bits stayed clear; the tank model stayed stopped.</p>
           </div>
