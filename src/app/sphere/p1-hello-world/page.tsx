@@ -4,7 +4,7 @@ import bundle from '@/data/p1-rockwell-replay.json';
 
 export const metadata: Metadata = {
   title: 'Your First SPHERE Experiment | Raw-Water Intake Replay',
-  description: 'Explore a recorded raw-water intake test on two physical PLCs. Follow the reported level, controller response, and evidence across 42 samples.',
+  description: 'Replay a two-second test on two real PLCs in the SPHERE ICS cluster: the controller opens a tank’s fill valve, and an attacker could abuse the same level signal.',
   robots: { index: false, follow: false },
 };
 

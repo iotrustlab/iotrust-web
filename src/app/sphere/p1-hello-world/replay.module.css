@@ -192,3 +192,75 @@
 .securityFeedbackCorrect{background:#e6f4ef;color:#0d5949;border-left:4px solid #18846f}
 @media(max-width:1050px){.securityLens{grid-template-columns:1fr}}
 @media(max-width:760px){.securityLens{margin-left:0}.securityStory,.securityDecision{padding:22px}.securityChain{gap:5px;padding:13px 10px}.securityChain span{font-size:11px}.securityChain strong{font-size:14px}.securityChain b{font-size:21px}}
+
+/* Tutorial scaffolding: on-this-page list, numbered instructions, expected results. */
+.toc{margin:28px 0 0;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px}
+.toc ol{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px 18px}
+.toc a{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;color:var(--ink);text-decoration:none;padding:6px 0}
+.toc a:hover{color:var(--teal)}
+.toc a span{display:grid;place-items:center;width:28px;height:28px;flex:none;border-radius:50%;background:#dfece9;color:var(--teal);font-size:14px;font-weight:850}
+.instructions{margin:22px 0 0 74px;padding-left:22px;font-size:18px;line-height:1.55;color:#33465a;max-width:820px}
+.instructions li{margin:6px 0}
+.expected{margin:26px 0 0 74px;max-width:900px;font-size:17px;line-height:1.5;color:#143c40;background:#eef7f4;border:1px solid #bfe0d6;border-radius:10px;padding:13px 17px}
+.expected strong{color:#08776f}
+.expected code{font-size:.9em}
+
+/* Every panel shows the sample number, highlights what changed, and counts down to its next change. */
+.panelHead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;margin-bottom:6px}
+.panelHead span{font-size:12px;font-weight:750;color:#ffe3a3;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nextHint{font-size:12px!important;line-height:1.35;color:#ffe3a3!important;margin:12px 0 0!important;font-weight:650}
+.changed{animation:p1flash 1.2s ease-out}
+.changedValue{animation:p1flash 1.2s ease-out;border-radius:6px}
+@keyframes p1flash{0%{background:#f5c04a66;box-shadow:0 0 0 4px #f5c04a66}100%{background:transparent;box-shadow:none}}
+.simulatorInner small{display:block;margin-bottom:4px}
+
+/* Step 1 diagram: the two PLCs and the two wires between them. */
+.setup:has(.setupSvg){display:block;padding:14px}
+.setupSvg{width:100%;height:auto;display:block}
+.svgNode{fill:#143a50;stroke:#61c5a6;stroke-width:2}
+.svgEyebrow{fill:#9ce8d1;font-size:12px;font-weight:800;letter-spacing:.08em}
+.svgTitle{fill:#fff;font-size:21px;font-weight:750}
+.svgSmall{fill:#d3e3e8;font-size:13px}
+.svgLinkLevel{stroke:#7cc7ff;stroke-width:4}
+.svgLinkValve{stroke:#80dfbe;stroke-width:4}
+.svgArrowLevel{fill:#7cc7ff}
+.svgArrowValve{fill:#80dfbe}
+.svgLinkLabel{fill:#fff;font-size:14px;font-weight:750}
+.svgPort{fill:#b9dfd8;font-size:13px}
+.svgRule{fill:#ffe3a3;font-size:14px;font-weight:700}
+
+/* Step 4: what an attacker could do. */
+.attack{margin:36px 0 0 74px}
+.attackStages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.attackStages button{font:inherit;min-height:44px;border:1px solid #c4d3d6;background:#f2f7f6;border-radius:8px;color:#345064;font-size:14px;font-weight:750;padding:8px;cursor:pointer}
+.attackStages button:hover{border-color:var(--teal)}
+.attackStages .attackStageActive{background:#102b42;border-color:#102b42;color:#fff}
+.attackStages button:focus-visible{outline:3px solid #f0a454;outline-offset:3px}
+.attackScene{margin-top:12px;background:#0d2639;border-radius:15px;padding:16px 18px 18px}
+.attackScene svg{width:100%;height:auto;display:block}
+.attackCaption{color:#e3eef2;font-size:17px;line-height:1.5;margin:10px 4px 0;min-height:52px}
+.atkLabel{fill:#a5dfd3;font-size:12px;font-weight:850;letter-spacing:.1em}
+.atkTank{fill:#0c2a3e;stroke:#9fc3cf;stroke-width:3}
+.atkWater{fill:#3fbfb5;transition:y .4s,height .4s}
+.atkWaterHigh{fill:#e0574f;transition:y .4s,height .4s}
+.atkSpill{fill:none;stroke:#e0574f;stroke-width:6;stroke-linecap:round}
+.atkLimit{stroke:#ffe3a3;stroke-width:2;stroke-dasharray:6 4}
+.atkBand{stroke:#8fb1bb;stroke-width:1.5;stroke-dasharray:3 4}
+.atkTick{fill:#cfe3e8;font-size:12px}
+.atkValue{fill:#fff;font-size:15px;font-weight:800}
+.atkPipe{fill:none;stroke:#4f6b78;stroke-width:6}
+.atkPipeOpen{fill:none;stroke:#54dfad;stroke-width:6}
+.atkNode{fill:#15384d;stroke:#61c5a6;stroke-width:2}
+.atkNodeTitle{fill:#fff;font-size:20px;font-weight:800}
+.atkSmall{fill:#cfe3e8;font-size:13px}
+.atkWire{stroke:#7cc7ff;stroke-width:4}
+.atkWireForged{stroke:#ff7b72;stroke-width:4;stroke-dasharray:8 5}
+.atkForged{fill:#ff9a92;font-size:13px;font-weight:800}
+.atkAttacker rect{fill:#5a1f24;stroke:#ff7b72;stroke-width:2}
+.atkAttacker text{fill:#ffd2c9;font-size:14px;font-weight:800}
+.atkAttackLine{stroke:#ff7b72;stroke-width:3;stroke-dasharray:4 4}
+.attackQuestions{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.attackQuestions .securityDecision{border-radius:0;padding:26px}
+@media(max-width:1050px){.attackQuestions{grid-template-columns:1fr}.toc ol{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.toc ol{grid-template-columns:1fr}.instructions,.expected,.attack{margin-left:0}.attackStages{grid-template-columns:1fr 1fr}.attackCaption{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.changed,.changedValue{animation:none}.atkWater,.atkWaterHigh{transition:none}}
