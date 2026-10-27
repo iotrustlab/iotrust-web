@@ -1,0 +1,17 @@
+{
+  "schema": "sphere-floor-build/1",
+  "module": "AlpineShield",
+  "scene": "treatment",
+  "unity": "6000.3.22f1",
+  "records": 0,
+  "total_bytes": 13499169,
+  "files": [
+    {"path": "Build/treatment.data.br", "bytes": 5963412, "sha256": "a9432cce003d1cea864c2c6bc51c868973626b17996c69c0268d0761f65eeba3"},
+    {"path": "Build/treatment.framework.js.br", "bytes": 79698, "sha256": "4c0737fdb3ca8fb693a257b8ef131cbe9aa70c51562c5e410b99b96f73a7e44b"},
+    {"path": "Build/treatment.loader.js", "bytes": 26983, "sha256": "774d0dacd3d31671a77e97eb663b9c26d5318a29f8c11b1b5a699abb7a00300f"},
+    {"path": "Build/treatment.wasm.br", "bytes": 7424688, "sha256": "e52a783a0b0bce2ab7f657c92452ea8229eb9ee9b25eb3890595bb88eeb19e1a"},
+    {"path": "floor-page.css", "bytes": 276, "sha256": "ed17beea1e5846d59fc54c91448e3eb27febe764da6ce8268c1f72d16324284e"},
+    {"path": "floor-page.js", "bytes": 3488, "sha256": "303b03f5d855e2551b2c973603765505b83c9b0fb8f059bdb590a2713406117b"},
+    {"path": "index.html", "bytes": 624, "sha256": "247042cd64c593645f92225f878ec786986603b35c39ebf28491732ca46cff20"}
+  ]
+}
