@@ -360,6 +360,7 @@ export function P1Replay({ bundle }: { bundle: Bundle }) {
         <section className={styles.section} aria-labelledby="next">
           <div className={styles.sectionHead}><span className={styles.stepNumber}>→</span><div><p className={styles.eyebrow}>What’s next</p><h2 id="next">Run it live</h2></div></div>
           <p className={styles.sectionLead}>In a guided live session you sign in to the operator screen shown in step 1, press Start yourself, and watch the same signals on the running PLCs. Contact the IoTrust Lab to join one.</p>
+          <p className={styles.sectionLead}>To see SPHERE across three utilities, hydro power, water treatment and water distribution, try the <a className={styles.textLink} href="/sphere/hello-world/">cross-domain hello world</a>.</p>
         </section>
       </div>
     </div>
