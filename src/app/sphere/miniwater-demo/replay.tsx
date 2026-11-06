@@ -260,7 +260,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <div className={styles.siteColumn}><small>SPHERE FACILITY A</small><div className={styles.siteNode}><strong>ControlLogix</strong><span>PLC1 · raw source and transfer</span></div><div className={styles.simulatorRoute}><span aria-hidden="true">↑</span> RAW-LEVEL ANALOG PATH <br />UNDER VALIDATION</div><div className={styles.simulatorNode}><strong>Simulator PLC</strong><span>candidate physical signal source</span></div></div>
           <div className={styles.siteLink}><b aria-hidden="true">↔</b><span>ROUTED<br />NETWORK</span></div>
           <div className={styles.siteColumn}><small>SPHERE FACILITY B</small><strong>Two Raspberry Pis</strong><span>rpi0 · treatment and dosing</span><span>rpi1 · treated delivery</span></div>
-          <p>Current verified readings come from the Windows VM software model. The simulator PLC analog path is being validated for PLC1.</p>
+          <p>This public replay is a synthetic offline trace from the Windows VM process model. The simulator PLC analog path is being validated for PLC1.</p>
         </div>
       </header>
 
@@ -286,7 +286,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         <p className={styles.processLimit}>Tank 1 follows the RoviSys P1 raw source. Tank 2 uses the P3 ultrafiltration feed-tank level as a display analogue for PLC2’s software treatment tank. Tank 3 is the new MiniWater delivery tank signal. The installed P3 filtration equipment is outside this demo loop.</p>
         <p className={styles.processLimit}>In this software-only preview, tank 2 fills to about 12 L (80%) before dosing. Tank 3 holds the treated water delivered into it, reaching about 9.75 L (65%) in the nominal replay. These model volumes are not physical measurements or the current live controller profile.</p>
         <div className={styles.signalPath} aria-label="MiniWater signal-source status">
-          <div className={styles.signalCurrent}><small>CURRENT VERIFIED SIGNAL PATH</small><strong>Windows software model → controller readings</strong><p>The VM bridge takes commands from the ControlLogix and Pis, advances the three modeled tanks, and returns simulated sensor values. This is the source represented by the public replay.</p></div>
+          <div className={styles.signalCurrent}><small>CURRENT DEMO MODEL</small><strong>Windows software process model</strong><p>The VM bridge can take commands from the ControlLogix and Pis, advance the three modeled tanks, and return simulated sensor values. This public replay is synthetic offline output from the same model, not a capture of live controller readings.</p></div>
           <div className={styles.signalPending}><small>HARDWARE PATH UNDER VALIDATION</small><strong>Simulator PLC → ControlLogix raw-level input</strong><p>The separate simulator controller is being checked as a source for PLC1’s raw-water level input. It is not yet part of this replay or the verified MiniWater loop; the Pi stages remain software modeled.</p></div>
         </div>
         <div className={styles.treatmentSequence} aria-label="PLC2 treatment sequence"><span>Tank 2 fills</span><b>→</b><span>Assess reported color</span><b>→</b><span>Timed blue or yellow dose</span><b>→</b><span>Settle and reassess</span><b>→</b><span>Complete handoff</span></div>
