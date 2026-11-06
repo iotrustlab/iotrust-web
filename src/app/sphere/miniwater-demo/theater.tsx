@@ -6,7 +6,7 @@ import type { Frame } from './replay';
 import styles from './replay.module.css';
 
 type View = 'overview' | 'raw' | 'treatment' | 'delivery';
-type EquipmentId = 'tank1' | 'plc1' | 'network' | 'tank2' | 'plc2' | 'tank3' | 'plc3';
+type EquipmentId = 'process' | 'tank1' | 'transfer_pump' | 'tank2' | 'doser_blue' | 'doser_yellow' | 'delivery_pump' | 'tank3';
 type Layout = 'embedded' | 'large' | 'workspace';
 export type PlaybackSpeed = 1 | 4 | 10;
 type Run = { name: string; start: number; end: number };
@@ -20,19 +20,20 @@ type UnityApplied = {
 };
 
 const views: { id: View; label: string; key: string; equipment: EquipmentId }[] = [
-  { id: 'overview', label: 'Overview', key: '0', equipment: 'network' },
+  { id: 'overview', label: 'Overview', key: '0', equipment: 'process' },
   { id: 'raw', label: 'Raw source', key: '1', equipment: 'tank1' },
   { id: 'treatment', label: 'Treatment', key: '2', equipment: 'tank2' },
   { id: 'delivery', label: 'Delivery', key: '3', equipment: 'tank3' },
 ];
-const equipment: { id: EquipmentId; label: string; site: string; view: View; description: string }[] = [
-  { id: 'tank1', label: 'Tank 1 · raw source', site: 'Site A', view: 'raw', description: 'Software-modeled raw-water storage. The Controller PLC1 reading can diverge from this independent modeled level.' },
-  { id: 'plc1', label: 'PLC1 · ControlLogix', site: 'Site A', view: 'raw', description: 'Installed ControlLogix stage for filling and transfer. Its requests are controller commands; pump feedback below is simulated.' },
-  { id: 'network', label: 'Routed site boundary', site: 'A ↔ B', view: 'overview', description: 'The design routes PLC1, PLC2, and PLC3 stage signals between two SPHERE facilities. This public replay contains no measured network traffic.' },
-  { id: 'tank2', label: 'Tank 2 · treatment', site: 'Site B', view: 'treatment', description: 'Software-modeled treatment tank. The water tint follows modeled blue and yellow color proxy values.' },
-  { id: 'plc2', label: 'PLC2 · OpenPLC Pi', site: 'Site B', view: 'treatment', description: 'The first Raspberry Pi assesses reported color, doses, settles, and announces treatment complete.' },
-  { id: 'tank3', label: 'Tank 3 · receiving', site: 'Site B', view: 'delivery', description: 'Software-modeled delivery tank. Its tint shows the modeled treatment color carried into the receiving stage.' },
-  { id: 'plc3', label: 'PLC3 · OpenPLC Pi', site: 'Site B', view: 'delivery', description: 'The second Raspberry Pi delivers modeled treated water after the PLC2 handoff.' },
+const equipment: { id: EquipmentId; label: string; area: string; view: View; description: string }[] = [
+  { id: 'process', label: 'Three-tank process', area: 'Whole modeled plant', view: 'overview', description: 'Follow modeled water from the raw source through color treatment to the receiving tank. Controller locations and the network route are shown in the system diagram above.' },
+  { id: 'tank1', label: 'Tank 1 · raw source', area: 'Raw stage', view: 'raw', description: 'Software-modeled raw-water storage. PLC1 can receive a level that differs from this independent modeled level.' },
+  { id: 'transfer_pump', label: 'Raw transfer pump', area: 'Raw → treatment', view: 'raw', description: 'The modeled pump moves water from Tank 1 through the process line to Tank 2 when its feedback is on.' },
+  { id: 'tank2', label: 'Tank 2 · treatment', area: 'Treatment stage', view: 'treatment', description: 'Software-modeled treatment tank. Its water tint follows modeled blue and yellow color proxy values.' },
+  { id: 'doser_blue', label: 'Blue dosing vessel', area: 'Treatment stage', view: 'treatment', description: 'The blue dosing head changes the model color while its modeled feedback is on.' },
+  { id: 'doser_yellow', label: 'Yellow dosing vessel', area: 'Treatment stage', view: 'treatment', description: 'The yellow dosing head changes the model color while its modeled feedback is on.' },
+  { id: 'delivery_pump', label: 'Treated-water pump', area: 'Treatment → delivery', view: 'delivery', description: 'The modeled pump moves treated water from Tank 2 toward Tank 3 after the stage handoff.' },
+  { id: 'tank3', label: 'Tank 3 · receiving', area: 'Delivery stage', view: 'delivery', description: 'Software-modeled receiving tank. Its tint shows the modeled treatment color carried into delivery.' },
 ];
 const scenarioNames: Record<string, string> = {
   nominal: 'Normal run',
@@ -156,11 +157,11 @@ function readouts(frame: Frame, view: View): { operator: Readout[]; floor: Reado
 }
 function inspectorRows(frame: Frame, selected: EquipmentId): Readout[] {
   const overview = readouts(frame, equipment.find(item => item.id === selected)?.view || 'overview');
-  if (selected === 'network') return [
-    { label: 'Replay source', value: 'Synthetic offline file' },
-    { label: 'PLC1 location', value: 'Site A' },
-    { label: 'PLC2 + PLC3 location', value: 'Site B' },
-    { label: 'Simulator PLC raw-level path', value: 'Under validation' },
+  if (selected === 'process') return [
+    { label: 'Raw tank · model', value: mm(frame.truth.tank1_mm) },
+    { label: 'Treatment tank · model', value: mm(frame.truth.tank2_mm) },
+    { label: 'Receiving tank · model', value: mm(frame.truth.tank3_mm) },
+    { label: 'Water path', value: 'Modeled process' },
   ];
   return [...overview.operator.slice(0, 2), ...overview.floor.slice(0, 2)];
 }
@@ -176,7 +177,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
   const previousEvent = [...marks].reverse().find(mark => mark < index);
   const nextEvent = marks.find(mark => mark > index);
   const [view, setView] = useState<View>('overview');
-  const [selected, setSelected] = useState<EquipmentId>('network');
+  const [selected, setSelected] = useState<EquipmentId>('process');
   const [tour, setTour] = useState(false);
   const [layout, setLayout] = useState<Layout>('embedded');
   const [opened, setOpened] = useState(false);
@@ -189,7 +190,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
   const returnFocus = useRef<HTMLElement | null>(null);
   const relayKey = useRef<(key: string) => void>(() => {});
   const selectedFrame = useRef(frame);
-  const selectedEquipment = equipment.find(item => item.id === selected) || equipment[2];
+  const selectedEquipment = equipment.find(item => item.id === selected) || equipment[0];
   const evidence = readouts(frame, view);
   const synced = status === 'ready' && applied !== null && matchesFrame(applied, frame);
   const localTime = (frame.elapsed_ms - frames[run.start].elapsed_ms) / 1000;
@@ -296,7 +297,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
 
   const chooseView = (next: View) => {
     setView(next);
-    setSelected(views.find(item => item.id === next)?.equipment || 'network');
+    setSelected(views.find(item => item.id === next)?.equipment || 'process');
   };
   const chooseEquipment = (id: EquipmentId) => {
     setSelected(id);
@@ -330,7 +331,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
 
   return <div ref={theater} className={stageClass} id="unity-view" tabIndex={0} onKeyDown={keyboard} role={layout === 'embedded' ? 'region' : 'dialog'} aria-modal={layout === 'embedded' ? undefined : true} aria-label="MiniWater 3D theater">
     <div className={styles.theaterHead}>
-      <div><small>SPHERE ICS · THREE CONTROLLERS · TWO FACILITIES</small><h3>MiniWater control theater</h3><p>One synthetic replay clock drives the Unity floor and {standalone ? 'the operator and model readouts.' : 'the detailed 2D trace.'}</p></div>
+      <div><small>SOFTWARE MODEL · THREE TANKS · TWO PUMPS</small><h3>MiniWater plant floor</h3><p>One synthetic replay clock drives the Unity process floor and {standalone ? 'the operator and model readouts.' : 'the detailed 2D trace.'}</p></div>
       <div className={styles.theaterHeadActions}>
         <span className={synced ? styles.theaterSynced : styles.theaterStatus} role="status">{synced ? '3D synchronized' : opened && status === 'ready' ? 'Synchronizing 3D' : status === 'error' ? '3D unavailable' : 'Offline software preview'}</span>
         <button type="button" onClick={() => changeLayout(layout === 'large' ? 'embedded' : 'large')}>{layout === 'large' ? 'Close large view' : 'Large 3D'}</button>
@@ -349,17 +350,17 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
     <div className={styles.theaterBody}>
       <nav className={styles.theaterEquipment} aria-label="Equipment tree">
         <h4>Equipment tree</h4>
-        {equipment.map(item => <button key={item.id} type="button" aria-pressed={selected === item.id} onClick={() => chooseEquipment(item.id)}><span>{item.site}</span>{item.label}</button>)}
+        {equipment.map(item => <button key={item.id} type="button" aria-pressed={selected === item.id} onClick={() => chooseEquipment(item.id)}><span>{item.area}</span>{item.label}</button>)}
       </nav>
       <div className={styles.theaterStageColumn}>
         <div className={styles.theaterStage}>
           {!opened ? <div className={styles.theaterStart}>
             <span>3D FLOOR · MODEL RENDERING</span>
-            <div className={styles.theaterStartDiagram} aria-hidden="true"><div><small>SITE A · PLC1</small><i /><b>RAW</b></div><em>→</em><div><small>SITE B · PLC2</small><i /><b>TREATMENT</b></div><em>→</em><div><small>SITE B · PLC3</small><i /><b>DELIVERY</b></div></div>
-            <p>Explore the raw source, treatment tank, and delivery tank as one routed process. The floor follows modeled truth; the panel beside it shows what the controllers were told.</p>
+            <div className={styles.theaterStartDiagram} aria-hidden="true"><div><small>TANK 1</small><i /><b>RAW</b></div><em>→</em><div><small>TANK 2</small><i /><b>TREATMENT</b></div><em>→</em><div><small>TANK 3</small><i /><b>DELIVERY</b></div></div>
+            <p>Explore the modeled tanks, transfer pumps, and dosing equipment as one process floor. The floor follows modeled truth; the panel beside it shows what the controllers were told.</p>
             <button type="button" onClick={() => { setApplied(null); setStatus('loading'); setOpened(true); }}>Load 3D floor</button>
           </div> : <>
-            <iframe key={attempt} ref={iframe} src="/sphere/miniwater-3d/index.html?rev=b0be6c1c363143593d1b96b052c303e81fd05231" title="MiniWater Unity three-tank floor synchronized with the selected replay sample" loading="lazy" allow="fullscreen" />
+            <iframe key={attempt} ref={iframe} src="/sphere/miniwater-3d/index.html?rev=7485e905f23de4c25b0fcb50c61c38fe72738ad1" title="MiniWater Unity three-tank floor synchronized with the selected replay sample" loading="lazy" allow="fullscreen" />
             {status === 'loading' && <p className={styles.theaterOverlay} role="status">Loading Unity floor…</p>}
             {status === 'error' && <div className={styles.theaterOverlay} role="alert"><p>{error}</p><button type="button" onClick={retry}>Retry 3D floor</button><a href={standalone ? '/sphere/miniwater-demo/#detail-replay' : '#detail-replay'}>Use detailed 2D trace</a></div>}
           </>}
@@ -380,7 +381,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
           {evidence.floor.map(row => <div key={row.label} className={row.alert ? styles.theaterReadoutAlert : styles.theaterReadout}><span>{row.label}</span><strong>{row.value}</strong></div>)}
         </div>
         <div className={styles.theaterInspector} aria-live="polite">
-          <small>INSPECTOR · {selectedEquipment.site}</small>
+          <small>INSPECTOR · {selectedEquipment.area}</small>
           <h4>{selectedEquipment.label}</h4>
           <p>{selectedEquipment.description}</p>
           {inspectorRows(frame, selected).map(row => <div key={row.label} className={row.alert ? styles.theaterReadoutAlert : styles.theaterReadout}><span>{row.label}</span><strong>{row.value}</strong></div>)}

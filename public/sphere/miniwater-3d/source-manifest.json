@@ -1,7 +1,7 @@
 {
   "schema": "sphere.miniwater.webgl-source.v1",
   "unity_version": "6000.3.22f1",
-  "source_commit": "b0be6c1c363143593d1b96b052c303e81fd05231",
+  "source_commit": "7485e905f23de4c25b0fcb50c61c38fe72738ad1",
   "replay_sha256": "b37a4a5049f01c3493769d31d0ef967f5624f51df1cf21cda09cbfd73a6126a0",
   "source_files": [
     {
@@ -14,7 +14,7 @@
     },
     {
       "path": "Assets/MiniWaterReplayScene.cs",
-      "sha256": "20c2d766e1b1d4f23ff433eb3512d0c71dc77206b4b779fd55d68acb51bc78b0"
+      "sha256": "a9a1e32babcad8a948df2651f99955ffe48fdffa58ea9c811fd7ba7e0846189a"
     },
     {
       "path": "Assets/MiniWaterReplayScene.cs.meta",
@@ -22,7 +22,7 @@
     },
     {
       "path": "Assets/MiniWaterFloorGeometry.cs",
-      "sha256": "ef341df64329f768ce20896cc3ec0b036aa957779e67b786f13b13d85561441e"
+      "sha256": "00f24b70f58259f142cc927ad242bc386b8385769268421ff594917d6e93df3d"
     },
     {
       "path": "Assets/MiniWaterFloorGeometry.cs.meta",
@@ -38,11 +38,19 @@
     },
     {
       "path": "Assets/Resources/MiniWater/ReplayColor.shader",
-      "sha256": "e2e6f8a238d66b64bc71ccd539aff869b7bb6fab5778c4e7a0b9da186d1f4077"
+      "sha256": "f9888b4fbca65c37e414aad8f48249e555510edc732cb9a4a005a3357693b498"
     },
     {
       "path": "Assets/Resources/MiniWater/ReplayColor.shader.meta",
       "sha256": "a7361e2b6f2fca3bdfcd91a482d2ae4e98bb864ba67509f94ac9412a77f96167"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/ReplayAcrylic.shader",
+      "sha256": "4d2e41dda59e6fc4ce680168122eacb32030847c6d6d4041d5fb91bd159d519f"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/ReplayAcrylic.shader.meta",
+      "sha256": "4003e06342b7f4f6cfee5d5ee3bfeb632fcc9a30f7f2e54df991da91fbf25db0"
     },
     {
       "path": "Assets/Resources/MiniWater/Textures/concrete_floor_worn_001_diff_2k.jpg",
@@ -86,7 +94,7 @@
     },
     {
       "path": "Assets/WebGLTemplates/MiniWaterEmbedded/index.html",
-      "sha256": "ddb6fec7e5866607afb775bc526c7a5cd6b341c598b8a388f0e53a0b37d6cce9"
+      "sha256": "5449bf365f96bc941ab43ab200c8820801b3482f7f090f6edfbe00706ceac0c6"
     },
     {
       "path": "Assets/WebGLTemplates/MiniWaterEmbedded/index.html.meta",
@@ -94,7 +102,7 @@
     },
     {
       "path": "Assets/Editor/MiniWaterWebGLBuild.cs",
-      "sha256": "bd3c9454f293af1ac2a8624d610c7beaee1674ad545fb98ad40615467b249899"
+      "sha256": "c9ecd9638f9429dd4473a0ee58da5c9b3f5ce4bac9ecf26ff78d8f9d29cfc545"
     },
     {
       "path": "Assets/Editor/MiniWaterWebGLBuild.cs.meta",

@@ -74,8 +74,8 @@
         }
         if (data.type === 'sphere.miniwater.unity.select') {
           const id = data.equipmentId || data.id;
-          if (['tank1', 'plc1', 'tank2', 'plc2', 'tank3', 'plc3', 'network',
-               'transfer_pump', 'delivery_pump', 'doser_blue', 'doser_yellow'].includes(id)) {
+          if (['process', 'tank1', 'transfer_pump', 'tank2', 'doser_blue',
+               'doser_yellow', 'delivery_pump', 'tank3'].includes(id)) {
             if (!sendControl('SelectEquipment', id)) pendingSelection = id;
           }
         }

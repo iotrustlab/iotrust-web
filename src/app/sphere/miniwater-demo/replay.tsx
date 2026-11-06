@@ -266,7 +266,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <p className={styles.eyebrow}>SPHERE ICS · MiniWater</p>
           <span className={styles.mode}>{sourceLabel}</span>
           <h1>MiniWater Across the Wire</h1>
-          <p className={styles.heroLead}>One modeled water process spans two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. Follow the control decisions and the readings that cross between them.</p>
+          <p className={styles.heroLead}>One virtual water process is controlled across two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. The 3D floor shows the modeled plant, while the system map shows where its controllers run.</p>
           <div className={styles.heroLinks}><a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a><a className={styles.heroLink} href="#unity-view">See the Unity 3D view <span aria-hidden="true">↓</span></a></div>
           <div className={styles.heroFacts}><span><b>Site A</b> ControlLogix</span><span><b>Site B</b> two arm64 Pis with OpenPLC</span><span><b>Public page</b> offline replay, no live controls</span></div>
         </div>
@@ -338,7 +338,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
 
       <section className={styles.section} id="replay">
         <div className={styles.sectionHeading}><span>3</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
-        <p className={styles.sectionLead}>Start in the theater: choose a prepared run, move among the four camera views, and inspect the operator readings against the modeled floor. The detailed 2D trace below uses the same playback clock. These controls replay a file; they do not connect to live equipment.</p>
+        <p className={styles.sectionLead}>Start in the theater: choose a prepared run, move among the four camera views, and inspect the operator readings against the modeled floor. The 3D scene shows one virtual plant with tanks, pumps, and dosing equipment; the system diagram above shows the routed controller locations. The detailed 2D trace below uses the same playback clock. These controls replay a file; they do not connect to live equipment.</p>
         <MiniWaterTheater frames={frames} index={index} playing={playing} speed={speed} onSpeedChange={setSpeed} onJump={jump} onTogglePlay={togglePlay} />
         <div className={styles.detailLead} id="detail-replay"><small>DETAILED 2D TRACE · SAME CLOCK</small><h3>Inspect each signal</h3><p>Follow the tanks, treatment color, commands, modeled feedback, and data-quality labels at each sample. The theater and this trace always show the same replay position.</p></div>
         <div className={styles.player}>
