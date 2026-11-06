@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 import styles from './replay.module.css';
 
 type Attack = 'none' | 'level_spoof' | 'dosing_tamper';
@@ -250,24 +251,33 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         <div className={styles.heroText}>
           <p className={styles.eyebrow}>SPHERE ICS · MiniWater</p>
           <span className={styles.mode}>{sourceLabel}</span>
-          <h1>Three controllers. One water story.</h1>
-          <p className={styles.heroLead}>Follow raw-water transfer, color-based treatment and dosing, then delivery into a receiving tank across a ControlLogix and two Raspberry Pis running OpenPLC. Compare PLC2’s treatment-complete signal with the software model in two controlled attack examples.</p>
+          <h1>MiniWater Across the Wire</h1>
+          <p className={styles.heroLead}>One modeled water process spans two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. Follow the control decisions and the readings that cross between them.</p>
           <a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a>
-          <div className={styles.heroFacts}><span><b>PLC1</b> ControlLogix</span><span><b>PLC2 + PLC3</b> OpenPLC on arm64 Pis</span><span><b>No GPIO</b> software process model</span></div>
+          <div className={styles.heroFacts}><span><b>Site A</b> ControlLogix</span><span><b>Site B</b> two arm64 Pis with OpenPLC</span><span><b>Public page</b> offline replay, no live controls</span></div>
         </div>
-        <div className={styles.heroDiagram} role="img" aria-label="Raw-water tank controlled by ControlLogix, treatment tank controlled by Raspberry Pi 2, and delivery tank controlled by Raspberry Pi 3">
-          <div><small>01 · RAW WATER</small><strong>PLC1</strong><span>ControlLogix</span></div><b aria-hidden="true">→</b>
-          <div><small>02 · TREATMENT</small><strong>PLC2</strong><span>Assess · dose · settle</span></div><b aria-hidden="true">→</b>
-          <div><small>03 · RECEIVING TANK</small><strong>PLC3</strong><span>OpenPLC · transfer</span></div>
-          <p>Three modeled tanks · one instrumented control loop</p>
+        <div className={styles.heroDiagram} role="img" aria-label="ControlLogix and a separate simulator PLC are at one SPHERE facility; the simulator PLC raw-level analog path to PLC1 is under validation. A routed network connects PLC1 to two Raspberry Pis at another facility, where PLC2 treats and PLC3 delivers modeled water">
+          <div className={styles.siteColumn}><small>SPHERE FACILITY A</small><div className={styles.siteNode}><strong>ControlLogix</strong><span>PLC1 · raw source and transfer</span></div><div className={styles.simulatorRoute}><span aria-hidden="true">↑</span> RAW-LEVEL ANALOG PATH <br />UNDER VALIDATION</div><div className={styles.simulatorNode}><strong>Simulator PLC</strong><span>candidate physical signal source</span></div></div>
+          <div className={styles.siteLink}><b aria-hidden="true">↔</b><span>ROUTED<br />NETWORK</span></div>
+          <div className={styles.siteColumn}><small>SPHERE FACILITY B</small><strong>Two Raspberry Pis</strong><span>rpi0 · treatment and dosing</span><span>rpi1 · treated delivery</span></div>
+          <p>Current verified readings come from the Windows VM software model. The simulator PLC analog path is being validated for PLC1.</p>
         </div>
       </header>
 
       <p className={styles.notice}><strong>{sourceLabel}.</strong> {bundle.provenance?.note || bundle.model_notice || (synthetic ? 'This is not a hardware capture.' : 'Values come from a verified live-session extract.')} The colored-water metric is a training proxy, not a claim about real water safety.</p>
 
+      <section className={styles.section} id="motivation">
+        <div className={styles.sectionHeading}><span>1</span><div><small>WHY DISTRIBUTE IT?</small><h2>From a tabletop process to a routed control loop</h2></div></div>
+        <p className={styles.sectionLead}>The original MiniWater testbed made tanks, tubing, pumps, and dye visible in one place. The SPHERE adaptation keeps its raw-water → treatment → delivery sequence while separating control stages across facilities. That lets a demonstration expose network boundaries, data age, signal ownership, and the difference between a controller’s reading and modeled process state. The historical images below show the original setup; the replay on this page is a software preview.</p>
+        <div className={styles.historyGrid}>
+          <figure className={styles.historyPhoto}><Image src="/images/demos/miniwater/original-testbed.jpg" alt="Historical MiniWater tabletop rig with clear tanks, tubing, pumps, Raspberry Pi boards, and cups of blue and red coloring" width={4056} height={2258} sizes="(max-width: 760px) 100vw, 58vw" /><figcaption><strong>Original MiniWater testbed</strong><span>Historical physical rig; the SPHERE demo keeps its three-stage logic but models tanks and devices in software.</span></figcaption></figure>
+          <figure className={styles.historySchematic}><Image src="/images/demos/miniwater/original-schematic.png" alt="Original MiniWater three-stage schematic with raw tank, color treatment and dosing, treated tank, and PLCs 1 through 3" width={504} height={344} sizes="(max-width: 760px) 100vw, 38vw" /><figcaption><strong>Original three-stage design</strong><span>Raw source, treatment, and delivery roles carried into this adaptation. <a href="https://github.com/iotrustlab/miniwatertreatment/tree/CompactLogix-Integration/Diagrams">View the source diagram</a>.</span></figcaption></figure>
+        </div>
+      </section>
+
       <section className={styles.section} id="system">
-        <div className={styles.sectionHeading}><span>1</span><div><small>MEET THE SYSTEM</small><h2>One ControlLogix and two Pi stages</h2></div></div>
-        <p className={styles.sectionLead}>The original MiniWater exercise used three stages. This SPHERE version maps the first stage to a Rockwell ControlLogix, and puts treatment and delivery logic on two arm64 Raspberry Pis. In tank 2, PLC2 fills, assesses reported color, doses blue or yellow, settles, and declares treatment complete. A software process model supplies sensor readings and consumes pump, valve, and doser commands.</p>
+        <div className={styles.sectionHeading}><span>2</span><div><small>MEET THE SYSTEM</small><h2>Control stages across two facilities</h2></div></div>
+        <p className={styles.sectionLead}>The installed Rockwell ControlLogix runs the raw-water stage at one facility. At another, two arm64 Raspberry Pis running OpenPLC handle treatment and delivery. In tank 2, PLC2 fills, assesses reported color, doses blue or yellow, settles, and declares treatment complete. A software process model currently supplies sensor readings and consumes pump, valve, and doser commands.</p>
         <div className={styles.ruleGrid}>
           <div><strong>ControlLogix · PLC1</strong><p>Fills raw-water tank 1 and commands transfer toward treatment.</p></div>
           <div><strong>OpenPLC · PLC2</strong><p>Assesses tank 2, times blue or yellow dosing and settling, then raises treatment complete.</p></div>
@@ -275,12 +285,16 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         </div>
         <p className={styles.processLimit}>Tank 1 follows the RoviSys P1 raw source. Tank 2 uses the P3 ultrafiltration feed-tank level as a display analogue for PLC2’s software treatment tank. Tank 3 is the new MiniWater delivery tank signal. The installed P3 filtration equipment is outside this demo loop.</p>
         <p className={styles.processLimit}>In this software-only preview, tank 2 fills to about 12 L (80%) before dosing. Tank 3 holds the treated water delivered into it, reaching about 9.75 L (65%) in the nominal replay. These model volumes are not physical measurements or the current live controller profile.</p>
+        <div className={styles.signalPath} aria-label="MiniWater signal-source status">
+          <div className={styles.signalCurrent}><small>CURRENT VERIFIED SIGNAL PATH</small><strong>Windows software model → controller readings</strong><p>The VM bridge takes commands from the ControlLogix and Pis, advances the three modeled tanks, and returns simulated sensor values. This is the source represented by the public replay.</p></div>
+          <div className={styles.signalPending}><small>HARDWARE PATH UNDER VALIDATION</small><strong>Simulator PLC → ControlLogix inputs</strong><p>The separate simulator controller is being checked as a source for PLC1’s raw-water signals. It is not yet part of this replay or the verified MiniWater loop; the Pi stages remain software modeled.</p></div>
+        </div>
         <div className={styles.treatmentSequence} aria-label="PLC2 treatment sequence"><span>Tank 2 fills</span><b>→</b><span>Assess reported color</span><b>→</b><span>Timed blue or yellow dose</span><b>→</b><span>Settle and reassess</span><b>→</b><span>Complete handoff</span></div>
         <p className={styles.processLimit}>This treatment is MiniWater’s color-proxy control exercise. It does not model filtration or establish real water safety.</p>
       </section>
 
       <section className={styles.section} id="replay">
-        <div className={styles.sectionHeading}><span>2</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
+        <div className={styles.sectionHeading}><span>3</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
         <p className={styles.sectionLead}>Select raw transfer, PLC2 treatment, delivery, or an attack chapter. Watch PLC2’s assessment, dose, settle, and complete handoff. A mismatch appears when a controller reading or treatment-complete decision diverges from modeled process truth. These controls replay a file; they do not connect to live equipment.</p>
         <div className={styles.player}>
           <div className={styles.playerTop}><div><span className={frame.attack === 'none' ? styles.phaseNormal : styles.phaseAttack}>{frame.attack === 'none' ? 'NORMAL PROCESS' : frame.attack.replaceAll('_', ' ').toUpperCase()}</span><h3>{phaseTitle(frame.phase)}</h3><p>{frameDescription(frame)}</p></div><div className={styles.sampleNumber}>SAMPLE <strong>{index + 1} / {frames.length}</strong><span>T+{(frame.elapsed_ms / 1000).toFixed(1)} s</span>{frame.scenario && <span>{phaseTitle(frame.scenario)} scenario</span>}</div></div>
@@ -313,7 +327,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
       </section>
 
       <section className={styles.section} id="defend">
-        <div className={styles.sectionHeading}><span>3</span><div><small>RED TEAM / BLUE TEAM</small><h2>Choose what you would check</h2></div></div>
+        <div className={styles.sectionHeading}><span>4</span><div><small>RED TEAM / BLUE TEAM</small><h2>Choose what you would check</h2></div></div>
         <p className={styles.sectionLead}>The 2024 classroom CTF paired malicious code or opportunistic commands with defender code vetting and PLC-value monitoring. This poster version uses two bounded scenarios: a false PLC1 level and a manipulated PLC2 dosing decision. The public page presents their trace only.</p>
         <div className={styles.decisionGrid}>
           <div className={styles.decisionCard}><span className={styles.redPill}>ATTACK A</span><h3>False raw-water level</h3><p>PLC1 receives a level below modeled truth. Its reported range stays above the 10 cm handoff threshold, holding off transfer as tank 1 fills.</p><strong>Defender cue</strong><p>Compare reported and modeled level and range, plus the transfer command, over time.</p></div>
@@ -323,7 +337,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
       </section>
 
       <section className={styles.section} id="source">
-        <div className={styles.sectionHeading}><span>4</span><div><small>TAKE THE RECORD</small><h2>Know what this file represents</h2></div></div>
+        <div className={styles.sectionHeading}><span>5</span><div><small>TAKE THE RECORD</small><h2>Know what this file represents</h2></div></div>
         <p className={styles.sectionLead}>Download the exact bundle used on this page. A future hardware capture can replace this preview only after its PLC and Pi sources, timestamps, tag mapping, and restoration have been verified.</p>
         <div className={styles.evidenceCard}><div><strong>{bundle.title}</strong><span>{captureLabel}</span><span>{frames.length} samples · {bundle.mode.replaceAll('_', ' ')}</span>{bundle.provenance?.source_sha256 && <code>SHA-256 {bundle.provenance.source_sha256}</code>}</div><button type="button" className={styles.primaryButton} onClick={download}>Download JSON</button></div>
         <p className={styles.next}>At the poster, a supervised visitor can choose a prepared action on the private presenter station. The <a href="/sphere/p1-hello-world/">P1 hardware replay</a> and <a href="/sphere/hello-world-3d/">CTF1 3D walkthrough</a> show related SPHERE demonstrations.</p>

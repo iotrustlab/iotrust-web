@@ -3,8 +3,8 @@ import { MiniWaterReplay, type ReplayBundle } from './replay';
 import bundle from '@/data/miniwater-preview.json';
 
 export const metadata: Metadata = {
-  title: 'MiniWater on SPHERE | Three-tank treatment replay',
-  description: 'Explore a synthetic three-tank process preview with ControlLogix, two Raspberry Pi OpenPLC nodes, color-based dosing, and a receiving tank that fills.',
+  title: 'MiniWater Across the Wire | A distributed SPHERE control exercise',
+  description: 'Explore a modeled water-treatment process spanning two SPHERE facilities: ControlLogix raw transfer, Raspberry Pi treatment and dosing, and Raspberry Pi delivery.',
   robots: { index: false, follow: false },
 };
 
