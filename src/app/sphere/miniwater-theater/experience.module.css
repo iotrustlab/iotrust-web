@@ -1,0 +1,8 @@
+.page { min-height: 100vh; padding: 26px clamp(14px, 3vw, 48px) 48px; background: #eef3f4; color: #102235; }
+.hero { max-width: 1560px; margin: 0 auto 24px; }
+.hero a { color: #11687b; font-weight: 800; text-underline-offset: 3px; }
+.hero p { margin: 28px 0 8px; color: #317889; font-size: .75rem; font-weight: 900; letter-spacing: .12em; }
+.hero h1 { margin: 0 0 8px; font-size: clamp(2.1rem, 4vw, 4.1rem); line-height: 1.06; letter-spacing: -.04em; }
+.hero span { display: block; max-width: 780px; color: #445969; line-height: 1.5; }
+.stage { max-width: 1560px; margin: 0 auto; }
+.foot { max-width: 1560px; margin: 22px auto 0; color: #536777; font-size: .82rem; line-height: 1.5; }

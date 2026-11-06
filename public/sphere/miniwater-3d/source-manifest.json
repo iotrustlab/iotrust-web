@@ -1,0 +1,141 @@
+{
+  "schema": "sphere.miniwater.webgl-source.v1",
+  "unity_version": "6000.3.22f1",
+  "source_commit": "b0be6c1c363143593d1b96b052c303e81fd05231",
+  "replay_sha256": "b37a4a5049f01c3493769d31d0ef967f5624f51df1cf21cda09cbfd73a6126a0",
+  "source_files": [
+    {
+      "path": "Assets/MiniWaterReplay.unity",
+      "sha256": "56a512e348f01e5e71a4da9d289a64736fc9779cf4843b7d9f3e90a5e1b95f04"
+    },
+    {
+      "path": "Assets/MiniWaterReplay.unity.meta",
+      "sha256": "483d0508192876c4a7147c5186dbd343b6fdc17d7eeafde9c8491abc91810918"
+    },
+    {
+      "path": "Assets/MiniWaterReplayScene.cs",
+      "sha256": "20c2d766e1b1d4f23ff433eb3512d0c71dc77206b4b779fd55d68acb51bc78b0"
+    },
+    {
+      "path": "Assets/MiniWaterReplayScene.cs.meta",
+      "sha256": "cc28598048063b69b519cb66453de23045d322e35cc13516f44ccd29900df72a"
+    },
+    {
+      "path": "Assets/MiniWaterFloorGeometry.cs",
+      "sha256": "ef341df64329f768ce20896cc3ec0b036aa957779e67b786f13b13d85561441e"
+    },
+    {
+      "path": "Assets/MiniWaterFloorGeometry.cs.meta",
+      "sha256": "00cd8b2adb5fa87cbc4a8b7d1ff447adf1a4a0770ae43c850cc6318ad661dda2"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/synthetic-poster-replay.json",
+      "sha256": "b37a4a5049f01c3493769d31d0ef967f5624f51df1cf21cda09cbfd73a6126a0"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/synthetic-poster-replay.json.meta",
+      "sha256": "59c8ce8dfb42621ea807bbbf3e2595dd4528d43ea3e471869d42d179d5d2497c"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/ReplayColor.shader",
+      "sha256": "e2e6f8a238d66b64bc71ccd539aff869b7bb6fab5778c4e7a0b9da186d1f4077"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/ReplayColor.shader.meta",
+      "sha256": "a7361e2b6f2fca3bdfcd91a482d2ae4e98bb864ba67509f94ac9412a77f96167"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/concrete_floor_worn_001_diff_2k.jpg",
+      "sha256": "e29b45cdcd6d02fae3c087c456196ffa750779a9b62e7071aa3831dc322a0cc4"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/concrete_floor_worn_001_diff_2k.jpg.meta",
+      "sha256": "0d2930cd2e648a85e3b6ec5536122b3e13e65152c18ad1a5ab9b0aed349684cd"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/corrugated_iron_02_diff_2k.jpg",
+      "sha256": "1bd2b9900e066d7e6cbacc5093aa4204db71c1bbe13b42a3d8ad23d04fa8075a"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/corrugated_iron_02_diff_2k.jpg.meta",
+      "sha256": "8d98d367f428e8bcaa54642a3fcdfeffcb315aedfc2d99582b59d9b76dd68260"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/blue_metal_plate_diff_2k.jpg",
+      "sha256": "82855f6297ad07ea7ea4d1c501e6b56ed4c9c758653ca126bda9fd0ebba63c59"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/blue_metal_plate_diff_2k.jpg.meta",
+      "sha256": "e15e1ab25cd114d03af68d02fa7dae80ffc543e5271f7f89de2113a2eaabaa15"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/green_metal_rust_diff_2k.jpg",
+      "sha256": "727515554ffb6410be82d3625a2837fe46612cb186ec391f77c50bd52c4d7ab2"
+    },
+    {
+      "path": "Assets/Resources/MiniWater/Textures/green_metal_rust_diff_2k.jpg.meta",
+      "sha256": "ced324a9483915c21ccef01fc1ac2ffb98ce896834d7b8640b940867bc43905e"
+    },
+    {
+      "path": "Assets/Plugins/WebGL/MiniWaterBridge.jslib",
+      "sha256": "f64dfc00744f1d93e9676aef0816f5c67fa15f91e60e746e5416051b56b7a4f8"
+    },
+    {
+      "path": "Assets/Plugins/WebGL/MiniWaterBridge.jslib.meta",
+      "sha256": "bab18721e43ddfa88ebc013c0f98476ed304f47653d00622e0e85702eb016a31"
+    },
+    {
+      "path": "Assets/WebGLTemplates/MiniWaterEmbedded/index.html",
+      "sha256": "ddb6fec7e5866607afb775bc526c7a5cd6b341c598b8a388f0e53a0b37d6cce9"
+    },
+    {
+      "path": "Assets/WebGLTemplates/MiniWaterEmbedded/index.html.meta",
+      "sha256": "4beb14a69dd814ec9b23b69ccd60bbf5b77e58314223bee8a365f5901de68f7d"
+    },
+    {
+      "path": "Assets/Editor/MiniWaterWebGLBuild.cs",
+      "sha256": "bd3c9454f293af1ac2a8624d610c7beaee1674ad545fb98ad40615467b249899"
+    },
+    {
+      "path": "Assets/Editor/MiniWaterWebGLBuild.cs.meta",
+      "sha256": "424f222e8271d37f0193b058061362ac42ab3843934b9ff47c4e9016a4a6787d"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sha256": "4c5c83b324e4beafbe03132a68b0e9d87e93d6a11e687f6cb5c0fc514219e154"
+    }
+  ],
+  "texture_license": "CC0 1.0",
+  "texture_license_url": "https://polyhaven.com/license",
+  "texture_provider": "Poly Haven",
+  "textures": [
+    {
+      "file": "concrete_floor_worn_001_diff_2k.jpg",
+      "asset": "concrete_floor_worn_001",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/concrete_floor_worn_001/concrete_floor_worn_001_diff_2k.jpg",
+      "sha256": "e29b45cdcd6d02fae3c087c456196ffa750779a9b62e7071aa3831dc322a0cc4",
+      "bytes": 482906
+    },
+    {
+      "file": "corrugated_iron_02_diff_2k.jpg",
+      "asset": "corrugated_iron_02",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/corrugated_iron_02/corrugated_iron_02_diff_2k.jpg",
+      "sha256": "1bd2b9900e066d7e6cbacc5093aa4204db71c1bbe13b42a3d8ad23d04fa8075a",
+      "bytes": 2325335
+    },
+    {
+      "file": "blue_metal_plate_diff_2k.jpg",
+      "asset": "blue_metal_plate",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_metal_plate/blue_metal_plate_diff_2k.jpg",
+      "sha256": "82855f6297ad07ea7ea4d1c501e6b56ed4c9c758653ca126bda9fd0ebba63c59",
+      "bytes": 1518621
+    },
+    {
+      "file": "green_metal_rust_diff_2k.jpg",
+      "asset": "green_metal_rust",
+      "source_url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/green_metal_rust/green_metal_rust_diff_2k.jpg",
+      "sha256": "727515554ffb6410be82d3625a2837fe46612cb186ec391f77c50bd52c4d7ab2",
+      "bytes": 787402
+    }
+  ]
+}

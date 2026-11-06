@@ -14,12 +14,17 @@
 <body>
   <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
   <div id="status" role="status">Loading 3D replay…</div>
-  <script src="Build/MiniWaterWebGL.loader.js"></script>
   <script>
     (() => {
       'use strict';
       let unity = null;
       let pendingFrame = null;
+      let pendingView = null;
+      let pendingTour = null;
+      let pendingSelection = null;
+      const rev = new URLSearchParams(window.location.search).get('rev');
+      const cacheSuffix = rev && /^[a-f0-9]{7,64}$/i.test(rev) ? '?rev=' + rev : '';
+      const assetUrl = (name) => 'Build/' + name + cacheSuffix;
       const status = document.getElementById('status');
       const reportError = (message) => {
         status.textContent = message;
@@ -35,17 +40,54 @@
           reportError('Could not send the replay frame to Unity.');
         }
       };
+      const sendControl = (method, value) => {
+        if (!unity) return false;
+        try {
+          unity.SendMessage('Offline Replay Driver', method, String(value));
+          return true;
+        } catch (_) {
+          reportError('Could not update the 3D camera or selection.');
+          return false;
+        }
+      };
+      // The parent owns replay/navigation shortcuts while this canvas has focus.
+      // Keep the relay intentionally small; the floor never forwards arbitrary input.
+      window.addEventListener('keydown', (event) => {
+        if (window.parent === window) return;
+        const key = event.key === ' ' ? 'Space' : event.key;
+        if (!['Space', 'ArrowLeft', 'ArrowRight', 'Escape', '0', '1', '2', '3'].includes(key)) return;
+        window.parent.postMessage({ type: 'sphere.miniwater.unity.key', key }, window.location.origin);
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }, true);
       window.addEventListener('message', (event) => {
         if (event.source !== window.parent || event.origin !== window.location.origin) return;
         const data = event.data;
-        if (!data || data.type !== 'sphere.miniwater.frame.v1' || !data.frame) return;
-        applyFrame(data.frame);
+        if (!data || typeof data.type !== 'string') return;
+        if (data.type === 'sphere.miniwater.frame.v1' && data.frame) applyFrame(data.frame);
+        if (data.type === 'sphere.miniwater.unity.view' &&
+            ['overview', 'raw', 'treatment', 'delivery'].includes(data.view)) {
+          if (!sendControl('SetView', data.view)) pendingView = data.view;
+        }
+        if (data.type === 'sphere.miniwater.unity.tour' && typeof data.on === 'boolean') {
+          if (!sendControl('SetTour', data.on ? '1' : '0')) pendingTour = data.on;
+        }
+        if (data.type === 'sphere.miniwater.unity.select') {
+          const id = data.equipmentId || data.id;
+          if (['tank1', 'plc1', 'tank2', 'plc2', 'tank3', 'plc3', 'network',
+               'transfer_pump', 'delivery_pump', 'doser_blue', 'doser_yellow'].includes(id)) {
+            if (!sendControl('SelectEquipment', id)) pendingSelection = id;
+          }
+        }
       });
-      createUnityInstance(document.getElementById('unity-canvas'), {
+      const loader = document.createElement('script');
+      loader.src = assetUrl('MiniWaterWebGL.loader.js');
+      loader.onerror = () => reportError('Could not load the Unity replay.');
+      loader.onload = () => createUnityInstance(document.getElementById('unity-canvas'), {
         arguments: [],
-        dataUrl: 'Build/MiniWaterWebGL.data',
-        frameworkUrl: 'Build/MiniWaterWebGL.framework.js',
-        codeUrl: 'Build/MiniWaterWebGL.wasm',
+        dataUrl: assetUrl('MiniWaterWebGL.data'),
+        frameworkUrl: assetUrl('MiniWaterWebGL.framework.js'),
+        codeUrl: assetUrl('MiniWaterWebGL.wasm'),
         streamingAssetsUrl: 'StreamingAssets',
         companyName: "DefaultCompany",
         productName: "MiniWater 3D Replay",
@@ -57,7 +99,11 @@
           window.parent.postMessage({ type: 'sphere.miniwater.unity.ready' }, window.location.origin);
         }
         if (pendingFrame) { applyFrame(pendingFrame); pendingFrame = null; }
+        if (pendingView) { sendControl('SetView', pendingView); pendingView = null; }
+        if (pendingTour !== null) { sendControl('SetTour', pendingTour ? '1' : '0'); pendingTour = null; }
+        if (pendingSelection) { sendControl('SelectEquipment', pendingSelection); pendingSelection = null; }
       }).catch((error) => reportError(String(error)));
+      document.body.appendChild(loader);
     })();
   </script>
 </body>

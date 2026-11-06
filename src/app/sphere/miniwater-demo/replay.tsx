@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { MiniWaterTheater } from './theater';
+import type { PlaybackSpeed } from './theater';
 import styles from './replay.module.css';
 
 type Attack = 'none' | 'level_spoof' | 'dosing_tamper';
@@ -49,6 +51,7 @@ export type Frame = {
     proxy_target_met: boolean;
   };
   data_quality: { plc1: Quality; plc2: Quality; plc3: Quality };
+  source_age_ms?: { plc1?: number; plc2?: number; plc3?: number };
   source_mode?: 'synthetic_offline' | 'live_plc';
   scenario?: string;
   event?: string;
@@ -199,90 +202,11 @@ function Trace({ frames, index, capacity }: { frames: Frame[]; index: number; ca
   </div>;
 }
 
-type UnityApplied = {
-    sequence: number; scenario: string; elapsed_ms: number;
-    truth: Pick<Frame['truth'], 'tank1_mm' | 'tank2_mm' | 'tank3_mm' | 'color_blue' | 'color_yellow'>;
-    reported: Pick<Frame['reported'], 'tank1_mm' | 'color_blue' | 'color_yellow'>;
-    commands: Pick<Signals, 'plc1_fill_valve' | 'plc1_transfer_pump' | 'plc2_blue_doser' | 'plc2_yellow_doser' | 'plc3_transfer_pump'>;
-    proxy_target_met: boolean;
-};
-
-function unityMatchesFrame(data: UnityApplied, sample: Frame) {
-  if (!data || !data.truth || !data.reported || !data.commands) return false;
-  const close = (a: number, b: number) => Number.isFinite(a) && Math.abs(a - b) < 0.01;
-  return data.sequence === sample.sequence && data.scenario === sample.scenario && data.elapsed_ms === sample.elapsed_ms &&
-    (['tank1_mm', 'tank2_mm', 'tank3_mm', 'color_blue', 'color_yellow'] as const).every(key => close(data.truth[key], sample.truth[key])) &&
-    (['tank1_mm', 'color_blue', 'color_yellow'] as const).every(key => close(data.reported[key], sample.reported[key])) &&
-    (['plc1_fill_valve', 'plc1_transfer_pump', 'plc2_blue_doser', 'plc2_yellow_doser', 'plc3_transfer_pump'] as const).every(key => data.commands[key] === sample.commands[key]) &&
-    data.proxy_target_met === sample.treatment?.proxy_target_met;
-}
-
-function UnityReplay({ frame }: { frame: Frame }) {
-  const iframe = useRef<HTMLIFrameElement>(null);
-  const selectedFrame = useRef(frame);
-  const [opened, setOpened] = useState(false);
-  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
-  const [error, setError] = useState('');
-  const [applied, setApplied] = useState<UnityApplied | null>(null);
-
-  useEffect(() => { selectedFrame.current = frame; }, [frame]);
-
-  useEffect(() => {
-    const onMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin || event.source !== iframe.current?.contentWindow) return;
-      if (event.data?.type === 'sphere.miniwater.unity.ready') setStatus('ready');
-      if (event.data?.type === 'sphere.miniwater.unity.applied') {
-        const received = event.data as UnityApplied;
-        setApplied(received);
-        if (received.sequence === selectedFrame.current.sequence && !unityMatchesFrame(received, selectedFrame.current)) {
-          setError('The 3D scene reported a different state for this sample. Use the 2D replay while this is checked.');
-          setStatus('error');
-        }
-      }
-      if (event.data?.type === 'sphere.miniwater.unity.error') {
-        setError(typeof event.data.message === 'string' ? event.data.message : 'The 3D scene could not load.');
-        setStatus('error');
-      }
-    };
-    window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
-  }, []);
-
-  useEffect(() => {
-    if (status !== 'ready') return;
-    iframe.current?.contentWindow?.postMessage({ type: 'sphere.miniwater.frame.v1', frame }, window.location.origin);
-  }, [frame, status]);
-
-  useEffect(() => {
-    if (!opened || status !== 'loading') return;
-    const timeout = window.setTimeout(() => {
-      setError('The 3D scene did not finish loading. The 2D replay remains available.');
-      setStatus('error');
-    }, 90000);
-    return () => window.clearTimeout(timeout);
-  }, [opened, status]);
-
-  const synced = status === 'ready' && applied !== null && unityMatchesFrame(applied, frame);
-
-  return <div className={styles.unityCard} id="unity-view">
-    <div className={styles.unityIntro}>
-      <div><small>UNITY WEBGL · SAME REPLAY SAMPLE</small><h3>See the three-tank process in 3D</h3><p>The 3D scene shows the selected sample above: raw-water fill, color dosing, and treated delivery. Tank heights follow modeled truth; its labels also show the readings given to the controllers. Use the 2D replay controls to move both views together.</p></div>
-      <span>{synced ? '3D synced' : opened && status === 'ready' ? 'Syncing 3D' : 'Public offline replay'}</span>
-    </div>
-    {!opened ? <div className={styles.unityPlaceholder}><p>The Unity scene loads only when you open it. It cannot connect to the PLCs or change the process.</p><button type="button" onClick={() => { setApplied(null); setStatus('loading'); setOpened(true); }}>Load 3D view</button></div> :
-      <div className={styles.unityStage}>
-        <iframe ref={iframe} src="/sphere/miniwater-3d/index.html" title="MiniWater Unity three-tank replay synchronized with the selected sample" loading="lazy" allow="fullscreen" />
-        {status === 'loading' && <p className={styles.unityOverlay} role="status">Loading Unity 3D scene…</p>}
-        {status === 'error' && <div className={styles.unityOverlay} role="alert"><p>{error}</p><button type="button" onClick={() => { setApplied(null); setStatus('loading'); iframe.current?.contentWindow?.location.reload(); }}>Retry 3D view</button></div>}
-      </div>}
-    <p className={styles.unityFoot}>Best on a desktop browser. The 3D view and the charts use the same synthetic file. Color is an illustrative quality proxy, not a chemical measurement. <a href="/sphere/miniwater-3d/index.html" target="_blank" rel="noopener noreferrer">Open the standalone 3D replay ↗</a></p>
-  </div>;
-}
-
 export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
   const frames = bundle.samples;
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [speed, setSpeed] = useState<PlaybackSpeed>(4);
   const [check, setCheck] = useState<string | null>(null);
   const frame = frames[index];
   const synthetic = bundle.mode === 'synthetic_offline';
@@ -294,16 +218,25 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
 
   useEffect(() => {
     if (!playing) return;
-    if (index >= frames.length - 1) {
+    if (index >= frames.length - 1 || frames[index + 1].scenario !== frames[index].scenario) {
       const stop = setTimeout(() => setPlaying(false), 0);
       return () => clearTimeout(stop);
     }
-    const timer = setTimeout(() => setIndex(n => n + 1), 650);
+    const elapsed = frames[index + 1].elapsed_ms - frames[index].elapsed_ms;
+    const timer = setTimeout(() => setIndex(n => n + 1), Math.max(45, Math.min(1500, elapsed / speed)));
     return () => clearTimeout(timer);
-  }, [playing, index, frames.length]);
+  }, [playing, index, frames, speed]);
 
   if (!frames.length) return <main className={styles.page}><p>No replay samples are available.</p></main>;
   const jump = (to: number) => { setPlaying(false); setIndex(Math.max(0, Math.min(frames.length - 1, to))); };
+  const togglePlay = () => {
+    if (playing) { setPlaying(false); return; }
+    if (index === frames.length - 1 || frames[index + 1].scenario !== frames[index].scenario) {
+      const first = frames.findIndex(item => item.scenario === frame.scenario);
+      setIndex(Math.max(0, first));
+    }
+    setPlaying(true);
+  };
   const download = () => {
     const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' });
     const link = document.createElement('a');
@@ -375,10 +308,12 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
 
       <section className={styles.section} id="replay">
         <div className={styles.sectionHeading}><span>3</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
-        <p className={styles.sectionLead}>Select raw transfer, PLC2 treatment, delivery, or an attack chapter. Watch PLC2’s assessment, dose, settle, and complete handoff. A mismatch appears when a controller reading or treatment-complete decision diverges from modeled process truth. These controls replay a file; they do not connect to live equipment.</p>
+        <p className={styles.sectionLead}>Start in the theater: choose a prepared run, move among the four camera views, and inspect the operator readings against the modeled floor. The detailed 2D trace below uses the same playback clock. These controls replay a file; they do not connect to live equipment.</p>
+        <MiniWaterTheater frames={frames} index={index} playing={playing} speed={speed} onSpeedChange={setSpeed} onJump={jump} onTogglePlay={togglePlay} />
+        <div className={styles.detailLead} id="detail-replay"><small>DETAILED 2D TRACE · SAME CLOCK</small><h3>Inspect each signal</h3><p>Follow the tanks, treatment color, commands, modeled feedback, and data-quality labels at each sample. The theater and this trace always show the same replay position.</p></div>
         <div className={styles.player}>
           <div className={styles.playerTop}><div><span className={frame.attack === 'none' ? styles.phaseNormal : styles.phaseAttack}>{frame.attack === 'none' ? 'NORMAL PROCESS' : frame.attack.replaceAll('_', ' ').toUpperCase()}</span><h3>{phaseTitle(frame.phase)}</h3><p>{frameDescription(frame)}</p></div><div className={styles.sampleNumber}>SAMPLE <strong>{index + 1} / {frames.length}</strong><span>T+{(frame.elapsed_ms / 1000).toFixed(1)} s</span>{frame.scenario && <span>{phaseTitle(frame.scenario)} scenario</span>}</div></div>
-          <div className={styles.playerControls}><button type="button" className={styles.primaryButton} onClick={() => { if (index === frames.length - 1) setIndex(0); setPlaying(!playing); }}>{playing ? 'Pause' : 'Play'} replay</button><button type="button" onClick={() => jump(index - 1)} disabled={index === 0}>← Previous</button><button type="button" onClick={() => jump(index + 1)} disabled={index === frames.length - 1}>Next →</button></div>
+          <div className={styles.playerControls}><button type="button" className={styles.primaryButton} onClick={togglePlay}>{playing ? 'Pause' : 'Play'} replay</button><button type="button" onClick={() => jump(index - 1)} disabled={index === 0}>← Previous</button><button type="button" onClick={() => jump(index + 1)} disabled={index === frames.length - 1}>Next →</button></div>
           <label className={styles.sliderLabel} htmlFor="miniwater-frame-slider">Move to any sample</label>
           <input id="miniwater-frame-slider" className={styles.slider} type="range" min="0" max={frames.length - 1} value={index} onChange={event => jump(Number(event.target.value))} />
           <div className={styles.chapterButtons}>{chapterStarts.map(c => <button key={c.label} type="button" className={index === c.start ? styles.chapterActive : ''} onClick={() => jump(c.start)}>{c.label}</button>)}</div>
@@ -404,7 +339,6 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <Trace frames={frames} index={index} capacity={capacities.tank1} />
           <p className={styles.playerFoot}>Sample time and source class matter. “Commanded” does not prove physical movement; the process view here is a software model.</p>
         </div>
-        <UnityReplay frame={frame} />
       </section>
 
       <section className={styles.section} id="defend">
