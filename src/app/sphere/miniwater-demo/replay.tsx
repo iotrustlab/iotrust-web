@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './replay.module.css';
 
@@ -199,6 +199,86 @@ function Trace({ frames, index, capacity }: { frames: Frame[]; index: number; ca
   </div>;
 }
 
+type UnityApplied = {
+    sequence: number; scenario: string; elapsed_ms: number;
+    truth: Pick<Frame['truth'], 'tank1_mm' | 'tank2_mm' | 'tank3_mm' | 'color_blue' | 'color_yellow'>;
+    reported: Pick<Frame['reported'], 'tank1_mm' | 'color_blue' | 'color_yellow'>;
+    commands: Pick<Signals, 'plc1_fill_valve' | 'plc1_transfer_pump' | 'plc2_blue_doser' | 'plc2_yellow_doser' | 'plc3_transfer_pump'>;
+    proxy_target_met: boolean;
+};
+
+function unityMatchesFrame(data: UnityApplied, sample: Frame) {
+  if (!data || !data.truth || !data.reported || !data.commands) return false;
+  const close = (a: number, b: number) => Number.isFinite(a) && Math.abs(a - b) < 0.01;
+  return data.sequence === sample.sequence && data.scenario === sample.scenario && data.elapsed_ms === sample.elapsed_ms &&
+    (['tank1_mm', 'tank2_mm', 'tank3_mm', 'color_blue', 'color_yellow'] as const).every(key => close(data.truth[key], sample.truth[key])) &&
+    (['tank1_mm', 'color_blue', 'color_yellow'] as const).every(key => close(data.reported[key], sample.reported[key])) &&
+    (['plc1_fill_valve', 'plc1_transfer_pump', 'plc2_blue_doser', 'plc2_yellow_doser', 'plc3_transfer_pump'] as const).every(key => data.commands[key] === sample.commands[key]) &&
+    data.proxy_target_met === sample.treatment?.proxy_target_met;
+}
+
+function UnityReplay({ frame }: { frame: Frame }) {
+  const iframe = useRef<HTMLIFrameElement>(null);
+  const selectedFrame = useRef(frame);
+  const [opened, setOpened] = useState(false);
+  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [error, setError] = useState('');
+  const [applied, setApplied] = useState<UnityApplied | null>(null);
+
+  useEffect(() => { selectedFrame.current = frame; }, [frame]);
+
+  useEffect(() => {
+    const onMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin || event.source !== iframe.current?.contentWindow) return;
+      if (event.data?.type === 'sphere.miniwater.unity.ready') setStatus('ready');
+      if (event.data?.type === 'sphere.miniwater.unity.applied') {
+        const received = event.data as UnityApplied;
+        setApplied(received);
+        if (received.sequence === selectedFrame.current.sequence && !unityMatchesFrame(received, selectedFrame.current)) {
+          setError('The 3D scene reported a different state for this sample. Use the 2D replay while this is checked.');
+          setStatus('error');
+        }
+      }
+      if (event.data?.type === 'sphere.miniwater.unity.error') {
+        setError(typeof event.data.message === 'string' ? event.data.message : 'The 3D scene could not load.');
+        setStatus('error');
+      }
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
+  useEffect(() => {
+    if (status !== 'ready') return;
+    iframe.current?.contentWindow?.postMessage({ type: 'sphere.miniwater.frame.v1', frame }, window.location.origin);
+  }, [frame, status]);
+
+  useEffect(() => {
+    if (!opened || status !== 'loading') return;
+    const timeout = window.setTimeout(() => {
+      setError('The 3D scene did not finish loading. The 2D replay remains available.');
+      setStatus('error');
+    }, 90000);
+    return () => window.clearTimeout(timeout);
+  }, [opened, status]);
+
+  const synced = status === 'ready' && applied !== null && unityMatchesFrame(applied, frame);
+
+  return <div className={styles.unityCard} id="unity-view">
+    <div className={styles.unityIntro}>
+      <div><small>UNITY WEBGL · SAME REPLAY SAMPLE</small><h3>See the three-tank process in 3D</h3><p>The 3D scene shows the selected sample above: raw-water fill, color dosing, and treated delivery. Tank heights follow modeled truth; its labels also show the readings given to the controllers. Use the 2D replay controls to move both views together.</p></div>
+      <span>{synced ? '3D synced' : opened && status === 'ready' ? 'Syncing 3D' : 'Public offline replay'}</span>
+    </div>
+    {!opened ? <div className={styles.unityPlaceholder}><p>The Unity scene loads only when you open it. It cannot connect to the PLCs or change the process.</p><button type="button" onClick={() => { setApplied(null); setStatus('loading'); setOpened(true); }}>Load 3D view</button></div> :
+      <div className={styles.unityStage}>
+        <iframe ref={iframe} src="/sphere/miniwater-3d/index.html" title="MiniWater Unity three-tank replay synchronized with the selected sample" loading="lazy" allow="fullscreen" />
+        {status === 'loading' && <p className={styles.unityOverlay} role="status">Loading Unity 3D scene…</p>}
+        {status === 'error' && <div className={styles.unityOverlay} role="alert"><p>{error}</p><button type="button" onClick={() => { setApplied(null); setStatus('loading'); iframe.current?.contentWindow?.location.reload(); }}>Retry 3D view</button></div>}
+      </div>}
+    <p className={styles.unityFoot}>Best on a desktop browser. The 3D view and the charts use the same synthetic file. Color is an illustrative quality proxy, not a chemical measurement. <a href="/sphere/miniwater-3d/index.html" target="_blank" rel="noopener noreferrer">Open the standalone 3D replay ↗</a></p>
+  </div>;
+}
+
 export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
   const frames = bundle.samples;
   const [index, setIndex] = useState(0);
@@ -253,7 +333,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <span className={styles.mode}>{sourceLabel}</span>
           <h1>MiniWater Across the Wire</h1>
           <p className={styles.heroLead}>One modeled water process spans two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. Follow the control decisions and the readings that cross between them.</p>
-          <a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a>
+          <div className={styles.heroLinks}><a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a><a className={styles.heroLink} href="#unity-view">See the Unity 3D view <span aria-hidden="true">↓</span></a></div>
           <div className={styles.heroFacts}><span><b>Site A</b> ControlLogix</span><span><b>Site B</b> two arm64 Pis with OpenPLC</span><span><b>Public page</b> offline replay, no live controls</span></div>
         </div>
         <div className={styles.heroDiagram} role="img" aria-label="ControlLogix and a separate simulator PLC are at one SPHERE facility; the simulator PLC raw-level analog path to PLC1 is under validation. A routed network connects PLC1 to two Raspberry Pis at another facility, where PLC2 treats and PLC3 delivers modeled water">
@@ -324,6 +404,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <Trace frames={frames} index={index} capacity={capacities.tank1} />
           <p className={styles.playerFoot}>Sample time and source class matter. “Commanded” does not prove physical movement; the process view here is a software model.</p>
         </div>
+        <UnityReplay frame={frame} />
       </section>
 
       <section className={styles.section} id="defend">

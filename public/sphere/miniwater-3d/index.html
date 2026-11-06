@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniWater 3D replay</title>
+  <style>
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #0e202b; }
+    #unity-canvas { display: block; width: 100%; height: 100%; background: #0e202b; }
+    #status { position: absolute; top: 1rem; left: 1rem; color: #d5edf4;
+      font: 14px system-ui, sans-serif; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+  <div id="status" role="status">Loading 3D replay…</div>
+  <script src="Build/MiniWaterWebGL.loader.js"></script>
+  <script>
+    (() => {
+      'use strict';
+      let unity = null;
+      let pendingFrame = null;
+      const status = document.getElementById('status');
+      const reportError = (message) => {
+        status.textContent = message;
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: 'sphere.miniwater.unity.error', message }, window.location.origin);
+        }
+      };
+      const applyFrame = (frame) => {
+        if (!unity) { pendingFrame = frame; return; }
+        try {
+          unity.SendMessage('Offline Replay Driver', 'ApplyExternalFrame', JSON.stringify(frame));
+        } catch (_) {
+          reportError('Could not send the replay frame to Unity.');
+        }
+      };
+      window.addEventListener('message', (event) => {
+        if (event.source !== window.parent || event.origin !== window.location.origin) return;
+        const data = event.data;
+        if (!data || data.type !== 'sphere.miniwater.frame.v1' || !data.frame) return;
+        applyFrame(data.frame);
+      });
+      createUnityInstance(document.getElementById('unity-canvas'), {
+        arguments: [],
+        dataUrl: 'Build/MiniWaterWebGL.data',
+        frameworkUrl: 'Build/MiniWaterWebGL.framework.js',
+        codeUrl: 'Build/MiniWaterWebGL.wasm',
+        streamingAssetsUrl: 'StreamingAssets',
+        companyName: "DefaultCompany",
+        productName: "MiniWater 3D Replay",
+        productVersion: "1.0"
+      }).then((instance) => {
+        unity = instance;
+        status.remove();
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: 'sphere.miniwater.unity.ready' }, window.location.origin);
+        }
+        if (pendingFrame) { applyFrame(pendingFrame); pendingFrame = null; }
+      }).catch((error) => reportError(String(error)));
+    })();
+  </script>
+</body>
+</html>

@@ -16,6 +16,7 @@
 .mode { display: inline-block; border: 1px solid #9bd4e1; background: #eaf9fc; border-radius: 3px; color: #075a74; padding: 6px 10px; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .hero h1 { font-size: clamp(2.6rem, 5vw, 5rem); line-height: 1.02; letter-spacing: -.05em; margin: 18px 0; max-width: 650px; }
 .heroLead { font-size: 1.18rem; line-height: 1.55; color: var(--muted); max-width: 630px; margin: 0 0 24px; }
+.heroLinks { display: flex; flex-wrap: wrap; gap: 12px 24px; }
 .heroLink { color: #006d94; font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
 .heroLink span { margin-left: 8px; }
 .heroFacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
@@ -173,6 +174,22 @@
 .truthDot { fill: #038ba8; stroke: white; stroke-width: 2; }
 .reportedDot { fill: #e97842; stroke: white; stroke-width: 2; }
 .playerFoot { margin: 14px 0 0; color: var(--muted); font-size: .75rem; }
+.unityCard { margin-top: 22px; border: 1px solid #bfd7e0; background: #f2f8fa; padding: 22px; scroll-margin-top: 20px; }
+.unityIntro { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.unityIntro small { color: var(--blue); font-size: .68rem; font-weight: 900; letter-spacing: .1em; }
+.unityIntro h3 { margin: 6px 0 8px; font-size: 1.42rem; letter-spacing: -.025em; }
+.unityIntro p { max-width: 780px; margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.5; }
+.unityIntro > span { flex: none; padding: 6px 9px; border: 1px solid #9dc7d2; color: #16667b; background: #e7f5f8; font-size: .72rem; font-weight: 800; }
+.unityPlaceholder { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 150px; margin-top: 17px; padding: 22px; background: linear-gradient(130deg, #102c40, #174d5b); color: white; }
+.unityPlaceholder p { max-width: 540px; margin: 0; line-height: 1.5; }
+.unityPlaceholder button, .unityOverlay button { flex: none; border: 0; border-radius: 3px; background: #e6b45c; color: #1b2d39; padding: 11px 16px; font: inherit; font-weight: 800; cursor: pointer; }
+.unityPlaceholder button:hover, .unityOverlay button:hover { filter: brightness(1.07); }
+.unityStage { position: relative; aspect-ratio: 16 / 9; margin-top: 17px; background: #07131d; }
+.unityStage iframe { display: block; width: 100%; height: 100%; border: 0; }
+.unityOverlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; margin: 0; padding: 20px; color: white; background: #07131de8; text-align: center; }
+.unityOverlay p { margin: 0; }
+.unityFoot { color: var(--muted); margin: 12px 0 0; font-size: .77rem; line-height: 1.4; }
+.unityFoot a { color: #006d94; font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
 .decisionGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .decisionCard { border: 1px solid var(--line); background: var(--paper); padding: 24px; }
 .redPill { display: inline-block; border-radius: 2px; background: #ffe6df; color: #a74332; padding: 4px 7px; font-size: .69rem; font-weight: 900; letter-spacing: .09em; }
@@ -216,5 +233,9 @@
   .playerTop { flex-direction: column; gap: 8px; }
   .sampleNumber { align-items: flex-start; }
   .traceHead { align-items: flex-start; flex-direction: column; }
+  .unityCard { padding: 14px; }
+  .unityIntro, .unityPlaceholder { flex-direction: column; align-items: flex-start; }
+  .unityIntro > span { flex: none; }
+  .unityStage { aspect-ratio: 4 / 3; }
   .evidenceCard { flex-direction: column; align-items: flex-start; }
 }
