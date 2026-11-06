@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { ArrowRight, Droplets, FlaskConical, Monitor, Network } from 'lucide-react';
 import { MiniWaterTheater } from './theater';
 import type { PlaybackSpeed } from './theater';
 import styles from './replay.module.css';
@@ -296,6 +297,34 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <div><strong>OpenPLC · PLC2</strong><p>Assesses tank 2, times blue or yellow dosing and settling, then raises treatment complete.</p></div>
           <div><strong>OpenPLC · PLC3</strong><p>Moves treated water into receiving tank 3 only after PLC2 reports treatment complete and its underflow gate permits it.</p></div>
         </div>
+        <div className={styles.facilityMap} aria-label="Hardware and network locations in the distributed MiniWater demonstration">
+          <figure className={styles.facilityCard}>
+            <Image src="/images/demos/p1/rockwell-rack-complete.png" alt="Rockwell ControlLogix rack photographed during an earlier SPHERE P1 hardware demonstration" width={1600} height={1200} sizes="(max-width: 760px) 100vw, 35vw" />
+            <figcaption><small>SPHERE FACILITY A</small><strong>ControlLogix · PLC1</strong><span>The installed 1756-L72 controls raw-water transfer. This is an earlier photograph of the P1 rack, not a new MiniWater capture.</span></figcaption>
+          </figure>
+          <div className={styles.facilityNetwork} aria-label="Control and feedback route between facilities">
+            <div className={styles.networkNode}><Monitor aria-hidden="true" size={22} /><span><strong>FactoryTalk HMI</strong><small>Start, stop, and operator readings</small></span></div>
+            <div className={styles.networkLink}><ArrowRight aria-hidden="true" size={21} /><span>CIP · PLC1 commands and feedback</span></div>
+            <div className={styles.networkNode}><Network aria-hidden="true" size={22} /><span><strong>Windows VM bridge + model</strong><small>Advances tanks and supplies simulated sensors</small></span></div>
+            <div className={styles.networkLink}><ArrowRight aria-hidden="true" size={21} /><span>Routed SPHERE network · Modbus/TCP</span></div>
+            <p>Control data crosses sites; the water remains simulated.</p>
+          </div>
+          <div className={styles.facilityGroup}>
+            <div className={styles.facilityGroupHead}><small>SECOND SPHERE FACILITY</small><strong>Two separate OpenPLC nodes</strong><span>Both Pis are physically remote from the ControlLogix rack.</span></div>
+            <div className={styles.piFlow}>
+              <figure className={styles.piCard}>
+                <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Raspberry_Pi_4_Model_B_-_Top.jpg/960px-Raspberry_Pi_4_Model_B_-_Top.jpg" alt="Representative Raspberry Pi 4 board viewed from above, illustrating rpi0" loading="lazy" />
+                <figcaption><FlaskConical aria-hidden="true" size={19} /><strong>rpi0 · PLC2</strong><span>Tank 2 treatment and color dosing</span></figcaption>
+              </figure>
+              <div className={styles.piHandoff}><ArrowRight aria-hidden="true" size={27} /><strong>Stage handoff</strong><span>Treatment complete + modeled tank state pass through the VM bridge.</span></div>
+              <figure className={styles.piCard}>
+                <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Raspberry_Pi_4_Model_B_-_Side.jpg/960px-Raspberry_Pi_4_Model_B_-_Side.jpg" alt="Representative Raspberry Pi 4 board viewed from the side, illustrating the separate rpi1 node" loading="lazy" />
+                <figcaption><Droplets aria-hidden="true" size={19} /><strong>rpi1 · PLC3</strong><span>Tank 3 treated-water delivery</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <p className={styles.photoCredit}>Representative Raspberry Pi 4 photographs (not the installed boards): <a href="https://commons.wikimedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Top.jpg">top view</a> and <a href="https://commons.wikimedia.org/wiki/File:Raspberry_Pi_4_Model_B_-_Side.jpg">side view</a> by Laserlicht / Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Images are displayed without alteration.</p>
         <p className={styles.processLimit}>Tank 1 follows the RoviSys P1 raw source. Tank 2 uses the P3 ultrafiltration feed-tank level as a display analogue for PLC2’s software treatment tank. Tank 3 is the new MiniWater delivery tank signal. The installed P3 filtration equipment is outside this demo loop.</p>
         <p className={styles.processLimit}>In this software-only preview, tank 2 fills to about 12 L (80%) before dosing. Tank 3 holds the treated water delivered into it, reaching about 9.75 L (65%) in the nominal replay. These model volumes are not physical measurements or the current live controller profile.</p>
         <div className={styles.signalPath} aria-label="MiniWater signal-source status">
@@ -304,6 +333,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         </div>
         <div className={styles.treatmentSequence} aria-label="PLC2 treatment sequence"><span>Tank 2 fills</span><b>→</b><span>Assess reported color</span><b>→</b><span>Timed blue or yellow dose</span><b>→</b><span>Settle and reassess</span><b>→</b><span>Complete handoff</span></div>
         <p className={styles.processLimit}>This treatment is MiniWater’s color-proxy control exercise. It does not model filtration or establish real water safety.</p>
+        <div className={styles.useCaseLinks}><div><small>STRETCH DIRECTION</small><h3>Swap the process story</h3><p>The controller, model, operator view, and replay can be packaged as a repeatable demo pattern for another use case. MiniWater is the working scene; changing use cases still requires its own tag map, model, and validation.</p></div><nav aria-label="Related demonstrations"><a href="/sphere/p1-hello-world/">P1 hardware replay <span aria-hidden="true">↗</span></a><a href="/sphere/hello-world-3d/">CTF1 3D testbed <span aria-hidden="true">↗</span></a></nav></div>
       </section>
 
       <section className={styles.section} id="replay">
