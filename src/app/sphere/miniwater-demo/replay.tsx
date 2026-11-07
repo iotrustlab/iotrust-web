@@ -267,7 +267,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <span className={styles.mode}>{sourceLabel}</span>
           <h1>MiniWater Across the Wire</h1>
           <p className={styles.heroLead}>One virtual water process is controlled across two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. The 3D floor shows the modeled plant, while the system map shows where its controllers run.</p>
-          <div className={styles.heroLinks}><a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a><a className={styles.heroLink} href="#unity-view">See the Unity 3D view <span aria-hidden="true">↓</span></a></div>
+          <div className={styles.heroLinks}><a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a><a className={styles.heroLink} href="/sphere/miniwater-theater/">Open the current MiniWater 3D model <span aria-hidden="true">↗</span></a></div>
           <div className={styles.heroFacts}><span><b>Site A</b> ControlLogix</span><span><b>Site B</b> two arm64 Pis with OpenPLC</span><span><b>Public page</b> offline replay, no live controls</span></div>
         </div>
         <div className={styles.heroDiagram} role="img" aria-label="ControlLogix and a separate simulator PLC are at one SPHERE facility; the simulator PLC raw-level analog path to PLC1 is under validation. A routed network connects PLC1 to two Raspberry Pis at another facility, where PLC2 treats and PLC3 delivers modeled water">
@@ -333,7 +333,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         </div>
         <div className={styles.treatmentSequence} aria-label="PLC2 treatment sequence"><span>Tank 2 fills</span><b>→</b><span>Assess reported color</span><b>→</b><span>Timed blue or yellow dose</span><b>→</b><span>Settle and reassess</span><b>→</b><span>Complete handoff</span></div>
         <p className={styles.processLimit}>This treatment is MiniWater’s color-proxy control exercise. It does not model filtration or establish real water safety.</p>
-        <div className={styles.useCaseLinks}><div><small>STRETCH DIRECTION</small><h3>Swap the process story</h3><p>The controller, model, operator view, and replay can be packaged as a repeatable demo pattern for another use case. MiniWater is the working scene; changing use cases still requires its own tag map, model, and validation.</p></div><nav aria-label="Related demonstrations"><a href="/sphere/p1-hello-world/">P1 hardware replay <span aria-hidden="true">↗</span></a><a href="/sphere/hello-world-3d/">CTF1 3D testbed <span aria-hidden="true">↗</span></a></nav></div>
+        <div className={styles.useCaseLinks}><div><small>STRETCH DIRECTION</small><h3>Swap the process story</h3><p>The controller, model, operator view, and replay can be packaged as a repeatable demo pattern for another use case. MiniWater is the working scene; changing use cases still requires its own tag map, model, and validation.</p></div><nav aria-label="3D model and related demonstrations"><a href="/sphere/miniwater-theater/">Current MiniWater 3D model <span aria-hidden="true">↗</span></a><a href="/sphere/p1-hello-world/">Earlier P1 hardware replay <span aria-hidden="true">↗</span></a><a href="/sphere/hello-world-3d/">Earlier CTF1 3D testbed <span aria-hidden="true">↗</span></a></nav></div>
       </section>
 
       <section className={styles.section} id="replay">
@@ -385,7 +385,7 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         <div className={styles.sectionHeading}><span>5</span><div><small>TAKE THE RECORD</small><h2>Know what this file represents</h2></div></div>
         <p className={styles.sectionLead}>Download the exact bundle used on this page. A future hardware capture can replace this preview only after its PLC and Pi sources, timestamps, tag mapping, and restoration have been verified.</p>
         <div className={styles.evidenceCard}><div><strong>{bundle.title}</strong><span>{captureLabel}</span><span>{frames.length} samples · {bundle.mode.replaceAll('_', ' ')}</span>{bundle.provenance?.source_sha256 && <code>SHA-256 {bundle.provenance.source_sha256}</code>}</div><button type="button" className={styles.primaryButton} onClick={download}>Download JSON</button></div>
-        <p className={styles.next}>At the poster, a supervised visitor can choose a prepared action on the private presenter station. The <a href="/sphere/p1-hello-world/">P1 hardware replay</a> and <a href="/sphere/hello-world-3d/">CTF1 3D walkthrough</a> show related SPHERE demonstrations.</p>
+        <p className={styles.next}>At the poster, a supervised visitor can choose a prepared action on the private presenter station. Open the <a href="/sphere/miniwater-theater/">current MiniWater 3D model</a> for the full plant view. The <a href="/sphere/p1-hello-world/">earlier P1 hardware replay</a> and <a href="/sphere/hello-world-3d/">earlier CTF1 3D walkthrough</a> show related SPHERE demonstrations.</p>
       </section>
     </div>
   </main>;
