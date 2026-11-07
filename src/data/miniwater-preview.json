@@ -1301,46 +1301,46 @@
       "sequence": 44,
       "elapsed_ms": 22000,
       "captured_at_utc": null,
-      "phase": "dose_blue",
+      "phase": "transfer",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 4.0,
+        "color_blue": 0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 4.0,
+        "color_blue": 0,
         "color_yellow": 0
       },
       "commands": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": true,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
+        "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
       "actuators": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": true,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
+        "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
-      "plc2_stage": "DOSE_BLUE",
+      "plc2_stage": "FILL",
       "treatment": {
-        "stage": "DOSE_BLUE",
+        "stage": "FILL",
         "complete_command": false,
         "proxy_quality": "untreated",
         "proxy_target_met": false
@@ -1365,20 +1365,20 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 12.0,
+        "color_blue": 4.0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 12.0,
+        "color_blue": 4.0,
         "color_yellow": 0
       },
       "commands": {
@@ -1426,18 +1426,79 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 12.0,
+        "color_yellow": 0,
+        "water_quality": "untreated"
+      },
+      "reported": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 12.0,
+        "color_yellow": 0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": true,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": true,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "DOSE_BLUE",
+      "treatment": {
+        "stage": "DOSE_BLUE",
+        "complete_command": false,
+        "proxy_quality": "untreated",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "nominal"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 50,
+      "elapsed_ms": 25000,
+      "captured_at_utc": null,
+      "phase": "dose_blue",
+      "attack": "none",
+      "truth": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 20.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 20.0,
         "color_yellow": 0
@@ -1481,85 +1542,24 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 50,
-      "elapsed_ms": 25000,
-      "captured_at_utc": null,
-      "phase": "settle",
-      "attack": "none",
-      "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 0,
-        "water_quality": "off_target"
-      },
-      "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "plc2_stage": "SETTLE",
-      "treatment": {
-        "stage": "SETTLE",
-        "complete_command": false,
-        "proxy_quality": "off_target",
-        "proxy_target_met": false
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "nominal"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 52,
       "elapsed_ms": 26000,
       "captured_at_utc": null,
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1609,18 +1609,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1670,18 +1670,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1731,18 +1731,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1792,18 +1792,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1853,18 +1853,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1914,18 +1914,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -1972,21 +1972,82 @@
       "sequence": 66,
       "elapsed_ms": 33000,
       "captured_at_utc": null,
-      "phase": "treatment_assess",
+      "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "SETTLE",
+      "treatment": {
+        "stage": "SETTLE",
+        "complete_command": false,
+        "proxy_quality": "off_target",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "nominal"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 68,
+      "elapsed_ms": 34000,
+      "captured_at_utc": null,
+      "phase": "treatment_assess",
+      "attack": "none",
+      "truth": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 0,
+        "water_quality": "off_target"
+      },
+      "reported": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -2030,88 +2091,27 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 68,
-      "elapsed_ms": 34000,
-      "captured_at_utc": null,
-      "phase": "dose_yellow",
-      "attack": "none",
-      "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 8.0,
-        "water_quality": "off_target"
-      },
-      "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 8.0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": true,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": true,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "plc2_stage": "DOSE_YELLOW",
-      "treatment": {
-        "stage": "DOSE_YELLOW",
-        "complete_command": false,
-        "proxy_quality": "off_target",
-        "proxy_target_met": false
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "nominal"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 70,
       "elapsed_ms": 35000,
       "captured_at_utc": null,
       "phase": "dose_yellow",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 16.0,
+        "color_yellow": 8.0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 16.0
+        "color_yellow": 8.0
       },
       "commands": {
         "plc1_fill_valve": false,
@@ -2158,18 +2158,79 @@
       "phase": "dose_yellow",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 16.0,
+        "water_quality": "off_target"
+      },
+      "reported": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 16.0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": true,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": true,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "DOSE_YELLOW",
+      "treatment": {
+        "stage": "DOSE_YELLOW",
+        "complete_command": false,
+        "proxy_quality": "off_target",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "nominal"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 74,
+      "elapsed_ms": 37000,
+      "captured_at_utc": null,
+      "phase": "dose_yellow",
+      "attack": "none",
+      "truth": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2213,85 +2274,24 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 74,
-      "elapsed_ms": 37000,
-      "captured_at_utc": null,
-      "phase": "settle",
-      "attack": "none",
-      "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 24.0,
-        "water_quality": "within_target"
-      },
-      "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 24.0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "plc2_stage": "SETTLE",
-      "treatment": {
-        "stage": "SETTLE",
-        "complete_command": false,
-        "proxy_quality": "within_target",
-        "proxy_target_met": true
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "nominal"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 76,
       "elapsed_ms": 38000,
       "captured_at_utc": null,
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2341,18 +2341,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2402,18 +2402,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2463,18 +2463,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2524,18 +2524,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2585,18 +2585,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2646,18 +2646,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -2704,22 +2704,22 @@
       "sequence": 90,
       "elapsed_ms": 45000,
       "captured_at_utc": null,
-      "phase": "delivery",
+      "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 117.5,
-        "tank3_mm": 2.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 117.5,
-        "tank3_mm": 2.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -2729,8 +2729,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": true,
-        "plc3_outlet_valve": true
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -2738,13 +2738,13 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": true,
-        "plc3_outlet_valve": true
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
       },
-      "plc2_stage": "COMPLETE",
+      "plc2_stage": "SETTLE",
       "treatment": {
-        "stage": "COMPLETE",
-        "complete_command": true,
+        "stage": "SETTLE",
+        "complete_command": false,
         "proxy_quality": "within_target",
         "proxy_target_met": true
       },
@@ -2768,19 +2768,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 112.5,
-        "tank3_mm": 7.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 132.5,
+        "tank3_mm": 2.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 112.5,
-        "tank3_mm": 7.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 132.5,
+        "tank3_mm": 2.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -2829,19 +2829,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 107.5,
-        "tank3_mm": 12.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 127.5,
+        "tank3_mm": 7.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 107.5,
-        "tank3_mm": 12.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 127.5,
+        "tank3_mm": 7.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -2890,19 +2890,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 102.5,
-        "tank3_mm": 17.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 122.5,
+        "tank3_mm": 12.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 102.5,
-        "tank3_mm": 17.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 122.5,
+        "tank3_mm": 12.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -2951,19 +2951,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 97.5,
-        "tank3_mm": 22.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 117.5,
+        "tank3_mm": 17.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 97.5,
-        "tank3_mm": 22.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 117.5,
+        "tank3_mm": 17.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3012,19 +3012,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 92.5,
-        "tank3_mm": 27.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 112.5,
+        "tank3_mm": 22.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 92.5,
-        "tank3_mm": 27.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 112.5,
+        "tank3_mm": 22.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3073,19 +3073,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 87.5,
-        "tank3_mm": 32.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 107.5,
+        "tank3_mm": 27.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 87.5,
-        "tank3_mm": 32.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 107.5,
+        "tank3_mm": 27.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3134,19 +3134,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 82.5,
-        "tank3_mm": 37.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 102.5,
+        "tank3_mm": 32.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 82.5,
-        "tank3_mm": 37.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 102.5,
+        "tank3_mm": 32.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3195,19 +3195,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 77.5,
-        "tank3_mm": 42.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 97.5,
+        "tank3_mm": 37.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 77.5,
-        "tank3_mm": 42.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 97.5,
+        "tank3_mm": 37.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3256,19 +3256,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 72.5,
-        "tank3_mm": 47.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 92.5,
+        "tank3_mm": 42.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 72.5,
-        "tank3_mm": 47.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 92.5,
+        "tank3_mm": 42.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3317,19 +3317,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 67.5,
-        "tank3_mm": 52.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 87.5,
+        "tank3_mm": 47.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 67.5,
-        "tank3_mm": 52.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 87.5,
+        "tank3_mm": 47.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3378,19 +3378,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 62.5,
-        "tank3_mm": 57.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 82.5,
+        "tank3_mm": 52.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 62.5,
-        "tank3_mm": 57.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 82.5,
+        "tank3_mm": 52.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3439,19 +3439,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 57.5,
-        "tank3_mm": 62.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 77.5,
+        "tank3_mm": 57.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 57.5,
-        "tank3_mm": 62.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 77.5,
+        "tank3_mm": 57.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3500,19 +3500,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 52.5,
-        "tank3_mm": 67.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 72.5,
+        "tank3_mm": 62.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 52.5,
-        "tank3_mm": 67.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 72.5,
+        "tank3_mm": 62.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3561,19 +3561,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 47.5,
-        "tank3_mm": 72.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 67.5,
+        "tank3_mm": 67.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 47.5,
-        "tank3_mm": 72.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 67.5,
+        "tank3_mm": 67.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3622,19 +3622,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 42.5,
-        "tank3_mm": 77.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 62.5,
+        "tank3_mm": 72.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 42.5,
-        "tank3_mm": 77.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 62.5,
+        "tank3_mm": 72.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3683,19 +3683,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 37.5,
-        "tank3_mm": 82.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 57.5,
+        "tank3_mm": 77.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 37.5,
-        "tank3_mm": 82.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 57.5,
+        "tank3_mm": 77.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3744,19 +3744,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 32.5,
-        "tank3_mm": 87.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 52.5,
+        "tank3_mm": 82.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 32.5,
-        "tank3_mm": 87.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 52.5,
+        "tank3_mm": 82.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3805,19 +3805,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 27.5,
-        "tank3_mm": 92.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 47.5,
+        "tank3_mm": 87.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 27.5,
-        "tank3_mm": 92.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 47.5,
+        "tank3_mm": 87.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3866,19 +3866,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 42.5,
+        "tank3_mm": 92.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 42.5,
+        "tank3_mm": 92.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -3924,21 +3924,21 @@
       "sequence": 130,
       "elapsed_ms": 65000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 37.5,
         "tank3_mm": 97.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 37.5,
         "tank3_mm": 97.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -3949,8 +3949,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -3958,8 +3958,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -3985,22 +3985,22 @@
       "sequence": 132,
       "elapsed_ms": 66000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 32.5,
+        "tank3_mm": 102.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 32.5,
+        "tank3_mm": 102.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4010,8 +4010,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -4019,8 +4019,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -4046,22 +4046,22 @@
       "sequence": 134,
       "elapsed_ms": 67000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 27.5,
+        "tank3_mm": 107.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 27.5,
+        "tank3_mm": 107.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4071,8 +4071,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -4080,8 +4080,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -4107,22 +4107,22 @@
       "sequence": 136,
       "elapsed_ms": 68000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
         "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank3_mm": 112.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
         "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank3_mm": 112.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4132,8 +4132,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -4141,8 +4141,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -4168,22 +4168,22 @@
       "sequence": 138,
       "elapsed_ms": 69000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 17.5,
+        "tank3_mm": 117.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 17.5,
+        "tank3_mm": 117.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4193,8 +4193,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -4202,8 +4202,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -4232,19 +4232,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4293,19 +4293,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4354,19 +4354,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4415,19 +4415,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4476,19 +4476,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4537,19 +4537,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4598,19 +4598,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4659,19 +4659,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4720,19 +4720,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4781,19 +4781,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4842,19 +4842,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4903,19 +4903,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -4964,19 +4964,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5025,19 +5025,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5086,19 +5086,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5147,19 +5147,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5208,19 +5208,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5269,19 +5269,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5330,19 +5330,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5391,19 +5391,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5452,19 +5452,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5513,19 +5513,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -5575,19 +5575,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -6976,29 +6976,29 @@
       "sequence": 229,
       "elapsed_ms": 114500,
       "captured_at_utc": null,
-      "phase": "treatment_assess",
+      "phase": "transfer",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
-        "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1087.5,
+        "raw_range_cm": 11,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1102.5,
-        "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1087.5,
+        "raw_range_cm": 11,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 0,
         "color_yellow": 0
       },
       "commands": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
@@ -7006,16 +7006,16 @@
       },
       "actuators": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
-      "plc2_stage": "ASSESS",
+      "plc2_stage": "FILL",
       "treatment": {
-        "stage": "ASSESS",
+        "stage": "FILL",
         "complete_command": false,
         "proxy_quality": "untreated",
         "proxy_target_met": false
@@ -7040,20 +7040,20 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 8.0,
+        "color_blue": 4.0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 8.0,
+        "color_blue": 4.0,
         "color_yellow": 0
       },
       "commands": {
@@ -7101,20 +7101,20 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 16.0,
+        "color_blue": 12.0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 16.0,
+        "color_blue": 12.0,
         "color_yellow": 0
       },
       "commands": {
@@ -7162,20 +7162,20 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 24.0,
+        "color_blue": 20.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 24.0,
+        "color_blue": 20.0,
         "color_yellow": 0
       },
       "commands": {
@@ -7223,18 +7223,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7284,18 +7284,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7345,18 +7345,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7406,18 +7406,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7467,18 +7467,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7528,18 +7528,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7589,18 +7589,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7650,18 +7650,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0
@@ -7708,31 +7708,31 @@
       "sequence": 253,
       "elapsed_ms": 126500,
       "captured_at_utc": null,
-      "phase": "dose_yellow",
+      "phase": "treatment_assess",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 4.0,
+        "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 4.0
+        "color_yellow": 0
       },
       "commands": {
         "plc1_fill_valve": false,
         "plc1_transfer_pump": false,
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
-        "plc2_yellow_doser": true,
+        "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
@@ -7741,13 +7741,13 @@
         "plc1_transfer_pump": false,
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
-        "plc2_yellow_doser": true,
+        "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
-      "plc2_stage": "DOSE_YELLOW",
+      "plc2_stage": "ASSESS",
       "treatment": {
-        "stage": "DOSE_YELLOW",
+        "stage": "ASSESS",
         "complete_command": false,
         "proxy_quality": "off_target",
         "proxy_target_met": false
@@ -7772,21 +7772,21 @@
       "phase": "dose_yellow",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 12.0,
+        "color_yellow": 8.0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 12.0
+        "color_yellow": 8.0
       },
       "commands": {
         "plc1_fill_valve": false,
@@ -7833,21 +7833,82 @@
       "phase": "dose_yellow",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 20.0,
+        "color_yellow": 16.0,
+        "water_quality": "off_target"
+      },
+      "reported": {
+        "tank1_mm": 1110.0,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 16.0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": true,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": true,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "DOSE_YELLOW",
+      "treatment": {
+        "stage": "DOSE_YELLOW",
+        "complete_command": false,
+        "proxy_quality": "off_target",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "level_spoof"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 259,
+      "elapsed_ms": 129500,
+      "captured_at_utc": null,
+      "phase": "dose_yellow",
+      "attack": "none",
+      "truth": {
+        "tank1_mm": 1110.0,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 20.0
+        "color_yellow": 24.0
       },
       "commands": {
         "plc1_fill_valve": false,
@@ -7888,85 +7949,24 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 259,
-      "elapsed_ms": 129500,
-      "captured_at_utc": null,
-      "phase": "settle",
-      "attack": "none",
-      "truth": {
-        "tank1_mm": 1102.5,
-        "raw_range_cm": 9,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 24.0,
-        "water_quality": "within_target"
-      },
-      "reported": {
-        "tank1_mm": 1102.5,
-        "raw_range_cm": 9,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 24.0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "plc2_stage": "SETTLE",
-      "treatment": {
-        "stage": "SETTLE",
-        "complete_command": false,
-        "proxy_quality": "within_target",
-        "proxy_target_met": true
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "level_spoof"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 261,
       "elapsed_ms": 130500,
       "captured_at_utc": null,
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8016,18 +8016,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8077,18 +8077,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8138,18 +8138,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8199,18 +8199,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8260,18 +8260,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8321,18 +8321,18 @@
       "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8379,21 +8379,21 @@
       "sequence": 275,
       "elapsed_ms": 137500,
       "captured_at_utc": null,
-      "phase": "treatment_assess",
+      "phase": "settle",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 120.0,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -8416,9 +8416,9 @@
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
-      "plc2_stage": "ASSESS",
+      "plc2_stage": "SETTLE",
       "treatment": {
-        "stage": "ASSESS",
+        "stage": "SETTLE",
         "complete_command": false,
         "proxy_quality": "within_target",
         "proxy_target_met": true
@@ -8443,19 +8443,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 115.0,
-        "tank3_mm": 5.0,
+        "tank2_mm": 132.5,
+        "tank3_mm": 2.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 115.0,
-        "tank3_mm": 5.0,
+        "tank2_mm": 132.5,
+        "tank3_mm": 2.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8504,19 +8504,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 110.0,
-        "tank3_mm": 10.0,
+        "tank2_mm": 127.5,
+        "tank3_mm": 7.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 110.0,
-        "tank3_mm": 10.0,
+        "tank2_mm": 127.5,
+        "tank3_mm": 7.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8565,19 +8565,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 105.0,
-        "tank3_mm": 15.0,
+        "tank2_mm": 122.5,
+        "tank3_mm": 12.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 105.0,
-        "tank3_mm": 15.0,
+        "tank2_mm": 122.5,
+        "tank3_mm": 12.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8626,19 +8626,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 100.0,
-        "tank3_mm": 20.0,
+        "tank2_mm": 117.5,
+        "tank3_mm": 17.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 100.0,
-        "tank3_mm": 20.0,
+        "tank2_mm": 117.5,
+        "tank3_mm": 17.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8687,19 +8687,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 95.0,
-        "tank3_mm": 25.0,
+        "tank2_mm": 112.5,
+        "tank3_mm": 22.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 95.0,
-        "tank3_mm": 25.0,
+        "tank2_mm": 112.5,
+        "tank3_mm": 22.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8748,19 +8748,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 90.0,
-        "tank3_mm": 30.0,
+        "tank2_mm": 107.5,
+        "tank3_mm": 27.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 90.0,
-        "tank3_mm": 30.0,
+        "tank2_mm": 107.5,
+        "tank3_mm": 27.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8809,19 +8809,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 85.0,
-        "tank3_mm": 35.0,
+        "tank2_mm": 102.5,
+        "tank3_mm": 32.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 85.0,
-        "tank3_mm": 35.0,
+        "tank2_mm": 102.5,
+        "tank3_mm": 32.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8870,19 +8870,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 80.0,
-        "tank3_mm": 40.0,
+        "tank2_mm": 97.5,
+        "tank3_mm": 37.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 80.0,
-        "tank3_mm": 40.0,
+        "tank2_mm": 97.5,
+        "tank3_mm": 37.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8931,19 +8931,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 75.0,
-        "tank3_mm": 45.0,
+        "tank2_mm": 92.5,
+        "tank3_mm": 42.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 75.0,
-        "tank3_mm": 45.0,
+        "tank2_mm": 92.5,
+        "tank3_mm": 42.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -8992,19 +8992,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 70.0,
-        "tank3_mm": 50.0,
+        "tank2_mm": 87.5,
+        "tank3_mm": 47.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 70.0,
-        "tank3_mm": 50.0,
+        "tank2_mm": 87.5,
+        "tank3_mm": 47.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9053,19 +9053,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 65.0,
-        "tank3_mm": 55.0,
+        "tank2_mm": 82.5,
+        "tank3_mm": 52.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 65.0,
-        "tank3_mm": 55.0,
+        "tank2_mm": 82.5,
+        "tank3_mm": 52.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9114,19 +9114,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 60.0,
-        "tank3_mm": 60.0,
+        "tank2_mm": 77.5,
+        "tank3_mm": 57.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 60.0,
-        "tank3_mm": 60.0,
+        "tank2_mm": 77.5,
+        "tank3_mm": 57.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9175,19 +9175,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 55.0,
-        "tank3_mm": 65.0,
+        "tank2_mm": 72.5,
+        "tank3_mm": 62.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 55.0,
-        "tank3_mm": 65.0,
+        "tank2_mm": 72.5,
+        "tank3_mm": 62.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9236,19 +9236,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 50.0,
-        "tank3_mm": 70.0,
+        "tank2_mm": 67.5,
+        "tank3_mm": 67.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 50.0,
-        "tank3_mm": 70.0,
+        "tank2_mm": 67.5,
+        "tank3_mm": 67.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9297,19 +9297,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 45.0,
-        "tank3_mm": 75.0,
+        "tank2_mm": 62.5,
+        "tank3_mm": 72.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 45.0,
-        "tank3_mm": 75.0,
+        "tank2_mm": 62.5,
+        "tank3_mm": 72.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9358,19 +9358,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 40.0,
-        "tank3_mm": 80.0,
+        "tank2_mm": 57.5,
+        "tank3_mm": 77.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 40.0,
-        "tank3_mm": 80.0,
+        "tank2_mm": 57.5,
+        "tank3_mm": 77.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9419,19 +9419,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 35.0,
-        "tank3_mm": 85.0,
+        "tank2_mm": 52.5,
+        "tank3_mm": 82.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 35.0,
-        "tank3_mm": 85.0,
+        "tank2_mm": 52.5,
+        "tank3_mm": 82.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9480,19 +9480,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 30.0,
-        "tank3_mm": 90.0,
+        "tank2_mm": 47.5,
+        "tank3_mm": 87.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 30.0,
-        "tank3_mm": 90.0,
+        "tank2_mm": 47.5,
+        "tank3_mm": 87.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9541,19 +9541,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 25.0,
-        "tank3_mm": 95.0,
+        "tank2_mm": 42.5,
+        "tank3_mm": 92.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 25.0,
-        "tank3_mm": 95.0,
+        "tank2_mm": 42.5,
+        "tank3_mm": 92.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9599,21 +9599,21 @@
       "sequence": 315,
       "elapsed_ms": 157500,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
+        "tank2_mm": 37.5,
         "tank3_mm": 97.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
+        "tank2_mm": 37.5,
         "tank3_mm": 97.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -9624,8 +9624,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -9633,8 +9633,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -9660,22 +9660,22 @@
       "sequence": 317,
       "elapsed_ms": 158500,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 32.5,
+        "tank3_mm": 102.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 32.5,
+        "tank3_mm": 102.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9685,8 +9685,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -9694,8 +9694,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -9721,22 +9721,22 @@
       "sequence": 319,
       "elapsed_ms": 159500,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 27.5,
+        "tank3_mm": 107.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 27.5,
+        "tank3_mm": 107.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9746,8 +9746,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -9755,8 +9755,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -9782,22 +9782,22 @@
       "sequence": 321,
       "elapsed_ms": 160500,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
         "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank3_mm": 112.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
         "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank3_mm": 112.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9807,8 +9807,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -9816,8 +9816,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -9843,22 +9843,22 @@
       "sequence": 323,
       "elapsed_ms": 161500,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 17.5,
+        "tank3_mm": 117.5,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 17.5,
+        "tank3_mm": 117.5,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9868,8 +9868,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -9877,8 +9877,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -9907,19 +9907,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -9968,19 +9968,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10029,19 +10029,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10090,19 +10090,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10151,19 +10151,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10212,19 +10212,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10273,19 +10273,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10334,19 +10334,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10395,19 +10395,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10456,19 +10456,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10517,19 +10517,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10578,19 +10578,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10639,19 +10639,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10700,19 +10700,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10761,19 +10761,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10822,19 +10822,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10883,19 +10883,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -10944,19 +10944,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -11005,19 +11005,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -11066,19 +11066,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -11127,19 +11127,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -11189,19 +11189,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0,
         "water_quality": "within_target"
       },
       "reported": {
-        "tank1_mm": 1102.5,
+        "tank1_mm": 1110.0,
         "raw_range_cm": 9,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -12529,46 +12529,46 @@
       "sequence": 410,
       "elapsed_ms": 205000,
       "captured_at_utc": null,
-      "phase": "dose_blue",
+      "phase": "transfer",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 4.0,
+        "color_blue": 0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 4.0,
+        "color_blue": 0,
         "color_yellow": 0
       },
       "commands": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": true,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
+        "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
       "actuators": {
         "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": true,
+        "plc1_transfer_pump": true,
+        "plc2_inlet_valve": true,
+        "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
         "plc3_transfer_pump": false,
         "plc3_outlet_valve": false
       },
-      "plc2_stage": "DOSE_BLUE",
+      "plc2_stage": "FILL",
       "treatment": {
-        "stage": "DOSE_BLUE",
+        "stage": "FILL",
         "complete_command": false,
         "proxy_quality": "untreated",
         "proxy_target_met": false
@@ -12593,20 +12593,20 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 12.0,
+        "color_blue": 4.0,
         "color_yellow": 0,
         "water_quality": "untreated"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
-        "color_blue": 12.0,
+        "color_blue": 4.0,
         "color_yellow": 0
       },
       "commands": {
@@ -12654,18 +12654,79 @@
       "phase": "dose_blue",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 12.0,
+        "color_yellow": 0,
+        "water_quality": "untreated"
+      },
+      "reported": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 12.0,
+        "color_yellow": 0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": true,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": true,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "DOSE_BLUE",
+      "treatment": {
+        "stage": "DOSE_BLUE",
+        "complete_command": false,
+        "proxy_quality": "untreated",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "dosing_tamper"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 416,
+      "elapsed_ms": 208000,
+      "captured_at_utc": null,
+      "phase": "dose_blue",
+      "attack": "none",
+      "truth": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 20.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 20.0,
         "color_yellow": 0
@@ -12709,88 +12770,27 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 416,
-      "elapsed_ms": 208000,
-      "captured_at_utc": null,
-      "phase": "settle",
-      "attack": "none",
-      "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 0,
-        "water_quality": "off_target"
-      },
-      "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
-        "tank3_mm": 0,
-        "color_blue": 24.0,
-        "color_yellow": 0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
-      },
-      "plc2_stage": "SETTLE",
-      "treatment": {
-        "stage": "SETTLE",
-        "complete_command": false,
-        "proxy_quality": "off_target",
-        "proxy_target_met": false
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "dosing_tamper"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 418,
       "elapsed_ms": 209000,
       "captured_at_utc": null,
       "phase": "settle",
-      "attack": "dosing_tamper",
+      "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
-        "color_yellow": 24.0
+        "color_yellow": 0
       },
       "commands": {
         "plc1_fill_valve": false,
@@ -12837,18 +12837,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -12898,18 +12898,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -12959,18 +12959,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -13020,18 +13020,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -13081,18 +13081,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -13142,18 +13142,18 @@
       "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -13200,21 +13200,82 @@
       "sequence": 432,
       "elapsed_ms": 216000,
       "captured_at_utc": null,
-      "phase": "treatment_assess",
+      "phase": "settle",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 120.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 24.0
+      },
+      "commands": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "actuators": {
+        "plc1_fill_valve": false,
+        "plc1_transfer_pump": false,
+        "plc2_inlet_valve": false,
+        "plc2_blue_doser": false,
+        "plc2_yellow_doser": false,
+        "plc3_transfer_pump": false,
+        "plc3_outlet_valve": false
+      },
+      "plc2_stage": "SETTLE",
+      "treatment": {
+        "stage": "SETTLE",
+        "complete_command": false,
+        "proxy_quality": "off_target",
+        "proxy_target_met": false
+      },
+      "data_quality": {
+        "plc1": "good",
+        "plc2": "good",
+        "plc3": "good"
+      },
+      "source_age_ms": {
+        "plc1": 0,
+        "plc2": 0,
+        "plc3": 0
+      },
+      "scenario": "dosing_tamper"
+    },
+    {
+      "schema": "sphere.miniwater.frame.v1",
+      "sequence": 434,
+      "elapsed_ms": 217000,
+      "captured_at_utc": null,
+      "phase": "treatment_assess",
+      "attack": "dosing_tamper",
+      "truth": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
+        "tank3_mm": 0,
+        "color_blue": 24.0,
+        "color_yellow": 0,
+        "water_quality": "off_target"
+      },
+      "reported": {
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 135.0,
         "tank3_mm": 0,
         "color_blue": 24.0,
         "color_yellow": 24.0
@@ -13258,86 +13319,25 @@
     },
     {
       "schema": "sphere.miniwater.frame.v1",
-      "sequence": 434,
-      "elapsed_ms": 217000,
-      "captured_at_utc": null,
-      "phase": "delivery",
-      "attack": "dosing_tamper",
-      "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 115.0,
-        "tank3_mm": 5.0,
-        "color_blue": 24.0,
-        "color_yellow": 0,
-        "water_quality": "off_target"
-      },
-      "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 115.0,
-        "tank3_mm": 5.0,
-        "color_blue": 24.0,
-        "color_yellow": 24.0
-      },
-      "commands": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": true,
-        "plc3_outlet_valve": true
-      },
-      "actuators": {
-        "plc1_fill_valve": false,
-        "plc1_transfer_pump": false,
-        "plc2_inlet_valve": false,
-        "plc2_blue_doser": false,
-        "plc2_yellow_doser": false,
-        "plc3_transfer_pump": true,
-        "plc3_outlet_valve": true
-      },
-      "plc2_stage": "COMPLETE",
-      "treatment": {
-        "stage": "COMPLETE",
-        "complete_command": true,
-        "proxy_quality": "off_target",
-        "proxy_target_met": false
-      },
-      "data_quality": {
-        "plc1": "good",
-        "plc2": "good",
-        "plc3": "good"
-      },
-      "source_age_ms": {
-        "plc1": 0,
-        "plc2": 0,
-        "plc3": 0
-      },
-      "scenario": "dosing_tamper"
-    },
-    {
-      "schema": "sphere.miniwater.frame.v1",
       "sequence": 436,
       "elapsed_ms": 218000,
       "captured_at_utc": null,
       "phase": "delivery",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 110.0,
-        "tank3_mm": 10.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 130.0,
+        "tank3_mm": 5.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 110.0,
-        "tank3_mm": 10.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 130.0,
+        "tank3_mm": 5.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -13386,19 +13386,19 @@
       "phase": "delivery",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 105.0,
-        "tank3_mm": 15.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 125.0,
+        "tank3_mm": 10.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 105.0,
-        "tank3_mm": 15.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 125.0,
+        "tank3_mm": 10.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -13447,19 +13447,19 @@
       "phase": "delivery",
       "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 100.0,
-        "tank3_mm": 20.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 120.0,
+        "tank3_mm": 15.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 100.0,
-        "tank3_mm": 20.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 120.0,
+        "tank3_mm": 15.0,
         "color_blue": 24.0,
         "color_yellow": 24.0
       },
@@ -13506,23 +13506,23 @@
       "elapsed_ms": 221000,
       "captured_at_utc": null,
       "phase": "delivery",
-      "attack": "none",
+      "attack": "dosing_tamper",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 95.0,
-        "tank3_mm": 25.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 115.0,
+        "tank3_mm": 20.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 95.0,
-        "tank3_mm": 25.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 115.0,
+        "tank3_mm": 20.0,
         "color_blue": 24.0,
-        "color_yellow": 0
+        "color_yellow": 24.0
       },
       "commands": {
         "plc1_fill_valve": false,
@@ -13569,19 +13569,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 90.0,
-        "tank3_mm": 30.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 110.0,
+        "tank3_mm": 25.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 90.0,
-        "tank3_mm": 30.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 110.0,
+        "tank3_mm": 25.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13630,19 +13630,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 85.0,
-        "tank3_mm": 35.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 105.0,
+        "tank3_mm": 30.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 85.0,
-        "tank3_mm": 35.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 105.0,
+        "tank3_mm": 30.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13691,19 +13691,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 80.0,
-        "tank3_mm": 40.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 100.0,
+        "tank3_mm": 35.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 80.0,
-        "tank3_mm": 40.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 100.0,
+        "tank3_mm": 35.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13752,19 +13752,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 75.0,
-        "tank3_mm": 45.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 95.0,
+        "tank3_mm": 40.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 75.0,
-        "tank3_mm": 45.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 95.0,
+        "tank3_mm": 40.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13813,19 +13813,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 70.0,
-        "tank3_mm": 50.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 90.0,
+        "tank3_mm": 45.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 70.0,
-        "tank3_mm": 50.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 90.0,
+        "tank3_mm": 45.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13874,19 +13874,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 65.0,
-        "tank3_mm": 55.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 85.0,
+        "tank3_mm": 50.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 65.0,
-        "tank3_mm": 55.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 85.0,
+        "tank3_mm": 50.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13935,19 +13935,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 60.0,
-        "tank3_mm": 60.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 80.0,
+        "tank3_mm": 55.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 60.0,
-        "tank3_mm": 60.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 80.0,
+        "tank3_mm": 55.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -13996,19 +13996,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 55.0,
-        "tank3_mm": 65.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 75.0,
+        "tank3_mm": 60.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 55.0,
-        "tank3_mm": 65.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 75.0,
+        "tank3_mm": 60.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14057,19 +14057,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 50.0,
-        "tank3_mm": 70.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 70.0,
+        "tank3_mm": 65.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 50.0,
-        "tank3_mm": 70.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 70.0,
+        "tank3_mm": 65.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14118,19 +14118,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 45.0,
-        "tank3_mm": 75.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 65.0,
+        "tank3_mm": 70.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 45.0,
-        "tank3_mm": 75.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 65.0,
+        "tank3_mm": 70.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14179,19 +14179,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 40.0,
-        "tank3_mm": 80.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 60.0,
+        "tank3_mm": 75.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 40.0,
-        "tank3_mm": 80.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 60.0,
+        "tank3_mm": 75.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14240,19 +14240,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 35.0,
-        "tank3_mm": 85.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 55.0,
+        "tank3_mm": 80.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 35.0,
-        "tank3_mm": 85.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 55.0,
+        "tank3_mm": 80.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14301,19 +14301,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 30.0,
-        "tank3_mm": 90.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 50.0,
+        "tank3_mm": 85.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 30.0,
-        "tank3_mm": 90.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 50.0,
+        "tank3_mm": 85.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14362,19 +14362,19 @@
       "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 25.0,
-        "tank3_mm": 95.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 45.0,
+        "tank3_mm": 90.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 25.0,
-        "tank3_mm": 95.0,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 45.0,
+        "tank3_mm": 90.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14420,22 +14420,22 @@
       "sequence": 472,
       "elapsed_ms": 236000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 40.0,
+        "tank3_mm": 95.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 40.0,
+        "tank3_mm": 95.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14445,8 +14445,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14454,8 +14454,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14481,22 +14481,22 @@
       "sequence": 474,
       "elapsed_ms": 237000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 35.0,
+        "tank3_mm": 100.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 35.0,
+        "tank3_mm": 100.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14506,8 +14506,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14515,8 +14515,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14542,22 +14542,22 @@
       "sequence": 476,
       "elapsed_ms": 238000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 30.0,
+        "tank3_mm": 105.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 30.0,
+        "tank3_mm": 105.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14567,8 +14567,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14576,8 +14576,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14603,22 +14603,22 @@
       "sequence": 478,
       "elapsed_ms": 239000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 25.0,
+        "tank3_mm": 110.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 25.0,
+        "tank3_mm": 110.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14628,8 +14628,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14637,8 +14637,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14664,22 +14664,22 @@
       "sequence": 480,
       "elapsed_ms": 240000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 20.0,
+        "tank3_mm": 115.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 20.0,
+        "tank3_mm": 115.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14689,8 +14689,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14698,8 +14698,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14725,22 +14725,22 @@
       "sequence": 482,
       "elapsed_ms": 241000,
       "captured_at_utc": null,
-      "phase": "treatment_complete",
+      "phase": "delivery",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14750,8 +14750,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "actuators": {
         "plc1_fill_valve": false,
@@ -14759,8 +14759,8 @@
         "plc2_inlet_valve": false,
         "plc2_blue_doser": false,
         "plc2_yellow_doser": false,
-        "plc3_transfer_pump": false,
-        "plc3_outlet_valve": false
+        "plc3_transfer_pump": true,
+        "plc3_outlet_valve": true
       },
       "plc2_stage": "COMPLETE",
       "treatment": {
@@ -14789,19 +14789,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14850,19 +14850,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14911,19 +14911,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -14972,19 +14972,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15033,19 +15033,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15094,19 +15094,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15155,19 +15155,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15216,19 +15216,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15277,19 +15277,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15338,19 +15338,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15399,19 +15399,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15460,19 +15460,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15521,19 +15521,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15582,19 +15582,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15643,19 +15643,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15704,19 +15704,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15765,19 +15765,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15826,19 +15826,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15887,19 +15887,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -15948,19 +15948,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16009,19 +16009,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16070,19 +16070,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16131,19 +16131,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16192,19 +16192,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16253,19 +16253,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16314,19 +16314,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16375,19 +16375,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16436,19 +16436,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16497,19 +16497,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16558,19 +16558,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16619,19 +16619,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16680,19 +16680,19 @@
       "phase": "treatment_complete",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16741,19 +16741,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },
@@ -16803,19 +16803,19 @@
       "phase": "stopped",
       "attack": "none",
       "truth": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0,
         "water_quality": "off_target"
       },
       "reported": {
-        "tank1_mm": 1117.5,
-        "raw_range_cm": 8,
-        "tank2_mm": 22.5,
-        "tank3_mm": 97.5,
+        "tank1_mm": 1102.5,
+        "raw_range_cm": 9,
+        "tank2_mm": 15.0,
+        "tank3_mm": 120.0,
         "color_blue": 24.0,
         "color_yellow": 0
       },

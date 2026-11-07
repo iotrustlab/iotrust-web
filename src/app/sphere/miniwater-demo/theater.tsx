@@ -360,7 +360,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
             <p>Explore the modeled tanks, transfer pumps, and dosing equipment as one process floor. The floor follows modeled truth; the panel beside it shows what the controllers were told.</p>
             <button type="button" onClick={() => { setApplied(null); setStatus('loading'); setOpened(true); }}>Load 3D floor</button>
           </div> : <>
-            <iframe key={attempt} ref={iframe} src="/sphere/miniwater-3d/index.html?rev=7485e905f23de4c25b0fcb50c61c38fe72738ad1" title="MiniWater Unity three-tank floor synchronized with the selected replay sample" loading="lazy" allow="fullscreen" />
+            <iframe key={attempt} ref={iframe} src="/sphere/miniwater-3d/index.html?rev=aaf46cba85dc684ca8e689b55976dbc2e04f6ff4" title="MiniWater Unity three-tank floor synchronized with the selected replay sample" loading="lazy" allow="fullscreen" />
             {status === 'loading' && <p className={styles.theaterOverlay} role="status">Loading Unity floor…</p>}
             {status === 'error' && <div className={styles.theaterOverlay} role="alert"><p>{error}</p><button type="button" onClick={retry}>Retry 3D floor</button><a href={standalone ? '/sphere/miniwater-demo/#detail-replay' : '#detail-replay'}>Use detailed 2D trace</a></div>}
           </>}

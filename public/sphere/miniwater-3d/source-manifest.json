@@ -1,8 +1,8 @@
 {
   "schema": "sphere.miniwater.webgl-source.v1",
   "unity_version": "6000.3.22f1",
-  "source_commit": "7485e905f23de4c25b0fcb50c61c38fe72738ad1",
-  "replay_sha256": "b37a4a5049f01c3493769d31d0ef967f5624f51df1cf21cda09cbfd73a6126a0",
+  "source_commit": "aaf46cba85dc684ca8e689b55976dbc2e04f6ff4",
+  "replay_sha256": "43eec9b0b4de44fb810e9d41d1c6b3bda711f4fb866e4ff09e2739489b6b620a",
   "source_files": [
     {
       "path": "Assets/MiniWaterReplay.unity",
@@ -30,7 +30,7 @@
     },
     {
       "path": "Assets/Resources/MiniWater/synthetic-poster-replay.json",
-      "sha256": "b37a4a5049f01c3493769d31d0ef967f5624f51df1cf21cda09cbfd73a6126a0"
+      "sha256": "43eec9b0b4de44fb810e9d41d1c6b3bda711f4fb866e4ff09e2739489b6b620a"
     },
     {
       "path": "Assets/Resources/MiniWater/synthetic-poster-replay.json.meta",
