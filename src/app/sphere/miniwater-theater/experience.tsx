@@ -41,7 +41,7 @@ export function TheaterExperience({ frames }: { frames: Frame[] }) {
       <a href="/sphere/miniwater-demo/">← MiniWater walkthrough</a>
       <p>SPHERE ICS · PUBLIC SOFTWARE REPLAY</p>
       <h1>MiniWater plant theater</h1>
-      <span>Explore the two-site, three-controller process. One replay clock drives the modeled Unity floor and the operator readings.</span>
+      <span>Choose a prepared run, load the 3D floor, and press Play. Attack choices open at the first changed reading; use “Show transfer delay” or “Show off-target handoff” for the outcome. Compare the operator panel with the modeled floor.</span>
     </header>
     <section className={styles.stage} aria-label="Interactive MiniWater plant theater">
       <MiniWaterTheater standalone frames={frames} index={index} playing={playing} speed={speed} onSpeedChange={setSpeed} onJump={jump} onTogglePlay={togglePlay} />
