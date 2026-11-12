@@ -62,8 +62,12 @@ jobs:
           name: github-pages
           path: artifact
 
+      # public/CNAME (iotrustlab.com) is in the build; replace it so the
+      # mirror claims only the utah.edu hostname.
       - name: Unpack site
-        run: mkdir site && tar -xf artifact/artifact.tar -C site
+        run: |
+          mkdir site && tar -xf artifact/artifact.tar -C site
+          echo "iotrust.cs.utah.edu" > site/CNAME
 
       - name: Publish to Utah mirror
         uses: peaceiris/actions-gh-pages@v4
@@ -72,7 +76,6 @@ jobs:
           external_repository: iotrustlab/iotrust-utah-mirror
           publish_branch: gh-pages
           publish_dir: ./site
-          cname: iotrust.cs.utah.edu
           force_orphan: true
           user_name: "github-actions[bot]"
           user_email: "41898282+github-actions[bot]@users.noreply.github.com"
