@@ -48,3 +48,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Publishes the same build to iotrustlab/iotrust-utah-mirror (gh-pages),
+  # which GitHub Pages serves at iotrust.cs.utah.edu. Canonical tags still
+  # point to iotrustlab.com, so the mirror never competes in search.
+  mirror-utah:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Download built site
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: artifact
+
+      - name: Unpack site
+        run: mkdir site && tar -xf artifact/artifact.tar -C site
+
+      - name: Publish to Utah mirror
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          deploy_key: ${{ secrets.MIRROR_DEPLOY_KEY }}
+          external_repository: iotrustlab/iotrust-utah-mirror
+          publish_branch: gh-pages
+          publish_dir: ./site
+          cname: iotrust.cs.utah.edu
+          force_orphan: true
+          user_name: "github-actions[bot]"
+          user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          full_commit_message: "Mirror iotrustlab/iotrust-web@${{ github.sha }}"
