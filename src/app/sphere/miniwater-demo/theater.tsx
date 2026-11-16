@@ -26,7 +26,7 @@ const views: { id: View; label: string; key: string; equipment: EquipmentId }[] 
   { id: 'delivery', label: 'Delivery', key: '3', equipment: 'tank3' },
 ];
 const equipment: { id: EquipmentId; label: string; area: string; view: View; description: string }[] = [
-  { id: 'process', label: 'Three-tank process', area: 'Whole modeled plant', view: 'overview', description: 'Follow modeled water from the raw source through color treatment to the receiving tank. Controller locations and the network route are shown in the system diagram above.' },
+  { id: 'process', label: 'Three-tank process', area: 'Whole modeled plant', view: 'overview', description: 'Follow modeled water from the raw source through color treatment to the receiving tank. The controller locations and network route appear in the system map later on this page.' },
   { id: 'tank1', label: 'Tank 1 · raw source', area: 'Raw stage', view: 'raw', description: 'Software-modeled raw-water storage. PLC1 can receive a level that differs from this independent modeled level.' },
   { id: 'transfer_pump', label: 'Raw transfer pump', area: 'Raw → treatment', view: 'raw', description: 'The modeled pump moves water from Tank 1 through the process line to Tank 2 when its feedback is on.' },
   { id: 'tank2', label: 'Tank 2 · treatment', area: 'Treatment stage', view: 'treatment', description: 'Software-modeled treatment tank. Its water tint follows modeled blue and yellow color proxy values.' },
@@ -80,9 +80,9 @@ function eventMarks(frames: Frame[], run: Run) {
 function caption(frame: Frame) {
   if (frame.event === 'operator_stop') return 'The prepared run stops. Compare restored readings with any remaining modeled deviation.';
   if (frame.event === 'reset_to_initial_conditions') return 'A separate prepared scenario begins from the software model’s starting state.';
+  if (frame.treatment?.complete_command && !frame.treatment.proxy_target_met) return 'PLC2 declared treatment complete while the modeled color target is missed. PLC3 can now deliver that off-target batch.';
   if (frame.attack === 'level_spoof') return 'PLC1 receives a lower raw level than the software model shows; compare the transfer decision with independent tank truth.';
   if (frame.attack === 'dosing_tamper') return 'PLC2 receives a false yellow reading; compare its dosing decision with independent modeled color.';
-  if (frame.treatment?.complete_command && !frame.treatment.proxy_target_met) return 'PLC2 says treatment is complete while the independent color target remains unmet.';
   const captions: Record<string, string> = {
     fill: 'PLC1 fills the raw-water tank in the modeled process.',
     transfer: 'PLC1 requests raw-water transfer into Tank 2.',
@@ -103,11 +103,13 @@ function readouts(frame: Frame, view: View): { operator: Readout[]; floor: Reado
   if (view === 'raw') return {
     operator: [
       { label: 'Tank 1 · PLC1 reading', value: qualityValue(q1, mm(frame.reported.tank1_mm)), alert: q1 === 'good' && Math.abs(frame.reported.tank1_mm - frame.truth.tank1_mm) > 1 },
+      { label: 'Transfer range · PLC1 reading', value: qualityValue(q1, String(frame.reported.raw_range_cm ?? '—') + ' cm'), alert: q1 === 'good' && frame.reported.raw_range_cm !== frame.truth.raw_range_cm },
       { label: 'Fill valve · command', value: onOff(frame.commands.plc1_fill_valve) },
       { label: 'Transfer pump · command', value: onOff(frame.commands.plc1_transfer_pump) },
     ],
     floor: [
       { label: 'Tank 1 · modeled truth', value: mm(frame.truth.tank1_mm) },
+      { label: 'Transfer range · modeled truth', value: String(frame.truth.raw_range_cm ?? '—') + ' cm' },
       { label: 'Fill valve · model feedback', value: onOff(frame.actuators.plc1_fill_valve) },
       { label: 'Transfer pump · model feedback', value: onOff(frame.actuators.plc1_transfer_pump) },
     ],
@@ -194,6 +196,15 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
   const evidence = readouts(frame, view);
   const synced = status === 'ready' && applied !== null && matchesFrame(applied, frame);
   const localTime = (frame.elapsed_ms - frames[run.start].elapsed_ms) / 1000;
+  const outcomeIndex = frames.findIndex((candidate, candidateIndex) => {
+    if (candidateIndex < run.start || candidateIndex > run.end) return false;
+    if (run.name === 'level_spoof') return candidate.attack === 'level_spoof' &&
+      candidate.truth.raw_range_cm !== undefined && candidate.truth.raw_range_cm <= 10 &&
+      candidate.reported.raw_range_cm !== undefined && candidate.reported.raw_range_cm > 10 &&
+      !candidate.commands.plc1_transfer_pump;
+    if (run.name === 'dosing_tamper') return Boolean(candidate.treatment?.complete_command && !candidate.treatment.proxy_target_met);
+    return false;
+  });
 
   useEffect(() => { selectedFrame.current = frame; }, [frame]);
   useEffect(() => {
@@ -303,6 +314,18 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
     setSelected(id);
     setView(equipment.find(item => item.id === id)?.view || 'overview');
   };
+  const chooseRun = (next: Run) => {
+    if (next.name === 'level_spoof') chooseView('raw');
+    else if (next.name === 'dosing_tamper') chooseView('treatment');
+    else chooseView('overview');
+    const firstAltered = frames.findIndex((candidate, candidateIndex) => {
+      if (candidateIndex < next.start || candidateIndex > next.end) return false;
+      if (next.name === 'level_spoof') return Math.abs(candidate.truth.tank1_mm - candidate.reported.tank1_mm) > 1;
+      if (next.name === 'dosing_tamper') return Math.abs(candidate.truth.color_yellow - candidate.reported.color_yellow) > 1;
+      return false;
+    });
+    onJump(firstAltered >= 0 ? firstAltered : next.start);
+  };
   const changeLayout = (next: Layout) => {
     if (layout === 'embedded' && next !== 'embedded') returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setLayout(next);
@@ -331,22 +354,22 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
 
   return <div ref={theater} className={stageClass} id="unity-view" tabIndex={0} onKeyDown={keyboard} role={layout === 'embedded' ? 'region' : 'dialog'} aria-modal={layout === 'embedded' ? undefined : true} aria-label="MiniWater 3D theater">
     <div className={styles.theaterHead}>
-      <div><small>SOFTWARE MODEL · THREE TANKS · TWO PUMPS</small><h3>MiniWater plant floor</h3><p>One synthetic replay clock drives the Unity process floor and {standalone ? 'the operator and model readouts.' : 'the detailed 2D trace.'}</p></div>
+      <div><small>SOFTWARE MODEL · THREE TANKS · TWO PUMPS</small><h3>MiniWater plant floor</h3></div>
       <div className={styles.theaterHeadActions}>
         <span className={synced ? styles.theaterSynced : styles.theaterStatus} role="status">{synced ? '3D synchronized' : opened && status === 'ready' ? 'Synchronizing 3D' : status === 'error' ? '3D unavailable' : 'Offline software preview'}</span>
         <button type="button" onClick={() => changeLayout(layout === 'large' ? 'embedded' : 'large')}>{layout === 'large' ? 'Close large view' : 'Large 3D'}</button>
-        <button type="button" onClick={() => changeLayout(layout === 'workspace' ? 'embedded' : 'workspace')}>{layout === 'workspace' ? 'Close workspace' : 'Workspace'}</button>
       </div>
     </div>
     <div className={styles.theaterScenarioBar} role="group" aria-label="Prepared replay scenario">
       <span>PREPARED RUN</span>
-      {runs.map(item => <button key={item.name} type="button" aria-pressed={item.name === run.name} onClick={() => onJump(item.start)}>{labelForScenario(item.name)}</button>)}
-      <small>All values are replayed from a synthetic offline file.</small>
+      {runs.map(item => <button key={item.name} type="button" aria-pressed={item.name === run.name} onClick={() => chooseRun(item)}>{labelForScenario(item.name)}</button>)}
+      {outcomeIndex >= 0 && <button type="button" className={styles.theaterOutcomeButton} onClick={() => onJump(outcomeIndex)} disabled={index === outcomeIndex}>{run.name === 'level_spoof' ? 'Show transfer delay →' : 'Show off-target handoff →'}</button>}
     </div>
-    <div className={styles.theaterViewBar} role="group" aria-label="3D camera view">
+    <details className={styles.theaterOptions}><summary>Camera views and display options</summary><div className={styles.theaterViewBar} role="group" aria-label="3D camera view">
       {views.map(item => <button key={item.id} type="button" aria-pressed={item.id === view} onClick={() => chooseView(item.id)}><kbd>{item.key}</kbd> {item.label}</button>)}
       <button type="button" aria-pressed={tour} onClick={() => setTour(!tour)}>Camera tour {tour ? 'ON' : 'OFF'}</button>
-    </div>
+      <button type="button" onClick={() => changeLayout(layout === 'workspace' ? 'embedded' : 'workspace')}>{layout === 'workspace' ? 'Close workspace' : 'Workspace'}</button>
+    </div></details>
     <div className={styles.theaterBody}>
       <nav className={styles.theaterEquipment} aria-label="Equipment tree">
         <h4>Equipment tree</h4>
@@ -366,7 +389,7 @@ export function MiniWaterTheater({ frames, index, playing, speed, onSpeedChange,
           </>}
         </div>
         <div className={styles.theaterCaption} aria-live="polite">
-          <span className={alert ? styles.theaterAlertTag : styles.theaterNormalTag}>{frame.attack !== 'none' ? title(frame.attack) : frame.treatment?.complete_command && !frame.treatment.proxy_target_met ? 'MODELED TARGET NOT MET' : title(frame.phase)}</span>
+          <span className={alert ? styles.theaterAlertTag : styles.theaterNormalTag}>{frame.treatment?.complete_command && !frame.treatment.proxy_target_met ? 'MODELED TARGET MISSED' : frame.attack !== 'none' ? title(frame.attack) : title(frame.phase)}</span>
           <strong>{title(frame.phase)}</strong>
           <p>{caption(frame)}</p>
         </div>

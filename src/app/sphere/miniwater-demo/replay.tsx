@@ -228,6 +228,17 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
     return () => clearTimeout(timer);
   }, [playing, index, frames, speed]);
 
+  useEffect(() => {
+    const revealDetail = () => {
+      if (window.location.hash === '#detail-replay') {
+        document.getElementById('detail-replay')?.setAttribute('open', '');
+      }
+    };
+    revealDetail();
+    window.addEventListener('hashchange', revealDetail);
+    return () => window.removeEventListener('hashchange', revealDetail);
+  }, []);
+
   if (!frames.length) return <main className={styles.page}><p>No replay samples are available.</p></main>;
   const jump = (to: number) => { setPlaying(false); setIndex(Math.max(0, Math.min(frames.length - 1, to))); };
   const togglePlay = () => {
@@ -266,31 +277,62 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
           <p className={styles.eyebrow}>SPHERE ICS · MiniWater</p>
           <span className={styles.mode}>{sourceLabel}</span>
           <h1>MiniWater Across the Wire</h1>
-          <p className={styles.heroLead}>One virtual water process is controlled across two SPHERE facilities. An installed ControlLogix handles raw-water transfer at one site; two Raspberry Pis run treatment, color dosing, and delivery at the other. The 3D floor shows the modeled plant, while the system map shows where its controllers run.</p>
-          <div className={styles.heroLinks}><a className={styles.heroLink} href="#replay">Explore the run <span aria-hidden="true">↓</span></a><a className={styles.heroLink} href="/sphere/miniwater-theater/">Open the current MiniWater 3D model <span aria-hidden="true">↗</span></a></div>
-          <div className={styles.heroFacts}><span><b>Site A</b> ControlLogix</span><span><b>Site B</b> two arm64 Pis with OpenPLC</span><span><b>Public page</b> offline replay, no live controls</span></div>
+          <p className={styles.heroLead}>Watch one modeled water process move through three tanks. A ControlLogix controls raw transfer at one facility; two Raspberry Pis handle treatment and delivery at another. Start with the 3D replay, then compare what each controller was told with the independent model.</p>
         </div>
-        <div className={styles.heroDiagram} role="img" aria-label="ControlLogix and a separate simulator PLC are at one SPHERE facility; the simulator PLC raw-level analog path to PLC1 is under validation. A routed network connects PLC1 to two Raspberry Pis at another facility, where PLC2 treats and PLC3 delivers modeled water">
-          <div className={styles.siteColumn}><small>SPHERE FACILITY A</small><div className={styles.siteNode}><strong>ControlLogix</strong><span>PLC1 · raw source and transfer</span></div><div className={styles.simulatorRoute}><span aria-hidden="true">↑</span> RAW-LEVEL ANALOG PATH <br />UNDER VALIDATION</div><div className={styles.simulatorNode}><strong>Simulator PLC</strong><span>candidate physical signal source</span></div></div>
-          <div className={styles.siteLink}><b aria-hidden="true">↔</b><span>ROUTED<br />NETWORK</span></div>
-          <div className={styles.siteColumn}><small>SPHERE FACILITY B</small><strong>Two Raspberry Pis</strong><span>rpi0 · treatment and dosing</span><span>rpi1 · treated delivery</span></div>
-          <p>This public replay is a synthetic offline trace from the Windows VM process model. The simulator PLC analog path is being validated for PLC1.</p>
-        </div>
+
       </header>
 
-      <p className={styles.notice}><strong>{sourceLabel}.</strong> {bundle.provenance?.note || bundle.model_notice || (synthetic ? 'This is not a hardware capture.' : 'Values come from a verified live-session extract.')} The colored-water metric is a training proxy, not a claim about real water safety.</p>
+      <p className={styles.notice}><strong>{sourceLabel}.</strong> {bundle.provenance?.note || bundle.model_notice || (synthetic ? 'This is not a hardware capture.' : 'Values come from a verified live-session extract.')}</p>
 
-      <section className={styles.section} id="motivation">
-        <div className={styles.sectionHeading}><span>1</span><div><small>WHY DISTRIBUTE IT?</small><h2>From a tabletop process to a routed control loop</h2></div></div>
-        <p className={styles.sectionLead}>The original MiniWater testbed made tanks, tubing, pumps, and dye visible in one place. The SPHERE adaptation keeps its raw-water → treatment → delivery sequence while separating control stages across facilities. That lets a demonstration expose network boundaries, data age, signal ownership, and the difference between a controller’s reading and modeled process state. The historical images below show the original setup; the replay on this page is a software preview.</p>
-        <div className={styles.historyGrid}>
-          <figure className={styles.historyPhoto}><Image src="/images/demos/miniwater/original-testbed.jpg" alt="Historical MiniWater tabletop rig with clear tanks, tubing, pumps, Raspberry Pi boards, and cups of blue and red coloring" width={4056} height={2258} sizes="(max-width: 760px) 100vw, 58vw" /><figcaption><strong>Original MiniWater testbed</strong><span>Historical physical rig; the SPHERE demo keeps its three-stage logic but models tanks and devices in software.</span></figcaption></figure>
-          <figure className={styles.historySchematic}><Image src="/images/demos/miniwater/original-schematic.png" alt="Original MiniWater three-stage schematic with raw tank, color treatment and dosing, treated tank, and PLCs 1 through 3" width={504} height={344} sizes="(max-width: 760px) 100vw, 38vw" /><figcaption><strong>Original three-stage design</strong><span>Raw source, treatment, and delivery roles carried into this adaptation. <a href="https://github.com/iotrustlab/miniwatertreatment/tree/CompactLogix-Integration/Diagrams">View the source diagram</a>.</span></figcaption></figure>
+      <nav className={styles.visitNav} aria-label="Explore this demo"><a href="#replay">1 · Watch the run</a><a href="#defend">2 · See the attacks</a><a href="#system">3 · Find the controllers</a><a href="#motivation">4 · Why MiniWater</a></nav>
+
+      <section className={styles.section} id="replay">
+        <div className={styles.sectionHeading}><span>1</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
+        <div className={styles.startGuide}><strong>Start here</strong><span><b>1</b> Choose Normal or one attack</span><span><b>2</b> Load the 3D floor and press Play</span><span><b>3</b> Compare controller reading with modeled truth</span></div>
+        <MiniWaterTheater frames={frames} index={index} playing={playing} speed={speed} onSpeedChange={setSpeed} onJump={jump} onTogglePlay={togglePlay} />
+        <details className={styles.detailPanel} id="detail-replay"><summary><span>MORE EVIDENCE</span><strong>Open the detailed 2D signal trace</strong><em>Tank levels, color, commands, and feedback</em></summary>
+        <div className={styles.player}>
+          <div className={styles.playerTop}><div><span className={frame.attack === 'none' ? styles.phaseNormal : styles.phaseAttack}>{frame.attack === 'none' ? 'NORMAL PROCESS' : frame.attack.replaceAll('_', ' ').toUpperCase()}</span><h3>{phaseTitle(frame.phase)}</h3><p>{frameDescription(frame)}</p></div><div className={styles.sampleNumber}>SAMPLE <strong>{index + 1} / {frames.length}</strong><span>T+{(frame.elapsed_ms / 1000).toFixed(1)} s</span>{frame.scenario && <span>{phaseTitle(frame.scenario)} scenario</span>}</div></div>
+          <div className={styles.playerControls}><button type="button" className={styles.primaryButton} onClick={togglePlay}>{playing ? 'Pause' : 'Play'} replay</button><button type="button" onClick={() => jump(index - 1)} disabled={index === 0}>← Previous</button><button type="button" onClick={() => jump(index + 1)} disabled={index === frames.length - 1}>Next →</button></div>
+          <label className={styles.sliderLabel} htmlFor="miniwater-frame-slider">Move to any sample</label>
+          <input id="miniwater-frame-slider" className={styles.slider} type="range" min="0" max={frames.length - 1} value={index} onChange={event => jump(Number(event.target.value))} />
+          <div className={styles.chapterButtons}>{chapterStarts.map(c => <button key={c.label} type="button" className={index === c.start ? styles.chapterActive : ''} onClick={() => jump(c.start)}>{c.label}</button>)}</div>
+          <div className={styles.tanks}>
+            <Tank name="Tank 1 · Raw water" truth={frame.truth.tank1_mm} reported={frame.reported.tank1_mm} quality={frame.data_quality.plc1} selected={rawMismatch} capacity={capacities.tank1} />
+            <Tank name="Tank 2 · Treatment" truth={frame.truth.tank2_mm} reported={frame.reported.tank2_mm} quality={frame.data_quality.plc2} selected={false} capacity={capacities.tank2} tint={colorTint} />
+            <Tank name="Tank 3 · Receiving" truth={frame.truth.tank3_mm} reported={frame.reported.tank3_mm} quality={frame.data_quality.plc3} selected={false} capacity={capacities.tank3} tint={colorTint} />
+          </div>
+          <div className={treatmentMismatch ? styles.treatmentAlert : styles.treatmentCard}>
+            <div><small>PLC2 · TREATMENT TANK</small><h4>{phaseTitle(treatmentStage)}</h4><p>PLC2 assesses reported blue and yellow readings, applies a timed dose when needed, waits eight seconds to settle, then reassesses before its complete handoff.</p></div>
+            <div className={styles.treatmentReadbacks}><span>PLC2 complete signal <strong>{treatmentReported ? treatmentComplete ? 'ON' : 'OFF' : '— stale'}</strong></span><span>Independent model target <strong>{qualityProxy.replaceAll('_', ' ')}</strong></span>{treatmentMismatch && <em>Completion disagrees with modeled color target.</em>}</div>
+          </div>
+          <div className={styles.colorPanel} aria-label="Tank 2 modeled color and PLC2 reported color">
+            <div className={styles.colorPanelIntro}><div><small>INSIDE TANK 2</small><h4>See the color decision</h4><p>The tank tint follows the independent model. The black ticks mark what PLC2 was told. The target requires blue at least 20 units and the blue/yellow difference at most 5 units.</p></div><div className={styles.colorSample} style={{ background: colorTint }} aria-label={`Illustrative modeled tint; blue ${value(frame.truth.color_blue)}, yellow ${value(frame.truth.color_yellow)}`} role="img" /></div>
+            <div className={styles.colorReadouts}><ColorReadout label="Blue proxy" modeled={frame.truth.color_blue} reported={frame.reported.color_blue} quality={frame.data_quality.plc2} color="blue" /><ColorReadout label="Yellow proxy" modeled={frame.truth.color_yellow} reported={frame.reported.color_yellow} quality={frame.data_quality.plc2} color="yellow" /></div>
+            <div className={colorTargetMet ? styles.colorOutcomeGood : styles.colorOutcomeBad}><span>Modeled balance <strong>{value(colorGap)} units apart</strong></span><span>Independent target <strong>{colorTargetMet ? 'MET' : 'NOT MET'}</strong></span><span>PLC2 complete <strong>{treatmentReported ? treatmentComplete ? 'ON' : 'OFF' : '— stale'}</strong></span></div>
+            {treatmentMismatch && <p className={styles.colorWarning}>PLC2 declared treatment complete while the modeled color target was missed. The delivery handoff can still follow that signal.</p>}
+          </div>
+          <div className={styles.lowerGrid}>
+            <div className={styles.outputCard}><small>CONTROL COMMANDS</small><h4>What the PLCs requested</h4><Lamp label="PLC1 pump · command" on={frame.commands.plc1_transfer_pump} /><Lamp label="PLC1 pump · modeled feedback" on={frame.actuators.plc1_transfer_pump} /><Lamp label="PLC2 yellow doser · command" on={frame.commands.plc2_yellow_doser} /><Lamp label="PLC2 yellow doser · modeled feedback" on={frame.actuators.plc2_yellow_doser} /><Lamp label="PLC3 pump · command" on={frame.commands.plc3_transfer_pump} /><Lamp label="PLC3 pump · modeled feedback" on={frame.actuators.plc3_transfer_pump} /></div>
+            <div className={styles.outputCard}><small>MODELED PROCESS</small><h4>What the software model shows</h4><p>Raw range · model <strong>{frame.truth.raw_range_cm === undefined ? '—' : value(frame.truth.raw_range_cm) + ' cm'}</strong></p><p>Raw range · PLC1 <strong className={frame.data_quality.plc1 === 'good' && frame.truth.raw_range_cm !== frame.reported.raw_range_cm ? styles.deviation : ''}>{frame.data_quality.plc1 === 'good' && frame.reported.raw_range_cm !== undefined ? value(frame.reported.raw_range_cm) + ' cm' : '—'}</strong></p><p>Blue proxy · model <strong>{value(frame.truth.color_blue)}</strong></p><p>Blue reading · PLC2 <strong>{frame.data_quality.plc2 === 'good' ? value(frame.reported.color_blue) : '—'}</strong></p><p>Yellow proxy · model <strong>{value(frame.truth.color_yellow)}</strong></p><p>Yellow reading · PLC2 <strong className={frame.data_quality.plc2 === 'good' && Math.abs(frame.truth.color_yellow - frame.reported.color_yellow) > 1 ? styles.deviation : ''}>{frame.data_quality.plc2 === 'good' ? value(frame.reported.color_yellow) : '—'}</strong></p><p>Quality proxy <strong className={dosingDeviation ? styles.deviation : ''}>{frame.truth.water_quality.replaceAll('_', ' ')}</strong></p></div>
+          </div>
+          <Trace frames={frames} index={index} capacity={capacities.tank1} />
+          <p className={styles.playerFoot}>Sample time and source class matter. “Commanded” does not prove physical movement; the process view here is a software model.</p>
+        </div></details>
+      </section>
+
+      <section className={styles.section} id="defend">
+        <div className={styles.sectionHeading}><span>2</span><div><small>RED TEAM / BLUE TEAM</small><h2>Choose what you would check</h2></div></div>
+        <p className={styles.sectionLead}>The 2024 classroom CTF paired malicious code or opportunistic commands with defender code vetting and PLC-value monitoring. This poster version uses two bounded scenarios: a false PLC1 level and a manipulated PLC2 dosing decision. The public page presents their trace only.</p>
+        <div className={styles.decisionGrid}>
+          <div className={styles.decisionCard}><span className={styles.redPill}>ATTACK A</span><h3>False raw-water level</h3><p>PLC1 receives a level below modeled truth. Its reported range stays above the 10 cm handoff threshold, holding off transfer as tank 1 fills.</p><strong>Defender cue</strong><p>Compare reported and modeled level and range, plus the transfer command, over time.</p></div>
+          <div className={styles.decisionCard}><span className={styles.redPill}>ATTACK B</span><h3>False color, changed treatment</h3><p>PLC2 receives a yellow color reading higher than modeled truth. It can skip needed yellow dosing and raise treatment complete while the model remains off target; PLC3 then sees the handoff.</p><strong>Defender cue</strong><p>Compare the reported and modeled yellow values, the doser command, PLC2 complete signal, and delivery handoff.</p></div>
         </div>
+        <div className={styles.check}><h3>Which observation gives the defender independent evidence?</h3><div>{['Read only the same PLC1 level again', 'Compare PLC1 level and range with modeled values', 'Assume a pump command proves movement'].map(choice => <button key={choice} type="button" className={check === choice ? styles.selectedChoice : ''} onClick={() => setCheck(choice)}>{choice}</button>)}</div>{check && <p role="status" className={check.startsWith('Compare') ? styles.correct : styles.incorrect}>{check.startsWith('Compare') ? 'Yes. Independent modeled level and range can contradict a forged controller reading.' : 'That observation shares the compromised value or confuses a command with feedback.'}</p>}</div>
       </section>
 
       <section className={styles.section} id="system">
-        <div className={styles.sectionHeading}><span>2</span><div><small>MEET THE SYSTEM</small><h2>Control stages across two facilities</h2></div></div>
+        <div className={styles.sectionHeading}><span>3</span><div><small>MEET THE SYSTEM</small><h2>Control stages across two facilities</h2></div></div>
         <p className={styles.sectionLead}>The installed Rockwell ControlLogix runs the raw-water stage at one facility. At another, two arm64 Raspberry Pis running OpenPLC handle treatment and delivery. In tank 2, PLC2 fills, assesses reported color, doses blue or yellow, settles, and declares treatment complete. A software process model currently supplies sensor readings and consumes pump, valve, and doser commands.</p>
         <div className={styles.ruleGrid}>
           <div><strong>ControlLogix · PLC1</strong><p>Fills raw-water tank 1 and commands transfer toward treatment.</p></div>
@@ -336,49 +378,13 @@ export function MiniWaterReplay({ bundle }: { bundle: ReplayBundle }) {
         <div className={styles.useCaseLinks}><div><small>STRETCH DIRECTION</small><h3>Swap the process story</h3><p>The controller, model, operator view, and replay can be packaged as a repeatable demo pattern for another use case. MiniWater is the working scene; changing use cases still requires its own tag map, model, and validation.</p></div><nav aria-label="3D model and related demonstrations"><a href="/sphere/miniwater-theater/">Current MiniWater 3D model <span aria-hidden="true">↗</span></a><a href="/sphere/p1-hello-world/">Earlier P1 hardware replay <span aria-hidden="true">↗</span></a><a href="/sphere/hello-world-3d/">Earlier CTF1 3D testbed <span aria-hidden="true">↗</span></a></nav></div>
       </section>
 
-      <section className={styles.section} id="replay">
-        <div className={styles.sectionHeading}><span>3</span><div><small>EXPLORE THE REPLAY</small><h2>Watch the process and the readings</h2></div></div>
-        <p className={styles.sectionLead}>Start in the theater: choose a prepared run, move among the four camera views, and inspect the operator readings against the modeled floor. The 3D scene shows one virtual plant with tanks, pumps, and dosing equipment; the system diagram above shows the routed controller locations. The detailed 2D trace below uses the same playback clock. These controls replay a file; they do not connect to live equipment.</p>
-        <MiniWaterTheater frames={frames} index={index} playing={playing} speed={speed} onSpeedChange={setSpeed} onJump={jump} onTogglePlay={togglePlay} />
-        <div className={styles.detailLead} id="detail-replay"><small>DETAILED 2D TRACE · SAME CLOCK</small><h3>Inspect each signal</h3><p>Follow the tanks, treatment color, commands, modeled feedback, and data-quality labels at each sample. The theater and this trace always show the same replay position.</p></div>
-        <div className={styles.player}>
-          <div className={styles.playerTop}><div><span className={frame.attack === 'none' ? styles.phaseNormal : styles.phaseAttack}>{frame.attack === 'none' ? 'NORMAL PROCESS' : frame.attack.replaceAll('_', ' ').toUpperCase()}</span><h3>{phaseTitle(frame.phase)}</h3><p>{frameDescription(frame)}</p></div><div className={styles.sampleNumber}>SAMPLE <strong>{index + 1} / {frames.length}</strong><span>T+{(frame.elapsed_ms / 1000).toFixed(1)} s</span>{frame.scenario && <span>{phaseTitle(frame.scenario)} scenario</span>}</div></div>
-          <div className={styles.playerControls}><button type="button" className={styles.primaryButton} onClick={togglePlay}>{playing ? 'Pause' : 'Play'} replay</button><button type="button" onClick={() => jump(index - 1)} disabled={index === 0}>← Previous</button><button type="button" onClick={() => jump(index + 1)} disabled={index === frames.length - 1}>Next →</button></div>
-          <label className={styles.sliderLabel} htmlFor="miniwater-frame-slider">Move to any sample</label>
-          <input id="miniwater-frame-slider" className={styles.slider} type="range" min="0" max={frames.length - 1} value={index} onChange={event => jump(Number(event.target.value))} />
-          <div className={styles.chapterButtons}>{chapterStarts.map(c => <button key={c.label} type="button" className={index === c.start ? styles.chapterActive : ''} onClick={() => jump(c.start)}>{c.label}</button>)}</div>
-          <div className={styles.tanks}>
-            <Tank name="Tank 1 · Raw water" truth={frame.truth.tank1_mm} reported={frame.reported.tank1_mm} quality={frame.data_quality.plc1} selected={rawMismatch} capacity={capacities.tank1} />
-            <Tank name="Tank 2 · Treatment" truth={frame.truth.tank2_mm} reported={frame.reported.tank2_mm} quality={frame.data_quality.plc2} selected={false} capacity={capacities.tank2} tint={colorTint} />
-            <Tank name="Tank 3 · Receiving" truth={frame.truth.tank3_mm} reported={frame.reported.tank3_mm} quality={frame.data_quality.plc3} selected={false} capacity={capacities.tank3} tint={colorTint} />
-          </div>
-          <div className={treatmentMismatch ? styles.treatmentAlert : styles.treatmentCard}>
-            <div><small>PLC2 · TREATMENT TANK</small><h4>{phaseTitle(treatmentStage)}</h4><p>PLC2 assesses reported blue and yellow readings, applies a timed dose when needed, waits eight seconds to settle, then reassesses before its complete handoff.</p></div>
-            <div className={styles.treatmentReadbacks}><span>PLC2 complete signal <strong>{treatmentReported ? treatmentComplete ? 'ON' : 'OFF' : '— stale'}</strong></span><span>Independent model target <strong>{qualityProxy.replaceAll('_', ' ')}</strong></span>{treatmentMismatch && <em>Completion disagrees with modeled color target.</em>}</div>
-          </div>
-          <div className={styles.colorPanel} aria-label="Tank 2 modeled color and PLC2 reported color">
-            <div className={styles.colorPanelIntro}><div><small>INSIDE TANK 2</small><h4>See the color decision</h4><p>The tank tint follows the independent model. The black ticks mark what PLC2 was told. The target requires blue at least 20 units and the blue/yellow difference at most 5 units.</p></div><div className={styles.colorSample} style={{ background: colorTint }} aria-label={`Illustrative modeled tint; blue ${value(frame.truth.color_blue)}, yellow ${value(frame.truth.color_yellow)}`} role="img" /></div>
-            <div className={styles.colorReadouts}><ColorReadout label="Blue proxy" modeled={frame.truth.color_blue} reported={frame.reported.color_blue} quality={frame.data_quality.plc2} color="blue" /><ColorReadout label="Yellow proxy" modeled={frame.truth.color_yellow} reported={frame.reported.color_yellow} quality={frame.data_quality.plc2} color="yellow" /></div>
-            <div className={colorTargetMet ? styles.colorOutcomeGood : styles.colorOutcomeBad}><span>Modeled balance <strong>{value(colorGap)} units apart</strong></span><span>Independent target <strong>{colorTargetMet ? 'MET' : 'NOT MET'}</strong></span><span>PLC2 complete <strong>{treatmentReported ? treatmentComplete ? 'ON' : 'OFF' : '— stale'}</strong></span></div>
-            {treatmentMismatch && <p className={styles.colorWarning}>PLC2 declared treatment complete while the modeled color target was missed. The delivery handoff can still follow that signal.</p>}
-          </div>
-          <div className={styles.lowerGrid}>
-            <div className={styles.outputCard}><small>CONTROL COMMANDS</small><h4>What the PLCs requested</h4><Lamp label="PLC1 pump · command" on={frame.commands.plc1_transfer_pump} /><Lamp label="PLC1 pump · modeled feedback" on={frame.actuators.plc1_transfer_pump} /><Lamp label="PLC2 yellow doser · command" on={frame.commands.plc2_yellow_doser} /><Lamp label="PLC2 yellow doser · modeled feedback" on={frame.actuators.plc2_yellow_doser} /><Lamp label="PLC3 pump · command" on={frame.commands.plc3_transfer_pump} /><Lamp label="PLC3 pump · modeled feedback" on={frame.actuators.plc3_transfer_pump} /></div>
-            <div className={styles.outputCard}><small>MODELED PROCESS</small><h4>What the software model shows</h4><p>Raw range · model <strong>{frame.truth.raw_range_cm === undefined ? '—' : value(frame.truth.raw_range_cm) + ' cm'}</strong></p><p>Raw range · PLC1 <strong className={frame.data_quality.plc1 === 'good' && frame.truth.raw_range_cm !== frame.reported.raw_range_cm ? styles.deviation : ''}>{frame.data_quality.plc1 === 'good' && frame.reported.raw_range_cm !== undefined ? value(frame.reported.raw_range_cm) + ' cm' : '—'}</strong></p><p>Blue proxy · model <strong>{value(frame.truth.color_blue)}</strong></p><p>Blue reading · PLC2 <strong>{frame.data_quality.plc2 === 'good' ? value(frame.reported.color_blue) : '—'}</strong></p><p>Yellow proxy · model <strong>{value(frame.truth.color_yellow)}</strong></p><p>Yellow reading · PLC2 <strong className={frame.data_quality.plc2 === 'good' && Math.abs(frame.truth.color_yellow - frame.reported.color_yellow) > 1 ? styles.deviation : ''}>{frame.data_quality.plc2 === 'good' ? value(frame.reported.color_yellow) : '—'}</strong></p><p>Quality proxy <strong className={dosingDeviation ? styles.deviation : ''}>{frame.truth.water_quality.replaceAll('_', ' ')}</strong></p></div>
-          </div>
-          <Trace frames={frames} index={index} capacity={capacities.tank1} />
-          <p className={styles.playerFoot}>Sample time and source class matter. “Commanded” does not prove physical movement; the process view here is a software model.</p>
+      <section className={styles.section} id="motivation">
+        <div className={styles.sectionHeading}><span>4</span><div><small>WHY DISTRIBUTE IT?</small><h2>From a tabletop process to a routed control loop</h2></div></div>
+        <p className={styles.sectionLead}>The original MiniWater testbed made tanks, tubing, pumps, and dye visible in one place. The SPHERE adaptation keeps its raw-water → treatment → delivery sequence while separating control stages across facilities. That lets a demonstration expose network boundaries, data age, signal ownership, and the difference between a controller’s reading and modeled process state. The historical images below show the original setup; the replay on this page is a software preview.</p>
+        <div className={styles.historyGrid}>
+          <figure className={styles.historyPhoto}><Image src="/images/demos/miniwater/original-testbed.jpg" alt="Historical MiniWater tabletop rig with clear tanks, tubing, pumps, Raspberry Pi boards, and cups of blue and red coloring" width={4056} height={2258} sizes="(max-width: 760px) 100vw, 58vw" /><figcaption><strong>Original MiniWater testbed</strong><span>Historical physical rig; the SPHERE demo keeps its three-stage logic but models tanks and devices in software.</span></figcaption></figure>
+          <figure className={styles.historySchematic}><Image src="/images/demos/miniwater/original-schematic.png" alt="Original MiniWater three-stage schematic with raw tank, color treatment and dosing, treated tank, and PLCs 1 through 3" width={504} height={344} sizes="(max-width: 760px) 100vw, 38vw" /><figcaption><strong>Original three-stage design</strong><span>Raw source, treatment, and delivery roles carried into this adaptation. <a href="https://github.com/iotrustlab/miniwatertreatment/tree/CompactLogix-Integration/Diagrams">View the source diagram</a>.</span></figcaption></figure>
         </div>
-      </section>
-
-      <section className={styles.section} id="defend">
-        <div className={styles.sectionHeading}><span>4</span><div><small>RED TEAM / BLUE TEAM</small><h2>Choose what you would check</h2></div></div>
-        <p className={styles.sectionLead}>The 2024 classroom CTF paired malicious code or opportunistic commands with defender code vetting and PLC-value monitoring. This poster version uses two bounded scenarios: a false PLC1 level and a manipulated PLC2 dosing decision. The public page presents their trace only.</p>
-        <div className={styles.decisionGrid}>
-          <div className={styles.decisionCard}><span className={styles.redPill}>ATTACK A</span><h3>False raw-water level</h3><p>PLC1 receives a level below modeled truth. Its reported range stays above the 10 cm handoff threshold, holding off transfer as tank 1 fills.</p><strong>Defender cue</strong><p>Compare reported and modeled level and range, plus the transfer command, over time.</p></div>
-          <div className={styles.decisionCard}><span className={styles.redPill}>ATTACK B</span><h3>False color, changed treatment</h3><p>PLC2 receives a yellow color reading higher than modeled truth. It can skip needed yellow dosing and raise treatment complete while the model remains off target; PLC3 then sees the handoff.</p><strong>Defender cue</strong><p>Compare the reported and modeled yellow values, the doser command, PLC2 complete signal, and delivery handoff.</p></div>
-        </div>
-        <div className={styles.check}><h3>Which observation gives the defender independent evidence?</h3><div>{['Read only the same PLC1 level again', 'Compare PLC1 level and range with modeled values', 'Assume a pump command proves movement'].map(choice => <button key={choice} type="button" className={check === choice ? styles.selectedChoice : ''} onClick={() => setCheck(choice)}>{choice}</button>)}</div>{check && <p role="status" className={check.startsWith('Compare') ? styles.correct : styles.incorrect}>{check.startsWith('Compare') ? 'Yes. Independent modeled level and range can contradict a forged controller reading.' : 'That observation shares the compromised value or confuses a command with feedback.'}</p>}</div>
       </section>
 
       <section className={styles.section} id="source">
