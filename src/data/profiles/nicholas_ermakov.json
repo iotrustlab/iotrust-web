@@ -1,0 +1,23 @@
+{
+  "id": "nicholas_ermakov",
+  "name": "Nicholas Ermakov",
+  "role": "Undergraduate Researcher",
+  "title": "Undergraduate Research Assistant",
+  "department": "Kahlert School of Computing",
+  "university": "University of Utah",
+  "email": "u0890218@utah.edu",
+  "image": "/images/team/nicholas-ermakov.jpg",
+  "location": "Salt Lake City, UT, USA",
+  "office": "Room 3115, MEB",
+  "bio": "Nicholas Ermakov is an undergraduate research assistant in the Kahlert School of Computing at the University of Utah. His work focuses on the safety and security of cyber-physical systems, with an emphasis on cyber-physical system robustness with respect to out of band signal injections.",
+  "education": [
+    {
+      "degree": "B.Sc. Computer Engineering (In Progress)",
+      "institution": "University of Utah",
+      "year": "2024-Present"
+    }
+  ],
+  "linkedin": "https://www.linkedin.com/in/nicholas235/",
+  "github": "https://github.com/nicholas23571",
+  "type": "json"
+}
